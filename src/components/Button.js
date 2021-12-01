@@ -1,6 +1,8 @@
+import styles from "../css/Button.module.css";
+
 function Button ({text}) {
     return (
-        <button type="button" class="btn btn-secondary">{text}</button>
+        <button type="button"className={styles.ButtonStyle}>{text}</button>
     );
 }
 

@@ -1,27 +1,25 @@
-import NavBar from "./components/NavBar";
-import JoinForm from "./components/JoinForm";
-import Title from "./components/Title";
-import Button from "./components/Button";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
-import styles from "./css/App.module.css";
+import Join from './routes/Join';
+import Login from "./routes/Login";
 
 function App() {
+  
   return (
-    <div class={styles.gridContainer}>
-      <div></div>
-      <div class={styles.sec2}>
-        <div class={styles.center}>
-          <Title />
-        </div>
-        <div class={styles.center}>
-        <JoinForm />
-        </div>
-        <div class={styles.center}>
-        <Button text={"회원가입"}/>
-        </div>
-      </div>
-      <div></div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/join" element={<Join />}/>
+      </Routes>
+      <Routes>
+        <Route path="/login" element={<Login />}/>
+      </Routes>
+    </Router>
   );
 }
 
