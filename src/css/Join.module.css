@@ -8,7 +8,7 @@ body {
 
 .gridContainer {
     display: grid;
-    grid-template-columns: 0.5fr max-content 0.5fr;
+    grid-template-columns: 0.9fr max-content 1fr;
     height: 100vh;
 }
 

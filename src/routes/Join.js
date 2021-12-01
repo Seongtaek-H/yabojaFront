@@ -1,7 +1,6 @@
 import JoinForm from "../components/JoinForm";
-import Title from "../components/Title";
 import Button from "../components/Button";
-import styles from "../css/App.module.css";
+import styles from "../css/Join.module.css";
 
 function Join() {
   return (
@@ -10,7 +9,6 @@ function Join() {
       </div>
       <div class={styles.sec2}>
         <div class={styles.center}>
-        <Title />
         </div>
         <div class={styles.center}>
         <JoinForm />
