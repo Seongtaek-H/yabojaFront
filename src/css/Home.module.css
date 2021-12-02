@@ -1,13 +1,100 @@
-.gridContainer {
-    padding-top: 80px;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: repeat(2, minmax(max-content, 1fr));
-}
+@import "./font.css";
+
 
 .gridContainer2 {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
+    padding-left: 20px;
+
+}
+
+.titleStyle {
+    font-family: "NotoSansKr-Medium";
+    font-size: 40px;
+}
+
+.overViewStyle {
+    font-family: "NotoSansKr-Thin";
+    font-size: 20px;
+    width: 500px;
+}
+
+.gridContainer3 {
+    width: 100vw;
+    height: 100%;
     display: grid;
     grid-auto-flow: column;
     column-gap: 10px;
-    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 5fr 1fr
+}
+
+.gridContainer4 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+
+}
+
+.contentBox {
+    height: 200px;
+    background-color: white;
+    background-size: cover;
+    background-position: center center;
+    margin-bottom: 10px;
+}
+
+.arrowContainer, .arrowContainer2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.arrowContainer {
+    padding-left: 20px;
+}
+
+.arrowContainer2 {
+    padding-right: 20px;
+}
+
+.arrowCircle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color:grey;
+    opacity: 0.3;
+    border-radius: 50%;
+}
+
+.arrowCircle:hover {
+    cursor: pointer;
+}
+
+.arrow, .arrow2 {
+    position: absolute;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    width: 20px;
+    height: 20px;
+    border-color: white;
+
+}
+
+.arrow {
+    top: 15px;
+    left: 20px;
+    transform: rotate(-135deg);
+}
+
+.arrow2 {
+    top: 15px;
+    right: 20px;
+    transform: rotate(45deg);
+
 }
