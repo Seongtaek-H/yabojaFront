@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav, P, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
 function Menu() {
   return (
