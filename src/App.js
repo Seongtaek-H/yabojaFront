@@ -17,7 +17,6 @@ import When from './routes/When';
 function App() {
   
   return (
-
     <Router>
       <Routes>
         <Route path="/" element={<Home />}/>
@@ -38,7 +37,6 @@ function App() {
         <Route path="/When" element={<When />}/>
       </Routes>
     </Router>
-
   );
 }
 
