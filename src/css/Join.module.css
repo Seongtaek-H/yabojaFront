@@ -1,0 +1,24 @@
+@import "./font.css";
+
+body {
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 0.9fr max-content 1fr;
+    height: 100vh;
+}
+
+.sec2 {
+    display: grid;
+    grid-template-rows: 0.4fr 1fr 0.2fr;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
