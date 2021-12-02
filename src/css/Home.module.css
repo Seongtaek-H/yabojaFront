@@ -1,0 +1,13 @@
+.gridContainer {
+    padding-top: 80px;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(2, minmax(max-content, 1fr));
+}
+
+.gridContainer2 {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 10px;
+    grid-auto-columns: 1fr;
+}
