@@ -2,12 +2,15 @@
 import React, { useState } from "react";
 import "./App.css";
 
-
-import Menu from './component/Menu.js'
+import Menu from './component/Menu.js';
+import Login from './component/Login.js'
 
 function App() {
   return (
-    <Menu/>
+    <div>
+    <Menu></Menu>
+    <Login></Login>
+    </div>
   );
 }
 
