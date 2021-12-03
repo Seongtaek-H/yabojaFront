@@ -37,6 +37,16 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 10px;
+    position: absolute;
+
+}
+
+.gridContainer5 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+    position: absolute;
 
 }
 
@@ -52,7 +62,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .arrowContainer {

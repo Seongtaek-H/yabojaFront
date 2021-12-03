@@ -6,6 +6,8 @@ import styles from "../css/Home.module.css";
 
 import {motion, AnimatePresence} from "framer-motion";
 
+import {Link} from "react-router-dom";
+
 function Home() {
     const [loading, setLoading] = useState(true);
     const [contents, setContents] = useState([]);
@@ -32,13 +34,13 @@ function Home() {
 
     const rowVariants = {
         hidden : {
-            x : window.outerWidth + 10,
+            x : window.outerWidth
         },
         visible : {
-            x: 0,
+            x : 0
         },
         exit : {
-            x : -window.outerWidth - 10,
+            x : -window.outerWidth
         }
     }
 
@@ -52,45 +54,33 @@ function Home() {
                     <div
                     style={{backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)), url(${makeImagePath(contents[0].backdrop_path)})`}}  
                     className={styles.gridContainer2}>
-                        <div className={styles.titleStyle}>{contents[0].title}</div>
+                        <div className={styles.titleStyle} onClick={increaseIndex}>{contents[0].title}</div>
                         <div className={styles.overViewStyle}>{contents[0].overview}</div>
                     </div>
-
-                    <div className={styles.gridContainer3}>          
-                        <div className={styles.arrowContainer}>
-                            <div className={styles.arrowCircle}>
-                                <div className={styles.arrow}></div>
-                            </div>  
-                        </div>
-
-                                <motion.div
+                    <h2>Top 20</h2>
+                        <AnimatePresence>
+                            <motion.div
                                 className={styles.gridContainer4}
                                 variants={rowVariants}
                                 initial="hidden"
                                 animate="visible"
                                 exit="exit"
-                                transition={{type: "tween", duration:1}}
+                                transition={{duration:2}}
                                 key={index}>
-                                    <AnimatePresence>
                                     {contents
                                     .slice(1)
                                     .slice(offset*index, offset*index+offset)
                                     .map((content)=>(
+                                        <Link to={`/detail/${content.id}`}>
                                         <motion.div
                                         className={styles.contentBox}
                                         style={{backgroundImage: `url(${makeImagePath(content.backdrop_path, "w500")})`}} 
                                         >
                                         </motion.div>
+                                        </Link>
                                     ))}
-                                    </AnimatePresence>
-                                </motion.div>
-
-                        <div className={styles.arrowContainer2}>
-                            <div className={styles.arrowCircle} onClick={increaseIndex}>
-                                <div className={styles.arrow2}></div>
-                            </div>
-                        </div>
-                    </div>
+                            </motion.div>
+                        </AnimatePresence>
                 </div>
             )}
         </div>
