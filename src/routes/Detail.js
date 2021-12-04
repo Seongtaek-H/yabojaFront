@@ -35,11 +35,10 @@ function Detail() {
                         style={{backgroundImage: `url(${makeImagePath(content.poster_path)})`}}></div>
                         <div className={styles.detail}>
                             <div className={styles.bold}>{content.title}</div>
-                            <div className={styles.medium}>{content.release_date}</div>
                             <div className={styles.medium} style={{display:"inline-block"}}>🎦</div>
                             {content.genres ? content.genres.map((genre)=><div className={styles.medium} style={{display:"inline-block"}}>{genre.name}&nbsp;</div>) : ""}
-                            <div className={styles.medium} style={{display:"inline-block"}}>|&nbsp;🕐{content.runtime}min&nbsp;</div>
-                            <div className={styles.medium} style={{display:"inline-block"}}>|&nbsp;⭐️{content.vote_average}/10</div>
+                            <div className={styles.medium} style={{display:"inline-block"}}>&nbsp;🕐{content.runtime}min&nbsp;</div>
+                            <div className={styles.medium} style={{display:"inline-block"}}>&nbsp;⭐️{content.vote_average}/10</div>
                             <div className={styles.thin}>{content.overview}</div>
                         </div>
                     </div>

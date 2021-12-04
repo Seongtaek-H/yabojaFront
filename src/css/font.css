@@ -12,3 +12,23 @@
     font-family: "NotoSansKr-Bold";
     src: url("../fonts/NotoSansKR-Bold.otf");
 }
+
+@font-face {
+    font-family: "Monoton-Regular";
+    src: url("../fonts/Monoton-Regular.ttf");
+}
+
+@font-face {
+    font-family: "FugazOne-Regular";
+    src: url("../fonts/FugazOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "BungeeShade-Regular";
+    src: url("../fonts/BungeeShade-Regular.ttf");
+}
+
+@font-face {
+    font-family: "MajorMonoDisplay-Regular";
+    src: url("../fonts/MajorMonoDisplay-Regular.ttf");
+}

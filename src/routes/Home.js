@@ -31,10 +31,12 @@ function Home() {
                     <div
                         style={{backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)), url(${makeImagePath(contents[ranNum].backdrop_path)})`}}  
                         className={styles.gridContainer}>
-                        <div className={styles.titleStyle}>{contents[ranNum].title}</div>
-                        <div className={styles.overViewStyle}>{contents[ranNum].overview.length>150 ? contents[ranNum].overview.slice(0,150)+"..." : contents[ranNum].overview}</div>
+                        <div className={styles.titleContainer}>
+                            <span className={styles.title1}>야보자! 이거어때?</span>
+                            <span className={styles.title2}>에서</span>
+                            <span style={{display:"block"}} className={styles.title2}>원하는 콘텐츠들을 만나보세요.</span>
+                        </div>
                     </div>
-
                     <Slider title="Top Rated" criteria="top_rated"/>
                     <div className={styles.blank2}></div>
                     <Slider title="Now Playing" criteria="now_playing"/>                           

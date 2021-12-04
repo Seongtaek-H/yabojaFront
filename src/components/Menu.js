@@ -1,14 +1,20 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 import styles from "../css/Menu.module.css";
 
 function Menu() {
+
   return (
     <div className={styles.MenuBarStyle}>
       <div></div>
       <div>
-        <Link className={styles.LinkStyle} to="/">야보자! 이거어때?</Link>
+        <Link className={styles.LinkStyle} to="/">
+          <span className={styles.logoStyle}>
+            YaboJa
+          </span>
+          <div className={styles.tri}></div>
+        </Link>
       </div>
       <div>
         <Link className={styles.LinkStyle} to="/what">뭐 볼까?</Link>

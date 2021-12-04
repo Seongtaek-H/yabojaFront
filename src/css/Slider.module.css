@@ -1,5 +1,10 @@
+@import "../css/font.css";
+
 h2 {
+    padding-left : 10px;
+    padding-bottom: 10px;
     cursor: pointer;
+    font-family: "NotoSansKr-thin";
 }
 
 .gridContainer {
