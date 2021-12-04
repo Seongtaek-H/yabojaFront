@@ -1,8 +1,5 @@
 function When() {
-    return(
-        <h1>When</h1>
-
-    );
+  return <h1>When</h1>
 }
 
-export default When;
+export default When

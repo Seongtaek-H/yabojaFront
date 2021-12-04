@@ -1,4 +1,4 @@
-@import "../css/font.css";
+@import '../css/font.css';
 
 .blank {
     height: 80px;
@@ -21,18 +21,18 @@
 
 .bold {
     font-size: 50px;
-    font-family: "NotoSansKr-Bold";
+    font-family: 'NotoSansKr-Bold';
 }
 
 .medium {
     font-size: 20px;
-    font-family: "NotoSansKr-Medium";
+    font-family: 'NotoSansKr-Medium';
 }
 
 .thin {
     margin-top: 50px;
     font-size: 20px;
-    font-family: "NotoSansKr-Thin";
+    font-family: 'NotoSansKr-Thin';
 }
 
 .poster {

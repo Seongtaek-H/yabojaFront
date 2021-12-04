@@ -1,4 +1,4 @@
-@import "./font.css";
+@import './font.css';
 
 /*전체 form 컨테이너*/
 .flexContainer {
@@ -6,9 +6,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    font-family:"NotoSansKr-Thin";
+    font-family: 'NotoSansKr-Thin';
 }
-
 
 /*각 필드 input 컨테이너(구독정보 제외)*/
 .fieldContainer {
@@ -19,7 +18,7 @@
 /*구독정보 input 컨테이너*/
 .flexContainer2 {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 20px;
 }

@@ -6,23 +6,29 @@
     height: 80px;
     background-color: rgb(160, 160, 160, 0.7);
     position: fixed;
-    font-family: "NotoSansKr-Bold";
+    font-family: 'NotoSansKr-Bold';
     font-size: x-large;
 
     display: grid;
-    grid-template-columns:
-    repeat(8, minmax(max-content, 1fr));
+    grid-template-columns: repeat(8, minmax(max-content, 1fr));
     justify-items: center;
     align-items: center;
 }
 
 .logoStyle {
-    font-family: "NotoSansKr-Bold";
+    font-family: 'NotoSansKr-Bold';
     font-style: bold;
     font-size: xx-large;
-   background: linear-gradient(to right, rgb(160, 119, 255), rgb(194, 100, 234), rgb(219, 79, 208), rgb(237, 54, 179), rgb(248, 24, 148));
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
+    background: linear-gradient(
+        to right,
+        rgb(160, 119, 255),
+        rgb(194, 100, 234),
+        rgb(219, 79, 208),
+        rgb(237, 54, 179),
+        rgb(248, 24, 148)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .tri {
@@ -32,21 +38,23 @@
     border-top: 7px solid transparent;
     border-left: 10px solid red;
     border-bottom: 7px solid transparent;
-  }
+}
 
 /*로그인, 회원가입 메뉴 스타일*/
 .MenuEtcStyle {
     width: 100%;
-    font-family: "NotoSansKr-thin";
+    font-family: 'NotoSansKr-thin';
     font-size: medium;
-    
+
     display: grid;
     grid-template-columns: repeat(2, minmax(max-content, 1fr));
     justify-items: center;
 }
 
 /*메뉴 링크 텍스트 스타일*/
-.LinkStyle, .LinkStyle:focus, .LinkStyle:hover {
+.LinkStyle,
+.LinkStyle:focus,
+.LinkStyle:hover {
     text-decoration: none;
     color: white;
 }
@@ -61,11 +69,10 @@
     border-radius: 15px;
 }
 
-.SearchBarStyle i{
+.SearchBarStyle i {
     position: absolute;
     right: 10px;
     top: 8px;
     color: black;
     cursor: pointer;
 }
-

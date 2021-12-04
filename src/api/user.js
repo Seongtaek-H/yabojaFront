@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 export const loginUser = async ({ id, password }) => {
   await axios.post(`/login`, { id, password })
