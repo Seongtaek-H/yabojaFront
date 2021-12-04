@@ -86,7 +86,7 @@ function What() {
           className={flag ? styles.clicked : ''}
           onClick={flag ? '' : selectType}
         >
-          All
+          All 수정
         </div>
         <div
           className={flag2 ? styles.clicked2 : ''}
