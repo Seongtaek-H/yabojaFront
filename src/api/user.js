@@ -5,4 +5,4 @@ export const loginUser = async ({ id, password }) => {
   // jwt토큰 쿠키에 저장
 }
 
-export const joinUser = async({})
+// export const joinUser = async({})
