@@ -6,9 +6,14 @@ body {
     width: 100%;
 }
 
+.sec1 {
+    display: flex;
+    justify-content: center;
+}
+
 .gridContainer {
     display: grid;
-    grid-template-columns: 0.9fr max-content 1fr;
+    grid-template-columns: 1fr max-content 1fr;
     height: 100vh;
 }
 

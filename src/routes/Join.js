@@ -5,7 +5,7 @@ import styles from "../css/Join.module.css";
 function Join() {
   return (
     <div class={styles.gridContainer}>
-      <div > 
+      <div> 
       </div>
       <div class={styles.sec2}>
         <div class={styles.center}>

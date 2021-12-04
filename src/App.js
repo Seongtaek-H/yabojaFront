@@ -12,6 +12,7 @@ import Home from './routes/Home';
 import What from './routes/What';
 import Where from "./routes/Where";
 import When from './routes/When';
+import Detail from "./routes/Detail";
 
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/When" element={<When />}/>
+      </Routes>
+      <Routes>
+        <Route path="/detail/:id" element={<Detail />}/>
       </Routes>
     </Router>
   );
