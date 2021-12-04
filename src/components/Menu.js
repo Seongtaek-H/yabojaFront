@@ -29,7 +29,7 @@ function Menu() {
       </div>
       <div className={styles.SearchBarStyle}>
         <input type="text" />
-        <i class="fas fa-search"></i>
+        <i className="fas fa-search"></i>
       </div>
       <div className={styles.MenuEtcStyle}>
         <div>

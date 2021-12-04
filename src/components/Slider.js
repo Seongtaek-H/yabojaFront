@@ -14,7 +14,9 @@ function Slider({ title, criteria }) {
     setContents(json.results)
   }
 
-  useEffect(getContents, [])
+  useEffect(()=>{
+    getContents();
+  }, [])
 
   const [index, setindex] = useState(0)
   const [leaving, setLeaving] = useState(false)

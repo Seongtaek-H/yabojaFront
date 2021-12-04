@@ -17,7 +17,9 @@ function Detail() {
         setLoading(false)
         setContent(json)
     }
-    useEffect(getContent, [])
+    useEffect(()=>{
+        getContent();
+    }, [])
 
     const makeImagePath = (id, format) => {
         return `https://image.tmdb.org/t/p/${

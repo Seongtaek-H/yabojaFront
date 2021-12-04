@@ -14,7 +14,9 @@ function Home() {
         setContents(json.results);
         setLoading(false);
     }
-    useEffect(getContents, []);
+    useEffect(()=>{
+        getContents();
+    }, []);
 
     const makeImagePath = (id, format) => {
         return `https://image.tmdb.org/t/p/${format?format: "original"}/${id}`;

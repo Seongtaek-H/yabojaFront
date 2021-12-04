@@ -12,7 +12,7 @@ function What() {
         'https://api.themoviedb.org/3/movie/popular?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1'
       )
     ).json()
-    setTVs(json.results)
+    setMovies(json.results)
   }
 
   const getTVs = async () => {
@@ -21,10 +21,14 @@ function What() {
         'https://api.themoviedb.org/3/tv/popular?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1'
       )
     ).json()
-    setMovies(json.results)
+    setTVs(json.results)
   }
-  useEffect(getMovies, [])
-  useEffect(getTVs, [])
+  useEffect(()=>{
+    getMovies();
+  }, [])
+  useEffect(()=>{
+    getTVs();
+  }, [])
 
   const [flag, setflag] = useState(true)
   const [flag2, setflag2] = useState(false)
@@ -65,6 +69,11 @@ function What() {
     }
   }
 
+  const makeImagePath = (id, format) => {
+    return `https://image.tmdb.org/t/p/${format ? format : 'original'}/${id}`
+  }
+
+
   return (
     <div className={styles.wrapper}>
       <Menu />
@@ -86,7 +95,7 @@ function What() {
           className={flag ? styles.clicked : ''}
           onClick={flag ? '' : selectType}
         >
-          All 수정
+          All
         </div>
         <div
           className={flag2 ? styles.clicked2 : ''}
@@ -101,7 +110,22 @@ function What() {
           TV
         </div>
       </div>
+
+        {flag ? <><div className={styles.gridContainer3}>{tvs.map((tv) => <div style={{
+        height: 100, color: "white"
+      }}>{tv.name}</div>)}</div><div className={styles.gridContainer3}>{movies.map((movie) => <div style={{
+        height: 100, color: "white"
+      }}>{movie.title}</div>)}</div></>
+                  
+                   : null}
+        {flag2 ? <div className={styles.gridContainer3}>{movies.map((movie)=><div style={{
+                    height: 100 , color: "white"
+                  }}>{movie.title}</div>)}</div> : null}
+        {flag3 ? <div className={styles.gridContainer3}>{tvs.map((tv)=><div style={{
+                    height: 100 , color: "white"
+                  }}>{tv.name}</div>)}</div> : null}
     </div>
+    
   )
 }
 

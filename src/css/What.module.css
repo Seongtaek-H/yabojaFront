@@ -85,3 +85,11 @@
   border-left: 1px white solid;
   border-right: 1px white solid;
 }
+
+.gridContainer3 {
+  width: 80vw;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-self: center;
+}
