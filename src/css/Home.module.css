@@ -1,5 +1,4 @@
-@import "./font.css";
-
+@import './font.css';
 
 .gridContainer {
     width: 100%;
@@ -9,7 +8,6 @@
     justify-content: center;
     background-size: cover;
     padding-left: 20px;
-
 }
 
 .titleContainer {
@@ -18,13 +16,13 @@
 
 .title1 {
     display: inline-block;
-    font-family: "NotoSansKr-Medium";
+    font-family: 'NotoSansKr-Medium';
     font-size: 50px;
 }
 
 .title2 {
     display: inline-block;
-    font-family: "NotoSansKr-Thin";
+    font-family: 'NotoSansKr-Thin';
     font-size: 30px;
 }
 
@@ -32,10 +30,10 @@
     display: block;
 }
 
-.blank { 
+.blank {
     height: 80px;
 }
 
-.blank2 { 
+.blank2 {
     height: 250px;
 }

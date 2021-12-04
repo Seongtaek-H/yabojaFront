@@ -1,86 +1,87 @@
 .wrapper {
-    display : grid;
+  display: grid;
 }
 
 .blank {
-    height: 80px;
+  height: 80px;
 }
 
-
-.gridContainer, .gridContainer2 {
-    display: grid;
-    grid-auto-flow: column;
-    color:white;
+.gridContainer,
+.gridContainer2 {
+  display: grid;
+  grid-auto-flow: column;
+  color: white;
 }
 
 .gridContainer {
-    width: 70vw;
-    justify-self: center;
-    text-align: center;
-    grid-template-columns: repeat(8, minmax(max-content, 1fr));
-    justify-items: center;
-    margin: 50px 0 50px 0;
+  width: 70vw;
+  justify-self: center;
+  text-align: center;
+  grid-template-columns: repeat(8, minmax(max-content, 1fr));
+  justify-items: center;
+  margin: 50px 0 50px 0;
 }
 
 .gridContainer div {
-    background-color: white;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    cursor : pointer;
-
-}
-
-.Netflix{
-    background-size: cover;
-    background-position: center center;
+  background-color: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
 }
 
 .Netflix {
-    background-image: url("../images/Netflix.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+.Netflix {
+  background-image: url('../images/Netflix.png');
 }
 
 .Disney {
-    background-image: url("../images/Disney.png");
+  background-image: url('../images/Disney.png');
 }
 
 .gridContainer2 {
-    width: 70vw;
-    height: 50px;
-    justify-self: center;
-    border-radius: 10px;
-    grid-template-columns: repeat(1fr);
-    background-color: #707070;
+  width: 70vw;
+  height: 50px;
+  justify-self: center;
+  border-radius: 10px;
+  grid-template-columns: repeat(1fr);
+  background-color: #707070;
 }
 
 .gridContainer2 div {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.clicked, .clicked2, .clicked3 {
-    background-color: white;
-    color: #707070;
+.clicked,
+.clicked2,
+.clicked3 {
+  background-color: white;
+  color: #707070;
 }
 
 .clicked {
-    border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 10px;
 }
 
 .clicked2 {
-    background-color: white;
-    color: #707070;
+  background-color: white;
+  color: #707070;
 }
 
 .clicked3 {
-    border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .gridContainer2 div:nth-child(2) {
-    border-left: 1px white solid;
-    border-right: 1px white solid;
+  border-left: 1px white solid;
+  border-right: 1px white solid;
 }
