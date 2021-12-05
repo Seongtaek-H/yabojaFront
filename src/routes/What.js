@@ -1,6 +1,8 @@
 import styles from '../css/What.module.css'
 import { useState, useEffect } from 'react'
 import Menu from '../components/Menu'
+import {Link} from "react-router-dom";
+import styled from 'styled-components';
 
 function What() {
   const [movies, setMovies] = useState([])
@@ -111,19 +113,67 @@ function What() {
         </div>
       </div>
 
-        {flag ? <><div className={styles.gridContainer3}>{tvs.map((tv) => <div style={{
-        height: 100, color: "white"
-      }}>{tv.name}</div>)}</div><div className={styles.gridContainer3}>{movies.map((movie) => <div style={{
-        height: 100, color: "white"
-      }}>{movie.title}</div>)}</div></>
-                  
-                   : null}
-        {flag2 ? <div className={styles.gridContainer3}>{movies.map((movie)=><div style={{
-                    height: 100 , color: "white"
-                  }}>{movie.title}</div>)}</div> : null}
-        {flag3 ? <div className={styles.gridContainer3}>{tvs.map((tv)=><div style={{
-                    height: 100 , color: "white"
-                  }}>{tv.name}</div>)}</div> : null}
+        {flag ?
+          <div className={styles.gridContainer3}>
+            {tvs.map((tv) =>
+            <Link style={{
+              textDecoration:"none",
+            }} to={`/detail/${tv.id}`}>
+              <div
+              className={styles.box}
+              style={{
+              backgroundImage: `url(${makeImagePath(tv.poster_path)})`,
+              }}>
+                <div className={styles.detail}>⭐️{tv.vote_average}/10</div>
+                <div className={styles.detail}>{tv.name}</div>
+              </div>
+            </Link>)}
+
+            {movies.map((movie) =>
+            <Link style={{
+              textDecoration:"none",}}
+              to={`/detail/${movie.id}`}>
+              <div
+              className={styles.box}
+              style={{
+              backgroundImage: `url(${makeImagePath(movie.poster_path)})`,
+              }}>
+                <div className={styles.detail}>⭐️{movie.vote_average}/10</div>
+                <div className={styles.detail}>{movie.title}</div>
+              </div>
+            </Link>)}
+          </div> : null}
+
+        {flag2 ? <div className={styles.gridContainer3}>
+          {movies.map((movie)=>
+            <Link style={{
+              textDecoration:"none",}}
+              to={`/detail/${movie.id}`}>
+              <div
+              className={styles.box}
+              style={{
+                backgroundImage: `url(${makeImagePath(movie.poster_path)})`,
+                }}>
+                  <div className={styles.detail}>⭐️{movie.vote_average}/10</div>
+                  <div className={styles.detail}>{movie.title}</div>
+                </div>
+            </Link>)}
+          </div> : null}
+
+        {flag3 ? <div className={styles.gridContainer3}>
+          {tvs.map((tv)=>
+          <Link style={{
+            textDecoration:"none",}}
+            to={`/detail/${tv.id}`}>
+            <div
+              className={styles.box}style={{
+              backgroundImage: `url(${makeImagePath(tv.poster_path)})`,
+                    }}>
+                    <div className={styles.detail}>⭐️{tv.vote_average}/10</div>
+                    <div className={styles.detail}>{tv.name}</div>
+              </div>
+          </Link>)}
+          </div> : null}
     </div>
     
   )
