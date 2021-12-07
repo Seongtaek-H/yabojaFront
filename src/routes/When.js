@@ -1,5 +1,12 @@
+import React from 'react'
+import Menu from '../components/Menu'
+
 function When() {
-  return <h1>When</h1>
+  return (
+    <div>
+      <Menu />
+    </div>
+  )
 }
 
 export default When
