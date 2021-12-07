@@ -1,8 +1,10 @@
 import styles from '../css/What.module.css'
+
 import { useState, useEffect } from 'react'
+
 import Menu from '../components/Menu'
-import {Link} from "react-router-dom";
-import styled from 'styled-components';
+import MoviePoster from '../components/MoviePoster';
+import TVPoster from '../components/TVPoster';
 
 function What() {
   const [movies, setMovies] = useState([])
@@ -70,12 +72,6 @@ function What() {
       setflag2((prev) => !prev)
     }
   }
-
-  const makeImagePath = (id, format) => {
-    return `https://image.tmdb.org/t/p/${format ? format : 'original'}/${id}`
-  }
-
-
   return (
     <div className={styles.wrapper}>
       <Menu />
@@ -83,7 +79,7 @@ function What() {
 
       <div className={styles.gridContainer}>
         <div className={styles.Netflix}></div>
-        <div className={styles.Disney}></div>
+        <div></div>
         <div></div>
         <div></div>
         <div></div>
@@ -116,63 +112,23 @@ function What() {
         {flag ?
           <div className={styles.gridContainer3}>
             {tvs.map((tv) =>
-            <Link style={{
-              textDecoration:"none",
-            }} to={`/detail/${tv.id}`}>
-              <div
-              className={styles.box}
-              style={{
-              backgroundImage: `url(${makeImagePath(tv.poster_path)})`,
-              }}>
-                <div className={styles.detail}>⭐️{tv.vote_average}/10</div>
-                <div className={styles.detail}>{tv.name}</div>
-              </div>
-            </Link>)}
-
+            <TVPoster tv={tv} styles={styles}/>
+            )}
             {movies.map((movie) =>
-            <Link style={{
-              textDecoration:"none",}}
-              to={`/detail/${movie.id}`}>
-              <div
-              className={styles.box}
-              style={{
-              backgroundImage: `url(${makeImagePath(movie.poster_path)})`,
-              }}>
-                <div className={styles.detail}>⭐️{movie.vote_average}/10</div>
-                <div className={styles.detail}>{movie.title}</div>
-              </div>
-            </Link>)}
+            <MoviePoster movie={movie} styles={styles}/>
+            )}
           </div> : null}
 
         {flag2 ? <div className={styles.gridContainer3}>
           {movies.map((movie)=>
-            <Link style={{
-              textDecoration:"none",}}
-              to={`/detail/${movie.id}`}>
-              <div
-              className={styles.box}
-              style={{
-                backgroundImage: `url(${makeImagePath(movie.poster_path)})`,
-                }}>
-                  <div className={styles.detail}>⭐️{movie.vote_average}/10</div>
-                  <div className={styles.detail}>{movie.title}</div>
-                </div>
-            </Link>)}
+            <MoviePoster movie={movie} styles={styles}/>
+            )}
           </div> : null}
 
         {flag3 ? <div className={styles.gridContainer3}>
           {tvs.map((tv)=>
-          <Link style={{
-            textDecoration:"none",}}
-            to={`/detail/${tv.id}`}>
-            <div
-              className={styles.box}style={{
-              backgroundImage: `url(${makeImagePath(tv.poster_path)})`,
-                    }}>
-                    <div className={styles.detail}>⭐️{tv.vote_average}/10</div>
-                    <div className={styles.detail}>{tv.name}</div>
-              </div>
-          </Link>)}
+          <TVPoster tv={tv} styles={styles}/>
+        )}
           </div> : null}
     </div>
     

@@ -11,7 +11,7 @@ function Detail() {
     const getContent = async () => {
         const json = await (
             await fetch(
-                `https://api.themoviedb.org/3/movie/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
+                `https://api.themoviedb.org/3/tv/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
             )
         ).json()
         setLoading(false)
@@ -54,14 +54,16 @@ function Detail() {
                             ></div>
                             <div className={styles.detail}>
                                 <div className={styles.bold}>
-                                    {content.title}
+                                    {content.name}
                                 </div>
+
                                 <div
                                     className={styles.medium}
                                     style={{ display: 'inline-block' }}
                                 >
-                                    🎦
+                                🎦 
                                 </div>
+
                                 {content.genres
                                     ? content.genres.map((genre) => (
                                           <div
@@ -74,11 +76,12 @@ function Detail() {
                                           </div>
                                       ))
                                     : ''}
+
                                 <div
                                     className={styles.medium}
                                     style={{ display: 'inline-block' }}
                                 >
-                                    &nbsp;🕐{content.runtime}min&nbsp;
+                                    &nbsp;📆{content.first_air_date}&nbsp;
                                 </div>
                                 <div
                                     className={styles.medium}
