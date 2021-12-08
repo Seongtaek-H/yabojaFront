@@ -56,9 +56,9 @@ function MovieReview() {
                     {reviews.map((review)=>(
                         <div key={review.seq_review} className={styles.reviewBox}>
                             <div>
-                                <div className={styles.id}>review.id</div>
-                                <div className={styles.eval}>⭐️review.eval</div>
-                                <div className={styles.reviewBody}>reviewBody</div>
+                                <div className={styles.id}>{review.id}</div>
+                                <div className={styles.eval}>⭐️{review.eval}</div>
+                                <div className={styles.reviewBody}>{reviewBody}</div>
                             </div>
                             <div className={styles.gridContainer}>
                                 <div className={styles.like}><i class="fas fa-heart fa-lg"></i>좋아요</div>
