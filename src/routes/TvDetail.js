@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import Button from '../components/Button'
 import Menu from '../components/Menu'
 import styles from '../css/Detail.module.css'
 
@@ -91,6 +92,14 @@ function Detail() {
                                 </div>
                                 <div className={styles.thin}>
                                     {content.overview}
+                                </div>
+                                <div className={styles.btn}>
+                                    <div>
+                                    <Link to={`/tvReview/${content.id}`}>
+                                        <Button text={"리뷰게시판"}/>
+                                    </Link>    
+                                    </div>
+                                    <div><Button text={"자유게시판"}/></div>
                                 </div>
                             </div>
                         </div>

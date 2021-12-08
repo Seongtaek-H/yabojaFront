@@ -52,3 +52,11 @@
     background-color: transparent;
     align-self: center;
 }
+
+.btn {
+    margin-top: 50px;
+    width: 350px;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+}
