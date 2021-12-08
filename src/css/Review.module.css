@@ -1,3 +1,5 @@
+@import "./font.css";
+
 .blank {
     height: 80px;
 }
@@ -7,4 +9,65 @@
     height: 100vh;
     background-size: cover;
     background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-family: 'NotoSansKr-Bold';
+    font-size: 40px;
+}
+
+.reviewBox {
+    width : 70%;
+    background-color: #212529;
+    display: grid;
+    grid-template-rows: minmax(max-content, 3fr) 1fr;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+
+.id, .eval, .reviewBody {
+    margin : 5px;
+}
+
+.id {
+    font-family: 'NotoSansKr-Medium';
+}
+
+.eval {
+    font-family: 'NotoSansKr-Thin';
+
+}
+
+.reviewBody {
+    font-family: 'NotoSansKr-Thin';
+
+}
+
+.gridContainer {
+    display: grid;
+    grid-auto-flow: column;
+    border-top: white 1px solid;
+    padding: 8px;
+    font-family: 'NotoSansKr-Thin';
+}
+
+.like, .comment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.like {
+    border-right: white 1px solid;
+}
+
+i {
+    margin-right: 5px;
 }

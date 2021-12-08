@@ -15,16 +15,14 @@ function MovieReview() {
               `https://api.themoviedb.org/3/movie/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
           )
       ).json()
+      setLoading(false);
       setContent(json)
   }
 
   const getReviews = async () => {
       const json = await (
-          await fetch('/buyus/readreview?reviewTitle=')
-
-          // url 수정 필요
+          await fetch('/buyus/readreview?reviewTitle=ironman')
       ).json();
-      setLoading(false);
       setReviews(json);
   }
 
@@ -53,8 +51,21 @@ function MovieReview() {
                       backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${makeImagePath(
                           content.backdrop_path
                       )})`,
-                  }}></div>
-                {reviews.map((review)=>(<div>{review.reviewBody}</div>))}
+                  }}>
+                      <div className={styles.title}>{content.title}</div>
+                    {reviews.map((review)=>(
+                        <div key={review.seq_review} className={styles.reviewBox}>
+                            <div>
+                                <div className={styles.id}>review.id</div>
+                                <div className={styles.eval}>⭐️review.eval</div>
+                                <div className={styles.reviewBody}>reviewBody</div>
+                            </div>
+                            <div className={styles.gridContainer}>
+                                <div className={styles.like}><i class="fas fa-heart fa-lg"></i>좋아요</div>
+                                <div className={styles.comment}><i class="fas fa-comment-alt fa-lg"></i>댓글달기</div>
+                            </div>
+                        </div>))}
+                  </div>
             </div>
           )}
         </div>
