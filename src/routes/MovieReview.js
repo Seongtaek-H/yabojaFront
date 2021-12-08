@@ -20,7 +20,7 @@ function MovieReview() {
 
   const getReviews = async () => {
       const json = await (
-          await fetch('/spring/?title=ironman')
+          await fetch('/buyus/readreview?reviewTitle=')
 
           // url 수정 필요
       ).json();
@@ -54,7 +54,7 @@ function MovieReview() {
                           content.backdrop_path
                       )})`,
                   }}></div>
-                {reviews.map()}
+                {reviews.map((review)=>(<div>{review.reviewBody}</div>))}
             </div>
           )}
         </div>
