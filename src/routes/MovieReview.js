@@ -99,13 +99,19 @@ function MovieReview() {
             <div>
               <Menu />
               <div className={styles.blank}></div>
+            <div>
+                <div className={styles.writeBtn} onClick={onWriteClicked}>
+                <i class="fas fa-pen-square"></i>
+                </div>
+            </div>
               <div
                   className={styles.background}
                   style={{
-                      backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${makeImagePath(
+                      backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,1)), url(${makeImagePath(
                           content.backdrop_path
                       )})`,
                   }}>
+                    <div className={styles.blank}></div>
                       <AnimatePresence>
                           {writeMatch ?
                           <>
@@ -141,20 +147,9 @@ function MovieReview() {
                           </motion.div>
                           </>
                           : "" }
-                      </AnimatePresence>                  
+                      </AnimatePresence>
 
-                      <div className={styles.title}>
-                            <div></div>
-                            <div>{content.title}</div>
-                            <div>
-                                <div className={styles.pointer} onClick={onWriteClicked}>
-                                <i class="fas fa-pencil-alt"></i>
-                                리뷰 작성
-                                </div>
-                            </div>
-                        </div>
-
-                    {(reviews===null) ? reviews.map((review)=>(
+                    {(reviews.length>0) ? reviews.map((review)=>(
                         <div key={review.seq_review} className={styles.reviewBox}>
                             <div>
                                 <div className={styles.id}>{review.id}</div>
