@@ -6,7 +6,7 @@
 
 .background {
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     background-size: cover;
     background-position: center center;
     display: grid;
@@ -70,6 +70,10 @@
     right: 50px;
 }
 
+.writeBtn :hover {
+    transform : scale(1.1);
+}
+
 i {
     margin-right: 5px;
 }
@@ -114,20 +118,20 @@ i {
 }
 
 .rate input[type=radio]{
-    display: none; /* 라디오박스 감춤 */
+    display: none;
 }
 .rate label{
-    font-size: 40px; /* 이모지 크기 */
-    color: transparent; /* 기존 이모지 컬러 제거 */
-    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+    font-size: 40px;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
 }
 
 .rate label:hover{
-    text-shadow: 0 0 0 #FFC83D; /* 마우스 호버 */
+    text-shadow: 0 0 0 #FFC83D;
 }
 
 .rate input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 #FFC83D; /* 마우스 클릭 체크 */
+    text-shadow: 0 0 0 #FFC83D;
 }
 
 .write {

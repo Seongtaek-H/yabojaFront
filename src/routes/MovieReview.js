@@ -56,11 +56,16 @@ function MovieReview() {
 
   const onOverlayClick = () => {
     navigate(`/movieReview/${content.id}`);
+    setScore(0);
   }
 
   const scoreChange = (e) => {
     setScore(e.target.value);
   }
+
+  useEffect(()=>{
+    console.log(score);
+}, [score])
 
   const textChange = (e) => {
     setText(e.target.value);
@@ -90,6 +95,7 @@ function MovieReview() {
       body : JSON.stringify(body)
     
     })
+
 }
     
 
@@ -154,7 +160,7 @@ function MovieReview() {
                             <div>
                                 <div className={styles.id}>{review.id}</div>
                                 <div className={styles.eval}>⭐️{review.eval}</div>
-                                <div className={styles.reviewBody}>reviewBody</div>
+                                <div className={styles.reviewBody}>{review.reviewBody}</div>
                             </div>
                             <div className={styles.gridContainer}>
                                 <div className={styles.like}><i class="fas fa-heart fa-lg"></i>좋아요</div>

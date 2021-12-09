@@ -88,7 +88,7 @@ function Detail() {
                                     className={styles.medium}
                                     style={{ display: 'inline-block' }}
                                 >
-                                    &nbsp;⭐️{content.vote_average}/10
+                                    &nbsp;⭐️{content.vote_average}
                                 </div>
                                 <div className={styles.thin}>
                                     {content.overview}
