@@ -41,6 +41,7 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/movieReview/:id" element={<MovieReview />} />
+        <Route path="/movieReview/:id/write" element={<MovieReview />} />
       </Routes>
       <Routes>
         <Route path="/tvReview/:id" element={<TVReview />} />

@@ -1,13 +1,23 @@
+import { AnimatePresence, motion, useViewportScroll } from "framer-motion";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams} from "react-router";
+import { useNavigate, useMatch } from "react-router-dom";
+import Button from "../components/Button";
 import Menu from "../components/Menu";
 import styles from "../css/Review.module.css";
 
 function MovieReview() {
-  const { id } = useParams()
-  const [loading, setLoading] = useState(true)
-  const [content, setContent] = useState([])
-  const [reviews, setReviews] = useState([])
+  const navigate = useNavigate();
+  const writeMatch = useMatch("/movieReview/:id/write");
+  const {scrollY} = useViewportScroll();
+
+  const { id } = useParams();
+
+  const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [score, setScore] = useState(0);
+  const [text, setText] = useState("");
 
   const getContent = async () => {
       const json = await (
@@ -39,6 +49,50 @@ function MovieReview() {
           format ? format : 'original'
       }/${id}`
   }
+
+  const onWriteClicked = () => {
+    navigate(`/movieReview/${content.id}/write`);
+  }
+
+  const onOverlayClick = () => {
+    navigate(`/movieReview/${content.id}`);
+  }
+
+  const scoreChange = (e) => {
+    setScore(e.target.value);
+  }
+
+  const textChange = (e) => {
+    setText(e.target.value);
+  }
+
+  const handletheSubmit = (e) => {
+      e.preventDefault();
+      postHandler();
+      navigate(`/movieReview/${content.id}`);
+  }
+
+
+  let body = {
+    "id" : id,
+    "reviewTitle" : content.title,
+    "eval" : score,
+    "reviewBody" : text
+  }
+
+  const postHandler = () => {
+    fetch('/spring/p', {
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json',
+        'Access-Control-Allow-Credentials' : true
+      },
+      body : JSON.stringify(body)
+    
+    })
+}
+    
+
     return (
         <div>
           {loading ? <h1>Loading</h1> :(
@@ -52,19 +106,66 @@ function MovieReview() {
                           content.backdrop_path
                       )})`,
                   }}>
-                      <div className={styles.title}>{content.title}</div>
-                    {reviews.map((review)=>(
+                      <AnimatePresence>
+                          {writeMatch ?
+                          <>
+                          <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={onOverlayClick} className={styles.overlay}></motion.div>
+                          <motion.div initial={{scale:0}} animate={{scale:1}} exit={{scale:0}} className={styles.writeBox} style={{top:scrollY}}>
+                            <div className={styles.how}>이 작품, 어떠셨나요?</div>
+                            <div className={styles.posterBox}>
+                                <div
+                                className={styles.poster}
+                                style={{
+                                backgroundImage: `url(${makeImagePath(
+                                    content.poster_path
+                                )})`,
+                                }}
+                                >
+                            </div>
+                            </div>
+                            <form onSubmit={handletheSubmit} className={styles.formBox}>
+                                <div className={styles.rate}>
+                                    <input onClick={scoreChange} type="radio" name="rating" value="5" id="rate1" /><label for="rate1"><i class="fas fa-star"></i></label>
+                                    <input onClick={scoreChange} type="radio" name="rating" value="4" id="rate2" /><label for="rate2"><i class="fas fa-star"></i></label>
+                                    <input onClick={scoreChange} type="radio" name="rating" value="3" id="rate3" /><label for="rate3"><i class="fas fa-star"></i></label>
+                                    <input onClick={scoreChange} type="radio" name="rating" value="2" id="rate4" /><label for="rate4"><i class="fas fa-star"></i></label>
+                                    <input onClick={scoreChange} type="radio" name="rating" value="1" id="rate5" /><label for="rate5"><i class="fas fa-star"></i></label>
+                                </div>
+                                <div className={styles.write}>
+                                    <input onChange={textChange} type="text" placeholder="작품에 대한 감상을 남겨주세요."/>
+                                </div>
+                                <div>
+                                    <Button type={"submit"} text={"작성하기"}/>
+                                </div>
+                            </form>
+                          </motion.div>
+                          </>
+                          : "" }
+                      </AnimatePresence>                  
+
+                      <div className={styles.title}>
+                            <div></div>
+                            <div>{content.title}</div>
+                            <div>
+                                <div className={styles.pointer} onClick={onWriteClicked}>
+                                <i class="fas fa-pencil-alt"></i>
+                                리뷰 작성
+                                </div>
+                            </div>
+                        </div>
+
+                    {(reviews===null) ? reviews.map((review)=>(
                         <div key={review.seq_review} className={styles.reviewBox}>
                             <div>
                                 <div className={styles.id}>{review.id}</div>
                                 <div className={styles.eval}>⭐️{review.eval}</div>
-                                <div className={styles.reviewBody}>{reviewBody}</div>
+                                <div className={styles.reviewBody}>reviewBody</div>
                             </div>
                             <div className={styles.gridContainer}>
                                 <div className={styles.like}><i class="fas fa-heart fa-lg"></i>좋아요</div>
                                 <div className={styles.comment}><i class="fas fa-comment-alt fa-lg"></i>댓글달기</div>
                             </div>
-                        </div>))}
+                        </div>)) : <h1 className={styles.noReview}>작성된 리뷰가 없습니다.</h1>}
                   </div>
             </div>
           )}

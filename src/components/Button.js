@@ -1,8 +1,8 @@
 import styles from '../css/Button.module.css'
 
-function Button({ text, size}) {
+function Button({ type, text, size}) {
   return (
-    <button type="button" style={{width:{size}}} className={styles.ButtonStyle}>
+    <button type={type} style={{width:{size}}} className={styles.ButtonStyle}>
       {text}
     </button>
   )
