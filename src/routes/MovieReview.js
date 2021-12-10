@@ -31,9 +31,9 @@ function MovieReview() {
 
   const getReviews = async () => {
         const json = await (
-            await fetch(`/spring/?title=${content.title}`)
+            await fetch(`/buyus/readreview/?reviewTitle=${content.title}`)
         ).json();
-        setReviews(reviews);
+        setReviews(json);
   }
   useEffect(()=>{
         getContent();
@@ -78,14 +78,14 @@ function MovieReview() {
 
 
   let body = {
-    "id" : id,
+    "id" : "lee",
     "reviewTitle" : content.title,
     "eval" : score,
     "reviewBody" : text
   }
 
   const postHandler = () => {
-      fetch('/spring/p', {
+      fetch('/buyus/review', {
         method : 'POST',
         headers : {
           'Content-Type' : 'application/json',
