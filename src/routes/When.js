@@ -1,10 +1,16 @@
 import React from 'react'
 import Menu from '../components/Menu'
+import Calendar from '../components/Calendar'
 
 function When() {
   return (
     <div>
-      <Menu />
+      <div>
+        <Menu />
+      </div>
+      <div>
+        <Calendar />
+      </div>
     </div>
   )
 }
