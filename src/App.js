@@ -11,6 +11,7 @@ import TvDetail from "./routes/TvDetail"
 import MovieDetail from "./routes/MovieDetail"
 import MovieReview from "./routes/MovieReview"
 import TVReview from "./routes/TVReview"
+import Search from './routes/Search'
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/tvReview/:id" element={<TVReview />} />
+        <Route path="/tvReview/:id/write" element={<TVReview />} />
+      </Routes>
+      <Routes>
+        <Route path="/search" element={<Search/>} />
       </Routes>
     </Router>
   )

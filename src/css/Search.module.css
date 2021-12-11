@@ -1,0 +1,49 @@
+@import url(./font.css);
+
+.blank {
+    height : 80px;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-rows: max-content max-content;
+    height: 100vh;
+    justify-items: center;
+
+
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items:center;
+    position: fixed;
+}
+
+.mainText {
+    font-size: 30px;
+    font-family: 'NotoSansKr-Thin';
+    margin: 20px 0 20px 0;
+}
+
+.searchBar {
+    width: 70vh;
+    height: 5vh;
+    border-radius: 20px;
+    border: none;
+}
+
+i {
+    color : grey;
+    right: 10px;
+    top : 95px;
+    position: absolute;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.searchBar:focus {
+    outline: none;
+}
