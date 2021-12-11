@@ -5,45 +5,45 @@
 }
 
 .gridContainer {
+    height : 100vh;
     display: grid;
-    grid-template-rows: max-content max-content;
-    height: 100vh;
+    grid-template-rows: repeat(2, max-content);
     justify-items: center;
-
-
+    align-items: center;
 }
 
+.mainText, .searchBar {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    font-family: "NotoSansKR-Thin";
+    margin-top: 30px;
 
-.main {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items:center;
-    position: fixed;
-}
-
-.mainText {
-    font-size: 30px;
-    font-family: 'NotoSansKr-Thin';
-    margin: 20px 0 20px 0;
 }
 
 .searchBar {
-    width: 70vh;
-    height: 5vh;
-    border-radius: 20px;
-    border: none;
+    position: relative;
 }
 
-i {
-    color : grey;
-    right: 10px;
-    top : 95px;
+.searchBar input {
+    border : none;
+    border-radius: 30px;
+    width : 50vw;
+}
+
+.searchBar input:focus {
+    outline : none;
+}
+
+.searchBar i {
     position: absolute;
-    font-size: x-large;
+    color : #707070;
+    right : 50px;
     cursor: pointer;
+
 }
 
-.searchBar:focus {
-    outline: none;
+.searchBar i:hover {
+    transform: scale(1.1);
 }

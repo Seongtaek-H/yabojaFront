@@ -27,7 +27,6 @@
     width: 100%;
     font-family: 'NotoSansKr-thin';
     font-size: medium;
-
     display: grid;
     grid-template-columns: repeat(2, minmax(max-content, 1fr));
     justify-items: center;
@@ -39,22 +38,4 @@
 .LinkStyle:hover {
     text-decoration: none;
     color: white;
-}
-
-/* 검색창*/
-.SearchBarStyle {
-    position: relative;
-}
-
-.SearchBarStyle input {
-    border: none;
-    border-radius: 15px;
-}
-
-.SearchBarStyle i {
-    position: absolute;
-    right: 10px;
-    top: 8px;
-    color: black;
-    cursor: pointer;
 }

@@ -18,6 +18,7 @@ function Detail() {
         setLoading(false)
         setContent(json)
     }
+    
     useEffect(()=>{
         getContent();
     }, [])

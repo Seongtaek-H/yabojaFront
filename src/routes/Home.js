@@ -26,7 +26,7 @@ function Home() {
 
     return (
         <div>
-            {loading ? (<h1>Loading</h1>) : (
+            {loading ? "" : (
                 <div>
                     <Menu />
                     <div className={styles.blank}></div>
