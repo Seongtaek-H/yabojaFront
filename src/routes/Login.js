@@ -1,8 +1,7 @@
 import axios, { Axios } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { apiAxios } from '../api/axios'
-import { loginUser } from '../api/user'
-import { API_HOST } from '../constants'
+import Button from '../components/Button'
 
 function Login() {
   const [id, setId] = useState('')
@@ -56,14 +55,9 @@ function Login() {
           />
         </div>
         <div>
-          <button
-            type="button"
-            onClick={() => {
-              loginUser
-            }}
-          >
+          <Button text="로그인" onClick={onClickLogin}>
             Login
-          </button>
+          </Button>
         </div>
       </div>
     )
