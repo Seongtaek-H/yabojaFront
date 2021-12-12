@@ -22,13 +22,13 @@ function App() {
         <Route path="/login" element={<Login />} />
       </Routes>
       <Routes>
-        <Route path="/What" element={<What />} />
+        <Route path="/what" element={<What />} />
       </Routes>
       <Routes>
-        <Route path="/Where" element={<Where />} />
+        <Route path="/where" element={<Where />} />
       </Routes>
       <Routes>
-        <Route path="/When" element={<When />} />
+        <Route path="/when" element={<When />} />
       </Routes>
       <Routes>
         <Route path="/detail/:id" element={<Detail />} />
