@@ -1,14 +1,11 @@
 import React from 'react'
-import Menu from '../components/Menu'
-import Calendar from '../components/Calendar'
+import Calendar from '../components/calendar/Calendar'
 
 function When() {
   return (
     <div>
       <div>
-        <Menu />
-      </div>
-      <div>
+        ㄴㅇㄹㅁㅇㄴㄹ
         <Calendar />
       </div>
     </div>
