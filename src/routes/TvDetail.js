@@ -40,7 +40,7 @@ function Detail() {
                     <div
                         className={styles.background}
                         style={{
-                            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${makeImagePath(
+                            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0, 1)), url(${makeImagePath(
                                 content.backdrop_path
                             )})`,
                         }}

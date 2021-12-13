@@ -11,7 +11,8 @@ function TVPoster({tv, styles}) {
         textDecoration:"none",}}
         to={`/tvDetail/${tv.id}`}>
         <div
-          className={styles.box} style={{
+          className={styles.box}
+          style={{
           backgroundImage: `url(${makeImagePath(tv.poster_path)})`,
                 }}>
           </div>

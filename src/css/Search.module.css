@@ -12,7 +12,16 @@
     align-items: center;
 }
 
-.mainText, .searchBar {
+.title{
+    display : flex;
+    align-items: center;
+    font-size: 30px;
+    font-family: "NotoSansKR-Thin";
+    margin-top: 30px;
+}
+
+
+.mainText, .searchBar{
     display : flex;
     justify-content: center;
     align-items: center;
@@ -27,9 +36,10 @@
 }
 
 .searchBar input {
+    padding-left: 60px;
     border : none;
     border-radius: 30px;
-    width : 50vw;
+    width: 100%;
 }
 
 .searchBar input:focus {
@@ -37,13 +47,39 @@
 }
 
 .searchBar i {
+    z-index: 10;
     position: absolute;
     color : #707070;
-    right : 50px;
+    left : 20px;
     cursor: pointer;
 
 }
 
-.searchBar i:hover {
-    transform: scale(1.1);
+.result {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap : 20px 20px;
 }
+
+.box {
+    width: 200px;
+    height: 300px;
+    background-size: 100% 100%;
+    background-position: center center;
+    justify-self: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0.7;
+  }
+
+  .box:hover {
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      transform: translateY(-15px);
+      opacity: 1;
+  }
