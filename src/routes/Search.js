@@ -9,8 +9,6 @@ function Search() {
     const [keyword, setKeyword] = useState("");
     const [movies, setMovies] = useState("");
     const [tvs, setTvs] = useState("");
-    const [loadingMovie, setLoadingMovie] = useState(true);
-    const [loadingTv, setLoadingTv] = useState(true);
 
     const searchMovie = async () => {
         const json = await (
@@ -19,7 +17,6 @@ function Search() {
             )
         ).json()
         setMovies(json);
-        setLoadingMovie(false);
 
     }
 
@@ -30,7 +27,6 @@ function Search() {
             )
         ).json()
         setTvs(json);
-        setLoadingTv(false);
     }
 
     const onSubmit = (e) => {

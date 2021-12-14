@@ -35,8 +35,8 @@
 }
 
 .poster {
-    width: 250px;
-    height: 370px;
+    width: 20vw;
+    height: 30vw;
     justify-self: center;
     align-self: center;
     background-size: 100% 100%;

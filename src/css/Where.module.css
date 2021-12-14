@@ -1,0 +1,29 @@
+@import "../css/font.css";
+
+.blank {
+    height: 80px;
+}
+
+.container {
+    height : 80vh;
+    width: 100vw;
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.innerContainer {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
+
+.graphTitle {
+    font-family: 'NotoSansKr-Medium';
+    font-size: 30px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
