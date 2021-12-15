@@ -1,7 +1,5 @@
-import { Alert } from 'bootstrap'
 import React, { useState } from 'react'
 import { apiAxios } from '../api/axios'
-import Button from '../components/Button'
 
 function Login() {
   const [id, setId] = useState('')
@@ -16,14 +14,15 @@ function Login() {
   }
 
   let loginData = {
-    Ya_email: id,
-    Ya_pwd: password,
+    YaEmail: id,
+    YaPwd: password,
   }
 
   const loginUser = () => {
-    const result = apiAxios
-      .post('/buyus/login', JSON.stringify(loginData))
-      .then(alert('success'))
+    const result = apiAxios.post(
+      '/buyus/login',
+      JSON.stringify(loginData)
+    )
     return result
   }
 
@@ -63,9 +62,7 @@ function Login() {
         />
       </div>
       <div>
-        <Button text="로그인" onClick={onClickLogin}>
-          Login
-        </Button>
+        <button onClick={onClickLogin}>Login</button>
       </div>
     </div>
   )
