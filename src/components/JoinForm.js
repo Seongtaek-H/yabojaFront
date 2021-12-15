@@ -1,7 +1,14 @@
 import Button from './Button'
 import styles from '../css/JoinForm.module.css'
+import { useState } from 'react'
 
 function JoinForm() {
+  const [email, setEmail] = useState('')
+  const [pdw, setPdw] = useState('')
+  const [name, setName] = useState('')
+  const [aka, setAka] = useState('')
+  const [phNum, setPhoneNum] = useState('')
+  const [myOtt, setMyOtt] = useState([])
   return (
     <div className={styles.flexContainer}>
       <form autocomplete="off">
@@ -39,15 +46,19 @@ function JoinForm() {
               <input type="checkbox" />
             </div>
             <div>
-              <span>넷플릭스</span>
+              <span>왓챠</span>
               <input type="checkbox" />
             </div>
             <div>
-              <span>넷플릭스</span>
+              <span>티빙</span>
               <input type="checkbox" />
             </div>
             <div>
-              <span>넷플릭스</span>
+              <span>웨이브</span>
+              <input type="checkbox" />
+            </div>
+            <div>
+              <span>디즈니</span>
               <input type="checkbox" />
             </div>
           </div>

@@ -5,7 +5,6 @@ function When() {
   return (
     <div>
       <div>
-        ㄴㅇㄹㅁㅇㄴㄹ
         <Calendar />
       </div>
     </div>
