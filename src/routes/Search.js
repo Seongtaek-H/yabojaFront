@@ -50,7 +50,8 @@ function Search() {
                     <input
                     type="text"
                     required
-                    /><i class="fas fa-search"></i>
+                    />
+                    <i class="fas fa-search"></i>
                 </div>
             </form>
             <div>

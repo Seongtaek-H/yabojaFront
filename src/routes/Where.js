@@ -7,7 +7,7 @@ import Menu from "../components/Menu";
 
 function Where() {
 
-  let Neflix = [
+  let Netflix = [
     {
       "id": "액션",
       "label": "액션",
@@ -40,7 +40,9 @@ function Where() {
     }
   ]
 
-  const [genre, setGenre] = useState(Neflix);
+  const [genre, setGenre] = useState(Netflix);
+  const [toggle, setToggle] = useState(true);
+  const [service, setService] = useState("OTT 서비스를 선택하세요.");
 
   let user = [
     {
@@ -108,28 +110,46 @@ function Where() {
     }
   ]
 
-  const onChange = (e) => {
+  const onClick = (e) => {
     let selection = e.target.value;
     if(selection==="넷플릭스"){
-      setGenre(Neflix);
+      setToggle((prev)=>!prev);
+      setService(selection);
+      setGenre(Netflix);
+      console.log(selection);
     }
     else if(selection==="웨이브"){
+      setToggle((prev)=>!prev);
+      setService(selection);
       setGenre(Wave);
+      console.log(selection);
     }
     else if(selection==="티빙"){
+      setToggle((prev)=>!prev);
+      setService(selection);
       console.log(selection);
     }
     else if(selection==="디즈니+"){
+      setToggle((prev)=>!prev);
+      setService(selection);
       console.log(selection);
     }
     else if(selection==="왓챠"){
+      setToggle((prev)=>!prev);
+      setService(selection);
       console.log(selection);
     }
     else {
+      setToggle((prev)=>!prev);
+      setService(selection);
       console.log(selection);
     }
   }
 
+  const toggleClass = () => {
+    setToggle((prev)=>!prev);
+    console.log(toggle)
+  }
 
 
   return (
@@ -147,14 +167,70 @@ function Where() {
       </div>
       <div className={styles.innerContainer}>
         <div className={styles.graphTitle}>
-          <select onChange={onChange}>
-            <option>넷플릭스</option>
-            <option>웨이브</option>
-            <option>티빙</option>
-            <option>디즈니+</option>
-            <option>왓챠</option>
-          </select>
-          콘텐츠 장르별 비율
+
+          <div className={styles.selectContainer}>  
+
+            <div className={styles.select_box}>
+
+              <div className={(toggle) ? styles.options_container : styles.active}>
+
+                <div className={styles.option} >
+                  <input
+                  type="radio"
+                  className={styles.radio}
+                  id="Netflix"
+                  value="넷플릭스"
+                  onClick={onClick}/>
+                  <label for="Netflix">넷플릭스</label>
+                </div>
+
+                <div className={styles.option} >
+                  <input
+                  type="radio"
+                  className={styles.radio}
+                  id="Wave"
+                  value="웨이브"
+                  onClick={onClick}/>
+                  <label for="Wave">웨이브</label>
+                </div>
+
+                <div className={styles.option} >
+                  <input
+                  type="radio"
+                  className={styles.radio}
+                  id="Tiving"
+                  value="티빙"
+                  onClick={onClick}/>
+                  <label for="Tiving">티빙</label>
+                </div>
+
+                <div className={styles.option} >
+                  <input
+                  type="radio"
+                  className={styles.radio}
+                  id="Disney+"
+                  value="디즈니+"
+                  onClick={onClick}/>
+                  <label for="Disney+">디즈니+</label>
+                </div>
+
+                <div className={styles.option} >
+                  <input
+                  type="radio"
+                  className={styles.radio}
+                  id="Whatcha"
+                  value="왓챠"
+                  onClick={onClick}/>
+                  <label for="Whatcha">왓챠</label>
+                </div>
+
+              </div>
+
+              <div onClick={toggleClass} className={styles.selected}>
+                    {service}
+              </div>
+            </div>
+          </div>
         </div>
         <div>
         <PieChart data={genre} />

@@ -6,25 +6,26 @@ const theme = {
 
 const PieChart = ({data}) => (
 
-<ResponsivePie
-        theme={theme}
+    <ResponsivePie
         data={data}
+        theme={theme}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-        innerRadius={0.4}
-        padAngle={1}
-        cornerRadius={4}
-        activeInnerRadiusOffset={5}
-        activeOuterRadiusOffset={5}
+        innerRadius={0.5}
+        padAngle={0.7}
+        cornerRadius={3}
+        activeOuterRadiusOffset={8}
         colors={{ scheme: 'category10' }}
-        borderColor={{ from: 'color', modifiers: [ [ 'darker', '0.3' ] ] }}
-        enableArcLinkLabels={true}
+        borderWidth={1}
+        borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
         arcLinkLabelsSkipAngle={10}
-        arcLinkLabelsTextColor="white"
+        arcLinkLabelsTextOffset={13}
+        arcLinkLabelsTextColor="#ffffff"
+        arcLinkLabelsStraightLength={10}
         arcLinkLabelsThickness={0}
-        arcLinkLabelsColor={{ from: 'color' }}
-        arcLabel={function(e){return e.value}}
-        arcLabelsTextColor={{ from: 'color', modifiers: [ [ 'darker', 10 ] ] }}
-        motionConfig="default"
+        arcLinkLabelsColor={{ from: 'color', modifiers: [] }}
+        arcLabelsSkipAngle={10}
+        arcLabelsTextColor="black"
+        legends={[]}
     />
 )
 

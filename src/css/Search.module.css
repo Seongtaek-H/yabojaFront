@@ -26,9 +26,12 @@
     justify-content: center;
     align-items: center;
     font-size: 35px;
-    font-family: "NotoSansKR-Thin";
     margin-top: 30px;
 
+}
+
+.mainText {
+    font-family: "NotoSansKR-Thin";
 }
 
 .searchBar {
@@ -40,6 +43,7 @@
     border : none;
     border-radius: 30px;
     width: 100%;
+    font-family: "NotoSansKR-Thin";
 }
 
 .searchBar input:focus {
@@ -47,11 +51,11 @@
 }
 
 .searchBar i {
+    font-size: 35px;
     z-index: 10;
     position: absolute;
     color : #707070;
     left : 20px;
-    cursor: pointer;
 
 }
 
