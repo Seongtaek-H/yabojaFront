@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.2",
-    "@nivo/pie": "^0.74.1",
+    "@nivo/core": "^0.72.0",
+    "@nivo/pie": "^0.72.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,6 +17,7 @@
     "react-bootstrap": "^2.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.21.2",
+    "react-minimal-pie-chart": "^8.2.0",
     "react-query": "^3.34.0",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",

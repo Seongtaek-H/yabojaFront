@@ -1,127 +1,74 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "../css/Where.module.css";
-
-import PieChart from "../components/Piechart";
 import Menu from "../components/Menu";
+import CustomPieChart from "../components/CustomPieChart";
 
 function Where() {
 
-  let Netflix = [
+  let data = [
     {
-      "id": "액션",
-      "label": "액션",
-      "value": 235,
-      "color": "hsl(176, 70%, 50%)"
+      "id": "php",
+      "label": "php",
+      "value": 591,
+      "color": "hsl(230, 70%, 50%)"
     },
     {
-      "id": "로맨스",
-      "label": "로맨스",
-      "value": 284,
-      "color": "hsl(220, 70%, 50%)"
+      "id": "elixir",
+      "label": "elixir",
+      "value": 550,
+      "color": "hsl(76, 70%, 50%)"
     },
     {
-      "id": "코미디",
-      "label": "코미디",
-      "value": 391,
-      "color": "hsl(337, 70%, 50%)"
+      "id": "lisp",
+      "label": "lisp",
+      "value": 225,
+      "color": "hsl(217, 70%, 50%)"
     },
     {
-      "id": "공포",
-      "label": "공포",
-      "value": 248,
-      "color": "hsl(355, 70%, 50%)"
+      "id": "css",
+      "label": "css",
+      "value": 411,
+      "color": "hsl(157, 70%, 50%)"
     },
     {
-      "id": "스릴러",
-      "label": "스릴러",
-      "value": 87,
-      "color": "hsl(298, 70%, 50%)"
+      "id": "python",
+      "label": "python",
+      "value": 47,
+      "color": "hsl(91, 70%, 50%)"
     }
   ]
 
-  const [genre, setGenre] = useState(Netflix);
+  const [genre, setGenre] = useState();
   const [toggle, setToggle] = useState(true);
   const [service, setService] = useState("OTT 서비스를 선택하세요.");
 
-  let user = [
-    {
-      "id": "넷플릭스",
-      "label": "넷플릭스",
-      "value": 122,
-      "color": "hsl(0, 100%, 50%)"
-    },
-    {
-      "id": "웨이브",
-      "label": "웨이브",
-      "value": 515,
-      "color": "hsl(175, 70%, 50%)"
-    },
-    {
-      "id": "티빙",
-      "label": "티빙",
-      "value": 413,
-      "color": "hsl(186, 70%, 50%)"
-    },
-    {
-      "id": "디즈니+",
-      "label": "디즈니+",
-      "value": 202,
-      "color": "hsl(341, 70%, 50%)"
-    },
-    {
-      "id": "왓챠",
-      "label": "왓챠",
-      "value": 423,
-      "color": "hsl(309, 70%, 50%)"
-    }
-  ]
 
-  let Wave = [
-    {
-      "id": "액션",
-      "label": "액션",
-      "value": 100,
-      "color": "hsl(176, 70%, 50%)"
-    },
-    {
-      "id": "로맨스",
-      "label": "로맨스",
-      "value": 324,
-      "color": "hsl(220, 70%, 50%)"
-    },
-    {
-      "id": "코미디",
-      "label": "코미디",
-      "value": 299,
-      "color": "hsl(337, 70%, 50%)"
-    },
-    {
-      "id": "공포",
-      "label": "공포",
-      "value": 178,
-      "color": "hsl(355, 70%, 50%)"
-    },
-    {
-      "id": "스릴러",
-      "label": "스릴러",
-      "value": 43,
-      "color": "hsl(298, 70%, 50%)"
-    }
-  ]
+  const [genres, setGenres] = useState([]);
+
+  const getgenres = async () => {
+    const json = await (
+      await fetch(
+        '/buyus/count'
+      )
+    ).json()
+    setGenres(json);
+  }
+
+  useEffect(()=>{
+    getgenres();
+  }, [])
 
   const onClick = (e) => {
     let selection = e.target.value;
     if(selection==="넷플릭스"){
       setToggle((prev)=>!prev);
       setService(selection);
-      setGenre(Netflix);
       console.log(selection);
     }
     else if(selection==="웨이브"){
       setToggle((prev)=>!prev);
       setService(selection);
-      setGenre(Wave);
       console.log(selection);
     }
     else if(selection==="티빙"){
@@ -148,7 +95,7 @@ function Where() {
 
   const toggleClass = () => {
     setToggle((prev)=>!prev);
-    console.log(toggle)
+    console.log(toggle);
   }
 
 
@@ -157,14 +104,16 @@ function Where() {
     <Menu />
     <div className={styles.blank}></div>
     <div className={styles.container}>
+
       <div className={styles.innerContainer}>
         <div className={styles.graphTitle}>
           OTT 서비스별 사용자 이용률
         </div>
         <div>
-          <PieChart data={user} />
+          <CustomPieChart data={data} />
         </div>
       </div>
+
       <div className={styles.innerContainer}>
         <div className={styles.graphTitle}>
 
@@ -233,7 +182,7 @@ function Where() {
           </div>
         </div>
         <div>
-        <PieChart data={genre} />
+          {/* 그래프 올 자리 */}
         </div>
       </div>
     </div>
