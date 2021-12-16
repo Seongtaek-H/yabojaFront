@@ -2,7 +2,7 @@ import styles from '../css/JoinForm.module.css'
 import { useState } from 'react'
 import { apiAxios } from '../api/axios'
 
-function JoinForm() {
+function JoinForm(props) {
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -41,7 +41,6 @@ function JoinForm() {
     yaPhNum: ph,
     yaMyott: myOtt,
   }
-  console.log(joinData)
 
   const joinUser = () => {
     const result = apiAxios.post('/buyus/join', JSON.stringify(joinData))
