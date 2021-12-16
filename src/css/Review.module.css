@@ -112,7 +112,7 @@ i {
 }
 
 .rate {
-    display: inline-block;
+    display: flex;
     border: 0;
     direction: rtl;
 }
