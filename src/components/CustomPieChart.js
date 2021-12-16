@@ -1,9 +1,14 @@
 import { ResponsivePie } from '@nivo/pie'
 
+const theme = {
+      "fontSize": 20,
+}
+
 
 const CustomPieChart = ({data}) => (
 
       <ResponsivePie
+      theme={theme}
       data={data}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
@@ -18,10 +23,12 @@ const CustomPieChart = ({data}) => (
       arcLinkLabelsTextColor="white"
       arcLinkLabelsStraightLength={14}
       arcLinkLabelsThickness={0}
-      arcLinkLabelsColor={{ from: 'color' }}
       arcLabelsSkipAngle={10}
       arcLabelsTextColor="black"
       legends={[]}
+      tooltip={() => (
+      <div></div>
+            )}
 />
 )
 
