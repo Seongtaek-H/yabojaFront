@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { apiAxios } from '../api/axios'
+import { setCookie } from '../utils/cookie'
 
 function Login() {
   const [id, setId] = useState('')
@@ -19,10 +20,7 @@ function Login() {
   }
 
   const loginUser = () => {
-    const result = apiAxios.post(
-      '/buyus/login',
-      JSON.stringify(loginData)
-    )
+    const result = apiAxios.post('/buyus/login', JSON.stringify(loginData))
     return result
   }
 
@@ -30,11 +28,15 @@ function Login() {
     try {
       const response = await loginUser()
       console.log(response)
-      // response 값 확인
+      if (response.data.jwt) {
+        setCookie('jwt', response.data.jwt, {
+          path: '/',
+          secure: true,
+          sameSite: 'none',
+        })
+      }
       // redux thunk
       // 디스패치로 response 값 받아와서 스토어 값 수정
-      // 토큰 받아서 쿠키나 로컬 스토리지 저장
-      // 토큰 => axios 헤더에 넣어서 기본값으로 설정
     } catch (error) {
       console.error(error.response)
       // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나

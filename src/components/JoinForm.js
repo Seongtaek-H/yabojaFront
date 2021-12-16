@@ -1,6 +1,7 @@
 import styles from '../css/JoinForm.module.css'
 import { useState } from 'react'
 import { apiAxios } from '../api/axios'
+import { useHistory } from 'react-router-dom'
 
 function JoinForm(props) {
   const [id, setId] = useState('')
@@ -8,6 +9,8 @@ function JoinForm(props) {
   const [name, setName] = useState('')
   const [nickName, setNickName] = useState('')
   const [ph, setPh] = useState('')
+  const history = useHistory()
+
   const [myOtt, setMyOtt] = useState([])
 
   const inputId = (e) => {
@@ -42,6 +45,32 @@ function JoinForm(props) {
     yaMyott: myOtt,
   }
 
+  const checkId = (id) => {
+    return apiAxios.get(`/join/checkEmail?email=${id}`)
+  }
+  const onClickCheckId = async () => {
+    try {
+      await checkId(id)
+      alert('사용가능한 이메일입니다')
+    } catch (error) {
+      alert('이미 사용중인 이메일입니다')
+      setId('')
+    }
+  }
+
+  const checkNickName = (nickName) => {
+    return apiAxios.get(`/join/checkId?id=${nickName}`)
+  }
+  const onClickCheckNickName = async () => {
+    try {
+      await checkNickName(nickName)
+      alert('사용가능한 닉네임입니다')
+    } catch (error) {
+      alert('이미 사용중인 닉네임입니다')
+      setNickName('')
+    }
+  }
+
   const joinUser = () => {
     const result = apiAxios.post('/buyus/join', JSON.stringify(joinData))
     return result
@@ -51,6 +80,7 @@ function JoinForm(props) {
     try {
       const response = await joinUser()
       console.log(response)
+      history.push('/')
     } catch (error) {
       console.error(error.response)
     }
@@ -68,13 +98,7 @@ function JoinForm(props) {
             value={id}
             onChange={inputId}
           />
-          <button
-            onClick={() => {
-              alert('띠용')
-            }}
-          >
-            중복확인
-          </button>
+          <button onClick={onClickCheckId}>중복확인</button>
         </div>
         <label htmlFor="pwd">비밀번호</label>
         <div className={styles.fieldContainer}>
@@ -109,13 +133,7 @@ function JoinForm(props) {
             value={nickName}
             onChange={inputNickName}
           />
-          <button
-            onClick={() => {
-              alert('띠용')
-            }}
-          >
-            중복확인
-          </button>
+          <button onClick={onClickCheckNickName}>중복확인</button>
         </div>
         <label htmlFor="phoneNum">전화번호</label>
         <div className={styles.fieldContainer}>
