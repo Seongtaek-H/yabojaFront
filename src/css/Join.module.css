@@ -1,29 +1,38 @@
 @import './font.css';
 
 body {
-    background-color: black;
-    color: white;
-    width: 100%;
+  background-color: black;
+  color: white;
+  width: 100%;
 }
 
 .sec1 {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .gridContainer {
-    display: grid;
-    grid-template-columns: 1fr max-content 1fr;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  height: 100vh;
 }
 
 .sec2 {
-    display: grid;
-    grid-template-rows: 0.4fr 1fr 0.2fr;
+  display: grid;
+  grid-template-rows: 0.4fr 1fr 0.2fr;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputStyle {
+  margin-right: 20px;
+  width: 300px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px grey solid;
+  color: white;
 }

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { API_HOST } from '../constants'
 import { getCookie } from '../utils/cookie'
 
 export const apiAxios = axios.create({

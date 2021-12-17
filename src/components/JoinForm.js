@@ -1,7 +1,7 @@
 import styles from '../css/JoinForm.module.css'
 import { useState } from 'react'
 import { apiAxios } from '../api/axios'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function JoinForm(props) {
   const [id, setId] = useState('')
@@ -9,7 +9,7 @@ function JoinForm(props) {
   const [name, setName] = useState('')
   const [nickName, setNickName] = useState('')
   const [ph, setPh] = useState('')
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const [myOtt, setMyOtt] = useState([])
 
@@ -80,7 +80,7 @@ function JoinForm(props) {
     try {
       const response = await joinUser()
       console.log(response)
-      history.push('/')
+      navigate()
     } catch (error) {
       console.error(error.response)
     }
