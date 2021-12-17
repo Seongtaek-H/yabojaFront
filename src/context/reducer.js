@@ -1,10 +1,4 @@
-import React from 'react'
-
-import ReactDOM from 'react-dom'
-import { combineReducers, createStore } from 'redux'
-import App from './App'
-import { Provider } from 'react-redux'
-import { LOGIN, LOGOUT } from './context/type'
+import { LOGIN, LOGOUT } from './type'
 
 const initialState = {
   yaId: '',
@@ -49,14 +43,3 @@ export default function userReducer(state = initialState, action) {
       return state
   }
 }
-
-let store = createStore(combineReducers({ userReducer }))
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-)

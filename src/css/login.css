@@ -1,6 +1,28 @@
 @import './font.css';
 
-/*전체 form 컨테이너*/
+body {
+  background-color: black;
+  color: white;
+  width: 100%;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  height: 100vh;
+}
+
+.sec2 {
+  display: grid;
+  grid-template-rows: 1fr 1fr 0.2fr;
+}
+
+.loginBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flexContainer {
   height: 100%;
   display: flex;
@@ -15,15 +37,6 @@
   margin-bottom: 10px;
 }
 
-/*구독정보 input 컨테이너*/
-.flexContainer2 {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-/*전체 input 스타일*/
 .inputStyle {
   margin-right: 20px;
   width: 300px;
@@ -33,7 +46,6 @@
   color: white;
 }
 
-/*전체 input 클릭했을 때*/
 .inputStyle:focus {
   outline: none;
   background-color: transparent;
@@ -50,10 +62,4 @@
   border-radius: 10px;
   transition: 0.3s;
   position: absolute;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
