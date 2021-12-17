@@ -14,7 +14,7 @@ body {
 
 .sec2 {
   display: grid;
-  grid-template-rows: 0.4fr 1fr 0.2fr;
+  grid-template-rows: 1fr 1fr 0.2fr;
 }
 
 .loginBody {
@@ -37,14 +37,6 @@ body {
   margin-bottom: 10px;
 }
 
-/*구독정보 input 컨테이너*/
-.flexContainer2 {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
 .inputStyle {
   margin-right: 20px;
   width: 300px;
@@ -57,4 +49,17 @@ body {
 .inputStyle:focus {
   outline: none;
   background-color: transparent;
+}
+
+.btn {
+  font-family: 'NotoSansKr-Thin';
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  background: grey;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+  position: absolute;
 }

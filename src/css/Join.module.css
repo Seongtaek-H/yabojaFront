@@ -22,12 +22,6 @@ body {
   grid-template-rows: 0.4fr 1fr 0.2fr;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .inputStyle {
   margin-right: 20px;
   width: 300px;

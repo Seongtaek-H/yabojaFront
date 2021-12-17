@@ -145,7 +145,7 @@ function JoinForm(props) {
             onChange={inputPh}
           />
         </div>
-        <div>
+        <div className={styles.fieldContainer}>
           <span>구독정보</span>
           <div className={styles.flexContainer2}>
             <div>
@@ -200,7 +200,12 @@ function JoinForm(props) {
             </div>
           </div>
         </div>
-        <button onClick={onClickJoin}>회원가입</button>
+
+        <div>
+          <button className={styles.btn} onClick={onClickJoin}>
+            회원가입
+          </button>
+        </div>
       </form>
     </div>
   )

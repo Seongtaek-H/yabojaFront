@@ -5,6 +5,7 @@ import { login } from '../context/action'
 import { setCookie } from '../utils/cookie'
 import styles from '../css/login.css'
 import { useDispatch } from 'react-redux'
+import Menu from '../components/Menu'
 
 function Login() {
   let dispatch = useDispatch()
@@ -53,29 +54,39 @@ function Login() {
     }
   }
   return (
-    <div className="loginBody">
-      <div></div>
-      <div>
-        <label htmlFor="input_id">ID : </label>
-        <input
-          className="inputStyle"
-          type="text"
-          name="input_id"
-          value={id}
-          onChange={handleInputId}
-        />
+    <div>
+      <Menu />
+      <div className="gridContainer">
         <div></div>
+        <div class={styles.sec2}></div>
+        <div class={styles.center}></div>
+        <div class={styles.center}></div>
+        <div className={styles.flexContainer}>
+          <label htmlFor="input_id">Email </label>
+          <div className={styles.fieldContainer}></div>
+          <input
+            className="inputStyle"
+            type="text"
+            name="input_id"
+            value={id}
+            onChange={handleInputId}
+          />
+          <div></div>
 
-        <label htmlFor="input_pw">PW : </label>
-        <input
-          className="inputStyle"
-          type="password"
-          name="input_pw"
-          value={password}
-          onChange={handleInputPassword}
-        />
-        <div className="loginBody">
-          <button onClick={onClickLogin}>Login</button>
+          <label htmlFor="input_pw">PW </label>
+          <div className={styles.fieldContainer}></div>
+          <input
+            className="inputStyle"
+            type="password"
+            name="input_pw"
+            value={password}
+            onChange={handleInputPassword}
+          />
+          <div className="loginBody">
+            <button className={styles.btn} onClick={onClickLogin}>
+              Login
+            </button>
+          </div>
         </div>
       </div>
     </div>

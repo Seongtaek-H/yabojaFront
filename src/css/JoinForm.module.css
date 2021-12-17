@@ -2,39 +2,58 @@
 
 /*전체 form 컨테이너*/
 .flexContainer {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    font-family: 'NotoSansKr-Thin';
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: 'NotoSansKr-Thin';
 }
 
 /*각 필드 input 컨테이너(구독정보 제외)*/
 .fieldContainer {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /*구독정보 input 컨테이너*/
 .flexContainer2 {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 /*전체 input 스타일*/
 .inputStyle {
-    margin-right: 20px;
-    width: 300px;
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px grey solid;
-    color: white;
+  margin-right: 20px;
+  width: 300px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px grey solid;
+  color: white;
 }
 
 /*전체 input 클릭했을 때*/
 .inputStyle:focus {
-    outline: none;
-    background-color: transparent;
+  outline: none;
+  background-color: transparent;
+}
+
+.btn {
+  font-family: 'NotoSansKr-Thin';
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  background: grey;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+  position: absolute;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
