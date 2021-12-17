@@ -1,9 +1,12 @@
 import React from 'react'
-import Calendar from '../components/calendar/Calendar'
+import Calendar from '../components/Calendar'
+import Menu from '../components/Menu'
 
 function When() {
   return (
     <div>
+      <div></div>
+      <Menu />
       <div>
         <Calendar />
       </div>

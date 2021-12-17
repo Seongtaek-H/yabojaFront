@@ -53,7 +53,7 @@ function JoinForm(props) {
       await checkId(id)
       alert('사용가능한 이메일입니다')
     } catch (error) {
-      alert('이미 사용중인 이메일입니다')
+      alert('사용 불가한 형식입니다')
       setId('')
     }
   }
@@ -66,7 +66,7 @@ function JoinForm(props) {
       await checkNickName(nickName)
       alert('사용가능한 닉네임입니다')
     } catch (error) {
-      alert('이미 사용중인 닉네임입니다')
+      alert('사용 불가한 형식입니다')
       setNickName('')
     }
   }
