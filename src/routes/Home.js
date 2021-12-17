@@ -14,7 +14,9 @@ function Home() {
         setContents(json.results);
         setLoading(false);
     }
-    useEffect(getContents, []);
+    useEffect(()=>{
+        getContents();
+    }, []);
 
     const makeImagePath = (id, format) => {
         return `https://image.tmdb.org/t/p/${format?format: "original"}/${id}`;
@@ -24,7 +26,7 @@ function Home() {
 
     return (
         <div>
-            {loading ? (<h1>Loading</h1>) : (
+            {loading ? "" : (
                 <div>
                     <Menu />
                     <div className={styles.blank}></div>

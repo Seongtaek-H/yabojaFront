@@ -1,6 +1,10 @@
 import styles from '../css/What.module.css'
+
 import { useState, useEffect } from 'react'
+
 import Menu from '../components/Menu'
+import MoviePoster from '../components/MoviePoster';
+import TVPoster from '../components/TVPoster';
 
 function What() {
   const [movies, setMovies] = useState([])
@@ -12,7 +16,7 @@ function What() {
         'https://api.themoviedb.org/3/movie/popular?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1'
       )
     ).json()
-    setTVs(json.results)
+    setMovies(json.results)
   }
 
   const getTVs = async () => {
@@ -21,10 +25,14 @@ function What() {
         'https://api.themoviedb.org/3/tv/popular?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1'
       )
     ).json()
-    setMovies(json.results)
+    setTVs(json.results)
   }
-  useEffect(getMovies, [])
-  useEffect(getTVs, [])
+  useEffect(()=>{
+    getMovies();
+  }, [])
+  useEffect(()=>{
+    getTVs();
+  }, [])
 
   const [flag, setflag] = useState(true)
   const [flag2, setflag2] = useState(false)
@@ -64,7 +72,6 @@ function What() {
       setflag2((prev) => !prev)
     }
   }
-
   return (
     <div className={styles.wrapper}>
       <Menu />
@@ -72,7 +79,7 @@ function What() {
 
       <div className={styles.gridContainer}>
         <div className={styles.Netflix}></div>
-        <div className={styles.Disney}></div>
+        <div></div>
         <div></div>
         <div></div>
         <div></div>
@@ -101,7 +108,30 @@ function What() {
           TV
         </div>
       </div>
+
+        {flag ?
+          <div className={styles.gridContainer3}>
+            {tvs.map((tv) =>
+            <TVPoster tv={tv} styles={styles}/>
+            )}
+            {movies.map((movie) =>
+            <MoviePoster movie={movie} styles={styles}/>
+            )}
+          </div> : null}
+
+        {flag2 ? <div className={styles.gridContainer3}>
+          {movies.map((movie)=>
+            <MoviePoster movie={movie} styles={styles}/>
+            )}
+          </div> : null}
+
+        {flag3 ? <div className={styles.gridContainer3}>
+          {tvs.map((tv)=>
+          <TVPoster tv={tv} styles={styles}/>
+        )}
+          </div> : null}
     </div>
+    
   )
 }
 

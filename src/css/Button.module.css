@@ -4,14 +4,13 @@
 .ButtonStyle {
     font-family: 'NotoSansKr-Thin';
     color: #fff;
-    width: 120px;
+    width : 150px;
     height: 40px;
     background: grey;
     font-size: 16px;
     border: none;
     border-radius: 10px;
     transition: 0.3s;
-    position: absolute;
 }
 
 /*hover일 때 버튼 스타일*/

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import Button from '../components/Button'
 import Menu from '../components/Menu'
 import styles from '../css/Detail.module.css'
 
@@ -11,13 +12,16 @@ function Detail() {
     const getContent = async () => {
         const json = await (
             await fetch(
-                `https://api.themoviedb.org/3/movie/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
+                `https://api.themoviedb.org/3/tv/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
             )
         ).json()
         setLoading(false)
         setContent(json)
     }
-    useEffect(getContent, [])
+    
+    useEffect(()=>{
+        getContent();
+    }, [])
 
     const makeImagePath = (id, format) => {
         return `https://image.tmdb.org/t/p/${
@@ -36,7 +40,7 @@ function Detail() {
                     <div
                         className={styles.background}
                         style={{
-                            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${makeImagePath(
+                            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0, 1)), url(${makeImagePath(
                                 content.backdrop_path
                             )})`,
                         }}
@@ -52,14 +56,16 @@ function Detail() {
                             ></div>
                             <div className={styles.detail}>
                                 <div className={styles.bold}>
-                                    {content.title}
+                                    {content.name}
                                 </div>
+
                                 <div
                                     className={styles.medium}
                                     style={{ display: 'inline-block' }}
                                 >
-                                    🎦
+                                🎦 
                                 </div>
+
                                 {content.genres
                                     ? content.genres.map((genre) => (
                                           <div
@@ -72,20 +78,29 @@ function Detail() {
                                           </div>
                                       ))
                                     : ''}
+
                                 <div
                                     className={styles.medium}
                                     style={{ display: 'inline-block' }}
                                 >
-                                    &nbsp;🕐{content.runtime}min&nbsp;
+                                    &nbsp;📆{content.first_air_date}&nbsp;
                                 </div>
                                 <div
                                     className={styles.medium}
                                     style={{ display: 'inline-block' }}
                                 >
-                                    &nbsp;⭐️{content.vote_average}/10
+                                    &nbsp;⭐️{content.vote_average}
                                 </div>
                                 <div className={styles.thin}>
                                     {content.overview}
+                                </div>
+                                <div className={styles.btn}>
+                                    <div>
+                                    <Link to={`/tvReview/${content.id}`}>
+                                        <Button text={"리뷰게시판"}/>
+                                    </Link>    
+                                    </div>
+                                    <div><Button text={"자유게시판"}/></div>
                                 </div>
                             </div>
                         </div>

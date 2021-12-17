@@ -11,8 +11,7 @@ function Menu() {
       <div></div>
       <div>
         <Link className={styles.LinkStyle} to="/">
-          <span className={styles.logoStyle}>YaboJa</span>
-          <div className={styles.tri}></div>
+          <span className={styles.logoStyle}>YaboJa!</span>
         </Link>
       </div>
       <div>
@@ -31,8 +30,9 @@ function Menu() {
         </Link>
       </div>
       <div className={styles.SearchBarStyle}>
-        <input type="text" />
-        <i class="fas fa-search"></i>
+      <Link className={styles.LinkStyle} to="/search">
+          검색
+        </Link>
       </div>
 
       {state !== true ? (

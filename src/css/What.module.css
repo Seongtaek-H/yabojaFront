@@ -1,3 +1,5 @@
+@import "../css/font.css";
+
 .wrapper {
   display: grid;
 }
@@ -39,16 +41,12 @@
   background-image: url('../images/Netflix.png');
 }
 
-.Disney {
-  background-image: url('../images/Disney.png');
-}
 
 .gridContainer2 {
-  width: 70vw;
+  width: 50vw;
   height: 50px;
   justify-self: center;
   border-radius: 10px;
-  grid-template-columns: repeat(1fr);
   background-color: #707070;
 }
 
@@ -85,3 +83,36 @@
   border-left: 1px white solid;
   border-right: 1px white solid;
 }
+
+.gridContainer3 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  justify-items: center;
+  justify-self: center;
+}
+
+.box {
+  width: 200px;
+  height: 300px;
+  background-size: 100% 100%;
+  background-position: center center;
+  justify-self: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0.7;
+  border: #707070 solid 0.1px;
+}
+
+.box:hover {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateY(-15px);
+  opacity: 1;
+}
+

@@ -1,5 +1,4 @@
 @import '../css/font.css';
-
 .blank {
     height: 80px;
 }
@@ -30,14 +29,14 @@
 }
 
 .thin {
-    margin-top: 50px;
+    margin-top: 30px;
     font-size: 20px;
     font-family: 'NotoSansKr-Thin';
 }
 
 .poster {
-    width: 300px;
-    height: 400px;
+    width: 20vw;
+    height: 30vw;
     justify-self: center;
     align-self: center;
     background-size: 100% 100%;
@@ -51,4 +50,12 @@
     height: 500px;
     background-color: transparent;
     align-self: center;
+}
+
+.btn {
+    margin-top: 30px;
+    width: 350px;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
 }
