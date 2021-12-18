@@ -80,7 +80,7 @@ function JoinForm(props) {
     try {
       const response = await joinUser()
       console.log(response)
-      navigate()
+      navigate('/')
     } catch (error) {
       console.error(error.response)
     }

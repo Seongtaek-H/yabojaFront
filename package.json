@@ -1,5 +1,4 @@
 {
-  "proxy": "http://localhost:9090",
   "name": "yaboja",
   "version": "0.1.0",
   "private": true,
@@ -58,5 +57,5 @@
   "devDependencies": {
     "prettier": "2.5.0"
   },
-  "proxy": "http://localhost:9090"
+  "proxy": ""
 }

@@ -22,12 +22,16 @@ function Login() {
   }
 
   let loginData = {
-    YaEmail: id,
-    YaPwd: password,
+    yaEmail: id,
+    yaPwd: password,
   }
 
-  const loginUser = () => {
-    const result = apiAxios.post('/buyus/login', JSON.stringify(loginData))
+  const loginUser = async () => {
+    const result = await apiAxios.post(
+      '/buyus/login',
+      JSON.stringify(loginData)
+    )
+
     return result
   }
 
@@ -35,18 +39,15 @@ function Login() {
     try {
       const response = await loginUser()
       console.log(response)
-      if (response.data.jwt) {
-        setCookie('jwt', response.data.jwt, {
-          path: '/',
-          secure: true,
-          sameSite: 'none',
-        })
-        dispatch({ type: 'LOGIN', userData: response.data.resultVO })
-        navigate('/')
-      }
-      login()
-      // redux thunk
-      // 디스패치로 response 값 받아와서 스토어 값 수정
+      // if (response.data.jwt) {
+      //   setCookie('jwt', response.data.jwt, {
+      //     path: '/',
+      //     secure: true,
+      //     sameSite: 'none',
+      //   })
+      //   dispatch({ type: 'LOGIN', userData: response.data.resultVO })
+      //   navigate('/')
+      // }
     } catch (error) {
       console.error(error.response)
       alert(error)

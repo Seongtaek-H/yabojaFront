@@ -6,6 +6,6 @@ export const apiAxios = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    Authorization: `Bearer ${getCookie('jwt')}`,
+    // Authorization: `Bearer ${getCookie('jwt')}`,
   },
 })
