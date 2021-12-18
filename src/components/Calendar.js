@@ -32,8 +32,6 @@ const Calendar = () => {
   const firstDateIndex = totalDates.indexOf(1)
   const lastDateIndex = totalDates.lastIndexOf(lastDate) + 1
 
-  console.log(dates)
-
   const days = [
     { id: 0, day: '일' },
     { id: 1, day: '월' },

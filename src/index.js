@@ -9,10 +9,8 @@ import { LOGIN, LOGOUT } from './context/type'
 const initialState = {
   yaId: '',
   yaEmail: '',
-  yaPwd: '',
   yaName: '',
   yaMyott: [],
-  yaMyottS: '',
   yaPhNum: '',
   yaLevel: 0,
   yaPoint: 0,
@@ -21,27 +19,18 @@ const initialState = {
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      const nickName = action.userData.yaId
-      const email = action.userData.yaId
-      const password = action.userData.yaId
-      const name = action.userData.yaName
-      const myOtt = action.userData.yaMyott
-      const myOtts = action.userData.yaMyotts
-      const ph = action.userData.yaPhNum
-      const level = action.userData.yaLevel
-      const point = action.userData.yaPoint
-      return {
-        ...initialState,
-        nickName,
-        email,
-        password,
-        name,
-        myOtt,
-        myOtts,
-        ph,
-        level,
-        point,
+      const copy = {
+        nickName: action.userData.yaId,
+        email: action.userData.yaId,
+        name: action.userData.yaName,
+        myOtt: action.userData.yaMyott,
+        ph: action.userData.yaPhNum,
+        level: action.userData.yaLevel,
+        point: action.userData.yaPoint,
       }
+
+      return copy
+
     case LOGOUT:
       return { ...initialState }
 
@@ -50,7 +39,7 @@ export default function userReducer(state = initialState, action) {
   }
 }
 
-let store = createStore(combineReducers({ userReducer }))
+let store = createStore(userReducer)
 
 ReactDOM.render(
   <React.StrictMode>
