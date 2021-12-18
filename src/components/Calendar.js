@@ -66,7 +66,7 @@ const Calendar = () => {
   }
 
   return (
-    <html>
+    <div>
       <head>
         <title> calendar </title>
       </head>
@@ -108,7 +108,7 @@ const Calendar = () => {
           </div>
         </div>
       </div>
-    </html>
+    </div>
   )
 }
 

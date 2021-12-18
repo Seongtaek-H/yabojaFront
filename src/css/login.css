@@ -1,40 +1,11 @@
 @import './font.css';
 
-body {
-  background-color: black;
-  color: white;
-  width: 100%;
-}
-
-.gridContainer {
-  display: grid;
-  grid-template-columns: 1fr max-content 1fr;
-  height: 100vh;
-}
-
-.sec2 {
-  display: grid;
-  grid-template-rows: 1fr 1fr 0.2fr;
-}
-
-.loginBody {
+.body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.flexContainer {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  min-height: 100vh;
   font-family: 'NotoSansKr-Thin';
-}
-
-/*각 필드 input 컨테이너(구독정보 제외)*/
-.fieldContainer {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .inputStyle {
@@ -51,15 +22,17 @@ body {
   background-color: transparent;
 }
 
-.btn {
-  font-family: 'NotoSansKr-Thin';
-  color: #fff;
-  width: 120px;
-  height: 40px;
-  background: grey;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  transition: 0.3s;
-  position: absolute;
+.login {
+}
+
+.loginBtn {
+  width: 80px;
+  background-color: whitesmoke;
+  border-radius: 10%;
+  color: black;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
 }

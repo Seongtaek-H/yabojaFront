@@ -56,14 +56,12 @@ function Login() {
   return (
     <div>
       <Menu />
-      <div className="gridContainer">
-        <div></div>
-        <div class={styles.sec2}></div>
-        <div class={styles.center}></div>
-        <div class={styles.center}></div>
-        <div className={styles.flexContainer}>
-          <label htmlFor="input_id">Email </label>
-          <div className={styles.fieldContainer}></div>
+      <head>
+        <title>login</title>
+      </head>
+      <div className="body">
+        <div class="inputEmail">
+          <label htmlFor="input_id">이메일 </label>
           <input
             className="inputStyle"
             type="text"
@@ -71,10 +69,9 @@ function Login() {
             value={id}
             onChange={handleInputId}
           />
-          <div></div>
-
-          <label htmlFor="input_pw">PW </label>
-          <div className={styles.fieldContainer}></div>
+        </div>
+        <div className="inputPw">
+          <label htmlFor="input_pw">비밀번호 </label>
           <input
             className="inputStyle"
             type="password"
@@ -82,11 +79,12 @@ function Login() {
             value={password}
             onChange={handleInputPassword}
           />
-          <div className="loginBody">
-            <button className={styles.btn} onClick={onClickLogin}>
-              Login
-            </button>
-          </div>
+        </div>
+
+        <div className="login">
+          <button className="loginBtn" onClick={onClickLogin}>
+            로그인
+          </button>
         </div>
       </div>
     </div>
