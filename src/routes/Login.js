@@ -4,11 +4,12 @@ import { apiAxios } from '../api/axios'
 import { login } from '../context/action'
 import { setCookie } from '../utils/cookie'
 import styles from '../css/login.css'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Menu from '../components/Menu'
 
 function Login() {
   let dispatch = useDispatch()
+  let state = useSelector((state) => state)
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
@@ -38,16 +39,17 @@ function Login() {
   const onClickLogin = async () => {
     try {
       const response = await loginUser()
-      console.log(response)
-      // if (response.data.jwt) {
-      //   setCookie('jwt', response.data.jwt, {
-      //     path: '/',
-      //     secure: true,
-      //     sameSite: 'none',
-      //   })
-      //   dispatch({ type: 'LOGIN', userData: response.data.resultVO })
-      //   navigate('/')
-      // }
+      console.log(response.data)
+      if (response.data.jwt) {
+        setCookie('jwt', response.data.jwt, {
+          path: '/',
+          secure: true,
+          sameSite: 'none',
+        })
+        dispatch({ type: 'LOGIN', userData: response.data.memVO })
+        console.log(state)
+        navigate('/')
+      }
     } catch (error) {
       console.error(error.response)
       alert(error)
