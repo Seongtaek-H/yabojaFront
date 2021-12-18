@@ -22,8 +22,8 @@ function Login() {
   }
 
   let loginData = {
-    yaEmail: id,
-    yaPwd: password,
+    ya_Email: id,
+    ya_Pwd: password,
   }
 
   const loginUser = async () => {

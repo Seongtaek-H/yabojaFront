@@ -16,10 +16,10 @@
 }
 
 .gridContainer {
-  width: 70vw;
+  width: 50vw;
   justify-self: center;
   text-align: center;
-  grid-template-columns: repeat(8, minmax(max-content, 1fr));
+  grid-template-columns: repeat(5, minmax(max-content, 1fr));
   justify-items: center;
   margin: 50px 0 50px 0;
 }
@@ -33,12 +33,33 @@
 }
 
 .Netflix {
-  background-size: cover;
+  background-size: 110%;
   background-position: center center;
+  background-image: url(../images/Netflix.png);
 }
 
-.Netflix {
-  background-image: url('../images/Netflix.png');
+.Wave {
+  background-size: 110%;
+  background-position: center center;
+  background-image: url(../images/Wave.png);
+}
+
+.Disney {
+  background-size: 110%;
+  background-position: center center;
+  background-image: url(../images/Disney.png);
+}
+
+.Tiving {
+  background-size: 110%;
+  background-position: center center;
+  background-image: url(../images/Tiving.png);
+}
+
+.Whatcha {
+  background-size: 110%;
+  background-position: center center;
+  background-image: url(../images/Whatcha.png);
 }
 
 

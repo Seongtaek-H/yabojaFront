@@ -79,13 +79,10 @@ function What() {
 
       <div className={styles.gridContainer}>
         <div className={styles.Netflix}></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className={styles.Disney}></div>
+        <div className={styles.Wave}></div>
+        <div className={styles.Tiving}></div>
+        <div className={styles.Whatcha}></div>
       </div>
 
       <div className={styles.gridContainer2}>

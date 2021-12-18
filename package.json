@@ -57,5 +57,5 @@
   "devDependencies": {
     "prettier": "2.5.0"
   },
-  "proxy": ""
+  "proxy": "http://118.67.130.97:8080"
 }
