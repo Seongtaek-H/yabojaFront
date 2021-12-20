@@ -38,7 +38,7 @@ function Login() {
   const onClickLogin = async () => {
     try {
       const response = await loginUser()
-      console.log(response.data)
+
       if (response.data.jwt) {
         setCookie('jwt', response.data.jwt, {
           path: '/',

@@ -7,7 +7,6 @@ import { getCookie, removeCookie } from '../utils/cookie'
 
 function Menu() {
   let state = useSelector((state) => state)
-  console.log(state)
   let dispatch = useDispatch()
   const cookie = getCookie('jwt')
   let [button, setButton] = useState(false)

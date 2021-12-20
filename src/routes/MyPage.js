@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { apiAxios } from '../api/axios'
 import Menu from '../components/Menu'
@@ -7,37 +7,44 @@ import { getCookie } from '../utils/cookie'
 function MyPage() {
   let state = useSelector((state) => state)
   const jwt = getCookie('jwt')
+  const [memVO, setMemVO] = useState()
+  const [review, setReview] = useState()
 
-  const myData = {
-    YbjMemVO: state,
+  const myJwt = {
     jwt: jwt,
   }
-  console.log(state)
-  console.log(myData)
-  const user = () => {
-    const result = apiAxios.post('/buyus/me/info', JSON.stringify(myData))
+
+  const user = async () => {
+    const result = await apiAxios.post('/buyus/me/info', JSON.stringify(myJwt))
     return result
   }
   const userData = async () => {
     try {
       const response = await user()
-      console.log(response)
+
+      setMemVO(response.data.memVO)
+      setReview(response.data.review)
     } catch (error) {
       console.error(error.response)
     }
   }
-
   useEffect(() => {
     userData()
-  })
+  }, [])
+
+  console.log(memVO)
+  console.log(review)
 
   return (
     <div>
       <head>
         <title>MyPage</title>
       </head>
+      <div>{memVO}</div>
       <div>
-        <button onclick={userData}>테스트</button>
+        {review.map((index, i) => (
+          <div>{index}</div>
+        ))}
       </div>
     </div>
   )
