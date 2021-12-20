@@ -5,6 +5,9 @@ import { createStore } from 'redux'
 import App from './App'
 import { Provider } from 'react-redux'
 import { LOGIN, LOGOUT } from './context/type'
+import persistStore from 'redux-persist/es/persistStore'
+import storage from 'redux-persist/lib/storage'
+import persistReducer from 'redux-persist/es/persistReducer'
 
 const initialState = {
   yaId: '',
@@ -39,7 +42,14 @@ export default function userReducer(state = initialState, action) {
   }
 }
 
-let store = createStore(userReducer)
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+// const persisted = persistReducer(persistConfig, Reducer)
+
+const store = createStore(userReducer)
 
 ReactDOM.render(
   <React.StrictMode>
