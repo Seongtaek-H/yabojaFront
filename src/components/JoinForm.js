@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 function JoinForm(props) {
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
+  const [checkPwd, setCheckPwd] = useState()
   const [name, setName] = useState('')
   const [nickName, setNickName] = useState('')
   const [ph, setPh] = useState('')
@@ -45,6 +46,21 @@ function JoinForm(props) {
     yaMyott: myOtt,
   }
 
+  const joinUser = async () => {
+    const result = await apiAxios.post('/buyus/join', JSON.stringify(joinData))
+    return result
+  }
+
+  const onClickJoin = async () => {
+    try {
+      const response = await joinUser()
+      console.log(response)
+      navigate('/')
+    } catch (error) {
+      console.error(error.response)
+    }
+  }
+
   const checkId = (id) => {
     return apiAxios.get(`/join/checkEmail?email=${id}`)
   }
@@ -71,21 +87,6 @@ function JoinForm(props) {
     }
   }
 
-  const joinUser = () => {
-    const result = apiAxios.post('/buyus/join', JSON.stringify(joinData))
-    return result
-  }
-
-  const onClickJoin = async () => {
-    try {
-      const response = await joinUser()
-      console.log(response)
-      navigate('/')
-    } catch (error) {
-      console.error(error.response)
-    }
-  }
-
   return (
     <div className={styles.flexContainer}>
       <form autocomplete="off">
@@ -98,7 +99,7 @@ function JoinForm(props) {
             value={id}
             onChange={inputId}
           />
-          <button onClick={onClickCheckId}>중복확인</button>
+          <button onClick={checkId}>중복확인</button>
         </div>
         <label htmlFor="pwd">비밀번호</label>
         <div className={styles.fieldContainer}>
@@ -112,7 +113,12 @@ function JoinForm(props) {
         </div>
         <label htmlFor="pwdCheck">비밀번호 확인</label>
         <div className={styles.fieldContainer}>
-          <input className={styles.inputStyle} id="pwdCheck" type="text" />
+          <input
+            className={styles.inputStyle}
+            id="pwdCheck"
+            type="password"
+            value={checkPwd}
+          />
         </div>
         <label htmlFor="name">이름</label>
         <div className={styles.fieldContainer}>
@@ -124,6 +130,7 @@ function JoinForm(props) {
             onChange={inputName}
           />
         </div>
+        {}
         <label htmlFor="aka">닉네임</label>
         <div className={styles.fieldContainer}>
           <input
@@ -133,7 +140,7 @@ function JoinForm(props) {
             value={nickName}
             onChange={inputNickName}
           />
-          <button onClick={onClickCheckNickName}>중복확인</button>
+          <button onClick={checkNickName}>중복확인</button>
         </div>
         <label htmlFor="phoneNum">전화번호</label>
         <div className={styles.fieldContainer}>

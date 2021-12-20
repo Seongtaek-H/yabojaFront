@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ReactDOM from 'react-dom'
-import { combineReducers, createStore } from 'redux'
+import { createStore } from 'redux'
 import App from './App'
 import { Provider } from 'react-redux'
 import { LOGIN, LOGOUT } from './context/type'
@@ -20,13 +20,13 @@ export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       const copy = {
-        nickName: action.userData.yaId,
-        email: action.userData.yaId,
-        name: action.userData.yaName,
-        myOtt: action.userData.yaMyott,
-        ph: action.userData.yaPhNum,
-        level: action.userData.yaLevel,
-        point: action.userData.yaPoint,
+        yaId: action.userData.yaId,
+        yaEmail: action.userData.yaEmail,
+        yaName: action.userData.yaName,
+        yaMyott: action.userData.yaMyott,
+        yaPhNum: action.userData.yaPhNum,
+        yaLevel: action.userData.yaLevel,
+        yaPoint: action.userData.yaPoint,
       }
 
       return copy

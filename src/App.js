@@ -18,6 +18,7 @@ import MovieDetail from './routes/MovieDetail'
 import MovieReview from './routes/MovieReview'
 import TVReview from './routes/TVReview'
 import Search from './routes/Search'
+import MyPage from './routes/MyPage'
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/login" element={<Login />} />
+      </Routes>
+      <Routes>
+        <Route path="/me/info" element={<MyPage />} />
       </Routes>
       <Routes>
         <Route path="/what" element={<What />} />

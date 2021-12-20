@@ -23,8 +23,8 @@ function Login() {
   }
 
   let loginData = {
-    ya_Email: id,
-    ya_Pwd: password,
+    yaEmail: id,
+    yaPwd: password,
   }
 
   const loginUser = async () => {
@@ -32,7 +32,6 @@ function Login() {
       '/buyus/login',
       JSON.stringify(loginData)
     )
-
     return result
   }
 
@@ -47,7 +46,6 @@ function Login() {
           sameSite: 'none',
         })
         dispatch({ type: 'LOGIN', userData: response.data.memVO })
-        console.log(state)
         navigate('/')
       }
     } catch (error) {

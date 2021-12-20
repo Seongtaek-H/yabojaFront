@@ -7,12 +7,13 @@ import { getCookie, removeCookie } from '../utils/cookie'
 
 function Menu() {
   let state = useSelector((state) => state)
+  console.log(state)
   let dispatch = useDispatch()
   const cookie = getCookie('jwt')
   let [button, setButton] = useState(false)
 
   useEffect(() => {
-    if (state.email === undefined) {
+    if (state.yaEmail === '') {
       setButton(true)
     } else {
       setButton(false)
@@ -63,7 +64,7 @@ function Menu() {
             </button>
           </div>
           <div>
-            <Link className={styles.LinkStyle} to="/mypage">
+            <Link className={styles.LinkStyle} to="/me/info">
               마이페이지
             </Link>
           </div>
