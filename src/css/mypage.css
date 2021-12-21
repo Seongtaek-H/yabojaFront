@@ -1,0 +1,12 @@
+.mypage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'NotoSansKr-Thin';
+}
+.myInfo {
+  justify-content: center;
+  align-items: center;
+}

@@ -21,6 +21,7 @@ const FindEmail = () => {
         setModal(true)
         console.log('response', response)
       } catch (e) {
+        alert('올바른 값이 아닙니다')
         console.error(e.response.error)
       }
     }

@@ -61,7 +61,7 @@ function Login() {
         <title>login</title>
       </head>
       <div className="body">
-        <div class="inputEmail">
+        <div class="input">
           <label htmlFor="input_id">이메일 </label>
           <input
             className="inputStyle"
@@ -71,7 +71,7 @@ function Login() {
             onChange={handleInputId}
           />
         </div>
-        <div className="inputPw">
+        <div className="input">
           <label htmlFor="input_pw">비밀번호 </label>
           <input
             className="inputStyle"
@@ -82,19 +82,20 @@ function Login() {
           />
         </div>
 
-        <div className="login">
+        <div>
           <button className="loginBtn" onClick={onClickLogin}>
             로그인
           </button>
         </div>
-
+        <div> </div>
         <div className="login">
           <div
+            type="button"
             onClick={() => {
               navigate('/find')
             }}
           >
-            이메일, 비밀번호 찾기
+            이메일 / 비밀번호 찾기
           </div>
         </div>
       </div>

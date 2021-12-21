@@ -40,15 +40,12 @@
   color: #fff;
   width: 120px;
   height: 40px;
-  background: black;
   font-size: 16px;
-  border-bottom: 1px grey solid;
+  border: 1px grey solid;
   border-radius: 5px;
   justify-content: center;
 }
-
-.center {
+.joinbtn {
   display: flex;
   justify-content: center;
-  align-items: center;
 }

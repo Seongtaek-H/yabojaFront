@@ -2,15 +2,22 @@
 
 .body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 200px;
+  margin: auto;
   min-height: 100vh;
   font-family: 'NotoSansKr-Thin';
 }
+.input {
+  margin-top: 20px;
+}
 
 .inputStyle {
-  margin-right: 20px;
-  width: 300px;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
   border: none;
   background-color: transparent;
   border-bottom: 1px grey solid;
@@ -23,16 +30,18 @@
 }
 
 .login {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .loginBtn {
-  width: 80px;
-  background-color: whitesmoke;
-  border-radius: 10%;
-  color: black;
-  padding: 10px 0;
+  width: 100%;
+  border-radius: 3%;
+  margin-top: 10px;
+  color: white;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
+  font-size: 18px;
 }

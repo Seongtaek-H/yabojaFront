@@ -5,7 +5,7 @@ import { apiAxios } from '../api/axios'
 const FindPassword = () => {
   const [yaEmail, setYaEmail] = useState('')
   const [yaPhNum, setYaPhNum] = useState('')
-  const [pwd, setPwd] = useState('')
+  const [yaPwd, setYaPwd] = useState('')
   const [modal, setModal] = useState(false)
 
   const handleOnClick = () => {
@@ -19,10 +19,11 @@ const FindPassword = () => {
             yaPhNum,
           })
         )
-        setPwd(response.data.yaPwd)
-        setModal(true)
         console.log('response', response)
+        setYaPwd(response.data.yaPwd)
+        setModal(true)
       } catch (e) {
+        alert('올바른 값이 아닙니다')
         console.error(e.response.error)
       }
     }
@@ -45,7 +46,7 @@ const FindPassword = () => {
         <input
           type="text"
           value={yaPhNum}
-          placeholder="전화번호를 입력주세요"
+          placeholder="전화번호를을 입력해주세요"
           onChange={(e) => {
             setYaPhNum(e.target.value)
           }}
@@ -54,7 +55,9 @@ const FindPassword = () => {
       <button type="button" onClick={handleOnClick}>
         비밀번호 찾기
       </button>
-      {modal ? <Alert variant={'dark'}> 비밀번호는 {pwd} 입니다.</Alert> : null}
+      {modal ? (
+        <Alert variant={'dark'}> 비밀번호는 '{yaPwd}'' 입니다.</Alert>
+      ) : null}
     </div>
   )
 }
