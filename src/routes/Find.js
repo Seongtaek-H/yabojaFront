@@ -8,7 +8,7 @@ import styled from 'styled-components'
 const FindUserInfo = () => {
   return (
     <div>
-      <div></div>
+      <박스></박스>
 
       <Tabs id="uncontrolled-tab-example" className="mb-3">
         <Tab eventKey="email" title="이메일찾기">
@@ -23,10 +23,6 @@ const FindUserInfo = () => {
   )
 }
 let 박스 = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: 'NotoSansKr-Thin';
+  margin-top: 100px;
 `
 export default FindUserInfo

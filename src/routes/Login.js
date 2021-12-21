@@ -6,6 +6,10 @@ import { setCookie } from '../utils/cookie'
 import styles from '../css/login.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Menu from '../components/Menu'
+import { render } from 'react-dom'
+import { LOGIN } from '../context/type'
+import Modal from 'react-modal'
+import FindUserInfo from './Find'
 
 function Login() {
   let dispatch = useDispatch()
@@ -13,6 +17,7 @@ function Login() {
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const [showModal, setShowModal] = useState('')
 
   const handleInputId = (e) => {
     setId(e.target.value)
@@ -54,6 +59,7 @@ function Login() {
       // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나
     }
   }
+
   return (
     <div>
       <Menu />
@@ -89,14 +95,26 @@ function Login() {
         </div>
         <div> </div>
         <div className="login">
-          <div
+          <button
+            onClick={() => {
+              setShowModal(true)
+            }}
+          >
+            아이디 비밀번호 찾기
+          </button>
+          {/* <div
             type="button"
             onClick={() => {
               navigate('/find')
             }}
           >
             이메일 / 비밀번호 찾기
-          </div>
+          </div> */}
+        </div>
+        <div>
+          <Modal isOpen={showModal} onRequestClose={() => setShowModal(false)}>
+            <FindUserInfo />
+          </Modal>
         </div>
       </div>
     </div>
