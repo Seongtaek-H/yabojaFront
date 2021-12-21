@@ -87,6 +87,16 @@ function Login() {
             로그인
           </button>
         </div>
+
+        <div className="login">
+          <div
+            onClick={() => {
+              navigate('/find')
+            }}
+          >
+            이메일, 비밀번호 찾기
+          </div>
+        </div>
       </div>
     </div>
   )

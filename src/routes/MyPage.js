@@ -7,8 +7,9 @@ import { getCookie } from '../utils/cookie'
 function MyPage() {
   let state = useSelector((state) => state)
   const jwt = getCookie('jwt')
-  const [memVO, setMemVO] = useState()
-  const [review, setReview] = useState()
+  const [review, setReview] = useState([])
+
+  console.log(state)
 
   const myJwt = {
     jwt: jwt,
@@ -21,8 +22,7 @@ function MyPage() {
   const userData = async () => {
     try {
       const response = await user()
-
-      setMemVO(response.data.memVO)
+      console.log(response)
       setReview(response.data.review)
     } catch (error) {
       console.error(error.response)
@@ -32,19 +32,31 @@ function MyPage() {
     userData()
   }, [])
 
-  console.log(memVO)
-  console.log(review)
+  console.log(review[0])
 
   return (
-    <div>
-      <head>
+    <div className="mypage">
+      <div calssName="head">
         <title>MyPage</title>
-      </head>
-      <div>{memVO}</div>
-      <div>
-        {review.map((index, i) => (
-          <div>{index}</div>
-        ))}
+      </div>
+      <div className="mypageBody">
+        <div className="myInfo">
+          <div>{state.yaId}님</div>
+          <div>등급: Lv.{state.yaLevel}</div>
+          <div>포인트: {state.yaPoint}point</div>
+        </div>
+        <div className="review">
+          <div className="reviewTitle">
+            {review.map((review) => (
+              <div>{review.reviewTitle}</div>
+            ))}
+          </div>
+          <div className="reviewTitle">
+            {review.map((review) => (
+              <div>{review.reviewBody}</div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

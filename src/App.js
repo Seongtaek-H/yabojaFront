@@ -19,6 +19,7 @@ import MovieReview from './routes/MovieReview'
 import TVReview from './routes/TVReview'
 import Search from './routes/Search'
 import MyPage from './routes/MyPage'
+import FindUserInfo from './routes/Find'
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/login" element={<Login />} />
+      </Routes>
+      <Routes>
+        <Route path="/find" element={<FindUserInfo />} />
       </Routes>
       <Routes>
         <Route path="/me/info" element={<MyPage />} />
