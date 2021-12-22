@@ -6,16 +6,12 @@ function Join() {
   return (
     <div>
       <Menu></Menu>
-      <div class={styles.gridContainer}>
-        <div></div>
-        <div class={styles.sec2}>
-          <div class={styles.center}></div>
-          <div class={styles.center}>
+      <div className={styles.blank}></div>
+      <span className={styles.title}>회원가입</span>
+      <div class={styles.flexContainer}>
+        <div class={styles.sec}>
             <JoinForm />
-          </div>
-          <div class={styles.center}></div>
         </div>
-        <div></div>
       </div>
     </div>
   )

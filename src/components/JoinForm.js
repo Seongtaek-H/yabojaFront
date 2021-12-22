@@ -99,16 +99,18 @@ function JoinForm(props) {
       <label htmlFor="email">이메일</label>
       <div className={styles.fieldContainer}>
         <input
+          autoComplete='off'
           className={styles.inputStyle}
           type="text"
           value={yaEmail}
           onChange={onChangeEmail}
         />
-        <button onClick={onClickCheckId}>중복확인</button>
+        <button className={styles.btn} onClick={onClickCheckId}>중복확인</button>
       </div>
       <label htmlFor="pwd">비밀번호</label>
       <div className={styles.fieldContainer}>
         <input
+          autoComplete='off'
           className={styles.inputStyle}
           type="password"
           value={yaPwd}
@@ -120,6 +122,7 @@ function JoinForm(props) {
       <label htmlFor="pwdCheck">비밀번호 확인</label>
       <div className={styles.fieldContainer}>
         <input
+          autoComplete='off'
           className={styles.inputStyle}
           type="password"
           onChange={(e) => {
@@ -127,10 +130,11 @@ function JoinForm(props) {
           }}
         />
       </div>
-      {yaPwd !== checkPwd && <div>비밀번호가 일치하지 않습니다</div>}
+      {yaPwd !== checkPwd && <div style={{opacity: 0.9, color:"red"}}>비밀번호가 일치하지 않습니다</div>}
       <label htmlFor="name">이름</label>
       <div className={styles.fieldContainer}>
         <input
+          autoComplete='off'
           className={styles.inputStyle}
           type="text"
           value={yaName}
@@ -142,16 +146,18 @@ function JoinForm(props) {
       <label htmlFor="aka">닉네임</label>
       <div className={styles.fieldContainer}>
         <input
+          autoComplete='off'
           className={styles.inputStyle}
           type="text"
           value={yaId}
           onChange={onChangeId}
         />
-        <button onClick={onClickCheckNickName}>중복확인</button>
+        <button className={styles.btn} onClick={onClickCheckNickName}>중복확인</button>
       </div>
       <label htmlFor="phoneNum">전화번호</label>
       <div className={styles.fieldContainer}>
         <input
+          autoComplete='off'
           className={styles.inputStyle}
           type="nubmer"
           value={yaPhNum}
@@ -163,7 +169,7 @@ function JoinForm(props) {
         />
       </div>
       <div className={styles.fieldContainer}>
-        <span>구독정보</span>
+        <span className={styles.labelStyle}>구독정보</span>
         <div className={styles.flexContainer2}>
           <div>
             <span>넷플릭스</span>
@@ -219,7 +225,7 @@ function JoinForm(props) {
       </div>
 
       <div className={styles.joinbtn}>
-        <button className={styles.btn} onClick={onClickJoin}>
+        <button style={{marginTop:"30px"}} className={styles.btn} onClick={onClickJoin}>
           회원가입
         </button>
       </div>

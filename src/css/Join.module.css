@@ -6,20 +6,34 @@ body {
   width: 100%;
 }
 
+.blank {
+  height: 80px;
+}
+
+.title {
+  display: block;
+  font-size: 40px;
+  font-family: 'NotoSansKr-Medium';
+  padding: 30px 0 0 30px;
+}
+
+
 .sec1 {
   display: flex;
   justify-content: center;
 }
 
-.gridContainer {
-  display: grid;
-  grid-template-columns: 1fr max-content 1fr;
-  height: 100vh;
+.flexContainer {
+  display: flex;
+  height: 80vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
 }
 
-.sec2 {
-  display: grid;
-  grid-template-rows: 0.4fr 1fr 0.2fr;
+.sec {
+  display: flex;
+  
 }
 
 .inputStyle {

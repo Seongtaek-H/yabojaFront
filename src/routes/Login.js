@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
 import { login } from '../context/action'
 import { setCookie } from '../utils/cookie'
-import styles from '../css/login.css'
+import styles from '../css/login.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Menu from '../components/Menu'
 import { render } from 'react-dom'
@@ -61,63 +61,61 @@ function Login() {
   }
 
   return (
-    <div>
+    <>
       <Menu />
-      <head>
-        <title>login</title>
-      </head>
-      <div className="body">
-        <div class="input">
-          <label htmlFor="input_id">이메일 </label>
-          <input
-            className="inputStyle"
-            type="text"
-            name="input_id"
-            value={id}
-            onChange={handleInputId}
-          />
+      <div className={styles.blank}></div>
+      <span className={styles.title}>로그인</span>
+      <div className={styles.flexContainer}>
+        <div className={styles.gridContainer}>
+          <div>
+              <label htmlFor="input_id">이메일</label>
+              <input
+                autoComplete='off'
+                className={styles.inputStyle}
+                type="text"
+                name="input_id"
+                value={id}
+                onChange={handleInputId}
+                placeholder='이메일을 입력하세요.'
+              />
+              <label htmlFor="input_pw">비밀번호</label>
+              <input
+                autoComplete='off'
+                className={styles.inputStyle}
+                type="password"
+                name="input_pw"
+                value={password}
+                onChange={handleInputPassword}
+                placeholder='비밀번호를 입력하세요.'
+              />
+            </div>
+          <div>
+            <button onClick={onClickLogin}>
+              로그인
+            </button>
+          </div>
+          <div>
+            <Link to={"/join"} className={styles.spanLink}>
+              회원가입
+            </Link>
+            <span className={styles.spanLink}
+              onClick={() => {
+                setShowModal(true)
+              }}
+            >
+              아이디 비밀번호 찾기
+            </span>
+          </div>
         </div>
-        <div className="input">
-          <label htmlFor="input_pw">비밀번호 </label>
-          <input
-            className="inputStyle"
-            type="password"
-            name="input_pw"
-            value={password}
-            onChange={handleInputPassword}
-          />
-        </div>
+      </div>
+     
 
-        <div>
-          <button className="loginBtn" onClick={onClickLogin}>
-            로그인
-          </button>
-        </div>
-        <div> </div>
-        <div className="login">
-          <button
-            onClick={() => {
-              setShowModal(true)
-            }}
-          >
-            아이디 비밀번호 찾기
-          </button>
-          {/* <div
-            type="button"
-            onClick={() => {
-              navigate('/find')
-            }}
-          >
-            이메일 / 비밀번호 찾기
-          </div> */}
-        </div>
         <div>
           <Modal isOpen={showModal} onRequestClose={() => setShowModal(false)}>
             <FindUserInfo />
           </Modal>
         </div>
-      </div>
-    </div>
+    </>
   )
 }
 export default Login

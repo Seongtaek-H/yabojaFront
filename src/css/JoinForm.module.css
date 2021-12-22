@@ -22,7 +22,7 @@
 
 .inputStyle {
   margin-right: 20px;
-  width: 300px;
+  width: 350px;
   border: none;
   background-color: transparent;
   border-bottom: 1px grey solid;
@@ -45,7 +45,21 @@
   border-radius: 5px;
   justify-content: center;
 }
+
+.btn:hover {
+  background-color: white;
+  color: #808080;
+  transition: all 0.3s;
+}
+
 .joinbtn {
   display: flex;
   justify-content: center;
 }
+
+label, .labelStyle {
+  font-size: 20px;
+  margin-top: 5px;
+  font-family: 'NotoSansKr-Medium';
+}
+
