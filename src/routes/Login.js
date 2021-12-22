@@ -55,7 +55,7 @@ function Login() {
       }
     } catch (error) {
       console.error(error.response)
-      alert(error)
+      alert('아이디 및 비밀번호가 정확하지 않습니다.')
       // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나
     }
   }
