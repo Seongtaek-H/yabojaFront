@@ -2,7 +2,6 @@ import React from 'react'
 import { Tab, Tabs } from 'react-bootstrap'
 import FindEmail from '../components/FindEmail'
 import FindPassword from '../components/FindPassword'
-import Menu from '../components/Menu'
 import styled from 'styled-components'
 
 const FindUserInfo = () => {

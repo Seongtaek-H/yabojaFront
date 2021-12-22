@@ -5,17 +5,23 @@ import Menu from '../components/Menu'
 import { getCookie } from '../utils/cookie'
 import styles from '../css/mypage.css'
 import { useNavigate } from 'react-router-dom'
+import { Modal } from 'react-bootstrap'
 
 function MyPage() {
   let state = useSelector((state) => state)
   const jwt = getCookie('jwt')
   const [review, setReview] = useState([])
   const navigate = useNavigate()
+  const [showModal, setShowModal] = useState('')
 
   console.log(state)
 
   const myJwt = {
     jwt: jwt,
+  }
+
+  const myInfo = {
+    yaEmail: state.yaEmail,
   }
 
   const user = async () => {
@@ -71,7 +77,20 @@ function MyPage() {
         >
           회원정보 수정
         </div>
-        <button>회원탈퇴</button>
+        <span
+          className={styles.spanLink}
+          onClick={() => {
+            setShowModal(true)
+          }}
+        >
+          아이디 비밀번호 찾기
+        </span>
+        <div>
+          <Modal
+            isOpen={showModal}
+            onRequestClose={() => setShowModal(false)}
+          ></Modal>
+        </div>
       </div>
     </div>
   )
