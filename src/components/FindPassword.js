@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Alert } from 'react-bootstrap'
 import { apiAxios } from '../api/axios'
+import styles from '../css/Find.module.css'
 
 const FindPassword = () => {
   const [yaEmail, setYaEmail] = useState('')
@@ -31,30 +32,41 @@ const FindPassword = () => {
   }
   return (
     <div>
-      <h1>비밀번호 찾기</h1>
-      <div>
-        <input
-          type="text"
-          value={yaEmail}
-          placeholder="이메일을 입력해주세요"
-          onChange={(e) => {
-            setYaEmail(e.target.value)
-          }}
-        />
+      <div className={styles.container}>
+        <div className={styles.gridContainer}>
+          <div className={styles.input}>
+            <div>이메일</div>
+            <input
+              type="text"
+              autoComplete="off"
+              className={styles.inputStyle}
+              value={yaEmail}
+              placeholder="이메일을 입력해주세요"
+              onChange={(e) => {
+                setYaEmail(e.target.value)
+              }}
+            />
+          </div>
+          <div className={styles.input}>
+            <div className={styles.ph}>전화번호</div>
+            <input
+              type="text"
+              autoComplete="off"
+              className={styles.inputStyle}
+              value={yaPhNum}
+              placeholder="전화번호를을 입력해주세요"
+              onChange={(e) => {
+                setYaPhNum(e.target.value)
+              }}
+            />
+          </div>
+        </div>
+        <div className={styles.btnBox}>
+          <button className={styles.btn} type="button" onClick={handleOnClick}>
+            비밀번호 찾기
+          </button>
+        </div>
       </div>
-      <div>
-        <input
-          type="text"
-          value={yaPhNum}
-          placeholder="전화번호를을 입력해주세요"
-          onChange={(e) => {
-            setYaPhNum(e.target.value)
-          }}
-        />
-      </div>
-      <button type="button" onClick={handleOnClick}>
-        비밀번호 찾기
-      </button>
       {modal ? (
         <Alert variant={'dark'}> 비밀번호는 '{yaPwd}'' 입니다.</Alert>
       ) : null}

@@ -3,12 +3,12 @@ import { Tab, Tabs } from 'react-bootstrap'
 import FindEmail from '../components/FindEmail'
 import FindPassword from '../components/FindPassword'
 import styled from 'styled-components'
+import styles from '../css/Find.module.css'
+import Login from './Login'
 
-const FindUserInfo = () => {
+const FindUserInfo = (props) => {
   return (
-    <div>
-      <박스></박스>
-
+    <div className="container">
       <Tabs id="uncontrolled-tab-example" className="mb-3">
         <Tab eventKey="email" title="이메일찾기">
           <FindEmail />
@@ -18,10 +18,21 @@ const FindUserInfo = () => {
           <FindPassword />
         </Tab>
       </Tabs>
+      <바디>
+        <button
+          onClick={() => {
+            props.setShowModal(false)
+          }}
+        >
+          닫기
+        </button>
+      </바디>
     </div>
   )
 }
-let 박스 = styled.div`
-  margin-top: 100px;
+
+let 바디 = styled.div`
+  margin-top: 40%;
+  margin-left: 46%;
 `
 export default FindUserInfo

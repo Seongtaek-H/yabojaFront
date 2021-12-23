@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Alert } from 'react-bootstrap'
+import styled from 'styled-components'
 import { apiAxios } from '../api/axios'
+import styles from '../css/Find.module.css'
 
 const FindEmail = () => {
   const [yaName, setYaName] = useState('')
@@ -29,20 +31,28 @@ const FindEmail = () => {
   }
   return (
     <div>
-      <h1>이메일 찾기</h1>
-      <div>
-        <input
-          type="text"
-          value={yaName}
-          placeholder="이름을 입력해주세요"
-          onChange={(e) => {
-            setYaName(e.target.value)
-          }}
-        />
+      <div className={styles.container}>
+        <div className={styles.gridContainer}>
+          <div>
+            <div className={styles.name}>이름</div>
+            <input
+              type="text"
+              autoComplete="off"
+              className={styles.inputStyle}
+              value={yaName}
+              placeholder="이름을 입력해주세요"
+              onChange={(e) => {
+                setYaName(e.target.value)
+              }}
+            />
+          </div>
+        </div>
+        <div className={styles.btnBox}>
+          <button className={styles.btn} type="button" onClick={handleOnClick}>
+            이메일 찾기
+          </button>
+        </div>
       </div>
-      <button type="button" onClick={handleOnClick}>
-        이메일 찾기
-      </button>
       {modal ? (
         <Alert variant={'dark'}> 이메일은 '{yaEmail}'' 입니다.</Alert>
       ) : null}

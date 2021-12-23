@@ -64,14 +64,13 @@
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px black inset;
   -webkit-text-fill-color: #fff !important;
   font-size: 25px !important;
 }
-
 
 .gridContainer button {
   background-color: #808080;
@@ -79,8 +78,6 @@ input:-webkit-autofill:active {
   width: 400px;
   height: 60px;
   border-radius: 10px;
-  
-
 }
 
 .gridContainer button:hover {
@@ -91,8 +88,13 @@ input:-webkit-autofill:active {
 
 .spanLink,
 .spanLink:hover,
-.spanLink:focus{
+.spanLink:focus {
   text-decoration: none;
   color: white;
   cursor: pointer;
+}
+
+.modal {
+  margin: auto;
+  color: #141414;
 }

@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
-import { login } from '../context/action'
 import { setCookie } from '../utils/cookie'
 import styles from '../css/login.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Menu from '../components/Menu'
-import { render } from 'react-dom'
-import { LOGIN } from '../context/type'
 import Modal from 'react-modal'
 import FindUserInfo from './Find'
 
@@ -68,37 +65,36 @@ function Login() {
       <div className={styles.flexContainer}>
         <div className={styles.gridContainer}>
           <div>
-              <label htmlFor="input_id">이메일</label>
-              <input
-                autoComplete='off'
-                className={styles.inputStyle}
-                type="text"
-                name="input_id"
-                value={id}
-                onChange={handleInputId}
-                placeholder='이메일을 입력하세요.'
-              />
-              <label htmlFor="input_pw">비밀번호</label>
-              <input
-                autoComplete='off'
-                className={styles.inputStyle}
-                type="password"
-                name="input_pw"
-                value={password}
-                onChange={handleInputPassword}
-                placeholder='비밀번호를 입력하세요.'
-              />
-            </div>
-          <div>
-            <button onClick={onClickLogin}>
-              로그인
-            </button>
+            <label htmlFor="input_id">이메일</label>
+            <input
+              autoComplete="off"
+              className={styles.inputStyle}
+              type="text"
+              name="input_id"
+              value={id}
+              onChange={handleInputId}
+              placeholder="이메일을 입력하세요."
+            />
+            <label htmlFor="input_pw">비밀번호</label>
+            <input
+              autoComplete="off"
+              className={styles.inputStyle}
+              type="password"
+              name="input_pw"
+              value={password}
+              onChange={handleInputPassword}
+              placeholder="비밀번호를 입력하세요."
+            />
           </div>
           <div>
-            <Link to={"/join"} className={styles.spanLink}>
+            <button onClick={onClickLogin}>로그인</button>
+          </div>
+          <div>
+            <Link to={'/join'} className={styles.spanLink}>
               회원가입
             </Link>
-            <span className={styles.spanLink}
+            <span
+              className={styles.spanLink}
               onClick={() => {
                 setShowModal(true)
               }}
@@ -108,13 +104,42 @@ function Login() {
           </div>
         </div>
       </div>
-     
 
-        <div>
-          <Modal isOpen={showModal} onRequestClose={() => setShowModal(false)}>
-            <FindUserInfo />
-          </Modal>
-        </div>
+      <div>
+        <Modal
+          isOpen={showModal}
+          onRequestClose={() => setShowModal(false)}
+          className="Modal"
+          overlayClassName="Overlay"
+          style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: '',
+            },
+            content: {
+              position: 'absolute',
+              top: '20%',
+              left: '30%',
+              right: '30%',
+              bottom: '20%',
+              border: '3px solid #ccc',
+              background: 'lightgrey',
+              overflow: 'auto',
+              borderRadius: '4px',
+              outline: 'none',
+              padding: '20px',
+            },
+          }}
+        >
+          <div className={styles.modal}>
+            <FindUserInfo showModal={showModal} setShowModal={setShowModal} />
+          </div>
+        </Modal>
+      </div>
     </>
   )
 }
