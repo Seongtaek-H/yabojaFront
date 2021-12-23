@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { apiAxios } from '../api/axios'
 import Menu from '../components/Menu'
 import { getCookie } from '../utils/cookie'
-import styles from '../css/mypage.css'
+import styles from '../css/Mypage.module.css'
 import { useNavigate } from 'react-router-dom'
 import { Modal } from 'react-bootstrap'
 
@@ -13,8 +13,6 @@ function MyPage() {
   const [review, setReview] = useState([])
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState('')
-
-  console.log(state)
 
   const myJwt = {
     jwt: jwt,
@@ -31,7 +29,6 @@ function MyPage() {
   const userData = async () => {
     try {
       const response = await user()
-      console.log(response)
       setReview(response.data.review)
     } catch (error) {
       console.error(error.response)
@@ -45,46 +42,60 @@ function MyPage() {
 
   return (
     <div>
-      <div calssName="head">
-        <title>MyPage</title>
-        <div>
-          <Menu />
-        </div>
+      <div>
+        <Menu />
       </div>
-      <div className="mypage">
-        <div className="myInfo">
-          <div>{state.yaId}님</div>
-          <div>등급: Lv.{state.yaLevel}</div>
-          <div>포인트: {state.yaPoint}point</div>
+
+      <div className={styles.container}>
+        <div className={styles.info_container}>
+          <div className={styles.info_avatar}>{state.yaId[0]}</div>
+          <p className={styles.info_title}>{state.yaId}님</p>
+          <div className={styles.info_point}>
+            <p>등급</p>
+            <p> {state.yaLevel}</p>
+          </div>
+          <div className={styles.info_point}>
+            <p>포인트</p>
+            <p> {state.yaPoint}point</p>
+          </div>
         </div>
-        <div className="review">
-          <div>내가 쓴 리뷰</div>
+        <div className={styles.review_container}>
+          <h4>내가 쓴 리뷰</h4>
+          <hr></hr>
           <div>
             {review.map((review) => (
-              <div className="review">
-                <span className="reviewBody">{review.reviewBody}---</span>
-                <span className="reviewTitle">{review.reviewTitle}</span>
+              <div className={styles.review}>
+                <span className={styles.review_content}>
+                  {review.reviewBody}
+                </span>
+                <span className={styles.review_title}>
+                  {review.reviewTitle}
+                </span>
               </div>
             ))}
           </div>
         </div>
-        <div
-          className="modinfo"
-          type="button"
-          onClick={() => {
-            navigate('/')
-          }}
-        >
-          회원정보 수정
+        <div className={styles.buttonContainer}>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            회원정보 수정
+          </button>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => {
+              setShowModal(true)
+            }}
+          >
+            회원탈퇴
+          </button>
         </div>
-        <span
-          className={styles.spanLink}
-          onClick={() => {
-            setShowModal(true)
-          }}
-        >
-          아이디 비밀번호 찾기
-        </span>
+
         <div>
           <Modal
             isOpen={showModal}
