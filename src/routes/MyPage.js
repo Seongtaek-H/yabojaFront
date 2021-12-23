@@ -10,16 +10,13 @@ import { Modal } from 'react-bootstrap'
 function MyPage() {
   let state = useSelector((state) => state)
   const jwt = getCookie('jwt')
+
   const [review, setReview] = useState([])
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState('')
 
   const myJwt = {
     jwt: jwt,
-  }
-
-  const myInfo = {
-    yaEmail: state.yaEmail,
   }
 
   const user = async () => {
@@ -37,8 +34,6 @@ function MyPage() {
   useEffect(() => {
     userData()
   }, [])
-
-  console.log(review[0])
 
   return (
     <div>

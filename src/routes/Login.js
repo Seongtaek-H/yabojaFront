@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
-import { setCookie } from '../utils/cookie'
+import { getCookie, setCookie } from '../utils/cookie'
 import styles from '../css/login.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Menu from '../components/Menu'
@@ -41,12 +41,9 @@ function Login() {
     try {
       const response = await loginUser()
 
-      if (response.data.jwt) {
-        setCookie('jwt', response.data.jwt, {
-          path: '/',
-          secure: true,
-          sameSite: 'none',
-        })
+      if (response.data) {
+        setCookie('jwt', response.data.jwt, {})
+
         dispatch({ type: 'LOGIN', userData: response.data.memVO })
         navigate('/')
       }

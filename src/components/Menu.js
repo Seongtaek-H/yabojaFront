@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import styles from '../css/Menu.module.css'
 import { getCookie, removeCookie } from '../utils/cookie'
@@ -8,8 +8,9 @@ import { getCookie, removeCookie } from '../utils/cookie'
 function Menu() {
   let state = useSelector((state) => state)
   let dispatch = useDispatch()
-  const cookie = getCookie('jwt')
+
   let [button, setButton] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (state.yaEmail === '') {
@@ -56,7 +57,7 @@ function Menu() {
               onClick={() => {
                 removeCookie('jwt')
                 dispatch({ type: 'LOGOUT' })
-                window.location.reload()
+                navigate('/')
               }}
             >
               로그아웃
