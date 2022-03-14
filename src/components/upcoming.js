@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
 const Upcoming = ({ date, contents, month, year }) => {
-  console.log(contents)
   return (
     <div>
       {contents.map((content) =>
