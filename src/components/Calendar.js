@@ -1,7 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import Upcoming from './upcoming'
 import '../css/calendar.css'
 
 const Calendar = () => {
+  const [loading, setLoading] = useState(true)
+  const [contents, setContents] = useState([])
+  const getContents = async () => {
+    const json = await (
+      await fetch(
+        'https://api.themoviedb.org/3/movie/upcoming?api_key=6df683327f9037c362fcff75540a2656&language=ko-KR&page=1'
+      )
+    ).json()
+    setContents(json.results)
+    setLoading(false)
+  }
+  useEffect(() => {
+    getContents()
+  }, [])
+
   const today = new Date()
   const thisYear = today.getFullYear()
   const thisMonth = today.getMonth()
@@ -64,49 +80,69 @@ const Calendar = () => {
   }
 
   return (
-    <div>
-      <head>
-        <title> calendar </title>
-      </head>
-      <div className="body">
-        <div className="calendar">
-          <div className="header">
-            <div className="year-month">
-              {year}년 {month + 1}월
-            </div>
-            <div className="nav">
-              <button className="go-prev" onClick={() => firstMonth()}>
-                ◀️
-              </button>
-              <button className="go-today" onClick={() => goToday()}>
-                today
-              </button>
-              <button className="go-next" onClick={() => lastMonth()}>
-                ▶️
-              </button>
-            </div>
-          </div>
-          <div className="main">
-            <div className="days">
-              {days.map((day) => (
-                <div className="day">{day.day}</div>
-              ))}
-            </div>
-            <div className="dates">
-              {totalDates.map((date, i) => (
-                <div className="date">
-                  {i >= firstDateIndex && i < lastDateIndex ? (
-                    <span class="this">{date}</span>
-                  ) : (
-                    <span className="others">{date}</span>
-                  )}
+    <>
+      {loading ? (
+        'loading'
+      ) : (
+        <div>
+          <header>
+            <title> calendar </title>
+          </header>
+          <div className="body">
+            <div className="calendar">
+              <div className="header">
+                <div className="year-month">
+                  {year}년 {month + 1}월
                 </div>
-              ))}
+                <div className="nav">
+                  <button className="go-prev" onClick={() => firstMonth()}>
+                    ◀️
+                  </button>
+                  <button className="go-today" onClick={() => goToday()}>
+                    today
+                  </button>
+                  <button className="go-next" onClick={() => lastMonth()}>
+                    ▶️
+                  </button>
+                </div>
+              </div>
+              <div className="main">
+                <div className="days">
+                  {days.map((day) => (
+                    <div className="day">{day.day}</div>
+                  ))}
+                </div>
+                <div className="dates">
+                  {totalDates.map((date, i) => (
+                    <div className="date">
+                      {i >= firstDateIndex && i < lastDateIndex ? (
+                        <>
+                          <span className="this">
+                            {date}
+                            {contents ? (
+                              <Upcoming
+                                date={date}
+                                contents={contents}
+                                year={year}
+                                month={month}
+                              />
+                            ) : (
+                              ''
+                            )}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="others">{date}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 

@@ -9,8 +9,8 @@
 }
 
 .calendar {
-  width: 600px;
-  margin: 50px;
+  width: 80vw;
+  margin: 100px;
   justify-content: center;
 }
 
@@ -26,8 +26,19 @@
 
 .nav {
   display: flex;
-  border: 1px solid #333333;
   border-radius: 5px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+button:hover {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
 }
 
 .nav-btn {
@@ -42,13 +53,10 @@
 
 .go-today {
   width: 75px;
-  border-left: 1px solid #333333;
-  border-right: 1px solid #333333;
 }
 
 .days {
   display: flex;
-  background-color: #d0afda;
 }
 
 .day {
@@ -60,7 +68,7 @@
 .dates {
   display: flex;
   flex-flow: row wrap;
-  height: 500px;
+  height: 80vh;
   border-top: 1px solid whitesmoke;
   border-right: 1px solid whitesmoke;
 }
