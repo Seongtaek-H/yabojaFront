@@ -1,59 +1,95 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-
-import styles from '../css/Menu.module.css'
+import styled from 'styled-components'
 import { getCookie, removeCookie } from '../utils/cookie'
 
-function Menu() {
-  let state = useSelector((state) => state)
-  let dispatch = useDispatch()
+const Container = styled.div`
+  width: 100%;
+  height: 80px;
+  background-color: gray;
+  position: fixed;
+  font-family: 'NotoSansKr-Medium';
+  font-size: x-large;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  justify-items: center;
+  align-items: center;
+  z-index: 100;
+  padding: 0 100px 0 100px;
+`
+const Logo = styled.div`
+  font-family: 'DoHyeon-Regular';
+  font-size: 45px;
+  color: #fff;
+  text-shadow: 0 0 7px #f21b75, 0 0 10px #f21b75, 0 0 20px #f21b75,
+    0 0 42px #f21b75, 0 0 82px #f21b75, 0 0 92px #f21b75, 0 0 102px #f21b75,
+    0 0 151px #f21b75;
+`
 
-  let [button, setButton] = useState(false)
+const MenuDetail = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: 'NotoSansKr-bold';
+`
+const MenuExtra = styled.div`
+  width: 10vw;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'NotoSansKr-Regular';
+  font-size: medium;
+`
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    transition: all 0.1s ease-in-out;
+    color: orange;
+  }
+`
+const Button = styled.div`
+  appearance: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:focus {
+    transition: all 0.1s ease-in-out;
+    color: orange;
+  }
+`
+
+function Menu() {
+  const state = useSelector((state) => state)
+  const dispatch = useDispatch()
+
+  const [login, setLogin] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
     if (state.yaEmail === '') {
-      setButton(true)
+      setLogin(true)
     } else {
-      setButton(false)
+      setLogin(false)
     }
   }, [state])
 
   return (
-    <div className={styles.MenuBarStyle}>
-      <div></div>
-      <div>
-        <Link className={styles.LinkStyle} to="/">
-          <span className={styles.logoStyle}>YaboJa!</span>
-        </Link>
-      </div>
-      <div>
-        <Link className={styles.LinkStyle} to="/what">
-          뭐 볼까?
-        </Link>
-      </div>
-      <div>
-        <Link className={styles.LinkStyle} to="/where">
-          어디서 볼까?
-        </Link>
-      </div>
-      <div>
-        <Link className={styles.LinkStyle} to="/when">
-          언제 나오지?
-        </Link>
-      </div>
-      <div className={styles.SearchBarStyle}>
-        <Link className={styles.LinkStyle} to="/search">
-          검색
-        </Link>
-      </div>
-
-      {!button ? (
-        <div className={styles.MenuEtcStyle}>
-          <div>
-            <button
-              className={styles.logoutBtn}
+    <Container>
+      <StyledLink to="/">
+        <Logo>YaboJa</Logo>
+      </StyledLink>
+      <MenuDetail>
+        <StyledLink to="/what">뭐 볼까?</StyledLink>
+        <StyledLink to="/when">언제 나오지?</StyledLink>
+        <StyledLink to="/search">검색</StyledLink>
+        {!login === true ? (
+          <MenuExtra>
+            <StyledLink to="/me/info">마이페이지</StyledLink>
+            <Button
               onClick={() => {
                 removeCookie('jwt')
                 dispatch({ type: 'LOGOUT' })
@@ -61,29 +97,16 @@ function Menu() {
               }}
             >
               로그아웃
-            </button>
-          </div>
-          <div>
-            <Link className={styles.LinkStyle} to="/me/info">
-              마이페이지
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.MenuEtcStyle}>
-          <div>
-            <Link className={styles.LinkStyle} to="/login">
-              로그인
-            </Link>
-          </div>
-          <div>
-            <Link className={styles.LinkStyle} to="/join">
-              회원가입
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
+            </Button>
+          </MenuExtra>
+        ) : (
+          <MenuExtra>
+            <StyledLink to="/login">로그인</StyledLink>
+            <StyledLink to="join">회원가입</StyledLink>
+          </MenuExtra>
+        )}
+      </MenuDetail>
+    </Container>
   )
 }
 

@@ -1,7 +1,83 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import Upcoming from './upcoming'
-import '../css/calendar.css'
 import { CALENDAR_WEEKS } from '../constants'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'NotoSansKr-Thin';
+`
+
+const Main = styled.div`
+  width: 80vw;
+  margin: 100px;
+  justify-content: center;
+`
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 40px;
+`
+const Arrow = styled.div`
+  display: flex;
+  border-radius: 5px;
+  font-size: 20px;
+`
+
+const StyledBtn = styled.button`
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    color: orange;
+  }
+`
+
+const Days = styled.div`
+  display: flex;
+`
+const Day = styled.div`
+  width: calc(100% / 7);
+  text-align: center;
+  border: 1px solid whitesmoke;
+  &:nth-child(7n + 1) {
+    color: #d13e3e;
+  }
+  &:nth-child(7n) {
+    color: #396ee2;
+  }
+`
+const Dates = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  height: 80vh;
+  border-top: 1px solid whitesmoke;
+  border-right: 1px solid whitesmoke;
+`
+
+const DateDetail = styled.div`
+  width: calc(100% / 7);
+  padding: 15px;
+  text-align: right;
+  border-bottom: 1px solid whitesmoke;
+  border-left: 1px solid whitesmoke;
+  &:nth-child(7n + 1) {
+    color: #d13e3e;
+  }
+  &:nth-child(7n) {
+    color: #396ee2;
+  }
+`
+const Others = styled.span`
+  opacity: 0.33;
+`
 
 const Calendar = () => {
   const currentYear = useMemo(() => new Date().getFullYear(), [])
@@ -75,58 +151,54 @@ const Calendar = () => {
       {loading ? (
         'loading'
       ) : (
-        <div className="body">
-          <div className="calendar">
-            <header className="header">
-              <div className="year-month">
-                {year}년 {month + 1}월
-              </div>
-              <div className="nav">
-                <button className="go-prev" onClick={() => firstMonth()}>
+        <Container>
+          <Main>
+            <Header>
+              {year}년 {month + 1}월
+              <Arrow>
+                <StyledBtn className="go-prev" onClick={() => firstMonth()}>
                   ◀️
-                </button>
-                <button className="go-today" onClick={() => goToday()}>
+                </StyledBtn>
+                <StyledBtn className="go-today" onClick={() => goToday()}>
                   today
-                </button>
-                <button className="go-next" onClick={() => lastMonth()}>
+                </StyledBtn>
+                <StyledBtn className="go-next" onClick={() => lastMonth()}>
                   ▶️
-                </button>
-              </div>
-            </header>
-            <div className="main">
-              <div className="days">
-                {CALENDAR_WEEKS.map((day) => (
-                  <div className="day">{day.day}</div>
-                ))}
-              </div>
-              <div className="dates">
-                {totalDates.map((date, i) => (
-                  <React.Fragment key={i}>
-                    <div className="date">
-                      {i >= firstDateIndex && i < lastDateIndex ? (
-                        <span className="this">
-                          {date}
-                          {contents ? (
-                            <Upcoming
-                              date={date}
-                              contents={contents}
-                              year={year}
-                              month={month}
-                            />
-                          ) : (
-                            ''
-                          )}
-                        </span>
-                      ) : (
-                        <span className="others">{date}</span>
-                      )}
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+                </StyledBtn>
+              </Arrow>
+            </Header>
+            <Days>
+              {CALENDAR_WEEKS.map((day) => (
+                <Day>{day.day}</Day>
+              ))}
+            </Days>
+            <Dates>
+              {totalDates.map((date, i) => (
+                <React.Fragment key={i}>
+                  <DateDetail>
+                    {i >= firstDateIndex && i < lastDateIndex ? (
+                      <span className="this">
+                        {date}
+                        {contents ? (
+                          <Upcoming
+                            date={date}
+                            contents={contents}
+                            year={year}
+                            month={month}
+                          />
+                        ) : (
+                          ''
+                        )}
+                      </span>
+                    ) : (
+                      <Others>{date}</Others>
+                    )}
+                  </DateDetail>
+                </React.Fragment>
+              ))}
+            </Dates>
+          </Main>
+        </Container>
       )}
     </>
   )
