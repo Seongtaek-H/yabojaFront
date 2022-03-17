@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Button from '../components/Button'
-import Menu from '../components/Menu'
 import styles from '../css/Detail.module.css'
 
 function Detail() {
@@ -33,8 +32,6 @@ function Detail() {
         <h1>Loading</h1>
       ) : (
         <div>
-          <Menu />
-          <div className={styles.blank}></div>
           <div
             className={styles.background}
             style={{

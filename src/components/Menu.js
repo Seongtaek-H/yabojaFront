@@ -62,6 +62,10 @@ const Button = styled.div`
   }
 `
 
+const Blank = styled.div`
+  height: 80px;
+`
+
 function Menu() {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
@@ -78,35 +82,38 @@ function Menu() {
   }, [state])
 
   return (
-    <Container>
-      <StyledLink to="/">
-        <Logo>YaboJa</Logo>
-      </StyledLink>
-      <MenuDetail>
-        <StyledLink to="/what">뭐 볼까?</StyledLink>
-        <StyledLink to="/when">언제 나오지?</StyledLink>
-        <StyledLink to="/search">검색</StyledLink>
-        {!login === true ? (
-          <MenuExtra>
-            <StyledLink to="/me/info">마이페이지</StyledLink>
-            <Button
-              onClick={() => {
-                removeCookie('jwt')
-                dispatch({ type: 'LOGOUT' })
-                navigate('/')
-              }}
-            >
-              로그아웃
-            </Button>
-          </MenuExtra>
-        ) : (
-          <MenuExtra>
-            <StyledLink to="/login">로그인</StyledLink>
-            <StyledLink to="join">회원가입</StyledLink>
-          </MenuExtra>
-        )}
-      </MenuDetail>
-    </Container>
+    <>
+      <Container>
+        <StyledLink to="/">
+          <Logo>YaboJa</Logo>
+        </StyledLink>
+        <MenuDetail>
+          <StyledLink to="/what">뭐 볼까?</StyledLink>
+          <StyledLink to="/when">언제 나오지?</StyledLink>
+          <StyledLink to="/search">검색</StyledLink>
+          {!login === true ? (
+            <MenuExtra>
+              <StyledLink to="/me/info">마이페이지</StyledLink>
+              <Button
+                onClick={() => {
+                  removeCookie('jwt')
+                  dispatch({ type: 'LOGOUT' })
+                  navigate('/')
+                }}
+              >
+                로그아웃
+              </Button>
+            </MenuExtra>
+          ) : (
+            <MenuExtra>
+              <StyledLink to="/login">로그인</StyledLink>
+              <StyledLink to="join">회원가입</StyledLink>
+            </MenuExtra>
+          )}
+        </MenuDetail>
+      </Container>
+      <Blank></Blank>
+    </>
   )
 }
 

@@ -38,8 +38,6 @@ function Home() {
         ''
       ) : (
         <div>
-          <Menu />
-          <div className={styles.blank}></div>
           <div
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)), url(${makeImagePath(

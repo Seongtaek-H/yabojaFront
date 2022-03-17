@@ -1,10 +1,43 @@
-import styles from '../css/What.module.css'
-
 import { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import Poster from '../components/Poster'
 
-import Menu from '../components/Menu'
-import MoviePoster from '../components/MoviePoster';
-import TVPoster from '../components/TVPoster';
+const Wrapper = styled.div`
+  display: grid;
+`
+
+const GridWrapper = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  color: white;
+  width: 50vw;
+  height: 50px;
+  margin-top: 50px;
+  justify-self: center;
+  background-color: #707070;
+  overflow: hidden;
+  border-radius: 10px;
+`
+
+const Filter = styled.div`
+  background-color: ${(props) => props.bgcolor || 'gray'};
+  color: ${(props) => props.color || 'white'};
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const GridWrapper2 = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  justify-self: center;
+`
 
 function What() {
   const [movies, setMovies] = useState([])
@@ -27,11 +60,11 @@ function What() {
     ).json()
     setTVs(json.results)
   }
-  useEffect(()=>{
-    getMovies();
+  useEffect(() => {
+    getMovies()
   }, [])
-  useEffect(()=>{
-    getTVs();
+  useEffect(() => {
+    getTVs()
   }, [])
 
   const [flag, setflag] = useState(true)
@@ -40,22 +73,18 @@ function What() {
 
   const selectType = () => {
     setflag((prev) => !prev)
-
     if (flag2 === true) {
       setflag2((prev) => !prev)
     }
-
     if (flag3 === true) {
       setflag3((prev) => !prev)
     }
   }
   const selectType2 = () => {
     setflag2((prev) => !prev)
-
     if (flag === true) {
       setflag((prev) => !prev)
     }
-
     if (flag3 === true) {
       setflag3((prev) => !prev)
     }
@@ -63,72 +92,67 @@ function What() {
 
   const selectType3 = () => {
     setflag3((prev) => !prev)
-
     if (flag === true) {
       setflag((prev) => !prev)
     }
-
     if (flag2 === true) {
       setflag2((prev) => !prev)
     }
   }
+
   return (
-    <div className={styles.wrapper}>
-      <Menu />
-      <div className={styles.blank}></div>
-
-      <div className={styles.gridContainer}>
-        <div className={styles.Netflix}></div>
-        <div className={styles.Disney}></div>
-        <div className={styles.Wave}></div>
-        <div className={styles.Tiving}></div>
-        <div className={styles.Whatcha}></div>
-      </div>
-
-      <div className={styles.gridContainer2}>
-        <div
-          className={flag ? styles.clicked : ''}
+    <Wrapper>
+      <GridWrapper>
+        <Filter
           onClick={flag ? '' : selectType}
+          bgcolor={flag === true ? 'white' : ''}
+          color={flag === true ? 'gray' : ''}
         >
           All
-        </div>
-        <div
-          className={flag2 ? styles.clicked2 : ''}
+        </Filter>
+        <Filter
           onClick={flag2 ? '' : selectType2}
+          bgcolor={flag2 === true ? 'white' : ''}
+          color={flag2 === true ? 'gray' : ''}
         >
           영화
-        </div>
-        <div
-          className={flag3 ? styles.clicked3 : ''}
+        </Filter>
+        <Filter
           onClick={flag3 ? '' : selectType3}
+          bgcolor={flag3 === true ? 'white' : ''}
+          color={flag3 === true ? 'gray' : ''}
         >
-          TV
-        </div>
-      </div>
+          TV 시리즈
+        </Filter>
+      </GridWrapper>
 
-        {flag ?
-          <div className={styles.gridContainer3}>
-            {tvs.map((tv) =>
-            <TVPoster tv={tv} styles={styles}/>
-            )}
-            {movies.map((movie) =>
-            <MoviePoster movie={movie} styles={styles}/>
-            )}
-          </div> : null}
+      {flag ? (
+        <GridWrapper2>
+          {tvs.map((poster) => (
+            <Poster type="TV" poster={poster} />
+          ))}
+          {movies.map((poster) => (
+            <Poster type="Movie" poster={poster} />
+          ))}
+        </GridWrapper2>
+      ) : null}
 
-        {flag2 ? <div className={styles.gridContainer3}>
-          {movies.map((movie)=>
-            <MoviePoster movie={movie} styles={styles}/>
-            )}
-          </div> : null}
+      {flag2 ? (
+        <GridWrapper2>
+          {movies.map((poster) => (
+            <Poster type="Movie" poster={poster} />
+          ))}
+        </GridWrapper2>
+      ) : null}
 
-        {flag3 ? <div className={styles.gridContainer3}>
-          {tvs.map((tv)=>
-          <TVPoster tv={tv} styles={styles}/>
-        )}
-          </div> : null}
-    </div>
-    
+      {flag3 ? (
+        <GridWrapper2>
+          {tvs.map((poster) => (
+            <Poster type="TV" poster={poster} />
+          ))}
+        </GridWrapper2>
+      ) : null}
+    </Wrapper>
   )
 }
 

@@ -37,10 +37,6 @@ function MyPage() {
 
   return (
     <div>
-      <div>
-        <Menu />
-      </div>
-
       <div className={styles.container}>
         <div className={styles.info_container}>
           <div className={styles.info_avatar}>{state.yaId[0]}</div>

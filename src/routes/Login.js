@@ -56,8 +56,6 @@ function Login() {
 
   return (
     <>
-      <Menu />
-      <div className={styles.blank}></div>
       <span className={styles.title}>로그인</span>
       <div className={styles.flexContainer}>
         <div className={styles.gridContainer}>

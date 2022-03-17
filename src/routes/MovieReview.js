@@ -101,8 +101,6 @@ function MovieReview() {
         ''
       ) : (
         <div>
-          <Menu />
-          <div className={styles.blank}></div>
           <div>
             <div className={styles.writeBtn} onClick={onWriteClicked}>
               <i class="fas fa-pen-square"></i>

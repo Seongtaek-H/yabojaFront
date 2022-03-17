@@ -5,12 +5,10 @@ import styles from '../css/Join.module.css'
 function Join() {
   return (
     <div>
-      <Menu></Menu>
-      <div className={styles.blank}></div>
       <span className={styles.title}>회원가입</span>
       <div class={styles.flexContainer}>
         <div class={styles.sec}>
-            <JoinForm />
+          <JoinForm />
         </div>
       </div>
     </div>

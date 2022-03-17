@@ -10,7 +10,6 @@ import Join from './routes/Join'
 import Login from './routes/Login'
 import Home from './routes/Home'
 import What from './routes/What'
-import Where from './routes/Where'
 import When from './routes/When'
 
 import TvDetail from './routes/TvDetail'
@@ -20,10 +19,12 @@ import TVReview from './routes/TVReview'
 import Search from './routes/Search'
 import MyPage from './routes/MyPage'
 import FindUserInfo from './routes/Find'
+import Menu from './components/Menu'
 
 function App() {
   return (
     <Router>
+      <Menu></Menu>
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
@@ -41,9 +42,6 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/what" element={<What />} />
-      </Routes>
-      <Routes>
-        <Route path="/where" element={<Where />} />
       </Routes>
       <Routes>
         <Route path="/when" element={<When />} />
