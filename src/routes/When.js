@@ -78,6 +78,12 @@ const DateDetail = styled.div`
 const Others = styled.span`
   opacity: 0.33;
 `
+const Loading = styled.div`
+  font-size: 150px;
+  font-weight: 700;
+  text-align: center;
+  padding: 100px;
+`
 
 const Calendar = () => {
   const currentYear = useMemo(() => new Date().getFullYear(), [])
@@ -149,7 +155,7 @@ const Calendar = () => {
   return (
     <>
       {loading ? (
-        'loading'
+        <Loading>Loading</Loading>
       ) : (
         <Container>
           <Main>
