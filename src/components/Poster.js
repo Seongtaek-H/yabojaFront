@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const StyledPoster = styled.div`
   width: 200px;
   height: 300px;
+  background-image: url(${(props) => props.poster});
   background-size: 100% 100%;
   background-position: center center;
   border-radius: 10px;
@@ -35,16 +36,12 @@ const StyledLink = styled(Link)`
 
 function Poster({ poster, type }) {
   const makeImagePath = (id, format) => {
-    return `https://image.tmdb.org/t/p/${format ? format : 'original'}/${id}`
+    return `https://image.tmdb.org/t/p/original/${id}`
   }
 
   return (
-    <StyledLink to={`/${type}detail/${poster.id}`}>
-      <StyledPoster
-        style={{
-          backgroundImage: `url(${makeImagePath(poster.poster_path)})`,
-        }}
-      >
+    <StyledLink to={`/detail/${type}/${poster.id}`}>
+      <StyledPoster poster={makeImagePath(poster.poster_path)}>
         {poster.poster_path
           ? ''
           : type === 'Movie'

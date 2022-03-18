@@ -129,10 +129,10 @@ function What() {
       {flag ? (
         <GridWrapper2>
           {tvs.map((poster) => (
-            <Poster type="TV" poster={poster} />
+            <Poster type="tv" poster={poster} />
           ))}
           {movies.map((poster) => (
-            <Poster type="Movie" poster={poster} />
+            <Poster type="movie" poster={poster} />
           ))}
         </GridWrapper2>
       ) : null}
@@ -140,7 +140,7 @@ function What() {
       {flag2 ? (
         <GridWrapper2>
           {movies.map((poster) => (
-            <Poster type="Movie" poster={poster} />
+            <Poster type="movie" poster={poster} />
           ))}
         </GridWrapper2>
       ) : null}
@@ -148,7 +148,7 @@ function What() {
       {flag3 ? (
         <GridWrapper2>
           {tvs.map((poster) => (
-            <Poster type="TV" poster={poster} />
+            <Poster type="tv" poster={poster} />
           ))}
         </GridWrapper2>
       ) : null}

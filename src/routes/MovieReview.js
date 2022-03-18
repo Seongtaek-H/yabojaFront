@@ -51,11 +51,11 @@ function MovieReview() {
   }
 
   const onWriteClicked = () => {
-    navigate(`/movieReview/${content.id}/write`)
+    navigate(`/movieReview/${id}/write`)
   }
 
   const onOverlayClick = () => {
-    navigate(`/movieReview/${content.id}`)
+    navigate(`/movieReview/${id}`)
     setScore(0)
   }
 

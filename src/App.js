@@ -12,10 +12,8 @@ import Home from './routes/Home'
 import What from './routes/What'
 import When from './routes/When'
 
-import TvDetail from './routes/TvDetail'
-import MovieDetail from './routes/MovieDetail'
-import MovieReview from './routes/MovieReview'
-import TVReview from './routes/TVReview'
+import Detail from './routes/Detail'
+import Review from './routes/Review'
 import Search from './routes/Search'
 import MyPage from './routes/MyPage'
 import FindUserInfo from './routes/Find'
@@ -46,19 +44,15 @@ function App() {
       <Routes>
         <Route path="/when" element={<When />} />
       </Routes>
+      {/* <Routes>
+        <Route path="/detail/tv/:id" element={<TvDetail />} />
+      </Routes> */}
       <Routes>
-        <Route path="/tvDetail/:id" element={<TvDetail />} />
+        <Route path="/detail/:type/:id" element={<Detail />} />
       </Routes>
       <Routes>
-        <Route path="/movieDetail/:id" element={<MovieDetail />} />
-      </Routes>
-      <Routes>
-        <Route path="/movieReview/:id" element={<MovieReview />} />
-        <Route path="/movieReview/:id/write" element={<MovieReview />} />
-      </Routes>
-      <Routes>
-        <Route path="/tvReview/:id" element={<TVReview />} />
-        <Route path="/tvReview/:id/write" element={<TVReview />} />
+        <Route path="/review/:type/:id" element={<Review />} />
+        <Route path="/review/:type/:id/write" element={<Review />} />
       </Routes>
       <Routes>
         <Route path="/search" element={<Search />} />

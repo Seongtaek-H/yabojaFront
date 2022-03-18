@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useNavigate, useMatch } from 'react-router-dom'
 import Button from '../components/Button'
-import Menu from '../components/Menu'
 import styles from '../css/Review.module.css'
 
-function TVReview() {
+function TvReview() {
   const state = useSelector((state) => state)
   const navigate = useNavigate()
   const writeMatch = useMatch('/tvReview/:id/write')
@@ -241,4 +240,4 @@ function TVReview() {
   )
 }
 
-export default TVReview
+export default TvReview

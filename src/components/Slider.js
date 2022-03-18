@@ -14,8 +14,8 @@ function Slider({ title, criteria }) {
     setContents(json.results)
   }
 
-  useEffect(()=>{
-    getContents();
+  useEffect(() => {
+    getContents()
   }, [])
 
   const [index, setindex] = useState(0)
@@ -68,7 +68,7 @@ function Slider({ title, criteria }) {
             .slice(1)
             .slice(offset * index, offset * index + offset)
             .map((content) => (
-              <Link to={`/Moviedetail/${content.id}`}>
+              <Link to={`/detail/movie/${content.id}`}>
                 <motion.div
                   className={styles.contentBox}
                   style={{

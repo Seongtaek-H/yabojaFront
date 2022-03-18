@@ -1,16 +1,49 @@
 import { useEffect, useState } from 'react'
-
-import Menu from '../components/Menu'
 import Slider from '../components/Slider'
-import styles from '../css/Home.module.css'
 import { useSelector } from 'react-redux'
 import { getCookie } from '../utils/cookie'
 
+import styled from 'styled-components'
+const Loading = styled.div`
+  font-size: 150px;
+  font-weight: 700;
+  text-align: center;
+  padding: 100px;
+`
+
+const GridWrapper = styled.div`
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: cover;
+  padding-left: 20px;
+`
+const TitleContainer = styled.div`
+  margin-left: 50px;
+  display: inline-block;
+  span:nth-child(1) {
+    font-family: 'NotoSansKr-Medium';
+    font-size: 50px;
+  }
+  span:nth-child(2) {
+    display: inline-block;
+    font-family: 'NotoSansKr-Thin';
+    font-size: 30px;
+  }
+  p {
+    font-family: 'NotoSansKr-Thin';
+    font-size: 30px;
+  }
+`
+const Blank = styled.div`
+  height: 250px;
+`
+
 function Home() {
   //   let state = useSelector((state) => state)
-  //   console.log(state)
   //   const cookie = getCookie('jwt')
-  //   console.log(cookie)
   const [loading, setLoading] = useState(true)
   const [contents, setContents] = useState([])
   const getContents = async () => {
@@ -26,40 +59,37 @@ function Home() {
     getContents()
   }, [])
 
-  const makeImagePath = (id, format) => {
-    return `https://image.tmdb.org/t/p/${format ? format : 'original'}/${id}`
+  const makeImagePath = (id) => {
+    return `https://image.tmdb.org/t/p/original/${id}`
   }
 
   const ranNum = Math.floor(Math.random() * 19)
 
   return (
-    <div>
+    <>
       {loading ? (
-        ''
+        <Loading>Loading...</Loading>
       ) : (
-        <div>
-          <div
+        <>
+          <GridWrapper
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)), url(${makeImagePath(
                 contents[ranNum].backdrop_path
               )})`,
             }}
-            className={styles.gridContainer}
           >
-            <div className={styles.titleContainer}>
-              <span className={styles.title1}>야보자! 이거어때?</span>
-              <span className={styles.title2}>에서</span>
-              <span style={{ display: 'block' }} className={styles.title2}>
-                원하는 콘텐츠들을 만나보세요.
-              </span>
-            </div>
-          </div>
+            <TitleContainer>
+              <span>야보자! 이거어때?</span>
+              <span>에서</span>
+              <p>원하는 콘텐츠들을 만나보세요.</p>
+            </TitleContainer>
+          </GridWrapper>
           <Slider title="Top Rated" criteria="top_rated" />
-          <div className={styles.blank2}></div>
+          <Blank></Blank>
           <Slider title="Now Playing" criteria="now_playing" />
-        </div>
+        </>
       )}
-    </div>
+    </>
   )
 }
 

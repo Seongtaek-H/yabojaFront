@@ -1,61 +1,61 @@
 @import '../css/font.css';
 .blank {
-    height: 80px;
+  height: 80px;
 }
 
 .background {
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center center;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
 }
 
 .gridContainer {
-    display: grid;
+  /* display: grid;
     width: 100vw;
     height: 100vh;
     grid-auto-flow: column;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr; */
 }
 
 .bold {
-    font-size: 50px;
-    font-family: 'NotoSansKr-Bold';
+  /* font-size: 50px;
+    font-family: 'NotoSansKr-Bold'; */
 }
 
 .medium {
-    font-size: 20px;
-    font-family: 'NotoSansKr-Medium';
+  /* font-size: 20px;
+    font-family: 'NotoSansKr-Medium'; */
 }
 
 .thin {
-    margin-top: 30px;
-    font-size: 20px;
-    font-family: 'NotoSansKr-Thin';
+  margin-top: 30px;
+  font-size: 20px;
+  font-family: 'NotoSansKr-Thin';
 }
 
 .poster {
-    width: 20vw;
+  /* width: 20vw;
     height: 30vw;
     justify-self: center;
     align-self: center;
     background-size: 100% 100%;
     background-position: center center;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 10px; */
 }
 
 .detail {
-    width: 85%;
-    height: 500px;
-    background-color: transparent;
-    align-self: center;
+  width: 85%;
+  height: 500px;
+  background-color: transparent;
+  align-self: center;
 }
 
 .btn {
-    margin-top: 30px;
-    width: 350px;
-    height: 500px;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 30px;
+  width: 350px;
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
 }

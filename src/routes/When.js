@@ -155,7 +155,7 @@ const Calendar = () => {
   return (
     <>
       {loading ? (
-        <Loading>Loading</Loading>
+        <Loading>Loading...</Loading>
       ) : (
         <Container>
           <Main>
