@@ -15,7 +15,7 @@ const Bg = styled.div`
 const GridWrapper = styled.div`
   display: grid;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   grid-auto-flow: column;
   grid-template-columns: 1fr 2fr;
 `
@@ -23,8 +23,9 @@ const GridWrapper = styled.div`
 const Poster = styled.div`
   width: 20vw;
   height: 30vw;
+  position: relative;
   justify-self: center;
-  align-self: center;
+  top: 18vh;
   background-image: url(${(props) => props.url});
   background-size: 100% 100%;
   background-position: center center;

@@ -4,7 +4,6 @@ import { apiAxios } from '../api/axios'
 import { getCookie, setCookie } from '../utils/cookie'
 import styles from '../css/login.module.css'
 import { useSelector, useDispatch } from 'react-redux'
-import Menu from '../components/Menu'
 import Modal from 'react-modal'
 import FindUserInfo from './Find'
 

@@ -1,4 +1,3 @@
-import styles from '../css/Search.module.css'
 import { useState } from 'react'
 import Poster from '../components/Poster'
 import styled from 'styled-components'
@@ -100,12 +99,7 @@ function Search() {
   return (
     <>
       <Container>
-        <form
-          id="frm"
-          className={styles.search}
-          onChange={onChange}
-          onSubmit={onSubmit}
-        >
+        <form id="frm" onChange={onChange} onSubmit={onSubmit}>
           <MainText>찾고 싶은 영화나 TV 시리즈의 제목을 입력하세요.</MainText>
           <SearchBar>
             <input type="text" required />

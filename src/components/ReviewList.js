@@ -14,11 +14,11 @@ const Review = styled.div`
 const User = styled.div`
   display: flex;
   justify-content: space-between;
-  > span {
-    padding-right: 10px;
-  }
-  section > span {
-    padding-left: 10px;
+  section span:nth-child(2) {
+    border: 1px gray solid;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
   }
 `
 
@@ -28,10 +28,25 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
 `
-const Reply = styled.div``
+const Reply = styled.div`
+  border-bottom: 1px gray solid;
+  span:nth-child(2) {
+    margin-left: 10px;
+  }
+`
 const Btn = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
   button {
-    margin-right: 5px;
+    all: unset;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  button:nth-child(2) {
+    border-left: 1px gray solid;
   }
 `
 const StyledTextarea = styled.div`
@@ -39,14 +54,16 @@ const StyledTextarea = styled.div`
   background-color: #171721;
   border-radius: 10px;
   width: 40vw;
-  height: 5vw;
+  height: 10vw;
   padding: 10px;
   justify-content: center;
   display: ${(props) => (props.display ? '' : 'none')};
   input {
+    all: unset;
     margin-left: 30px;
     width: 80%;
-    height: 80%;
+    height: 50%;
+    border-bottom: 1px gray solid;
   }
 `
 export const ReviewList = (props) => {
@@ -60,7 +77,7 @@ export const ReviewList = (props) => {
         <User>
           <section>
             <span>{props.data.userId}</span>
-            <span>⭐{props.data.star}</span>
+            <span>⭐&nbsp;&nbsp;{props.data.star}</span>
           </section>
           <span>📆{props.data.date}</span>
         </User>
