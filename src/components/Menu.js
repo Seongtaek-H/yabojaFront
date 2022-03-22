@@ -44,6 +44,7 @@ const MenuExtra = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: white;
+
   cursor: pointer;
   &:hover,
   &:focus {

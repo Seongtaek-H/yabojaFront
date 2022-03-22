@@ -5,7 +5,98 @@ import { getCookie, setCookie } from '../utils/cookie'
 import styles from '../css/login.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Modal from 'react-modal'
-import FindUserInfo from './Find'
+import styled from 'styled-components'
+import { FindModal } from '../components/FindModal'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+`
+
+const GridContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 80%;
+  padding: 30px 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: #212529;
+  border-radius: 10px;
+`
+
+const StyledLabel = styled.label`
+  margin-top: 3%;
+`
+
+const StyledInput = styled.input`
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 20px;
+  :focus {
+    outline: #808080 solid 1px;
+  }
+`
+
+const StyledBtn = styled.button`
+  margin-top: 5%;
+  color: white;
+  background-color: red;
+  width: 55%;
+  height: 60px;
+  font-size: 25px;
+  border: none;
+  border-radius: 5px;
+  justify-content: center;
+  &:hover {
+    opacity: 0.7;
+    color: white;
+    transition: all 0.3s;
+  }
+`
+
+const BtnContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+`
+
+const FindContainer = styled.div`
+  margin-top: 5%;
+  width: 65%;
+  button {
+    width: 45%;
+    margin: 0 5px;
+  }
+  button:hover {
+    opacity: 0.7;
+  }
+`
+
+const Join = styled.div`
+  margin-top: 5%;
+`
+
+const JoinText = styled.span`
+  opacity: 0.7;
+  margin-right: 20px;
+`
+
+const JoinLink = styled(Link)`
+  all: unset;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    opacity: 0.7;
+  }
+`
+const StyledModal = styled.div``
 
 function Login() {
   let dispatch = useDispatch()
@@ -13,7 +104,8 @@ function Login() {
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  const [showModal, setShowModal] = useState('')
+  const [showEmailModal, setShowEmailModal] = useState(false)
+  const [showPwdModal, setShowPwdModal] = useState(false)
 
   const handleInputId = (e) => {
     setId(e.target.value)
@@ -24,8 +116,8 @@ function Login() {
   }
 
   let loginData = {
-    yaEmail: id,
-    yaPwd: password,
+    Email: id,
+    Pwd: password,
   }
 
   const loginUser = async () => {
@@ -42,7 +134,6 @@ function Login() {
 
       if (response.data) {
         setCookie('jwt', response.data.jwt, {})
-
         dispatch({ type: 'LOGIN', userData: response.data.memVO })
         navigate('/')
       }
@@ -55,54 +146,105 @@ function Login() {
 
   return (
     <>
-      <span className={styles.title}>로그인</span>
-      <div className={styles.flexContainer}>
-        <div className={styles.gridContainer}>
-          <div>
-            <label htmlFor="input_id">이메일</label>
-            <input
+      <Container>
+        <GridContainer>
+          <StyledLabel htmlFor="email">
+            <p>이메일</p>
+            <StyledInput
               autoComplete="off"
               className={styles.inputStyle}
               type="text"
-              name="input_id"
+              id="email"
               value={id}
               onChange={handleInputId}
               placeholder="이메일을 입력하세요."
             />
-            <label htmlFor="input_pw">비밀번호</label>
-            <input
+          </StyledLabel>
+          <StyledLabel htmlFor="pwd">
+            <p>비밀번호</p>
+            <StyledInput
               autoComplete="off"
               className={styles.inputStyle}
               type="password"
-              name="input_pw"
+              id="pwd"
               value={password}
               onChange={handleInputPassword}
               placeholder="비밀번호를 입력하세요."
             />
-          </div>
-          <div>
-            <button onClick={onClickLogin}>로그인</button>
-          </div>
-          <div>
-            <Link to={'/join'} className={styles.spanLink}>
-              회원가입
-            </Link>
-            <span
-              className={styles.spanLink}
-              onClick={() => {
-                setShowModal(true)
+          </StyledLabel>
+          <StyledBtn onClick={onClickLogin}>로그인하기</StyledBtn>
+          <BtnContainer>
+            <FindContainer
+              style={{
+                textAlign: 'center',
               }}
             >
-              아이디 비밀번호 찾기
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div>
+              <button
+                onClick={() => {
+                  setShowEmailModal(true)
+                }}
+              >
+                아이디 찾기
+              </button>
+              <button
+                onClick={() => {
+                  setShowPwdModal(true)
+                }}
+              >
+                비밀번호 찾기
+              </button>
+            </FindContainer>
+          </BtnContainer>
+          <Join>
+            <JoinText>아직 계정이 없으신가요?</JoinText>
+            <JoinLink to={'/join'}>회원가입하기</JoinLink>
+          </Join>
+        </GridContainer>
+      </Container>
+      <>
+        <FindModal type={'Email'}></FindModal>
+      </>
+      {/* <div>
         <Modal
-          isOpen={showModal}
-          onRequestClose={() => setShowModal(false)}
+          isOpen={showEmailModal}
+          onRequestClose={() => setShowEmailModal(false)}
+          className="Modal"
+          overlayClassName="Overlay"
+          style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: '',
+            },
+            content: {
+              position: 'absolute',
+              top: '20%',
+              left: '30%',
+              right: '30%',
+              bottom: '20%',
+              background: '#fff',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              borderRadius: '4px',
+              outline: 'none',
+              padding: '20px',
+            },
+          }}
+        >
+          <div className={styles.modal}>
+            <FindEmail
+              showModal={showEmailModal}
+              setShowModal={setShowEmailModal}
+            />
+          </div>
+        </Modal>
+
+        <Modal
+          isOpen={showPwdModal}
+          onRequestClose={() => setShowPwdModal(false)}
           className="Modal"
           overlayClassName="Overlay"
           style={{
@@ -121,7 +263,7 @@ function Login() {
               right: '30%',
               bottom: '20%',
               border: '3px solid #ccc',
-              background: 'lightgrey',
+              background: 'lightgray',
               overflow: 'auto',
               borderRadius: '4px',
               outline: 'none',
@@ -130,10 +272,13 @@ function Login() {
           }}
         >
           <div className={styles.modal}>
-            <FindUserInfo showModal={showModal} setShowModal={setShowModal} />
+            <FindPassword
+              showModal={showPwdModal}
+              setShowModal={setShowPwdModal}
+            />
           </div>
         </Modal>
-      </div>
+      </div> */}
     </>
   )
 }

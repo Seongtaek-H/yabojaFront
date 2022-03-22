@@ -14,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
   p{
     margin: 0;
   }
+  button {
+    background-color: transparent;
+    border : 0;
+    color : white;
+    cursor: pointer;
+  }
 `
 
 export default GlobalStyle

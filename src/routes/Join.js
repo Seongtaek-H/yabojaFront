@@ -15,7 +15,7 @@ const Form = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35vw;
+  width: 45vw;
   height: 80vh;
   background-color: #212529;
   padding: 1%;
@@ -34,7 +34,7 @@ const StyledLabel = styled.label`
 const StyledInput = styled.input`
   margin-right: 20px;
   margin-bottom: 5%;
-  width: 15vw;
+  width: 20vw;
   border: none;
   background-color: transparent;
   border-bottom: 1px whitesmoke solid;
@@ -60,8 +60,7 @@ const StyledBtn = styled.button`
   border-radius: 5px;
   justify-content: center;
   &:hover {
-    background-color: white;
-    color: #808080;
+    opacity: 0.7;
     transition: all 0.3s;
   }
 
@@ -69,12 +68,12 @@ const StyledBtn = styled.button`
     props.join &&
     css`
       font-size: 25px;
-      background-color: #3199dc;
+      background-color: red;
       width: 80%;
       height: 60px;
       margin-top: 20px;
       &:hover {
-        background-color: navy;
+        opacity: 0.7;
         color: white;
         transition: all 0.3s;
       }
