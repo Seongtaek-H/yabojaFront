@@ -24,16 +24,14 @@ const TitleContainer = styled.div`
   margin-left: 50px;
   display: inline-block;
   span:nth-child(1) {
-    font-family: 'NotoSansKr-Medium';
+    font-family: 'Noto500';
     font-size: 50px;
   }
   span:nth-child(2) {
     display: inline-block;
-    font-family: 'NotoSansKr-Thin';
     font-size: 30px;
   }
   p {
-    font-family: 'NotoSansKr-Thin';
     font-size: 30px;
   }
 `

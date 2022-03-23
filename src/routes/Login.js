@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
 import { getCookie, setCookie } from '../utils/cookie'
-import styles from '../css/login.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Modal from 'react-modal'
 import styled from 'styled-components'
@@ -30,11 +29,22 @@ const GridContainer = styled.div`
 `
 
 const StyledLabel = styled.label`
+  width: 100%;
   margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 20px;
+    width: 15%;
+  }
 `
 
 const StyledInput = styled.input`
   background-color: black;
+  width: 50%;
+  height: 60px;
+  padding: 10px;
   color: white;
   border: none;
   font-size: 20px;
@@ -96,7 +106,6 @@ const JoinLink = styled(Link)`
     opacity: 0.7;
   }
 `
-const StyledModal = styled.div``
 
 function Login() {
   let dispatch = useDispatch()
@@ -152,7 +161,6 @@ function Login() {
             <p>이메일</p>
             <StyledInput
               autoComplete="off"
-              className={styles.inputStyle}
               type="text"
               id="email"
               value={id}
@@ -164,7 +172,6 @@ function Login() {
             <p>비밀번호</p>
             <StyledInput
               autoComplete="off"
-              className={styles.inputStyle}
               type="password"
               id="pwd"
               value={password}
@@ -204,67 +211,71 @@ function Login() {
       <>
         <Modal
           isOpen={showEmailModal}
-          onRequestClose={()=>{setShowEmailModal(false)}}
-          style={{
-          overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(255, 255, 255, 0.75)',
-            zIndex: 3,
-          },
-          content: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '40vw',
-            height: '50vh',
-            border: '1px solid #ccc',
-            background: 'green',
-            overflow: 'auto',
-            WebkitOverflowScrolling: 'touch',
-            borderRadius: '10px',
-            outline: 'none',
-            padding: '20px',
-          }
+          onRequestClose={() => {
+            setShowEmailModal(false)
           }}
-          >
+          style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(255, 255, 255, 0.75)',
+              zIndex: 3,
+            },
+            content: {
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '40vw',
+              height: '50vh',
+              border: '1px solid #ccc',
+              background: '#212529',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              borderRadius: '10px',
+              outline: 'none',
+              padding: '20px',
+            },
+          }}
+        >
           <FindModal type={'Email'}></FindModal>
         </Modal>
 
         <Modal
           isOpen={showPwdModal}
-          onRequestClose={()=>{setShowPwdModal(false)}}
-          style={{
-          overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(255, 255, 255, 0.75)',
-            zIndex: 3,
-          },
-          content: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '40vw',
-            height: '50vh',
-            border: '1px solid #ccc',
-            background: 'green',
-            overflow: 'auto',
-            WebkitOverflowScrolling: 'touch',
-            borderRadius: '10px',
-            outline: 'none',
-            padding: '20px',
-          }
+          onRequestClose={() => {
+            setShowPwdModal(false)
           }}
-          >
+          style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(255, 255, 255, 0.75)',
+              zIndex: 3,
+            },
+            content: {
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '40vw',
+              height: '50vh',
+              border: '1px solid #ccc',
+              background: '#212529',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              borderRadius: '10px',
+              outline: 'none',
+              padding: '20px',
+            },
+          }}
+        >
           <FindModal type={'Pwd'}></FindModal>
         </Modal>
         {/* {showEmailModal ? <FindModal type={'Email'}></FindModal> : ''}

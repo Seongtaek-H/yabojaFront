@@ -31,7 +31,6 @@ const SearchBar = styled(Main)`
     border: none;
     border-radius: 30px;
     width: 100%;
-    font-family: 'NotoSansKR-Thin';
   }
 
   input:focus {
@@ -51,7 +50,6 @@ const Type = styled.div`
   display: flex;
   align-items: center;
   font-size: 30px;
-  font-family: 'NotoSansKR-Thin';
   margin-top: 30px;
 `
 

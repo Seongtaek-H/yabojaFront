@@ -9,7 +9,6 @@ const Container = styled.div`
   height: 80px;
   background-color: gray;
   position: fixed;
-  font-family: 'NotoSansKr-Medium';
   font-size: x-large;
   display: grid;
   grid-template-columns: 1fr 5fr;
@@ -19,8 +18,8 @@ const Container = styled.div`
   z-index: 2;
 `
 const Logo = styled.div`
-  font-family: 'DoHyeon-Regular';
-  font-size: 45px;
+  font-family: 'DoHyeon';
+  font-size: 40px;
   color: #fff;
   text-shadow: 0 0 7px #f21b75, 0 0 10px #f21b75, 0 0 20px #f21b75,
     0 0 42px #f21b75, 0 0 82px #f21b75, 0 0 92px #f21b75, 0 0 102px #f21b75,
@@ -28,17 +27,16 @@ const Logo = styled.div`
 `
 
 const MenuDetail = styled.div`
+  font-family: 'Noto500';
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  font-family: 'NotoSansKr-bold';
 `
 const MenuExtra = styled.div`
   width: 10vw;
   display: flex;
   justify-content: space-between;
-  font-family: 'NotoSansKr-Regular';
   font-size: medium;
 `
 const StyledLink = styled(Link)`

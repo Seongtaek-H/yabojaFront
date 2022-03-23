@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import '../css/font.css'
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -6,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Noto300";
     line-height: 1.5;
     background-color: black;
     color: white;

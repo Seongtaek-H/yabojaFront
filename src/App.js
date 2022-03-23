@@ -21,8 +21,8 @@ import Menu from './components/Menu'
 function App() {
   return (
     <>
-      <GlobalStyle />
       <Router>
+        <GlobalStyle />
         <Menu></Menu>
         <Routes>
           <Route path="/" element={<Home />} />

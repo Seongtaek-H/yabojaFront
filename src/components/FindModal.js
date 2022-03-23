@@ -2,18 +2,6 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { FindUserEmail, FindUserPwd } from './Find'
 
-const Container = styled.div`
-  background-color: green;
-  width: 40vw;
-  height: 50vh;
-  position: absolute;
-  border-radius: 10px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-`
 const FindContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,22 +12,24 @@ const FindContainer = styled.div`
 `
 const StyledLabel = styled.label`
   width: 80%;
+  margin-top: 3%;
   display: flex;
   align-items: center;
+  justify-content: center;
   div {
-    margin: 10px;
+    font-size: 20px;
     width: 20%;
-    text-align: center;
   }
 `
 
 const StyledInput = styled.input`
   background-color: black;
+  width: 50%;
+  height: 60px;
+  padding: 10px;
   color: white;
   border: none;
   font-size: 20px;
-  width: 60%;
-  height: 80%;
   :focus {
     outline: #808080 solid 1px;
   }
@@ -139,7 +129,7 @@ export const FindModal = ({ type }) => {
             <span style={{ marginTop: '20px' }}>
               당신의 비밀번호는{' '}
               <strong style={{ color: 'orange' }}>
-                {pwd[0] + pwd[1] + pwd[2] + pwd[3] + '*'.repeat(pwd.length - 4)}
+                {/* {pwd[0] + pwd[1] + pwd[2] + pwd[3] + '*'.repeat(pwd.length - 4)} */}
               </strong>
               입니다.
             </span>

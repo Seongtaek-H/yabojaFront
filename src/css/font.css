@@ -1,18 +1,43 @@
 @font-face {
-  font-family: 'NotoSansKr-Thin';
-  src: url('../fonts/NotoSansKR-Thin.otf');
-}
-
-@font-face {
-  font-family: 'NotoSansKr-Medium';
-  src: url('../fonts/NotoSansKR-Medium.otf');
-}
-
-@font-face {
-  font-family: 'NotoSansKr-Bold';
-  src: url('../fonts/NotoSansKR-Bold.otf');
+  font-family: 'DoHyeon';
+  font-display: fallback;
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff')
+    format('woff');
+  font-style: normal;
 }
 @font-face {
-  font-family: 'DoHyeon-Regular';
-  src: url('../fonts/DoHyeon-Regular.ttf');
+  font-family: 'Noto100';
+  font-display: fallback;
+  src: url('../fonts/noto-sans-kr-v25-korean-100.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto300';
+  font-display: fallback;
+  src: url('../fonts/noto-sans-kr-v25-korean-300.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto500';
+  font-display: fallback;
+  src: url('../fonts/noto-sans-kr-v25-korean-500.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto700';
+  font-display: fallback;
+  src: url('../fonts/noto-sans-kr-v25-korean-700.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto900';
+  font-display: fallback;
+  src: url('../fonts/noto-sans-kr-v25-korean-900.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NotoRegular';
+  font-display: fallback;
+  src: url('../fonts/noto-sans-kr-v25-korean-regular.woff') format('woff');
+  font-style: normal;
 }

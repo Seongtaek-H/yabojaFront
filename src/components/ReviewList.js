@@ -54,15 +54,15 @@ const StyledTextarea = styled.div`
   background-color: #171721;
   border-radius: 10px;
   width: 40vw;
-  height: 10vw;
-  padding: 10px;
-  justify-content: center;
-  display: ${(props) => (props.display ? '' : 'none')};
+  height: 10vh;
+  padding: 20px;
+  align-items: center;
+  display: ${(props) => (props.display ? 'flex' : 'none')};
   input {
     all: unset;
     margin-left: 30px;
     width: 80%;
-    height: 50%;
+    height: 100%;
     border-bottom: 1px gray solid;
   }
 `

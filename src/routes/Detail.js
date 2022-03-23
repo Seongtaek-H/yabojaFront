@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import Button from '../components/Button'
 import styled from 'styled-components'
 
 const Bg = styled.div`
@@ -40,12 +39,11 @@ const StyledDetail = styled.div`
 
   div:nth-child(1) {
     font-size: 50px;
-    font-family: 'NotoSansKr-Bold';
+    font-family: 'Noto700';
   }
 
   div:nth-child(2) {
     font-size: 20px;
-    font-family: 'NotoSansKr-Medium';
     display: inline-block;
   }
 `
@@ -53,20 +51,27 @@ const StyledDetail = styled.div`
 const Thin = styled.div`
   margin-top: 30px;
   font-size: 20px;
-  font-family: 'NotoSansKr-Thin';
 `
 
 const Medium = styled.div`
   font-size: 20px;
-  font-family: 'NotoSansKr-Medium';
   display: inline-block;
+  font-family: 'Noto500';
 `
-const Btn = styled.div`
-  margin-top: 30px;
-  width: 350px;
-  height: 500px;
-  display: flex;
-  justify-content: space-between;
+const Btn = styled.button`
+  color: #fff;
+  background-color: orange;
+  width: 10vw;
+  height: 5vh;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  justify-content: center;
+  margin-top: 5vh;
+  &:hover {
+    opacity: 0.8;
+    transition: all 0.3s;
+  }
 `
 
 function Detail() {
@@ -108,16 +113,27 @@ function Detail() {
                   ? content.genres.map((genre) => (
                       <Medium>{genre.name}&nbsp;</Medium>
                     ))
-                  : ''}
-                <Medium>&nbsp;🕐{content.runtime}min&nbsp;</Medium>
-                <Medium>&nbsp;⭐️{content.vote_average}</Medium>
-                <Thin>{content.overview}</Thin>
-                <Btn>
-                  <Link to={`/review/${type}/${content.id}`}>
-                    <Button text={'리뷰게시판'} />
-                  </Link>
-                  <Button text={'자유게시판'} />
-                </Btn>
+                  : '등록된 정보가 없습니다.'}
+                <Medium>
+                  &nbsp;🕐
+                  {content.runtime
+                    ? `${content.runtime}min`
+                    : '등록된 정보가 없습니다.'}
+                </Medium>
+                <Medium>
+                  &nbsp;⭐️
+                  {content.vote_average
+                    ? `${content.vote_average}`
+                    : '등록된 정보가 없습니다.'}
+                </Medium>
+                <Thin>
+                  {content.overview
+                    ? content.overview
+                    : '등록된 정보가 없습니다.'}
+                </Thin>
+                <Link to={`/review/${type}/${content.id}`}>
+                  <Btn>리뷰게시판</Btn>
+                </Link>
               </StyledDetail>
             </GridWrapper>
           </Bg>

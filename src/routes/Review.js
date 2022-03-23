@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import { ReviewList } from '../components/ReviewList'
 
 import { reviewData } from '../constants/dummy'
+import Modal from 'react-modal/lib/components/Modal'
+
+import ReviewModal from '../components/ReviewModal'
 
 const Bg = styled.div`
   display: flex;
@@ -34,11 +37,12 @@ function Review() {
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState([])
   const [reviews, setReviews] = useState([])
+  const [showReviewModal, setShowReviewModal] = useState(false)
 
   const getContent = async () => {
     const json = await (
       await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
       )
     ).json()
     setContent(json)
@@ -70,7 +74,11 @@ function Review() {
     <>
       {!loading ? (
         <Bg url={makeImagePath(content.backdrop_path)}>
-          <WriteBtn onClick={''}>
+          <WriteBtn
+            onClick={() => {
+              setShowReviewModal(true)
+            }}
+          >
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           {reviews.length > 0 ? (
@@ -82,6 +90,40 @@ function Review() {
           ) : (
             <h1>작성된 리뷰가 없습니다.</h1>
           )}
+          <Modal
+            isOpen={showReviewModal}
+            onRequestClose={() => {
+              setShowReviewModal(false)
+            }}
+            style={{
+              overlay: {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(255, 255, 255, 0.75)',
+                zIndex: 3,
+              },
+              content: {
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '40vw',
+                height: '80vh',
+                border: '1px solid #ccc',
+                background: '#212529',
+                overflow: 'auto',
+                WebkitOverflowScrolling: 'touch',
+                borderRadius: '10px',
+                outline: 'none',
+                padding: '20px',
+              },
+            }}
+          >
+            <ReviewModal></ReviewModal>
+          </Modal>
         </Bg>
       ) : (
         ''
