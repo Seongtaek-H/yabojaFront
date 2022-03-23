@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { Alert } from 'react-bootstrap'
-import styled from 'styled-components'
+import React, { useState } from 'react'
 import { apiAxios } from '../api/axios'
 
-export const FindUserEmail = (Name, PhNum) => {
+export const FindUserEmail = (name, phNum) => {
   const [Email, setEmail] = useState('')
-  const [modal, setModal] = useState(false)
-  if (Name && PhNum) {
+
+  if (name && phNum) {
     const findEmail = async () => {
       try {
         const response = await apiAxios.post(
           `/login/findEmail`,
           JSON.stringify({
-            Name,
-            PhNum,
+            name,
+            phNum,
           })
         )
         setEmail(response.data.Email)
-        setModal(true)
       } catch (e) {
         alert('올바른 값이 아닙니다')
         console.error(e.response.error)
@@ -28,32 +25,26 @@ export const FindUserEmail = (Name, PhNum) => {
   return Email
 }
 
-export const FindPwd = () => {
-  const [yaEmail, setYaEmail] = useState('')
-  const [yaPhNum, setYaPhNum] = useState('')
-  const [yaPwd, setYaPwd] = useState('')
-  const [modal, setModal] = useState(false)
+export const FindUserPwd = (email, phNum) => {
+  const [pwd, setPwd] = useState('')
 
-  const handleOnClick = () => {
-    if (!(yaEmail && yaPhNum)) return
-    const findPassword = async () => {
+  if (email && phNum) {
+    const findPwd = async () => {
       try {
         const response = await apiAxios.post(
-          `/buyus/login/findPwd`,
+          `/login/findEmail`,
           JSON.stringify({
-            yaEmail,
-            yaPhNum,
+            email,
+            phNum,
           })
         )
-        console.log('response', response)
-        setYaPwd(response.data.yaPwd)
-        setModal(true)
+        setPwd(response.data.pwd)
       } catch (e) {
         alert('올바른 값이 아닙니다')
         console.error(e.response.error)
       }
     }
-    findPassword()
+    findPwd()
   }
-  return <></>
+  return pwd
 }

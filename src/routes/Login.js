@@ -202,83 +202,9 @@ function Login() {
         </GridContainer>
       </Container>
       <>
-        <FindModal type={'Email'}></FindModal>
+        {showEmailModal ? <FindModal type={'Email'}></FindModal> : ''}
+        {showPwdModal ? <FindModal type={'Pwd'}></FindModal> : ''}
       </>
-      {/* <div>
-        <Modal
-          isOpen={showEmailModal}
-          onRequestClose={() => setShowEmailModal(false)}
-          className="Modal"
-          overlayClassName="Overlay"
-          style={{
-            overlay: {
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: '',
-            },
-            content: {
-              position: 'absolute',
-              top: '20%',
-              left: '30%',
-              right: '30%',
-              bottom: '20%',
-              background: '#fff',
-              overflow: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              borderRadius: '4px',
-              outline: 'none',
-              padding: '20px',
-            },
-          }}
-        >
-          <div className={styles.modal}>
-            <FindEmail
-              showModal={showEmailModal}
-              setShowModal={setShowEmailModal}
-            />
-          </div>
-        </Modal>
-
-        <Modal
-          isOpen={showPwdModal}
-          onRequestClose={() => setShowPwdModal(false)}
-          className="Modal"
-          overlayClassName="Overlay"
-          style={{
-            overlay: {
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: '',
-            },
-            content: {
-              position: 'absolute',
-              top: '20%',
-              left: '30%',
-              right: '30%',
-              bottom: '20%',
-              border: '3px solid #ccc',
-              background: 'lightgray',
-              overflow: 'auto',
-              borderRadius: '4px',
-              outline: 'none',
-              padding: '20px',
-            },
-          }}
-        >
-          <div className={styles.modal}>
-            <FindPassword
-              showModal={showPwdModal}
-              setShowModal={setShowPwdModal}
-            />
-          </div>
-        </Modal>
-      </div> */}
     </>
   )
 }
