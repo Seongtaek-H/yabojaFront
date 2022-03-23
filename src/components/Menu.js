@@ -15,8 +15,8 @@ const Container = styled.div`
   grid-template-columns: 1fr 5fr;
   justify-items: center;
   align-items: center;
-  z-index: 100;
   padding: 0 100px 0 100px;
+  z-index: 2;
 `
 const Logo = styled.div`
   font-family: 'DoHyeon-Regular';

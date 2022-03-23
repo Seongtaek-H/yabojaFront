@@ -202,8 +202,73 @@ function Login() {
         </GridContainer>
       </Container>
       <>
-        {showEmailModal ? <FindModal type={'Email'}></FindModal> : ''}
-        {showPwdModal ? <FindModal type={'Pwd'}></FindModal> : ''}
+        <Modal
+          isOpen={showEmailModal}
+          onRequestClose={()=>{setShowEmailModal(false)}}
+          style={{
+          overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(255, 255, 255, 0.75)',
+            zIndex: 3,
+          },
+          content: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '40vw',
+            height: '50vh',
+            border: '1px solid #ccc',
+            background: 'green',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '10px',
+            outline: 'none',
+            padding: '20px',
+          }
+          }}
+          >
+          <FindModal type={'Email'}></FindModal>
+        </Modal>
+
+        <Modal
+          isOpen={showPwdModal}
+          onRequestClose={()=>{setShowPwdModal(false)}}
+          style={{
+          overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(255, 255, 255, 0.75)',
+            zIndex: 3,
+          },
+          content: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '40vw',
+            height: '50vh',
+            border: '1px solid #ccc',
+            background: 'green',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '10px',
+            outline: 'none',
+            padding: '20px',
+          }
+          }}
+          >
+          <FindModal type={'Pwd'}></FindModal>
+        </Modal>
+        {/* {showEmailModal ? <FindModal type={'Email'}></FindModal> : ''}
+        {showPwdModal ? <FindModal type={'Pwd'}></FindModal> : ''} */}
       </>
     </>
   )

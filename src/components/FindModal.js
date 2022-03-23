@@ -19,7 +19,8 @@ const FindContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
+  height: 100%;
 `
 const StyledLabel = styled.label`
   width: 80%;
@@ -74,7 +75,7 @@ export const FindModal = ({ type }) => {
   const onChangeEmail = (e) => setEmail(e.target.value)
 
   return (
-    <Container>
+    <>
       {type === 'Email' ? (
         <FindContainer>
           <StyledLabel>
@@ -149,6 +150,6 @@ export const FindModal = ({ type }) => {
           )}
         </FindContainer>
       )}
-    </Container>
+    </>
   )
 }
