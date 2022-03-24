@@ -111,7 +111,7 @@ function Review(props) {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '80vw',
+                width: '65vw',
                 height: '60vh',
                 border: '1px solid #ccc',
                 background: '#212529',
