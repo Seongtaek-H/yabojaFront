@@ -32,12 +32,13 @@ const WriteBtn = styled.div`
   }
 `
 
-function Review() {
+function Review(props) {
   const { id, type } = useParams()
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState([])
   const [reviews, setReviews] = useState([])
   const [showReviewModal, setShowReviewModal] = useState(false)
+  const [title, setTitle] = useState('')
 
   const getContent = async () => {
     const json = await (
@@ -110,8 +111,8 @@ function Review() {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '40vw',
-                height: '80vh',
+                width: '80vw',
+                height: '60vh',
                 border: '1px solid #ccc',
                 background: '#212529',
                 overflow: 'auto',
@@ -122,7 +123,10 @@ function Review() {
               },
             }}
           >
-            <ReviewModal></ReviewModal>
+            <ReviewModal
+              poster={makeImagePath(content.backdrop_path)}
+              title={content.title ? content.title : content.name}
+            ></ReviewModal>
           </Modal>
         </Bg>
       ) : (
