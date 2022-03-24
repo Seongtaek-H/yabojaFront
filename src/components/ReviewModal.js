@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { apiAxios } from '../api/axios'
 
 const Container = styled.div`
@@ -8,11 +7,15 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   h1 {
+    margin-top: 1.5%;
+    margin-left: 2%;
   }
 `
 const StyledForm = styled.form`
   width: 100%;
   height: 80%;
+  padding: 0px;
+  margin: 0px;
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-rows: 80% 20%;
@@ -83,7 +86,7 @@ const StyledInput = styled.input`
 `
 
 const StyledBtn = styled.button`
-  margin-top: 5%;
+  margin-top: 3%;
   color: white;
   background-color: red;
   width: 250px;
@@ -101,7 +104,6 @@ const StyledBtn = styled.button`
 `
 
 const ReviewModal = (props) => {
-  const { id, type } = useParams()
   const [score, setScore] = useState(0)
   const [review, setReview] = useState('')
 

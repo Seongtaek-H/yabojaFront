@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components'
+import Loading from '../components/loading'
 
 const Bg = styled.div`
   width: 100vw;
@@ -99,7 +100,7 @@ function Detail() {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading></Loading>
       ) : (
         <>
           <Bg url={makeImagePath(content.backdrop_path)}>
@@ -111,7 +112,7 @@ function Detail() {
                 <div>🎦</div>
                 {content.genres
                   ? content.genres.map((genre) => (
-                      <Medium>{genre.name}&nbsp;</Medium>
+                      <Medium key={genre.name}>{genre.name}&nbsp;</Medium>
                     ))
                   : '등록된 정보가 없습니다.'}
                 <Medium>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import Loading from '../components/loading'
 import Poster from '../components/Poster'
 
 const Wrapper = styled.div`
@@ -40,6 +41,7 @@ const GridWrapper2 = styled.div`
 `
 
 function What() {
+  const [loading, setLoading] = useState(true)
   const [movies, setMovies] = useState([])
   const [tvs, setTVs] = useState([])
 
@@ -50,6 +52,7 @@ function What() {
       )
     ).json()
     setMovies(json.results)
+    setLoading(false)
   }
 
   const getTVs = async () => {
@@ -59,6 +62,7 @@ function What() {
       )
     ).json()
     setTVs(json.results)
+    setLoading(false)
   }
   useEffect(() => {
     getMovies()
@@ -101,58 +105,64 @@ function What() {
   }
 
   return (
-    <Wrapper>
-      <GridWrapper>
-        <Filter
-          onClick={flag ? '' : selectType}
-          bgcolor={flag === true ? 'white' : ''}
-          color={flag === true ? 'gray' : ''}
-        >
-          All
-        </Filter>
-        <Filter
-          onClick={flag2 ? '' : selectType2}
-          bgcolor={flag2 === true ? 'white' : ''}
-          color={flag2 === true ? 'gray' : ''}
-        >
-          영화
-        </Filter>
-        <Filter
-          onClick={flag3 ? '' : selectType3}
-          bgcolor={flag3 === true ? 'white' : ''}
-          color={flag3 === true ? 'gray' : ''}
-        >
-          TV 시리즈
-        </Filter>
-      </GridWrapper>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Wrapper>
+          <GridWrapper>
+            <Filter
+              onClick={flag ? '' : selectType}
+              bgcolor={flag === true ? 'white' : ''}
+              color={flag === true ? 'gray' : ''}
+            >
+              All
+            </Filter>
+            <Filter
+              onClick={flag2 ? '' : selectType2}
+              bgcolor={flag2 === true ? 'white' : ''}
+              color={flag2 === true ? 'gray' : ''}
+            >
+              영화
+            </Filter>
+            <Filter
+              onClick={flag3 ? '' : selectType3}
+              bgcolor={flag3 === true ? 'white' : ''}
+              color={flag3 === true ? 'gray' : ''}
+            >
+              TV 시리즈
+            </Filter>
+          </GridWrapper>
 
-      {flag ? (
-        <GridWrapper2>
-          {tvs.map((poster) => (
-            <Poster type="tv" poster={poster} />
-          ))}
-          {movies.map((poster) => (
-            <Poster type="movie" poster={poster} />
-          ))}
-        </GridWrapper2>
-      ) : null}
+          {flag ? (
+            <GridWrapper2>
+              {tvs.map((poster) => (
+                <Poster key={poster.id} type="tv" poster={poster} />
+              ))}
+              {movies.map((poster) => (
+                <Poster key={poster.id} type="movie" poster={poster} />
+              ))}
+            </GridWrapper2>
+          ) : null}
 
-      {flag2 ? (
-        <GridWrapper2>
-          {movies.map((poster) => (
-            <Poster type="movie" poster={poster} />
-          ))}
-        </GridWrapper2>
-      ) : null}
+          {flag2 ? (
+            <GridWrapper2>
+              {movies.map((poster) => (
+                <Poster key={poster.id} type="movie" poster={poster} />
+              ))}
+            </GridWrapper2>
+          ) : null}
 
-      {flag3 ? (
-        <GridWrapper2>
-          {tvs.map((poster) => (
-            <Poster type="tv" poster={poster} />
-          ))}
-        </GridWrapper2>
-      ) : null}
-    </Wrapper>
+          {flag3 ? (
+            <GridWrapper2>
+              {tvs.map((poster) => (
+                <Poster key={poster.id} type="tv" poster={poster} />
+              ))}
+            </GridWrapper2>
+          ) : null}
+        </Wrapper>
+      )}
+    </>
   )
 }
 

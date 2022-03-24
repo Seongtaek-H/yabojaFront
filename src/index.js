@@ -1,5 +1,4 @@
 import React from 'react'
-
 import ReactDOM from 'react-dom'
 import { applyMiddleware, compose, createStore } from 'redux'
 import App from './App'
@@ -12,26 +11,20 @@ import logger from 'redux-logger'
 import { PersistGate } from 'redux-persist/integration/react'
 
 const initialState = {
-  yaId: '',
-  yaEmail: '',
-  yaName: '',
-  yaMyott: [],
-  yaPhNum: '',
-  yaLevel: 0,
-  yaPoint: 0,
+  id: '',
+  email: '',
+  name: '',
+  phNum: '',
 }
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       const copy = {
-        yaId: action.userData.yaId,
-        yaEmail: action.userData.yaEmail,
-        yaName: action.userData.yaName,
-        yaMyott: action.userData.yaMyott,
-        yaPhNum: action.userData.yaPhNum,
-        yaLevel: action.userData.yaLevel,
-        yaPoint: action.userData.yaPoint,
+        id: action.userData.Id,
+        email: action.userData.Email,
+        name: action.userData.Name,
+        phNum: action.userData.PhNum,
       }
 
       return copy

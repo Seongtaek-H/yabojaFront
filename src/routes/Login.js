@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
-import { getCookie, setCookie } from '../utils/cookie'
-import { useSelector, useDispatch } from 'react-redux'
+import { setCookie } from '../utils/cookie'
+import { useDispatch } from 'react-redux'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { FindModal } from '../components/FindModal'
@@ -109,7 +109,7 @@ const JoinLink = styled(Link)`
 
 function Login() {
   let dispatch = useDispatch()
-  let state = useSelector((state) => state)
+  // let state = useSelector((state) => state)
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()

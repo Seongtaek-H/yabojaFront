@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import GlobalStyle from './css/globalStyle'
 import Join from './routes/Join'
 import Login from './routes/Login'
@@ -47,7 +42,6 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/review/:type/:id" element={<Review />} />
-          <Route path="/review/:type/:id/write" element={<Review />} />
         </Routes>
         <Routes>
           <Route path="/search" element={<Search />} />

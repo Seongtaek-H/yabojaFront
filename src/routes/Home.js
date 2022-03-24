@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
-import { useSelector } from 'react-redux'
-import { getCookie } from '../utils/cookie'
+// import { useSelector } from 'react-redux'
+// import { getCookie } from '../utils/cookie'
+import Loading from '../components/loading'
 
 import styled from 'styled-components'
-const Loading = styled.div`
-  font-size: 150px;
-  font-weight: 700;
-  text-align: center;
-  padding: 100px;
-`
 
 const GridWrapper = styled.div`
   width: 100%;
@@ -66,7 +61,7 @@ function Home() {
   return (
     <>
       {loading ? (
-        <Loading>Loading...</Loading>
+        <Loading></Loading>
       ) : (
         <>
           <GridWrapper

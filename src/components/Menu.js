@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { getCookie, removeCookie } from '../utils/cookie'
+import { removeCookie } from '../utils/cookie'
 
 const Container = styled.div`
   width: 100%;
@@ -84,13 +84,13 @@ function Menu() {
     <>
       <Container>
         <StyledLink to="/">
-          <Logo>YaboJa</Logo>
+          <Logo>Ya</Logo>
         </StyledLink>
         <MenuDetail>
           <StyledLink to="/what">뭐 볼까?</StyledLink>
           <StyledLink to="/when">언제 나오지?</StyledLink>
           <StyledLink to="/search">검색</StyledLink>
-          {!login === true ? (
+          {login === true ? (
             <MenuExtra>
               <StyledLink to="/me/info">마이페이지</StyledLink>
               <Button

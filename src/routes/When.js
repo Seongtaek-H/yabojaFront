@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import Upcoming from '../components/upcoming'
 import { CALENDAR_WEEKS } from '../constants'
 import styled from 'styled-components'
+import Loading from '../components/loading'
 
 const Container = styled.div`
   display: flex;
@@ -77,12 +78,6 @@ const DateDetail = styled.div`
 const Others = styled.span`
   opacity: 0.33;
 `
-const Loading = styled.div`
-  font-size: 150px;
-  font-weight: 700;
-  text-align: center;
-  padding: 100px;
-`
 
 const Calendar = () => {
   const currentYear = useMemo(() => new Date().getFullYear(), [])
@@ -154,7 +149,7 @@ const Calendar = () => {
   return (
     <>
       {loading ? (
-        <Loading>Loading...</Loading>
+        <Loading />
       ) : (
         <Container>
           <Main>

@@ -7,6 +7,7 @@ import { reviewData } from '../constants/dummy'
 import Modal from 'react-modal/lib/components/Modal'
 
 import ReviewModal from '../components/ReviewModal'
+import Loading from '../components/loading'
 
 const Bg = styled.div`
   display: flex;
@@ -38,7 +39,6 @@ function Review(props) {
   const [content, setContent] = useState([])
   const [reviews, setReviews] = useState([])
   const [showReviewModal, setShowReviewModal] = useState(false)
-  const [title, setTitle] = useState('')
 
   const getContent = async () => {
     const json = await (
@@ -83,13 +83,13 @@ function Review(props) {
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           {reviews.length > 0 ? (
-            reviews.map((a) => (
+            reviews.map((review) => (
               <>
-                <ReviewList data={a}></ReviewList>
+                <ReviewList data={review}></ReviewList>
               </>
             ))
           ) : (
-            <h1>작성된 리뷰가 없습니다.</h1>
+            <Loading></Loading>
           )}
           <Modal
             isOpen={showReviewModal}
@@ -119,7 +119,6 @@ function Review(props) {
                 WebkitOverflowScrolling: 'touch',
                 borderRadius: '10px',
                 outline: 'none',
-                padding: '20px',
               },
             }}
           >
