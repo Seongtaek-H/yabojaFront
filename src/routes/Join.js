@@ -81,11 +81,11 @@ const StyledBtn = styled.button`
 `
 
 function Join() {
-  const [Email, setEmail] = useState('')
-  const [Pwd, setPwd] = useState('')
-  const [Name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
   const [nickName, setNickName] = useState('')
-  const [PhNum, setPhNum] = useState('')
+  const [phoneNumber, setPhNum] = useState('')
   const [isCheckEmail, setIsCheckEmail] = useState(false)
   const [isCheckId, setIsCheckId] = useState(false)
   const [checkPwd, setCheckPwd] = useState('')
@@ -102,19 +102,19 @@ function Join() {
   }
 
   const joinData = {
-    Email,
-    Pwd,
-    Name,
+    email,
+    password,
+    name,
     nickName,
-    PhNum,
+    phoneNumber,
   }
-
-  const checkId = (Email) => {
-    return apiAxios.get(`/buyus/join/checkEmail?email=${Email}`)
+  console.log(joinData)
+  const checkId = (email) => {
+    return apiAxios.get(`/user/identities/type="email"&value=${email}`)
   }
   const onClickCheckId = async () => {
     try {
-      await checkId(Email)
+      await checkId(email)
       alert('사용가능한 이메일입니다')
       setIsCheckEmail(true)
     } catch (error) {
@@ -124,7 +124,7 @@ function Join() {
   }
 
   const checkNickName = (nickName) => {
-    return apiAxios.get(`/buyus/join/checkId?id=$[nickName}`)
+    return apiAxios.get(`/user/identities/type="nickName"&value=${nickName}`)
   }
   const onClickCheckNickName = async () => {
     try {
@@ -138,19 +138,19 @@ function Join() {
   }
 
   const joinUser = () => {
-    const result = apiAxios.post('/buyus/join', JSON.stringify(joinData))
+    const result = apiAxios.post('/user', JSON.stringify(joinData))
     return result
   }
 
   const onClickJoin = async () => {
     if (!isCheckEmail) return alert('이메일 중복 확인을 해주세요.')
     if (!isCheckId) return alert('닉네임 중복 확인을 해주세요')
-    if (!Email) return alert('이메일을 입력해주세요')
-    if (!Pwd) return alert('비밀번호를 입력해주세요')
-    if (Pwd !== checkPwd) return alert('비밀번호가 일치하지 않습니다.')
-    if (!Name) return alert('이름을 입력해주세요')
+    if (!email) return alert('이메일을 입력해주세요')
+    if (!password) return alert('비밀번호를 입력해주세요')
+    if (password !== checkPwd) return alert('비밀번호가 일치하지 않습니다.')
+    if (!name) return alert('이름을 입력해주세요')
     if (!nickName) return alert('닉네임을 입력해주세요')
-    if (!PhNum) return alert('전화번호를 입력해주세요')
+    if (!phoneNumber) return alert('전화번호를 입력해주세요')
 
     try {
       const response = await joinUser()
@@ -171,20 +171,20 @@ function Join() {
               id="email"
               autoComplete="off"
               type="text"
-              value={Email}
+              value={email}
               onChange={onChangeEmail}
             />
             <StyledBtn onClick={onClickCheckId}>중복확인</StyledBtn>
           </StyledLabel>
 
-          <StyledLabel htmlFor="pwd">
+          <StyledLabel htmlFor="password">
             <p>비밀번호</p>
             <StyledInput
-              id="pwd"
+              id="password"
               autoComplete="off"
               type="password"
-              value={Pwd}
-              onChange={(e) => setPwd(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </StyledLabel>
           <StyledLabel htmlFor="pwdCheck">
@@ -198,7 +198,7 @@ function Join() {
               }}
             />
           </StyledLabel>
-          {Pwd === checkPwd ? (
+          {password === checkPwd ? (
             ''
           ) : (
             <div style={{ color: 'red' }}>비밀번호가 일치하지 않습니다</div>
@@ -210,7 +210,7 @@ function Join() {
               id="name"
               autoComplete="off"
               type="text"
-              value={Name}
+              value={name}
               onChange={(e) => {
                 setName(e.target.value)
               }}
@@ -235,7 +235,7 @@ function Join() {
               id="phoneNum"
               autoComplete="off"
               type="nubmer"
-              value={PhNum}
+              value={phoneNumber}
               onChange={(e) => {
                 if (e.target.value.match(/[^0-9]/g))
                   return alert('숫자만 입력 가능합니다')
