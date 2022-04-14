@@ -1,40 +1,37 @@
 import { LOGIN, LOGOUT } from './type'
 
 const initialState = {
-  yaId: '',
-  yaEmail: '',
-  yaPwd: '',
-  yaName: '',
-  yaMyott: [],
-  yaMyottS: '',
-  yaPhNum: '',
-  yaLevel: 0,
-  yaPoint: 0,
+  id: 0,
+  email: '',
+  password: '',
+  name: '',
+  nickName: '',
+  phoneNumber: '',
+  createAt: '',
+  isValid: false,
 }
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      const nickName = action.userData.yaId
-      const email = action.userData.yaId
-      const password = action.userData.yaId
-      const name = action.userData.yaName
-      const myOtt = action.userData.yaMyott
-      const myOtts = action.userData.yaMyotts
-      const ph = action.userData.yaPhNum
-      const level = action.userData.yaLevel
-      const point = action.userData.yaPoint
+      const id = ''
+      const email = ''
+      const password = ''
+      const name = ''
+      const nickName = ''
+      const phoneNumber = ''
+      const createAt = ''
+      const isValid = ''
       return {
         ...initialState,
-        nickName,
+        id,
         email,
         password,
         name,
-        myOtt,
-        myOtts,
-        ph,
-        level,
-        point,
+        nickName,
+        phoneNumber,
+        createAt,
+        isValid,
       }
     case LOGOUT:
       return { ...initialState }

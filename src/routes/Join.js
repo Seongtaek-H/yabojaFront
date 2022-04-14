@@ -108,23 +108,23 @@ function Join() {
     nickName,
     phoneNumber,
   }
-  console.log(joinData)
-  const checkId = (email) => {
-    return apiAxios.get(`/user/identities/type="email"&value=${email}`)
+
+  const checkEmail = (email) => {
+    return apiAxios.get(`/user/identities?type="email"&value=${email}`)
   }
   const onClickCheckId = async () => {
     try {
-      await checkId(email)
-      alert('사용가능한 이메일입니다')
+      await checkEmail(email)
       setIsCheckEmail(true)
+      alert('사용가능한 email입니다')
     } catch (error) {
-      alert('사용 불가한 형식입니다')
-      setEmail('')
+      alert(error)
+      console.log(error)
     }
   }
 
   const checkNickName = (nickName) => {
-    return apiAxios.get(`/user/identities/type="nickName"&value=${nickName}`)
+    return apiAxios.get(`/user/identities?type="nickName"&value=${nickName}`)
   }
   const onClickCheckNickName = async () => {
     try {

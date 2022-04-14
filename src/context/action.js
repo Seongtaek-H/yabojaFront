@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { apiAxios } from '../api/axios'
 import { setCookie } from '../utils/cookie'
 import { LOGIN, LOGOUT } from './type'

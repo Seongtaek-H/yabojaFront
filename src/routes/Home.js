@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
 // import { useSelector } from 'react-redux'
-// import { getCookie } from '../utils/cookie'
+import { getCookie } from '../utils/cookie'
 import Loading from '../components/loading'
 
 import styled from 'styled-components'
@@ -57,6 +57,8 @@ function Home() {
   }
 
   const ranNum = Math.floor(Math.random() * 19)
+
+  console.log(getCookie('jwt'))
 
   return (
     <>

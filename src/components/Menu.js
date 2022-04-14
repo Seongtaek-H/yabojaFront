@@ -84,7 +84,7 @@ function Menu() {
     <>
       <Container>
         <StyledLink to="/">
-          <Logo>Ya</Logo>
+          <Logo>YaBoja</Logo>
         </StyledLink>
         <MenuDetail>
           <StyledLink to="/what">뭐 볼까?</StyledLink>

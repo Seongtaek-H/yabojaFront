@@ -13,8 +13,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 const initialState = {
   id: '',
   email: '',
+  password: '',
   name: '',
-  phNum: '',
+  nickNmae: '',
+  phoneNumber: '',
+  createdAt: '',
+  isValid: '',
 }
 
 export default function userReducer(state = initialState, action) {

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
 import { setCookie } from '../utils/cookie'
-import { useDispatch } from 'react-redux'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { FindModal } from '../components/FindModal'
@@ -108,16 +107,14 @@ const JoinLink = styled(Link)`
 `
 
 function Login() {
-  let dispatch = useDispatch()
-  // let state = useSelector((state) => state)
-  const [id, setId] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const [showEmailModal, setShowEmailModal] = useState(false)
   const [showPwdModal, setShowPwdModal] = useState(false)
 
   const handleInputId = (e) => {
-    setId(e.target.value)
+    setEmail(e.target.value)
   }
 
   const handleInputPassword = (e) => {
@@ -125,29 +122,26 @@ function Login() {
   }
 
   let loginData = {
-    Email: id,
-    Pwd: password,
+    email: email,
+    password: password,
   }
 
   const loginUser = async () => {
-    const result = await apiAxios.post(
-      '/buyus/login',
-      JSON.stringify(loginData)
-    )
+    const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
     return result
   }
 
   const onClickLogin = async () => {
     try {
       const response = await loginUser()
-
       if (response.data) {
-        setCookie('jwt', response.data.jwt, {})
-        dispatch({ type: 'LOGIN', userData: response.data.memVO })
+        console.log(response.data)
+        alert(response.data.response.message)
+        setCookie('jwt', response.data.accessToken, {})
         navigate('/')
       }
     } catch (error) {
-      console.error(error.response)
+      console.error(error)
       alert('아이디 및 비밀번호가 정확하지 않습니다.')
       // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나
     }
@@ -163,7 +157,7 @@ function Login() {
               autoComplete="off"
               type="text"
               id="email"
-              value={id}
+              value={email}
               onChange={handleInputId}
               placeholder="이메일을 입력하세요."
             />
