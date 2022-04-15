@@ -73,7 +73,7 @@ function Menu() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (state.yaEmail === '') {
+    if (state.isValid) {
       setLogin(true)
     } else {
       setLogin(false)
@@ -95,7 +95,6 @@ function Menu() {
               <StyledLink to="/me/info">마이페이지</StyledLink>
               <Button
                 onClick={() => {
-                  removeCookie('jwt')
                   dispatch({ type: 'LOGOUT' })
                   navigate('/')
                 }}

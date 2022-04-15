@@ -5,6 +5,7 @@ import { setCookie } from '../utils/cookie'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { FindModal } from '../components/FindModal'
+import { useDispatch } from 'react-redux'
 
 const Container = styled.div`
   display: flex;
@@ -112,6 +113,7 @@ function Login() {
   const navigate = useNavigate()
   const [showEmailModal, setShowEmailModal] = useState(false)
   const [showPwdModal, setShowPwdModal] = useState(false)
+  const dispatch = useDispatch()
 
   const handleInputId = (e) => {
     setEmail(e.target.value)
@@ -135,9 +137,12 @@ function Login() {
     try {
       const response = await loginUser()
       if (response.data) {
-        console.log(response.data)
         alert(response.data.response.message)
-        setCookie('jwt', response.data.accessToken, {})
+        const { accessToken } = response.data
+        apiAxios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${accessToken}`
+        loginState()
         navigate('/')
       }
     } catch (error) {
@@ -145,6 +150,13 @@ function Login() {
       alert('아이디 및 비밀번호가 정확하지 않습니다.')
       // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나
     }
+  }
+
+  const loginState = async () => {
+    const result = await apiAxios.get('auth/me')
+    console.log(result.data.user)
+    dispatch({ type: 'LOGIN', payload: { ...result.data.user } })
+    return result
   }
 
   return (

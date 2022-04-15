@@ -5,6 +5,8 @@ import { getCookie } from '../utils/cookie'
 import Loading from '../components/loading'
 
 import styled from 'styled-components'
+import { apiAxios } from '../api/axios'
+import { useSelector } from 'react-redux'
 
 const GridWrapper = styled.div`
   width: 100%;
@@ -35,8 +37,6 @@ const Blank = styled.div`
 `
 
 function Home() {
-  //   let state = useSelector((state) => state)
-  //   const cookie = getCookie('jwt')
   const [loading, setLoading] = useState(true)
   const [contents, setContents] = useState([])
   const getContents = async () => {
@@ -57,8 +57,6 @@ function Home() {
   }
 
   const ranNum = Math.floor(Math.random() * 19)
-
-  console.log(getCookie('jwt'))
 
   return (
     <>
