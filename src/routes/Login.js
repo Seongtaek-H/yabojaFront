@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
-import { setCookie } from '../utils/cookie'
+import { getCookie, setCookie } from '../utils/cookie'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { FindModal } from '../components/FindModal'
@@ -139,9 +139,7 @@ function Login() {
       if (response.data) {
         alert(response.data.response.message)
         const { accessToken } = response.data
-        apiAxios.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${accessToken}`
+        setCookie('token', accessToken)
         loginState()
         navigate('/')
       }
@@ -154,7 +152,6 @@ function Login() {
 
   const loginState = async () => {
     const result = await apiAxios.get('auth/me')
-    console.log(result.data.user)
     dispatch({ type: 'LOGIN', payload: { ...result.data.user } })
     return result
   }

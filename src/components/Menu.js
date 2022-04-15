@@ -95,6 +95,7 @@ function Menu() {
               <StyledLink to="/me/info">마이페이지</StyledLink>
               <Button
                 onClick={() => {
+                  removeCookie('token')
                   dispatch({ type: 'LOGOUT' })
                   navigate('/')
                 }}

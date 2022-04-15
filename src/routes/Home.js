@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
-// import { useSelector } from 'react-redux'
-import { getCookie } from '../utils/cookie'
 import Loading from '../components/loading'
-
 import styled from 'styled-components'
-import { apiAxios } from '../api/axios'
+import { getCookie } from '../utils/cookie'
 import { useSelector } from 'react-redux'
 
 const GridWrapper = styled.div`
