@@ -139,7 +139,7 @@ function Login() {
       if (response.data) {
         alert(response.data.response.message)
         const { accessToken } = response.data
-        setCookie('token', accessToken)
+        setCookie('token', accessToken, { maxAge: 1800 })
         loginState()
         navigate('/')
       }

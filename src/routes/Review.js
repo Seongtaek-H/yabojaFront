@@ -40,10 +40,11 @@ function Review(props) {
   const [reviews, setReviews] = useState([])
   const [showReviewModal, setShowReviewModal] = useState(false)
 
+  const API_KEY = '6df683327f9037c362fcff75540a2656&language=en-US&page=1'
   const getContent = async () => {
     const json = await (
       await fetch(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}`
       )
     ).json()
     setContent(json)

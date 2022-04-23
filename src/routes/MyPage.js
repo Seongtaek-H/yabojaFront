@@ -5,6 +5,8 @@
 import { Link } from 'react-router-dom'
 import { userData, userReview } from '../constants/dummy'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { getCookie } from '../utils/cookie'
 
 const Container = styled.div`
   padding: 150px 120px;
@@ -69,8 +71,9 @@ const ReviewContainer = styled.div`
 `
 
 function MyPage() {
-  // let state = useSelector((state) => state)
-  // const jwt = getCookie('jwt')
+  let state = useSelector((state) => state)
+  const token = getCookie('token')
+  console.log(state)
   // const [review, setReview] = useState([])
   // const navigate = useNavigate()
   // const [showModal, setShowModal] = useState('')
@@ -98,8 +101,8 @@ function MyPage() {
   return (
     <Container>
       <UserInfo>
-        <Avatar>{userData.name[0]}</Avatar>
-        <p>{userData.name}님</p>
+        <Avatar>{state.name[0]}</Avatar>
+        <p>{state.name}님</p>
       </UserInfo>
       <ContentContainer>
         <h4>내가 쓴 리뷰</h4>
