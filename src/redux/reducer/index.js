@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from './type'
+import { LOGIN, LOGOUT } from '../type'
 
 const initialState = {
   id: 0,
