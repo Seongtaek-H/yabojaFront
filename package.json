@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.2",
-    "@nivo/core": "^0.72.0",
-    "@nivo/pie": "^0.72.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -18,7 +16,6 @@
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.21.2",
-    "react-minimal-pie-chart": "^8.2.0",
     "react-modal": "^3.14.4",
     "react-query": "^3.34.0",
     "react-redux": "^7.2.6",
@@ -39,12 +36,6 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -58,6 +49,10 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
     "prettier": "2.5.0"
   }
 }

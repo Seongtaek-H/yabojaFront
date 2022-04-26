@@ -101,7 +101,7 @@ function Search() {
           <MainText>찾고 싶은 영화나 TV 시리즈의 제목을 입력하세요.</MainText>
           <SearchBar>
             <input type="text" required />
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </SearchBar>
         </form>
         <div>
