@@ -3,10 +3,12 @@
 // import { apiAxios } from '../api/axios'
 // import { getCookie } from '../utils/cookie'
 import { Link } from 'react-router-dom'
-import { userData, userReview } from '../constants/dummy'
+import { userReview } from '../constants/dummy'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { getCookie } from '../utils/cookie'
+import { apiAxios } from '../api/axios'
+import { useEffect, useState } from 'react'
 
 const Container = styled.div`
   padding: 150px 120px;
@@ -71,32 +73,30 @@ const ReviewContainer = styled.div`
 `
 
 function MyPage() {
-  let state = useSelector((state) => state)
+  const state = useSelector((state) => state)
   const token = getCookie('token')
-  console.log(state)
-  // const [review, setReview] = useState([])
-  // const navigate = useNavigate()
-  // const [showModal, setShowModal] = useState('')
+  const [reviews, setReviews] = useState([])
 
-  // const myJwt = {
-  //   jwt: jwt,
+  useEffect(() => {
+    getReviews()
+  }, [])
+
+  const getReviews = async () => {
+    const res = await apiAxios.get(`review?id=${state.id}`)
+    if (res.data) {
+      setReviews(res.data.reviews)
+    }
+  }
+  // const API_KEY = process.env.REACT_APP_API_KEY
+  // const getReviewName = async ({ review }) => {
+
+  //   const res = await apiAxios.get(
+  //     `https://api.themoviedb.org/3/${review.targetType}/${review.targetId}?api_key=${API_KEY}&language=ko-KR&page=1`
+  //   )
+  //   console.log(res)
   // }
 
-  // const user = async () => {
-  //   const result = await apiAxios.post('/buyus/me/info', JSON.stringify(myJwt))
-  //   return result
-  // }
-  // const userData = async () => {
-  //   try {
-  //     const response = await user()
-  //     setReview(response.data.review)
-  //   } catch (error) {
-  //     console.error(error.response)
-  //   }
-  // }
-  // useEffect(() => {
-  //   userData()
-  // }, [])
+  // console.log(reviews[0])
 
   return (
     <Container>
@@ -108,14 +108,19 @@ function MyPage() {
         <h4>내가 쓴 리뷰</h4>
         <hr></hr>
         <div>
-          {userReview.map((review) => (
-            <StyledLink to={`/detail/${review.type}/${review.id}`}>
-              <ReviewContainer>
-                <span>{review.content}</span>
-                <span>{review.reviewTitle}</span>
-              </ReviewContainer>
-            </StyledLink>
-          ))}
+          {reviews.map((review) => {
+            return (
+              <StyledLink
+                key={review.no}
+                to={`/detail/${review.targetType}/${review.targetId}`}
+              >
+                <ReviewContainer>
+                  <span>{review.contents}</span>
+                  <span>{review.targetId}</span>
+                </ReviewContainer>
+              </StyledLink>
+            )
+          })}
         </div>
       </ContentContainer>
       <BtnContainer>

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { removeCookie } from '../utils/cookie'
 
 const Container = styled.div`
+  margin-top: 0px;
   width: 100%;
   height: 80px;
   background-color: gray;

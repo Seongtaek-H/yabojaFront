@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
 import Loading from '../components/loading'
 import styled from 'styled-components'
-import { getCookie } from '../utils/cookie'
-import { useSelector } from 'react-redux'
 
 const GridWrapper = styled.div`
   width: 100%;
@@ -34,12 +32,13 @@ const Blank = styled.div`
 `
 
 function Home() {
+  const API_KEY = process.env.REACT_APP_API_KEY
   const [loading, setLoading] = useState(true)
   const [contents, setContents] = useState([])
   const getContents = async () => {
     const json = await (
       await fetch(
-        'https://api.themoviedb.org/3/movie/popular?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1'
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       )
     ).json()
     setContents(json.results)

@@ -7,10 +7,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    padding:0px;
+    margin:0px;
     font-family: "Noto300";
     line-height: 1.5;
     background-color: black;
     color: white;
+    
   }
   p{
     margin: 0;

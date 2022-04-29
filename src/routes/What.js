@@ -41,6 +41,7 @@ const GridWrapper2 = styled.div`
 `
 
 function What() {
+  const API_KEY = process.env.REACT_APP_API_KEY
   const [loading, setLoading] = useState(true)
   const [movies, setMovies] = useState([])
   const [tvs, setTVs] = useState([])
@@ -48,7 +49,7 @@ function What() {
   const getMovies = async () => {
     const json = await (
       await fetch(
-        'https://api.themoviedb.org/3/movie/popular?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1'
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       )
     ).json()
     setMovies(json.results)
@@ -58,7 +59,7 @@ function What() {
   const getTVs = async () => {
     const json = await (
       await fetch(
-        'https://api.themoviedb.org/3/tv/popular?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1'
+        `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`
       )
     ).json()
     setTVs(json.results)
@@ -112,21 +113,27 @@ function What() {
         <Wrapper>
           <GridWrapper>
             <Filter
-              onClick={flag ? '' : selectType}
+              onClick={() => {
+                if (!flag) selectType()
+              }}
               bgcolor={flag === true ? 'white' : ''}
               color={flag === true ? 'gray' : ''}
             >
               All
             </Filter>
             <Filter
-              onClick={flag2 ? '' : selectType2}
+              onClick={() => {
+                if (!flag2) selectType2()
+              }}
               bgcolor={flag2 === true ? 'white' : ''}
               color={flag2 === true ? 'gray' : ''}
             >
               영화
             </Filter>
             <Filter
-              onClick={flag3 ? '' : selectType3}
+              onClick={() => {
+                if (!flag3) selectType3()
+              }}
               bgcolor={flag3 === true ? 'white' : ''}
               color={flag3 === true ? 'gray' : ''}
             >

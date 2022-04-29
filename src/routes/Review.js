@@ -27,7 +27,7 @@ const WriteBtn = styled.div`
   bottom: 20px;
   right: 50px;
   cursor: pointer;
-  font-size: 100px;
+  font-size: 5rem;
   &:hover {
     transform: scale(1.1);
   }
@@ -68,7 +68,6 @@ function Review(props) {
       `/review?targetId=${id}&targetType=${type}`
     )
     if (response.data) {
-      console.log(response.data)
       setReviews(response.data.reviews)
     }
   }
@@ -82,7 +81,6 @@ function Review(props) {
               setShowReviewModal(true)
             }}
           >
-            작성하기
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           {reviews.length > 0 ? (

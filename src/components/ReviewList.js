@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { apiAxios } from '../api/axios'
 
 const Review = styled.div`
   display: grid;
@@ -20,6 +22,10 @@ const User = styled.div`
     padding: 5px;
     border-radius: 5px;
   }
+  section p {
+    margin-top: 10px;
+    font-size: 10px;
+  }
 `
 
 const Content = styled.div`
@@ -27,6 +33,16 @@ const Content = styled.div`
   height: 50%;
   justify-content: center;
   align-items: center;
+`
+const Revise = styled.div`
+  display: flex;
+  background-color: gray;
+  width: 10%;
+  height: 70%;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `
 const Reply = styled.div`
   border-bottom: 1px gray solid;
@@ -67,10 +83,20 @@ const StyledTextarea = styled.div`
   }
 `
 export const ReviewList = (props) => {
+  const state = useSelector((state) => state)
+
   const [display, setDisplay] = useState(false)
+  const [reviseModal, setReviseModal] = useState(false)
   const onClick = () => {
     setDisplay((Prev) => !Prev)
   }
+  const deleteReview = async (id) => {
+    const res = await apiAxios.delete(`/review/${id}`)
+    alert('삭제되었습니다.')
+    window.location.reload()
+  }
+
+  console.log(props.data.user.nickName)
   return (
     <>
       <Review>
@@ -78,10 +104,26 @@ export const ReviewList = (props) => {
           <section>
             <span>{props.data.user.nickName}</span>
             <span>⭐&nbsp;&nbsp;{props.data.ratings}</span>
+            <p>📆{props.data.createdAt}</p>
           </section>
-          <span>📆{props.data.createAt}</span>
+          {state.nickName === props.data.user.nickName ? (
+            <Revise
+              onClick={() => {
+                deleteReview(props.data.no)
+              }}
+            >
+              삭제
+            </Revise>
+          ) : (
+            ''
+          )}
         </User>
-        <Content>{props.data.contents}</Content>
+        {!reviseModal ? (
+          <Content>{props.data.contents}</Content>
+        ) : (
+          <input value={props.data.contents}></input>
+        )}
+
         <Reply>
           <span>❤️{props.data.likes}</span>
           <span>💬 0</span>

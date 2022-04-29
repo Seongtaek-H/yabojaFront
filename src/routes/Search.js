@@ -27,10 +27,11 @@ const SearchBar = styled(Main)`
   position: relative;
 
   input {
-    padding-left: 60px;
-    border: none;
+    padding: 20px;
+    border: 5px green solid;
     border-radius: 30px;
-    width: 100%;
+    width: 60vw;
+    font-size: 4rem;
   }
 
   input:focus {
@@ -38,11 +39,14 @@ const SearchBar = styled(Main)`
   }
 
   i {
-    font-size: 35px;
+    font-size: 3rem;
     z-index: 10;
     position: absolute;
     color: #707070;
-    left: 20px;
+    left: 53vw;
+    :hover {
+      transform: scale(1.2);
+    }
   }
 `
 
@@ -62,6 +66,7 @@ const Result = styled.div`
 `
 
 function Search() {
+  const API_KEY = process.env.REACT_APP_API_KEY
   const [keyword, setKeyword] = useState('')
   const [movies, setMovies] = useState('')
   const [tvs, setTvs] = useState('')
@@ -69,7 +74,7 @@ function Search() {
   const searchMovie = async () => {
     const json = await (
       await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=6df683327f9037c362fcff75540a2656&language=en-US&query=${keyword}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${keyword}&page=1&include_adult=false`
       )
     ).json()
     setMovies(json)
@@ -78,7 +83,7 @@ function Search() {
   const searchTV = async () => {
     const json = await (
       await fetch(
-        `https://api.themoviedb.org/3/search/tv?api_key=6df683327f9037c362fcff75540a2656&language=en-US&query=${keyword}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=en-US&query=${keyword}&page=1&include_adult=false`
       )
     ).json()
     setTvs(json)
@@ -101,7 +106,7 @@ function Search() {
           <MainText>찾고 싶은 영화나 TV 시리즈의 제목을 입력하세요.</MainText>
           <SearchBar>
             <input type="text" required />
-            <i class="fas fa-search"></i>
+            <i type="submit" className="fas fa-search"></i>
           </SearchBar>
         </form>
         <div>
