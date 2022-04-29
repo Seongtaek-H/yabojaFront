@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { ReviewList } from '../components/ReviewList'
 
-import { reviewData } from '../constants/dummy'
 import Modal from 'react-modal/lib/components/Modal'
 
 import ReviewModal from '../components/ReviewModal'
 import Loading from '../components/loading'
+import { apiAxios } from '../api/axios'
 
 const Bg = styled.div`
   display: flex;
@@ -40,11 +40,11 @@ function Review(props) {
   const [reviews, setReviews] = useState([])
   const [showReviewModal, setShowReviewModal] = useState(false)
 
-  const API_KEY = '6df683327f9037c362fcff75540a2656&language=en-US&page=1'
+  const API_KEY = process.env.REACT_APP_API_KEY
   const getContent = async () => {
     const json = await (
       await fetch(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=en-US&page=1`
       )
     ).json()
     setContent(json)
@@ -62,15 +62,16 @@ function Review(props) {
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }
-  const getReviews = () => {
-    setReviews(reviewData)
+
+  const getReviews = async () => {
+    const response = await apiAxios.get(
+      `/review?targetId=${id}&targetType=${type}`
+    )
+    if (response.data) {
+      console.log(response.data)
+      setReviews(response.data.reviews)
+    }
   }
-  // const getReviews = async () => {
-  //   const json = await (
-  //     await fetch(`/buyus/readreview/?reviewTitle=${content.title}`)
-  //   ).json()
-  //   setReviews(json)
-  // }
 
   return (
     <>
@@ -81,16 +82,17 @@ function Review(props) {
               setShowReviewModal(true)
             }}
           >
+            작성하기
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           {reviews.length > 0 ? (
             reviews.map((review) => (
-              <>
+              <div key={review.no}>
                 <ReviewList data={review}></ReviewList>
-              </>
+              </div>
             ))
           ) : (
-            <Loading></Loading>
+            <p>아직 작성된 리뷰가 없습니다.</p>
           )}
           <Modal
             isOpen={showReviewModal}
@@ -124,13 +126,15 @@ function Review(props) {
             }}
           >
             <ReviewModal
+              showReviewModal
               poster={makeImagePath(content.backdrop_path)}
               title={content.title ? content.title : content.name}
+              id={content.id}
             ></ReviewModal>
           </Modal>
         </Bg>
       ) : (
-        ''
+        <Loading></Loading>
       )}
     </>
   )

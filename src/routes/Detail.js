@@ -76,6 +76,7 @@ const Btn = styled.button`
 `
 
 function Detail() {
+  const API_KEY = process.env.REACT_APP_API_KEY
   const { id, type } = useParams()
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState([])
@@ -83,7 +84,7 @@ function Detail() {
   const getContent = async () => {
     const json = await (
       await fetch(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=6df683327f9037c362fcff75540a2656&language=ko-KR&page=1`
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=ko-KR&page=1`
       )
     ).json()
     setLoading(false)

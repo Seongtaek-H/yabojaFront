@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { apiAxios } from '../api/axios'
+import { useParams } from 'react-router-dom'
 
 const Container = styled.div`
   display: grid;
@@ -11,7 +12,7 @@ const Container = styled.div`
     margin-left: 2%;
   }
 `
-const StyledForm = styled.form`
+const StyledForm = styled.div`
   width: 100%;
   height: 80%;
   padding: 0px;
@@ -104,21 +105,35 @@ const StyledBtn = styled.button`
 `
 
 const ReviewModal = (props) => {
+  console.log(props)
   const [score, setScore] = useState(0)
   const [review, setReview] = useState('')
+  const parms = useParams()
 
   const reviewChange = (e) => {
     setReview(e.target.value)
-    console.log(review)
   }
   const scoreChange = (e) => {
     setScore(e.target.value)
-    console.log(score)
   }
 
-  const reviewSubmit = async () => {
+  const reviewData = {
+    contents: review,
+    ratings: +score,
+    targetId: +parms.id,
+    targetType: parms.type,
+  }
+
+  const reviewSubmit = () => {
+    const result = apiAxios.post('/review', JSON.stringify(reviewData))
+    return result
+  }
+  const onClickReview = async () => {
     try {
-      await apiAxios.get('/review')
+      const response = await reviewSubmit()
+      console.log(response)
+      alert('리뷰가 작성되었습니다.')
+      window.location.reload()
     } catch (error) {
       alert(error)
     }
@@ -127,7 +142,7 @@ const ReviewModal = (props) => {
   return (
     <Container>
       <h1>이 작품 어떠셨나요?</h1>
-      <StyledForm onSubmit={reviewSubmit}>
+      <StyledForm>
         <Poster url={props.poster}></Poster>
         <InputContainer>
           <p>{props.title}</p>
@@ -179,7 +194,13 @@ const ReviewModal = (props) => {
             placeholder="작품에 대한 감상을 남겨주세요."
           />
         </InputContainer>
-        <StyledBtn type="submit">작성하기</StyledBtn>
+        <StyledBtn
+          onClick={() => {
+            onClickReview()
+          }}
+        >
+          작성하기
+        </StyledBtn>
       </StyledForm>
     </Container>
   )

@@ -76,15 +76,15 @@ export const ReviewList = (props) => {
       <Review>
         <User>
           <section>
-            <span>{props.data.userId}</span>
-            <span>⭐&nbsp;&nbsp;{props.data.star}</span>
+            <span>{props.data.user.nickName}</span>
+            <span>⭐&nbsp;&nbsp;{props.data.ratings}</span>
           </section>
-          <span>📆{props.data.date}</span>
+          <span>📆{props.data.createAt}</span>
         </User>
-        <Content>{props.data.review}</Content>
+        <Content>{props.data.contents}</Content>
         <Reply>
-          <span>❤️{props.data.like}개</span>
-          <span>💬{props.data.reply.length}</span>
+          <span>❤️{props.data.likes}</span>
+          <span>💬 0</span>
         </Reply>
         <Btn>
           <button>좋아요</button>

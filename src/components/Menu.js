@@ -79,7 +79,6 @@ function Menu() {
       setLogin(false)
     }
   }, [state])
-  console.log(state)
 
   return (
     <>

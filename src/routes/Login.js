@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiAxios } from '../api/axios'
-import { getCookie, setCookie } from '../utils/cookie'
+import { setCookie } from '../utils/cookie'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { FindModal } from '../components/FindModal'
