@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
 import Loading from '../components/loading'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 const GridWrapper = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-size: cover;
   padding-left: 20px;
+
+  @media screen and (max-width: 412px) {
+    display: none;
+    height: auto;
+  }
 `
 const TitleContainer = styled.div`
   margin-left: 50px;
@@ -26,12 +32,17 @@ const TitleContainer = styled.div`
   p {
     font-size: 30px;
   }
+
+  @media screen and (max-width: 412px) {
+    display: none;
+  }
 `
 const Blank = styled.div`
   height: 250px;
 `
 
 function Home() {
+  const state = useSelector((state) => state)
   const API_KEY = process.env.REACT_APP_API_KEY
   const [loading, setLoading] = useState(true)
   const [contents, setContents] = useState([])
@@ -48,6 +59,7 @@ function Home() {
     getContents()
   }, [])
 
+  console.log('state:', state)
   const makeImagePath = (id) => {
     return `https://image.tmdb.org/t/p/original/${id}`
   }
@@ -62,7 +74,7 @@ function Home() {
         <>
           <GridWrapper
             style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)), url(${makeImagePath(
+              backgroundImage: `linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0), rgba(0,0,0,1)), url(${makeImagePath(
                 contents[ranNum].backdrop_path
               )})`,
             }}

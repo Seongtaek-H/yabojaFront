@@ -82,7 +82,8 @@ function MyPage() {
   }, [])
 
   const getReviews = async () => {
-    const res = await apiAxios.get(`review?id=${state.id}`)
+    console.log(state)
+    const res = await apiAxios.get(`review?targetId=${state.id}&targetType=tv`)
     if (res.data) {
       setReviews(res.data.reviews)
     }

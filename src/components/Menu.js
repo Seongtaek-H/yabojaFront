@@ -15,8 +15,14 @@ const Container = styled.div`
   grid-template-columns: 1fr 5fr;
   justify-items: center;
   align-items: center;
-  padding: 0 100px 0 100px;
+  padding: 0 5vw 0 5vw;
   z-index: 2;
+
+  @media screen and (max-width: 412px) {
+    display: flex;
+    position: static;
+    background-color: transparent;
+  }
 `
 const Logo = styled.div`
   font-family: 'DoHyeon';
@@ -34,11 +40,27 @@ const MenuDetail = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `
+
+const MenuWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  @media screen and (max-width: 412px) {
+    display: none;
+  }
+`
+
 const MenuExtra = styled.div`
   width: 10vw;
   display: flex;
   justify-content: space-between;
   font-size: medium;
+  @media screen and (max-width: 412px) {
+    width: auto;
+    a:nth-child(1) {
+      margin: 0vw 5vw;
+    }
+  }
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -64,6 +86,9 @@ const Button = styled.div`
 
 const Blank = styled.div`
   height: 80px;
+  @media screen and (max-width: 412px) {
+    display: none;
+  }
 `
 
 function Menu() {
@@ -88,9 +113,11 @@ function Menu() {
           <Logo>YaBoja</Logo>
         </StyledLink>
         <MenuDetail>
-          <StyledLink to="/what">뭐 볼까?</StyledLink>
-          <StyledLink to="/when">언제 나오지?</StyledLink>
-          <StyledLink to="/search">검색</StyledLink>
+          <MenuWrapper>
+            <StyledLink to="/what">뭐 볼까?</StyledLink>
+            <StyledLink to="/when">언제 나오지?</StyledLink>
+            <StyledLink to="/search">검색</StyledLink>
+          </MenuWrapper>
           {login === true ? (
             <MenuExtra>
               <StyledLink to="/me/info">마이페이지</StyledLink>

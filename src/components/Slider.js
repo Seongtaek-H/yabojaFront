@@ -8,8 +8,9 @@ const Wrapper = styled.div`
     padding-left: 10px;
     padding-bottom: 10px;
     cursor: pointer;
-    font-family: 'NotoSansKr-thin';
+    font-family: 'Noto100';
   }
+  position: relative;
 `
 
 const MotionContainer = styled(motion.div)`
@@ -18,6 +19,7 @@ const MotionContainer = styled(motion.div)`
   grid-template-columns: repeat(4, 1fr);
   column-gap: 10px;
   position: absolute;
+  z-index: 5;
 `
 
 const MotionBox = styled(motion.div)`
@@ -32,9 +34,26 @@ const MotionBox = styled(motion.div)`
     transition: opacity 0.2s linear;
   }
 `
+const StyleBtn = styled.button`
+  font-size: 2rem;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  background-color: gray;
+  opacity: 0.8;
+  position: absolute;
+  right: 1vw;
+  top: 15vh;
+  z-index: 10;
+  @media screen and (max-width: 412px) {
+    top: 17vh;
+  }
+`
 function Slider({ title, criteria }) {
-  const makeContentsPath = (text) => {
-    return `https://api.themoviedb.org/3/movie/${text}?api_key=6df683327f9037c362fcff75540a2656&language=en-US&page=1`
+  const API_KEY = process.env.REACT_APP_API_KEY
+
+  const makeContentsPath = (criteria) => {
+    return `https://api.themoviedb.org/3/movie/${criteria}?api_key=${API_KEY}`
   }
 
   const [contents, setContents] = useState([])
@@ -80,7 +99,10 @@ function Slider({ title, criteria }) {
 
   return (
     <Wrapper>
-      <h2 onClick={increaseIndex}>{title}</h2>
+      <h2>{title}</h2>
+      <StyleBtn onClick={increaseIndex}>
+        <i class="fa-solid fa-chevron-right"></i>
+      </StyleBtn>
       <AnimatePresence onExitComplete={toggleLeaving}>
         <MotionContainer
           variants={rowVariants}

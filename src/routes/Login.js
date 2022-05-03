@@ -5,7 +5,7 @@ import { setCookie } from '../utils/cookie'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { FindModal } from '../components/FindModal'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Container = styled.div`
   display: flex;
@@ -114,6 +114,7 @@ function Login() {
   const [showEmailModal, setShowEmailModal] = useState(false)
   const [showPwdModal, setShowPwdModal] = useState(false)
   const dispatch = useDispatch()
+  const state = useSelector((state) => state)
 
   const handleInputId = (e) => {
     setEmail(e.target.value)
@@ -136,10 +137,11 @@ function Login() {
   const onClickLogin = async () => {
     try {
       const response = await loginUser()
+      console.log(response)
       if (response.data) {
         alert(response.data.response.message)
         const { accessToken } = response.data
-        setCookie('token', accessToken, { maxAge: 1800 })
+        setCookie('token', accessToken, { maxAge: 3000 })
         loginState()
         navigate('/')
       }
@@ -152,8 +154,12 @@ function Login() {
 
   const loginState = async () => {
     const result = await apiAxios.get('auth/me')
-    dispatch({ type: 'LOGIN', payload: { ...result.data.user } })
-    return result
+    if (result) {
+      dispatch({
+        type: 'LOGIN',
+        payload: { ...result.data.user },
+      })
+    }
   }
 
   return (

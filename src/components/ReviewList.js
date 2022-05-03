@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { apiAxios } from '../api/axios'
+import { useNavigate } from 'react-router-dom'
 
 const Review = styled.div`
   display: grid;
@@ -34,7 +35,7 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
 `
-const Revise = styled.div`
+const Delete = styled.div`
   display: flex;
   background-color: gray;
   width: 10%;
@@ -73,7 +74,7 @@ const StyledTextarea = styled.div`
   height: 10vh;
   padding: 20px;
   align-items: center;
-  display: ${(props) => (props.display ? 'flex' : 'none')};
+  display: ${(props) => (props.displayOn ? 'flex' : 'none')};
   input {
     all: unset;
     margin-left: 30px;
@@ -84,6 +85,7 @@ const StyledTextarea = styled.div`
 `
 export const ReviewList = (props) => {
   const state = useSelector((state) => state)
+  let navigate = useNavigate()
 
   const [display, setDisplay] = useState(false)
   const [reviseModal, setReviseModal] = useState(false)
@@ -93,7 +95,7 @@ export const ReviewList = (props) => {
   const deleteReview = async (id) => {
     const res = await apiAxios.delete(`/review/${id}`)
     alert('삭제되었습니다.')
-    window.location.reload()
+    navigate('/')
   }
 
   console.log(props.data.user.nickName)
@@ -107,13 +109,13 @@ export const ReviewList = (props) => {
             <p>📆{props.data.createdAt}</p>
           </section>
           {state.nickName === props.data.user.nickName ? (
-            <Revise
+            <Delete
               onClick={() => {
                 deleteReview(props.data.no)
               }}
             >
               삭제
-            </Revise>
+            </Delete>
           ) : (
             ''
           )}
@@ -133,7 +135,7 @@ export const ReviewList = (props) => {
           <button onClick={onClick}>댓글달기</button>
         </Btn>
       </Review>
-      <StyledTextarea display={display}>
+      <StyledTextarea displayOn={display}>
         <span>↳ 내 아이디</span>
         <input type="textarea" placeholder="댓글을 달아주세요"></input>
       </StyledTextarea>

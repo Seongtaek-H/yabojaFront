@@ -15,11 +15,11 @@ const Bg = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 90vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
     url(${(props) => props.url});
   background-size: cover;
   background-position: center center;
+  overflow: scroll;
 `
 
 const WriteBtn = styled.div`
@@ -32,7 +32,17 @@ const WriteBtn = styled.div`
     transform: scale(1.1);
   }
 `
-
+const Reviews = styled.div`
+  height: 100%;
+  width: 100%;
+  /* margin-top: 100px; */
+  /* padding-top: 10%; */
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 function Review(props) {
   const { id, type } = useParams()
   const [loading, setLoading] = useState(true)
@@ -71,7 +81,7 @@ function Review(props) {
       setReviews(response.data.reviews)
     }
   }
-
+  console.log(reviews)
   return (
     <>
       {!loading ? (
@@ -83,15 +93,17 @@ function Review(props) {
           >
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
-          {reviews.length > 0 ? (
-            reviews.map((review) => (
-              <div key={review.no}>
-                <ReviewList data={review}></ReviewList>
-              </div>
-            ))
-          ) : (
-            <p>아직 작성된 리뷰가 없습니다.</p>
-          )}
+          <Reviews>
+            {reviews.length > 0 ? (
+              reviews.map((review) => (
+                <div key={review.no}>
+                  <ReviewList data={review}></ReviewList>
+                </div>
+              ))
+            ) : (
+              <p>아직 작성된 리뷰가 없습니다.</p>
+            )}
+          </Reviews>
           <Modal
             isOpen={showReviewModal}
             onRequestClose={() => {

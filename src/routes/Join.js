@@ -114,9 +114,15 @@ function Join() {
   }
   const onClickCheckId = async () => {
     try {
-      await checkEmail(email)
-      setIsCheckEmail(true)
-      alert('사용가능한 email입니다')
+      // boolean 값에 따라 case 나눠서 로직
+      const isCheck = await checkEmail(email)
+      console.log(isCheck)
+      if (isCheck) {
+        setIsCheckEmail(true)
+        alert('사용가능한 email입니다')
+      } else {
+        alert('이미 있는 email입니다')
+      }
     } catch (error) {
       alert(error)
       console.log(error)
@@ -128,9 +134,13 @@ function Join() {
   }
   const onClickCheckNickName = async () => {
     try {
-      await checkNickName(nickName)
-      setIsCheckId(true)
-      alert('사용가능한 닉네임입니다')
+      const isCheck = await checkNickName(nickName)
+      if (isCheck) {
+        setIsCheckId(true)
+        alert('사용가능한 닉네임입니다')
+      } else {
+        alert('이미 있는 닉네임입니다')
+      }
     } catch (error) {
       alert('사용 불가한 형식입니다')
       setNickName('')

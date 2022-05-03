@@ -12,6 +12,7 @@ import Review from './routes/Review'
 import Search from './routes/Search'
 import MyPage from './routes/MyPage'
 import Menu from './components/Menu'
+import { PhoneMenu } from './components/phoneMenu.js'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <Menu></Menu>
+        <PhoneMenu></PhoneMenu>
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
