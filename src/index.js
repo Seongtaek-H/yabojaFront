@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import App from './App'
 import { Provider } from 'react-redux'
 import { LOGIN, LOGOUT } from './redux/type'
@@ -20,7 +20,7 @@ const initialState = {
   isValid: false,
 }
 
-export default function userReducer(state = initialState, action) {
+export function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       const id = action.payload.id
@@ -50,14 +50,26 @@ export default function userReducer(state = initialState, action) {
   }
 }
 
+export function userToken(state = '', action) {
+  if (action.type === 'token') {
+    console.log(action)
+    const cookie = action.payload
+    return cookie
+  } else {
+    const cookie = ''
+    return cookie
+  }
+}
+
 const persistConfig = {
   key: 'root',
   storage,
 }
 
-const persisted = persistReducer(persistConfig, userReducer)
+const rootReducer = combineReducers({ userReducer, userToken })
+const persisted = persistReducer(persistConfig, rootReducer)
 
-const store = createStore(persisted)
+export const store = createStore(persisted)
 
 const persistor = persistStore(store)
 

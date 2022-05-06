@@ -1,8 +1,11 @@
 import axios from 'axios'
+import { useSelector } from 'react-redux'
+
 import { getCookie } from '../utils/cookie'
 import { API_HOST } from './api_host'
 
 const cookie = getCookie('token')
+
 console.log(cookie)
 export const apiAxios = axios.create({
   baseURL: API_HOST,

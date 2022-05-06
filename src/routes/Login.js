@@ -134,16 +134,21 @@ function Login() {
     return result
   }
 
+  const cookie = async (accessToken) => {
+    await setCookie('token', accessToken, { maxAge: 3000 })
+    return navigate('/')
+  }
+
   const onClickLogin = async () => {
     try {
       const response = await loginUser()
-      console.log(response)
+      console.log(response.data)
       if (response.data) {
-        alert(response.data.response.message)
+        alert(response.data.message)
         const { accessToken } = response.data
-        setCookie('token', accessToken, { maxAge: 3000 })
+        // dispatch({ type: 'token', payload: accessToken })
         loginState()
-        navigate('/')
+        cookie(accessToken)
       }
     } catch (error) {
       console.error(error)
@@ -155,6 +160,7 @@ function Login() {
   const loginState = async () => {
     const result = await apiAxios.get('auth/me')
     if (result) {
+      console.log(result.data)
       dispatch({
         type: 'LOGIN',
         payload: { ...result.data.user },

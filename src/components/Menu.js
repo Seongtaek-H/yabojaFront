@@ -99,7 +99,7 @@ function Menu() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (state.isValid) {
+    if (state.userReducer.isValid) {
       setLogin(true)
     } else {
       setLogin(false)

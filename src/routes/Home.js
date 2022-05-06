@@ -58,6 +58,9 @@ function Home() {
   useEffect(() => {
     getContents()
   }, [])
+  useEffect(() => {
+    console.log('재시작')
+  }, [])
 
   console.log('state:', state)
   const makeImagePath = (id) => {
