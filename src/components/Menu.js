@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { removeCookie } from '../utils/cookie'
 
 const Container = styled.div`
   margin-top: 0px;
@@ -92,19 +91,10 @@ const Blank = styled.div`
 `
 
 function Menu() {
-  const state = useSelector((state) => state)
-  const dispatch = useDispatch()
 
   const [login, setLogin] = useState(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (state.isValid) {
-      setLogin(true)
-    } else {
-      setLogin(false)
-    }
-  }, [state])
 
   return (
     <>
@@ -123,9 +113,6 @@ function Menu() {
               <StyledLink to="/me/info">마이페이지</StyledLink>
               <Button
                 onClick={() => {
-                  removeCookie('token')
-                  dispatch({ type: 'LOGOUT' })
-                  navigate('/')
                 }}
               >
                 로그아웃

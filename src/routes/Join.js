@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { apiAxios } from '../api/axios'
 import styled, { css } from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+
+import { registerUser, checkEmail, checkNickName } from '../api/axios'
 
 const Container = styled.div`
   display: flex;
@@ -10,7 +11,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `
-
 const Form = styled.div`
   display: flex;
   justify-content: center;
@@ -24,13 +24,11 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
 `
-
 const StyledLabel = styled.label`
   font-size: 20px;
   color: white;
   margin-top: 5px;
 `
-
 const StyledInput = styled.input`
   margin-right: 20px;
   margin-bottom: 5%;
@@ -49,7 +47,6 @@ const JoinContainer = styled.div`
   width: 100%;
   justify-content: center;
 `
-
 const StyledBtn = styled.button`
   color: #fff;
   background-color: gray;
@@ -79,27 +76,22 @@ const StyledBtn = styled.button`
       }
     `}
 `
+const WarningTxt = styled.div`
+  color: red;
+  font-size: 1rem;
+`
 
 function Join() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [checkPwd, setCheckPwd] = useState('')
   const [name, setName] = useState('')
   const [nickName, setNickName] = useState('')
-  const [phoneNumber, setPhNum] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [isCheckEmail, setIsCheckEmail] = useState(false)
-  const [isCheckId, setIsCheckId] = useState(false)
-  const [checkPwd, setCheckPwd] = useState('')
-  const navigate = useNavigate()
+  const [isCheckNickName, setIsCheckNickName] = useState(false)
 
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value)
-    setIsCheckEmail(false)
-  }
-
-  const onChangeId = (e) => {
-    setNickName(e.target.value)
-    setIsCheckId(false)
-  }
+  const navigate = useNavigate();
 
   const joinData = {
     email,
@@ -109,65 +101,69 @@ function Join() {
     phoneNumber,
   }
 
-  const checkEmail = (email) => {
-    return apiAxios.get(`/user/identities?type="email"&value=${email}`)
+  const handleChangeEmail = (e) => {
+    setIsCheckEmail(false)
+    setEmail(e.target.value)
   }
-  const onClickCheckId = async () => {
+
+  const handleChangeNickName = (e) => {
+    setIsCheckNickName(false)
+    setNickName(e.target.value)
+  }
+
+  const handleChangePhoneNum = (e) => {
+    setPhoneNumber(e.target.value)
+  }
+
+  const handleCheckEmail = async () => {
     try {
-      // boolean 값에 따라 case 나눠서 로직
-      const isCheck = await checkEmail(email)
-      console.log(isCheck)
-      if (isCheck) {
+      const { data } = await checkEmail(email)
+      if(!data.isExist) {
+        alert("사용할 수 있는 이메일입니다.")
         setIsCheckEmail(true)
-        alert('사용가능한 email입니다')
       } else {
-        alert('이미 있는 email입니다')
+        alert("사용할 수 없는 이메일입니다.")
       }
     } catch (error) {
-      alert(error)
       console.log(error)
     }
   }
 
-  const checkNickName = (nickName) => {
-    return apiAxios.get(`/user/identities?type="nickName"&value=${nickName}`)
-  }
-  const onClickCheckNickName = async () => {
+  const handleCheckNickName = async () => {
     try {
-      const isCheck = await checkNickName(nickName)
-      if (isCheck) {
-        setIsCheckId(true)
+      const { data } = await checkNickName(nickName)
+      if (!data.isExist) {
         alert('사용가능한 닉네임입니다')
+        setIsCheckNickName(true)
       } else {
         alert('이미 있는 닉네임입니다')
       }
     } catch (error) {
-      alert('사용 불가한 형식입니다')
-      setNickName('')
+      console.log(error)
     }
   }
 
-  const joinUser = () => {
-    const result = apiAxios.post('/user', JSON.stringify(joinData))
-    return result
+  const checkPhoneNum = (phoneNumber) => {
+    phoneNumber = phoneNumber.toString()
+    return phoneNumber.match(/[^\d]/g)
   }
 
-  const onClickJoin = async () => {
+  const handleJoin = async () => {
     if (!isCheckEmail) return alert('이메일 중복 확인을 해주세요.')
-    if (!isCheckId) return alert('닉네임 중복 확인을 해주세요')
+    if (!isCheckNickName) return alert('닉네임 중복 확인을 해주세요')
     if (!email) return alert('이메일을 입력해주세요')
     if (!password) return alert('비밀번호를 입력해주세요')
     if (password !== checkPwd) return alert('비밀번호가 일치하지 않습니다.')
     if (!name) return alert('이름을 입력해주세요')
     if (!nickName) return alert('닉네임을 입력해주세요')
     if (!phoneNumber) return alert('전화번호를 입력해주세요')
-
+    if(checkPhoneNum(phoneNumber)!=null) return alert('전화번호 형식이 맞지 않습니다. 숫자로만 입력해주세요.')
     try {
-      const response = await joinUser()
-      console.log(response)
-      navigate('/')
+      const { data } = await registerUser(joinData);
+      alert(data.message)
+      navigate('/login')
     } catch (error) {
-      alert(error.response.statusText)
+      alert(error)
     }
   }
 
@@ -182,9 +178,9 @@ function Join() {
               autoComplete="off"
               type="text"
               value={email}
-              onChange={onChangeEmail}
+              onChange={handleChangeEmail}
             />
-            <StyledBtn onClick={onClickCheckId}>중복확인</StyledBtn>
+            <StyledBtn onClick={handleCheckEmail}>중복확인</StyledBtn>
           </StyledLabel>
 
           <StyledLabel htmlFor="password">
@@ -203,17 +199,13 @@ function Join() {
               id="pwdCheck"
               autoComplete="off"
               type="password"
-              onChange={(e) => {
-                setCheckPwd(e.target.value)
-              }}
+              value={checkPwd}
+              onChange={(e) => setCheckPwd(e.target.value)}
             />
           </StyledLabel>
-          {password === checkPwd ? (
-            ''
-          ) : (
-            <div style={{ color: 'red' }}>비밀번호가 일치하지 않습니다</div>
+          {password === checkPwd ? '' : (
+            <WarningTxt>비밀번호가 일치하지 않습니다</WarningTxt>
           )}
-
           <StyledLabel htmlFor="name">
             <p>이름</p>
             <StyledInput
@@ -221,9 +213,7 @@ function Join() {
               autoComplete="off"
               type="text"
               value={name}
-              onChange={(e) => {
-                setName(e.target.value)
-              }}
+              onChange={(e) => setName(e.target.value)}
             />
           </StyledLabel>
 
@@ -234,9 +224,9 @@ function Join() {
               autoComplete="off"
               type="text"
               value={nickName}
-              onChange={onChangeId}
+              onChange={handleChangeNickName}
             />
-            <StyledBtn onClick={onClickCheckNickName}>중복확인</StyledBtn>
+            <StyledBtn onClick={handleCheckNickName}>중복확인</StyledBtn>
           </StyledLabel>
 
           <StyledLabel htmlFor="phoneNum">
@@ -244,17 +234,15 @@ function Join() {
             <StyledInput
               id="phoneNum"
               autoComplete="off"
-              type="nubmer"
               value={phoneNumber}
-              onChange={(e) => {
-                if (e.target.value.match(/[^0-9]/g))
-                  return alert('숫자만 입력 가능합니다')
-                setPhNum(e.target.value)
-              }}
+              onChange={handleChangePhoneNum}
+              placeholder="숫자로만 입력해주세요."
             />
           </StyledLabel>
           <JoinContainer>
-            <StyledBtn join="100%" onClick={onClickJoin}>
+            <StyledBtn
+            join="100%"
+            onClick={handleJoin}>
               회원가입
             </StyledBtn>
           </JoinContainer>

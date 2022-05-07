@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { apiAxios } from '../api/axios'
 import { useNavigate } from 'react-router-dom'
 
 const Review = styled.div`
@@ -92,11 +91,11 @@ export const ReviewList = (props) => {
   const onClick = () => {
     setDisplay((Prev) => !Prev)
   }
-  const deleteReview = async (id) => {
-    const res = await apiAxios.delete(`/review/${id}`)
-    alert('삭제되었습니다.')
-    navigate('/')
-  }
+  // const deleteReview = async (id) => {
+  //   const res = await apiAxios.delete(`/review/${id}`)
+  //   alert('삭제되었습니다.')
+  //   navigate('/')
+  // }
 
   console.log(props.data.user.nickName)
   return (
@@ -110,9 +109,6 @@ export const ReviewList = (props) => {
           </section>
           {state.nickName === props.data.user.nickName ? (
             <Delete
-              onClick={() => {
-                deleteReview(props.data.no)
-              }}
             >
               삭제
             </Delete>

@@ -1,13 +1,5 @@
-// import React, { useEffect, useState } from 'react'
-// import { useSelector } from 'react-redux'
-// import { apiAxios } from '../api/axios'
-// import { getCookie } from '../utils/cookie'
 import { Link } from 'react-router-dom'
-import { userReview } from '../constants/dummy'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import { getCookie } from '../utils/cookie'
-import { apiAxios } from '../api/axios'
 import { useEffect, useState } from 'react'
 
 const Container = styled.div`
@@ -73,37 +65,24 @@ const ReviewContainer = styled.div`
 `
 
 function MyPage() {
-  const state = useSelector((state) => state)
-  const token = getCookie('token')
   const [reviews, setReviews] = useState([])
 
-  useEffect(() => {
-    getReviews()
-  }, [])
+  // useEffect(() => {
+  //   getReviews()
+  // }, [])
 
-  const getReviews = async () => {
-    console.log(state)
-    const res = await apiAxios.get(`review?targetId=${state.id}&targetType=tv`)
-    if (res.data) {
-      setReviews(res.data.reviews)
-    }
-  }
-  // const API_KEY = process.env.REACT_APP_API_KEY
-  // const getReviewName = async ({ review }) => {
-
-  //   const res = await apiAxios.get(
-  //     `https://api.themoviedb.org/3/${review.targetType}/${review.targetId}?api_key=${API_KEY}&language=ko-KR&page=1`
-  //   )
-  //   console.log(res)
+  // const getReviews = async () => {
+  //   const res = await apiAxios.get(`review?targetId={여기다가 아이디를 넣어야 함}&targetType=tv`)
+  //   if (res.data) {
+  //     setReviews(res.data.reviews)
+  //   }
   // }
-
-  // console.log(reviews[0])
 
   return (
     <Container>
       <UserInfo>
-        <Avatar>{state.name[0]}</Avatar>
-        <p>{state.name}님</p>
+        {/* <Avatar>{state.name[0]}</Avatar>
+        <p>{state.name}님</p> */}
       </UserInfo>
       <ContentContainer>
         <h4>내가 쓴 리뷰</h4>

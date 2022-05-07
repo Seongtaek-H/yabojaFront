@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { apiAxios } from '../api/axios'
-import { setCookie } from '../utils/cookie'
+import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { FindModal } from '../components/FindModal'
-import { useDispatch, useSelector } from 'react-redux'
 
 const Container = styled.div`
   display: flex;
@@ -110,11 +107,8 @@ const JoinLink = styled(Link)`
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useNavigate()
   const [showEmailModal, setShowEmailModal] = useState(false)
   const [showPwdModal, setShowPwdModal] = useState(false)
-  const dispatch = useDispatch()
-  const state = useSelector((state) => state)
 
   const handleInputId = (e) => {
     setEmail(e.target.value)
@@ -129,38 +123,22 @@ function Login() {
     password: password,
   }
 
-  const loginUser = async () => {
-    const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
-    return result
-  }
 
-  const onClickLogin = async () => {
-    try {
-      const response = await loginUser()
-      console.log(response)
-      if (response.data) {
-        alert(response.data.response.message)
-        const { accessToken } = response.data
-        setCookie('token', accessToken, { maxAge: 3000 })
-        loginState()
-        navigate('/')
-      }
-    } catch (error) {
-      console.error(error)
-      alert('아이디 및 비밀번호가 정확하지 않습니다.')
-      // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나
-    }
-  }
+    // const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
 
-  const loginState = async () => {
-    const result = await apiAxios.get('auth/me')
-    if (result) {
-      dispatch({
-        type: 'LOGIN',
-        payload: { ...result.data.user },
-      })
-    }
-  }
+
+  // const onClickLogin = async () => {
+  //   try {
+  //     const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
+  //     console.log(result)
+  //     saveAuthToCookie(result.data.accessToken)
+      
+  //   } catch (error) {
+  //     console.error(error)
+  //     alert('아이디 및 비밀번호가 정확하지 않습니다.')
+  //     // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나
+  //   }
+  // }
 
   return (
     <>
@@ -188,7 +166,7 @@ function Login() {
               placeholder="비밀번호를 입력하세요."
             />
           </StyledLabel>
-          <StyledBtn onClick={onClickLogin}>로그인하기</StyledBtn>
+          <StyledBtn >로그인하기</StyledBtn>
           <BtnContainer>
             <FindContainer
               style={{

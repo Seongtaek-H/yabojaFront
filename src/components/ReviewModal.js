@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { apiAxios } from '../api/axios'
 import { useParams } from 'react-router-dom'
 
 const Container = styled.div`
@@ -124,20 +123,20 @@ const ReviewModal = (props) => {
     targetType: parms.type,
   }
 
-  const reviewSubmit = () => {
-    const result = apiAxios.post('/review', JSON.stringify(reviewData))
-    return result
-  }
-  const onClickReview = async () => {
-    try {
-      const response = await reviewSubmit()
-      console.log(response)
-      alert('리뷰가 작성되었습니다.')
-      window.location.reload()
-    } catch (error) {
-      alert(error)
-    }
-  }
+  // const reviewSubmit = () => {
+  //   const result = apiAxios.post('/review', JSON.stringify(reviewData))
+  //   return result
+  // }
+  // const onClickReview = async () => {
+  //   try {
+  //     const response = await reviewSubmit()
+  //     console.log(response)
+  //     alert('리뷰가 작성되었습니다.')
+  //     window.location.reload()
+  //   } catch (error) {
+  //     alert(error)
+  //   }
+  // }
 
   return (
     <Container>
@@ -195,9 +194,6 @@ const ReviewModal = (props) => {
           />
         </InputContainer>
         <StyledBtn
-          onClick={() => {
-            onClickReview()
-          }}
         >
           작성하기
         </StyledBtn>
