@@ -80,7 +80,6 @@ const WarningTxt = styled.div`
   color: red;
   font-size: 1rem;
 `
-
 function Join() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -109,10 +108,6 @@ function Join() {
   const handleChangeNickName = (e) => {
     setIsCheckNickName(false)
     setNickName(e.target.value)
-  }
-
-  const handleChangePhoneNum = (e) => {
-    setPhoneNumber(e.target.value)
   }
 
   const handleCheckEmail = async () => {
@@ -238,7 +233,7 @@ function Join() {
               id="phoneNum"
               autoComplete="off"
               value={phoneNumber}
-              onChange={handleChangePhoneNum}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               placeholder="숫자로만 입력해주세요."
             />
           </StyledLabel>

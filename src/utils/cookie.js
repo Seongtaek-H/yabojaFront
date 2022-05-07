@@ -1,7 +1,7 @@
 function saveAuthToCookie(value) {
   document.cookie = `til_auth=${value}`
 }
-// 쿠키의 저장할 키와
+
 function saveUserToCookie(value) {
   document.cookie = `til_user=${value}`
 }
@@ -20,8 +20,8 @@ function getUserFromCookie() {
   )
 }
 
-function deleteCookie(value) {
-  document.cookie = `${value}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
+function deleteCookie(key) {
+  document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
 }
 
 export {

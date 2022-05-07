@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 import styled from 'styled-components'
+
 import { FindModal } from '../components/FindModal'
+import { getUser, loginUser } from '../api/axios'
+import { saveAuthToCookie, saveUserToCookie } from '../utils/cookie'
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +15,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `
-
 const GridContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,7 +26,6 @@ const GridContainer = styled.div`
   background-color: #212529;
   border-radius: 10px;
 `
-
 const StyledLabel = styled.label`
   width: 100%;
   margin-top: 3%;
@@ -36,7 +37,6 @@ const StyledLabel = styled.label`
     width: 15%;
   }
 `
-
 const StyledInput = styled.input`
   background-color: black;
   width: 50%;
@@ -49,7 +49,6 @@ const StyledInput = styled.input`
     outline: #808080 solid 1px;
   }
 `
-
 const StyledBtn = styled.button`
   margin-top: 5%;
   color: white;
@@ -66,13 +65,11 @@ const StyledBtn = styled.button`
     transition: all 0.3s;
   }
 `
-
 const BtnContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
 `
-
 const FindContainer = styled.div`
   margin-top: 5%;
   width: 65%;
@@ -84,16 +81,13 @@ const FindContainer = styled.div`
     opacity: 0.7;
   }
 `
-
 const Join = styled.div`
   margin-top: 5%;
 `
-
 const JoinText = styled.span`
   opacity: 0.7;
   margin-right: 20px;
 `
-
 const JoinLink = styled(Link)`
   all: unset;
   cursor: pointer;
@@ -110,33 +104,30 @@ function Login() {
   const [showEmailModal, setShowEmailModal] = useState(false)
   const [showPwdModal, setShowPwdModal] = useState(false)
 
-  const handleInputId = (e) => {
-    setEmail(e.target.value)
-  }
-
-  const handleInputPassword = (e) => {
-    setPassword(e.target.value)
-  }
+  const navigate = useNavigate()
 
   let loginData = {
     email: email,
     password: password,
   }
 
-  // const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
+  const handleLogin = async () => {
+    try {
+      const {
+        data: { accessToken },
+      } = await loginUser(loginData)
+      saveAuthToCookie(accessToken)
 
-  // const onClickLogin = async () => {
-  //   try {
-  //     const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
-  //     console.log(result)
-  //     saveAuthToCookie(result.data.accessToken)
+      const {
+        data: { user },
+      } = await getUser()
+      saveUserToCookie(JSON.stringify(user))
 
-  //   } catch (error) {
-  //     console.error(error)
-  //     alert('아이디 및 비밀번호가 정확하지 않습니다.')
-  //     // 에러메시지에 따라서 if문으로 나누거나 그냥 띄우거나
-  //   }
-  // }
+      navigate('/')
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
     <>
@@ -149,7 +140,9 @@ function Login() {
               type="text"
               id="email"
               value={email}
-              onChange={handleInputId}
+              onChange={(e) => {
+                setEmail(e.target.value)
+              }}
               placeholder="이메일을 입력하세요."
             />
           </StyledLabel>
@@ -160,11 +153,13 @@ function Login() {
               type="password"
               id="pwd"
               value={password}
-              onChange={handleInputPassword}
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
               placeholder="비밀번호를 입력하세요."
             />
           </StyledLabel>
-          <StyledBtn>로그인하기</StyledBtn>
+          <StyledBtn onClick={handleLogin}>로그인하기</StyledBtn>
           <BtnContainer>
             <FindContainer
               style={{
@@ -228,7 +223,6 @@ function Login() {
         >
           <FindModal type={'Email'}></FindModal>
         </Modal>
-
         <Modal
           isOpen={showPwdModal}
           onRequestClose={() => {
@@ -263,8 +257,8 @@ function Login() {
         >
           <FindModal type={'Pwd'}></FindModal>
         </Modal>
-        {/* {showEmailModal ? <FindModal type={'Email'}></FindModal> : ''}
-        {showPwdModal ? <FindModal type={'Pwd'}></FindModal> : ''} */}
+        {showEmailModal ? <FindModal type={'Email'}></FindModal> : ''}
+        {showPwdModal ? <FindModal type={'Pwd'}></FindModal> : ''}
       </>
     </>
   )

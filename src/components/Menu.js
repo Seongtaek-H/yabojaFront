@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useEffect, useState } from 'react'
+import {
+  deleteCookie,
+  getAuthFromCookie,
+  getUserFromCookie,
+} from '../utils/cookie'
 
 const Container = styled.div`
   margin-top: 0px;
@@ -89,7 +95,13 @@ const Blank = styled.div`
 `
 
 function Menu() {
-  // const [login, setLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
+
+  const handleLogout = () => {
+    deleteCookie('til_auth')
+    deleteCookie('til_user')
+    setIsLogin(false)
+  }
 
   return (
     <>
@@ -103,17 +115,17 @@ function Menu() {
             <StyledLink to="/when">언제 나오지?</StyledLink>
             <StyledLink to="/search">검색</StyledLink>
           </MenuWrapper>
-          {/* {login === true ? (
+          {isLogin === true ? (
             <MenuExtra>
               <StyledLink to="/me/info">마이페이지</StyledLink>
-              <Button onClick={() => {}}>로그아웃</Button>
+              <Button onClick={handleLogout}>로그아웃</Button>
             </MenuExtra>
           ) : (
             <MenuExtra>
               <StyledLink to="/login">로그인</StyledLink>
               <StyledLink to="join">회원가입</StyledLink>
             </MenuExtra>
-          )} */}
+          )}
         </MenuDetail>
       </Container>
       <Blank></Blank>
