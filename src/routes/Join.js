@@ -91,7 +91,7 @@ function Join() {
   const [isCheckEmail, setIsCheckEmail] = useState(false)
   const [isCheckNickName, setIsCheckNickName] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const joinData = {
     email,
@@ -118,11 +118,11 @@ function Join() {
   const handleCheckEmail = async () => {
     try {
       const { data } = await checkEmail(email)
-      if(!data.isExist) {
-        alert("사용할 수 있는 이메일입니다.")
+      if (!data.isExist) {
+        alert('사용할 수 있는 이메일입니다.')
         setIsCheckEmail(true)
       } else {
-        alert("사용할 수 없는 이메일입니다.")
+        alert('사용할 수 없는 이메일입니다.')
       }
     } catch (error) {
       console.log(error)
@@ -157,9 +157,10 @@ function Join() {
     if (!name) return alert('이름을 입력해주세요')
     if (!nickName) return alert('닉네임을 입력해주세요')
     if (!phoneNumber) return alert('전화번호를 입력해주세요')
-    if(checkPhoneNum(phoneNumber)!=null) return alert('전화번호 형식이 맞지 않습니다. 숫자로만 입력해주세요.')
+    if (checkPhoneNum(phoneNumber) != null)
+      return alert('전화번호 형식이 맞지 않습니다. 숫자로만 입력해주세요.')
     try {
-      const { data } = await registerUser(joinData);
+      const { data } = await registerUser(joinData)
       alert(data.message)
       navigate('/login')
     } catch (error) {
@@ -203,7 +204,9 @@ function Join() {
               onChange={(e) => setCheckPwd(e.target.value)}
             />
           </StyledLabel>
-          {password === checkPwd ? '' : (
+          {password === checkPwd ? (
+            ''
+          ) : (
             <WarningTxt>비밀번호가 일치하지 않습니다</WarningTxt>
           )}
           <StyledLabel htmlFor="name">
@@ -240,9 +243,7 @@ function Join() {
             />
           </StyledLabel>
           <JoinContainer>
-            <StyledBtn
-            join="100%"
-            onClick={handleJoin}>
+            <StyledBtn join="100%" onClick={handleJoin}>
               회원가입
             </StyledBtn>
           </JoinContainer>
