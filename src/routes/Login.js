@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+
+import { useDispatch } from 'react-redux'
+import { login } from '../store/isLoginSlice'
+
 import Modal from 'react-modal'
 import styled from 'styled-components'
-
 import { FindModal } from '../components/FindModal'
+
 import { getUser, loginUser } from '../api/axios'
 import { saveAuthToCookie, saveUserToCookie } from '../utils/cookie'
 
@@ -105,6 +109,7 @@ function Login() {
   const [showPwdModal, setShowPwdModal] = useState(false)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   let loginData = {
     email: email,
@@ -122,7 +127,7 @@ function Login() {
         data: { user },
       } = await getUser()
       saveUserToCookie(JSON.stringify(user))
-
+      dispatch(login())
       navigate('/')
     } catch (error) {
       alert(error)

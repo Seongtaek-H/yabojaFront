@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../store/isLoginSlice'
+
 import styled from 'styled-components'
-import { useEffect, useState } from 'react'
-import {
-  deleteCookie,
-  getAuthFromCookie,
-  getUserFromCookie,
-} from '../utils/cookie'
+
+import { deleteCookie } from '../utils/cookie'
 
 const Container = styled.div`
   margin-top: 0px;
@@ -95,12 +95,15 @@ const Blank = styled.div`
 `
 
 function Menu() {
-  const [isLogin, setIsLogin] = useState(false)
+  const isLogin = useSelector((state) => state.isLogin.value)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     deleteCookie('til_auth')
     deleteCookie('til_user')
-    setIsLogin(false)
+    dispatch(logout())
+    navigate('/')
   }
 
   return (
