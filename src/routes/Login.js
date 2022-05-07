@@ -123,16 +123,14 @@ function Login() {
     password: password,
   }
 
-
-    // const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
-
+  // const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
 
   // const onClickLogin = async () => {
   //   try {
   //     const result = await apiAxios.post('/auth/login', JSON.stringify(loginData))
   //     console.log(result)
   //     saveAuthToCookie(result.data.accessToken)
-      
+
   //   } catch (error) {
   //     console.error(error)
   //     alert('아이디 및 비밀번호가 정확하지 않습니다.')
@@ -166,7 +164,7 @@ function Login() {
               placeholder="비밀번호를 입력하세요."
             />
           </StyledLabel>
-          <StyledBtn >로그인하기</StyledBtn>
+          <StyledBtn>로그인하기</StyledBtn>
           <BtnContainer>
             <FindContainer
               style={{

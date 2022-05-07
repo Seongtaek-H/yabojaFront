@@ -108,10 +108,7 @@ export const ReviewList = (props) => {
             <p>📆{props.data.createdAt}</p>
           </section>
           {state.nickName === props.data.user.nickName ? (
-            <Delete
-            >
-              삭제
-            </Delete>
+            <Delete>삭제</Delete>
           ) : (
             ''
           )}

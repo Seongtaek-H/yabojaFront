@@ -56,6 +56,7 @@ export const FindModal = ({ type }) => {
   const [email, setEmail] = useState()
   const [name, setName] = useState('')
   const [phNum, setPhNum] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [pwd, setPwd] = useState('')
 
   const onChangeName = (e) => setName(e.target.value)

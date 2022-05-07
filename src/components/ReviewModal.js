@@ -193,10 +193,7 @@ const ReviewModal = (props) => {
             placeholder="작품에 대한 감상을 남겨주세요."
           />
         </InputContainer>
-        <StyledBtn
-        >
-          작성하기
-        </StyledBtn>
+        <StyledBtn>작성하기</StyledBtn>
       </StyledForm>
     </Container>
   )

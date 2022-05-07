@@ -101,7 +101,7 @@ function Slider({ title, criteria }) {
     <Wrapper>
       <h2>{title}</h2>
       <StyleBtn onClick={increaseIndex}>
-        <i class="fa-solid fa-chevron-right"></i>
+        <i className="fa-solid fa-chevron-right"></i>
       </StyleBtn>
       <AnimatePresence onExitComplete={toggleLeaving}>
         <MotionContainer

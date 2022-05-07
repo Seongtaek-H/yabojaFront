@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -91,10 +89,7 @@ const Blank = styled.div`
 `
 
 function Menu() {
-
-  const [login, setLogin] = useState(false)
-  const navigate = useNavigate()
-
+  // const [login, setLogin] = useState(false)
 
   return (
     <>
@@ -108,22 +103,17 @@ function Menu() {
             <StyledLink to="/when">언제 나오지?</StyledLink>
             <StyledLink to="/search">검색</StyledLink>
           </MenuWrapper>
-          {login === true ? (
+          {/* {login === true ? (
             <MenuExtra>
               <StyledLink to="/me/info">마이페이지</StyledLink>
-              <Button
-                onClick={() => {
-                }}
-              >
-                로그아웃
-              </Button>
+              <Button onClick={() => {}}>로그아웃</Button>
             </MenuExtra>
           ) : (
             <MenuExtra>
               <StyledLink to="/login">로그인</StyledLink>
               <StyledLink to="join">회원가입</StyledLink>
             </MenuExtra>
-          )}
+          )} */}
         </MenuDetail>
       </Container>
       <Blank></Blank>

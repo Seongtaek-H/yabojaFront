@@ -13,12 +13,15 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": "latest",
+        "ecmaVersion": 2015,
         "sourceType": "module"
     },
     "plugins": [
         "react"
     ],
     "rules": {
+        "react/prop-types": 0,
+        "no-unused-vars": "warn",
+        "react/jsx-key": "warn"
     }
 }
