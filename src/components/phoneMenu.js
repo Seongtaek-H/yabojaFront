@@ -31,7 +31,7 @@ export const PhoneMenu = () => {
   return (
     <Container>
       <StyledLink to="/what">
-        <i class="fa-solid fa-film"></i>
+        <i className="fa-solid fa-film"></i>
       </StyledLink>
       <StyledLink to="/when">
         <i className="fas fa-calendar-alt"></i>

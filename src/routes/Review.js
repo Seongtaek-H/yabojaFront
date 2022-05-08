@@ -7,7 +7,6 @@ import Modal from 'react-modal/lib/components/Modal'
 
 import ReviewModal from '../components/ReviewModal'
 import Loading from '../components/loading'
-import { apiAxios } from '../api/axios'
 
 const Bg = styled.div`
   display: flex;
@@ -65,22 +64,22 @@ function Review(props) {
     getContent()
   }, [])
 
-  useEffect(() => {
-    getReviews()
-  }, [])
+  // useEffect(() => {
+  //   getReviews()
+  // }, [])
 
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }
 
-  const getReviews = async () => {
-    const response = await apiAxios.get(
-      `/review?targetId=${id}&targetType=${type}`
-    )
-    if (response.data) {
-      setReviews(response.data.reviews)
-    }
-  }
+  // const getReviews = async () => {
+  //   const response = await apiAxios.get(
+  //     `/review?targetId=${id}&targetType=${type}`
+  //   )
+  //   if (response.data) {
+  //     setReviews(response.data.reviews)
+  //   }
+  // }
   console.log(reviews)
   return (
     <>

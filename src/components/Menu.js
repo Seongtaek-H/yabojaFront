@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../store/isLoginSlice'
+
 import styled from 'styled-components'
-import { removeCookie } from '../utils/cookie'
+
+import { deleteCookie } from '../utils/cookie'
 
 const Container = styled.div`
   margin-top: 0px;
@@ -32,7 +35,6 @@ const Logo = styled.div`
     0 0 42px #f21b75, 0 0 82px #f21b75, 0 0 92px #f21b75, 0 0 102px #f21b75,
     0 0 151px #f21b75;
 `
-
 const MenuDetail = styled.div`
   font-family: 'Noto500';
   width: 100%;
@@ -40,7 +42,6 @@ const MenuDetail = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `
-
 const MenuWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -49,7 +50,6 @@ const MenuWrapper = styled.div`
     display: none;
   }
 `
-
 const MenuExtra = styled.div`
   width: 10vw;
   display: flex;
@@ -83,28 +83,24 @@ const Button = styled.div`
     color: orange;
   }
 `
-
 const Blank = styled.div`
   height: 80px;
   @media screen and (max-width: 412px) {
     display: none;
   }
 `
-
 function Menu() {
-  const state = useSelector((state) => state)
+  const isLogin = useSelector((state) => state.isLogin.value)
   const dispatch = useDispatch()
-
-  const [login, setLogin] = useState(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (state.userReducer.isValid) {
-      setLogin(true)
-    } else {
-      setLogin(false)
-    }
-  }, [state])
+
+  const handleLogout = () => {
+    deleteCookie('til_auth')
+    deleteCookie('til_user')
+    dispatch(logout())
+    navigate('/')
+  }
 
   return (
     <>
@@ -118,18 +114,10 @@ function Menu() {
             <StyledLink to="/when">언제 나오지?</StyledLink>
             <StyledLink to="/search">검색</StyledLink>
           </MenuWrapper>
-          {login === true ? (
+          {isLogin === true ? (
             <MenuExtra>
               <StyledLink to="/me/info">마이페이지</StyledLink>
-              <Button
-                onClick={() => {
-                  removeCookie('token')
-                  dispatch({ type: 'LOGOUT' })
-                  navigate('/')
-                }}
-              >
-                로그아웃
-              </Button>
+              <Button onClick={handleLogout}>로그아웃</Button>
             </MenuExtra>
           ) : (
             <MenuExtra>
