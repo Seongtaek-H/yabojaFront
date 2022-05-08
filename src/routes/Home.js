@@ -56,6 +56,9 @@ function Home() {
   useEffect(() => {
     getContents()
   }, [])
+  useEffect(() => {
+    console.log('재시작')
+  }, [])
 
   const makeImagePath = (id) => {
     return `https://image.tmdb.org/t/p/original/${id}`

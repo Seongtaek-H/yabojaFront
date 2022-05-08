@@ -94,12 +94,14 @@ function Menu() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+
   const handleLogout = () => {
     deleteCookie('til_auth')
     deleteCookie('til_user')
     dispatch(logout())
     navigate('/')
   }
+
   return (
     <>
       <Container>

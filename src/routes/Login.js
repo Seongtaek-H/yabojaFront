@@ -116,6 +116,7 @@ function Login() {
     password: password,
   }
 
+
   const handleLogin = async () => {
     try {
       const {
@@ -131,6 +132,7 @@ function Login() {
       navigate('/')
     } catch (error) {
       alert(error)
+
     }
   }
 
