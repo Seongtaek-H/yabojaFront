@@ -46,8 +46,42 @@ function loginUser(loginData) {
   return instance.post('/auth/login', JSON.stringify(loginData))
 }
 
+// 사용자 데이터 가져오기 관련 메서드
 function getUser() {
   return instanceWithAuth.get('auth/me')
 }
 
-export { registerUser, checkEmail, checkNickName, loginUser, getUser }
+function getMovieReviews(userIdNum) {
+  return instanceWithAuth.get(`/review?targetId=${userIdNum}?targetType=movie`)
+}
+
+function getTvReviews(userIdNum) {
+  return instanceWithAuth.get(`/review?targetId=${userIdNum}?targetType=tv`)
+}
+
+function getReviewsWithId(userIdNum) {
+  return instanceWithAuth.get(`/review/${userIdNum}`)
+}
+
+// 회원정보 찾기 관련 메서드
+function findEmail(name, phNum) {
+  return instance.post(
+    '/login/findEmail',
+    JSON.stringify({
+      name,
+      phNum,
+    })
+  )
+}
+
+export {
+  registerUser,
+  checkEmail,
+  checkNickName,
+  loginUser,
+  getUser,
+  getMovieReviews,
+  getTvReviews,
+  getReviewsWithId,
+  findEmail,
+}

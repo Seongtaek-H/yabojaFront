@@ -35,7 +35,6 @@ const Logo = styled.div`
     0 0 42px #f21b75, 0 0 82px #f21b75, 0 0 92px #f21b75, 0 0 102px #f21b75,
     0 0 151px #f21b75;
 `
-
 const MenuDetail = styled.div`
   font-family: 'Noto500';
   width: 100%;
@@ -43,7 +42,6 @@ const MenuDetail = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `
-
 const MenuWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -52,7 +50,6 @@ const MenuWrapper = styled.div`
     display: none;
   }
 `
-
 const MenuExtra = styled.div`
   width: 10vw;
   display: flex;
@@ -86,14 +83,12 @@ const Button = styled.div`
     color: orange;
   }
 `
-
 const Blank = styled.div`
   height: 80px;
   @media screen and (max-width: 412px) {
     display: none;
   }
 `
-
 function Menu() {
   const isLogin = useSelector((state) => state.isLogin.value)
   const dispatch = useDispatch()
@@ -105,7 +100,6 @@ function Menu() {
     dispatch(logout())
     navigate('/')
   }
-
   return (
     <>
       <Container>

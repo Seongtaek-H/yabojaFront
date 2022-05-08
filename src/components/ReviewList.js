@@ -27,7 +27,6 @@ const User = styled.div`
     font-size: 10px;
   }
 `
-
 const Content = styled.div`
   display: flex;
   height: 50%;

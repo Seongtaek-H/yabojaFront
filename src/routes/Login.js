@@ -262,8 +262,6 @@ function Login() {
         >
           <FindModal type={'Pwd'}></FindModal>
         </Modal>
-        {showEmailModal ? <FindModal type={'Email'}></FindModal> : ''}
-        {showPwdModal ? <FindModal type={'Pwd'}></FindModal> : ''}
       </>
     </>
   )

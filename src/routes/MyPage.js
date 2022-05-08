@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
+import { getUserFromCookie } from '../utils/cookie'
+import { getMovieReviews, getReviewsWithId, getTvReviews } from '../api/axios'
 
 const Container = styled.div`
   padding: 150px 120px;
@@ -24,32 +26,27 @@ const Avatar = styled.div`
   background-color: #3d3d3d;
   border-radius: 50%;
 `
-
 const ContentContainer = styled.div`
   background-color: #3d3d3d;
   padding: 20px;
   border-radius: 10px;
 `
-
 const BtnContainer = styled.div`
   margin-top: 1%;
   display: flex;
   width: 18%;
   justify-content: space-between;
 `
-
 const StyledBtn = styled.button`
   cursor: pointer;
   &:hover {
     color: orange;
   }
 `
-
 const StyledLink = styled(Link)`
   all: unset;
   cursor: pointer;
 `
-
 const ReviewContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -63,32 +60,30 @@ const ReviewContainer = styled.div`
     background-color: #171721;
   }
 `
-
 function MyPage() {
-  const [reviews, setReviews] = useState([])
+  const [movieReviews, setMovieReviews] = useState([])
+  const [tvReviews, setTvReviews] = useState([])
+  const [userData, setUserData] = useState('')
 
-  // useEffect(() => {
-  //   getReviews()
-  // }, [])
-
-  // const getReviews = async () => {
-  //   const res = await apiAxios.get(`review?targetId={여기다가 아이디를 넣어야 함}&targetType=tv`)
-  //   if (res.data) {
-  //     setReviews(res.data.reviews)
-  //   }
-  // }
+  useEffect(async () => {
+    console.log(JSON.parse(getUserFromCookie()).id)
+    const response = await getReviewsWithId(
+      JSON.parse(getUserFromCookie()).email
+    )
+    const response2 = await getTvReviews(JSON.parse(getUserFromCookie()).id)
+  }, [])
 
   return (
     <Container>
       <UserInfo>
-        {/* <Avatar>{state.name[0]}</Avatar>
-        <p>{state.name}님</p> */}
+        <Avatar>{userData ? userData.name[0] : ''}</Avatar>
+        <p>{userData ? userData.name : ''}님</p>
       </UserInfo>
       <ContentContainer>
         <h4>내가 쓴 리뷰</h4>
         <hr></hr>
         <div>
-          {reviews.map((review) => {
+          {movieReviews.map((review) => {
             return (
               <StyledLink
                 key={review.no}
