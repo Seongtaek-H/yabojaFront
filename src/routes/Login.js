@@ -110,9 +110,10 @@ const JoinLink = styled(Link)`
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useNavigate()
   const [showEmailModal, setShowEmailModal] = useState(false)
   const [showPwdModal, setShowPwdModal] = useState(false)
+
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const state = useSelector((state) => state)
 
@@ -124,7 +125,7 @@ function Login() {
     setPassword(e.target.value)
   }
 
-  let loginData = {
+  const loginData = {
     email: email,
     password: password,
   }

@@ -6,7 +6,6 @@ import { API_HOST } from './api_host'
 
 const cookie = getCookie('token')
 
-console.log(cookie)
 export const apiAxios = axios.create({
   baseURL: API_HOST,
   headers: {
