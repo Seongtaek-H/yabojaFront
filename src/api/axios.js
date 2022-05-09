@@ -6,7 +6,6 @@ const API_HOST = 'https://movie-review-app-server.herokuapp.com/api'
 // 토큰값 필요없는 api
 
 const instance = axios.create({
-
   baseURL: API_HOST,
   headers: {
     'Content-Type': 'application/json; charset=UTF-8',

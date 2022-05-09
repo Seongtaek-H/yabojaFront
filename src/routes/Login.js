@@ -111,7 +111,7 @@ function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  let loginData = {
+  const loginData = {
     email: email,
     password: password,
   }
