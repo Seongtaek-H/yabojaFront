@@ -118,10 +118,9 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const {
-        data: { accessToken },
-      } = await loginUser(loginData)
-      saveAuthToCookie(accessToken)
+      const { data } = await loginUser(loginData)
+      saveAuthToCookie(data.accessToken)
+      alert(data.message)
 
       const {
         data: { user },
