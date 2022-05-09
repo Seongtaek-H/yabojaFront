@@ -1,15 +1,87 @@
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { setInterceptors } from './interceptors'
 
-import { getCookie } from '../utils/cookie'
-import { API_HOST } from './api_host'
+const API_HOST = 'https://movie-review-app-server.herokuapp.com/api'
 
-const cookie = getCookie('token')
+// 토큰값 필요없는 api
 
 export const apiAxios = axios.create({
   baseURL: API_HOST,
   headers: {
     'Content-Type': 'application/json; charset=UTF-8',
-    Authorization: `Bearer ${cookie}`,
   },
 })
+
+// 토큰값 필요한 api
+
+function getInstancewithAuth() {
+  const instance = axios.create({
+    baseURL: API_HOST,
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  })
+  return setInterceptors(instance)
+}
+
+const instanceWithAuth = getInstancewithAuth()
+
+// 회원가입 관련 메서드
+
+function registerUser(joinData) {
+  return instance.post('/user', JSON.stringify(joinData))
+}
+
+function checkEmail(email) {
+  return instance.get(`/user/identities?type="email"&value=${email}`)
+}
+
+function checkNickName(nickName) {
+  return instance.get(`/user/identities?type="nickName"&value=${nickName}`)
+}
+
+// 로그인 관련 메서드
+
+function loginUser(loginData) {
+  return instance.post('/auth/login', JSON.stringify(loginData))
+}
+
+// 사용자 데이터 가져오기 관련 메서드
+function getUser() {
+  return instanceWithAuth.get('auth/me')
+}
+
+function getMovieReviews(userIdNum) {
+  return instanceWithAuth.get(`/review?targetId=${userIdNum}?targetType=movie`)
+}
+
+function getTvReviews(userIdNum) {
+  return instanceWithAuth.get(`/review?targetId=${userIdNum}?targetType=tv`)
+}
+
+function getReviewsWithId(userIdNum) {
+  return instanceWithAuth.get(`/review/${userIdNum}`)
+}
+
+// 회원정보 찾기 관련 메서드
+function findEmail(name, phNum) {
+  return instance.post(
+    '/login/findEmail',
+    JSON.stringify({
+      name,
+      phNum,
+    })
+  )
+}
+
+export {
+  registerUser,
+  checkEmail,
+  checkNickName,
+  loginUser,
+  getUser,
+  getMovieReviews,
+  getTvReviews,
+  getReviewsWithId,
+  findEmail,
+}

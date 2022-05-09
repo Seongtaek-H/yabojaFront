@@ -4,8 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.2",
-    "@nivo/core": "^0.72.0",
-    "@nivo/pie": "^0.72.0",
+    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -15,13 +14,11 @@
     "framer-motion": "^5.3.3",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.2",
-    "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.21.2",
-    "react-minimal-pie-chart": "^8.2.0",
     "react-modal": "^3.14.4",
     "react-query": "^3.34.0",
-    "react-redux": "^7.2.6",
+    "react-redux": "^7.2.8",
     "react-router-dom": "6.0.2",
     "react-scripts": "4.0.3",
     "redux": "^4.1.2",
@@ -29,12 +26,11 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "style-value-types": "^5.1.0",
-    "styled-component": "^2.8.0",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "PORT=4000 craco start",
+    "start": "set PORT=4000 && craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
@@ -58,6 +54,10 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
     "prettier": "2.5.0"
   }
 }
