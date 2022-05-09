@@ -60,7 +60,7 @@ function getTvReviews(userIdNum) {
 }
 
 function getReviewsWithId(userIdNum) {
-  return instanceWithAuth.get(`/review/${userIdNum}`)
+  return instanceWithAuth.get(`/review?id=${userIdNum}`)
 }
 
 // 회원정보 찾기 관련 메서드
