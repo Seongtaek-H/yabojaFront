@@ -94,7 +94,6 @@ function Menu() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-
   const handleLogout = () => {
     deleteCookie('til_auth')
     deleteCookie('til_user')
