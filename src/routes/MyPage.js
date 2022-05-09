@@ -65,12 +65,15 @@ function MyPage() {
   const [tvReviews, setTvReviews] = useState([])
   const [userData, setUserData] = useState('')
 
-  console.log(JSON.parse(getUserFromCookie()).id)
   useEffect(async () => {
     const response = await getReviewsWithId(
       JSON.parse(getUserFromCookie()).email
     )
     const response2 = await getTvReviews(JSON.parse(getUserFromCookie()).id)
+  }, [])
+
+  useEffect(() => {
+    setUserData(JSON.parse(getUserFromCookie()))
   }, [])
 
   return (
