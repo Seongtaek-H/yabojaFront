@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { getUserFromCookie } from '../utils/cookie'
 import { getMovieReviews, getReviewsWithId, getTvReviews } from '../api/axios'
+import apiAxios from '../api/apiAxios'
 
 const Container = styled.div`
   padding: 150px 120px;
@@ -61,17 +62,25 @@ const ReviewContainer = styled.div`
   }
 `
 function MyPage() {
-  const [movieReviews, setMovieReviews] = useState([])
-  const [tvReviews, setTvReviews] = useState([])
+  const [reviews, setReviews] = useState('')
   const [userData, setUserData] = useState('')
 
-  useEffect(async () => {
-    console.log(JSON.parse(getUserFromCookie()).id)
-    const response = await getReviewsWithId(
-      JSON.parse(getUserFromCookie()).email
-    )
-    const response2 = await getTvReviews(JSON.parse(getUserFromCookie()).id)
+  useEffect(() => {
+    setUserData(JSON.parse(getUserFromCookie()))
   }, [])
+
+  const getReview = async () => {
+    const res = await apiAxios.get(`review?id=${userData.id}`)
+    if (res.data) {
+      setReviews(res.data.reviews)
+    }
+  }
+
+  useEffect(() => {
+    getReview()
+  }, [])
+
+  console.log(reviews)
 
   return (
     <Container>
@@ -83,19 +92,23 @@ function MyPage() {
         <h4>내가 쓴 리뷰</h4>
         <hr></hr>
         <div>
-          {movieReviews.map((review) => {
-            return (
-              <StyledLink
-                key={review.no}
-                to={`/detail/${review.targetType}/${review.targetId}`}
-              >
-                <ReviewContainer>
-                  <span>{review.contents}</span>
-                  <span>{review.targetId}</span>
-                </ReviewContainer>
-              </StyledLink>
-            )
-          })}
+          {reviews
+            ? reviews.map((review) => {
+                return (
+                  <StyledLink
+                    key={review.no}
+                    to={`/detail/${review.targetType}/${review.targetId}`}
+                  >
+                    <ReviewContainer>
+                      <span>
+                        {review.contents ? review.contents : '내용없음'}
+                      </span>
+                      <span>{review.title ? review.title : '타이틀없음'}</span>
+                    </ReviewContainer>
+                  </StyledLink>
+                )
+              })
+            : ''}
         </div>
       </ContentContainer>
       <BtnContainer>

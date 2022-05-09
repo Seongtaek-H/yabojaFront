@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
 import Loading from '../components/loading'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 const GridWrapper = styled.div`
   width: 100%;
@@ -41,6 +42,7 @@ const Blank = styled.div`
 `
 
 function Home() {
+  const state = useSelector((state) => state)
   const API_KEY = process.env.REACT_APP_API_KEY
   const [loading, setLoading] = useState(true)
   const [contents, setContents] = useState([])
@@ -56,10 +58,8 @@ function Home() {
   useEffect(() => {
     getContents()
   }, [])
-  useEffect(() => {
-    console.log('재시작')
-  }, [])
 
+  console.log('state:', state)
   const makeImagePath = (id) => {
     return `https://image.tmdb.org/t/p/original/${id}`
   }

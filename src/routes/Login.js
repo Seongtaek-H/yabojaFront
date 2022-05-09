@@ -111,18 +111,16 @@ function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  let loginData = {
+  const loginData = {
     email: email,
     password: password,
   }
 
-
   const handleLogin = async () => {
     try {
-      const {
-        data: { accessToken },
-      } = await loginUser(loginData)
-      saveAuthToCookie(accessToken)
+      const { data } = await loginUser(loginData)
+      saveAuthToCookie(data.accessToken)
+      alert(data.message)
 
       const {
         data: { user },
@@ -132,7 +130,6 @@ function Login() {
       navigate('/')
     } catch (error) {
       alert(error)
-
     }
   }
 
