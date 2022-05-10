@@ -93,8 +93,8 @@ function MyPage() {
                 to={`/detail/${review.targetType}/${review.targetId}`}
               >
                 <ReviewContainer>
-                  <span>{review.contents}</span>
-                  <span>{review.targetId}</span>
+                  <span>{review.contents ? review.contents : '내용없음'}</span>
+                  <span>{review.title ? review.title : '타이틀 없음'}</span>
                 </ReviewContainer>
               </StyledLink>
             )
