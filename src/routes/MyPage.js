@@ -62,22 +62,17 @@ const ReviewContainer = styled.div`
   }
 `
 function MyPage() {
-  const [reviews, setReviews] = useState('')
+  const [reviews, setReviews] = useState([])
+  const [tvReviews, setTvReviews] = useState([])
   const [userData, setUserData] = useState('')
 
   useEffect(() => {
     setUserData(JSON.parse(getUserFromCookie()))
   }, [])
 
-  const getReview = async () => {
-    const res = await apiAxios.get(`review?id=${userData.id}`)
-    if (res.data) {
-      setReviews(res.data.reviews)
-    }
-  }
-
-  useEffect(() => {
-    getReview()
+  useEffect(async () => {
+    const res = await getReviewsWithId(JSON.parse(getUserFromCookie()).id)
+    setReviews(res.data.reviews)
   }, [])
 
   console.log(reviews)
@@ -92,23 +87,19 @@ function MyPage() {
         <h4>내가 쓴 리뷰</h4>
         <hr></hr>
         <div>
-          {reviews
-            ? reviews.map((review) => {
-                return (
-                  <StyledLink
-                    key={review.no}
-                    to={`/detail/${review.targetType}/${review.targetId}`}
-                  >
-                    <ReviewContainer>
-                      <span>
-                        {review.contents ? review.contents : '내용없음'}
-                      </span>
-                      <span>{review.title ? review.title : '타이틀없음'}</span>
-                    </ReviewContainer>
-                  </StyledLink>
-                )
-              })
-            : ''}
+          {reviews.map((review) => {
+            return (
+              <StyledLink
+                key={review.no}
+                to={`/detail/${review.targetType}/${review.targetId}`}
+              >
+                <ReviewContainer>
+                  <span>{review.contents}</span>
+                  <span>{review.targetId}</span>
+                </ReviewContainer>
+              </StyledLink>
+            )
+          })}
         </div>
       </ContentContainer>
       <BtnContainer>
