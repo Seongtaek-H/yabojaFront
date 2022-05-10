@@ -47,6 +47,7 @@ function loginUser(loginData) {
 }
 
 // 사용자 데이터 가져오기 관련 메서드
+
 function getUser() {
   return instanceWithAuth.get('auth/me')
 }
@@ -77,6 +78,11 @@ function findEmail(name, phNum) {
   )
 }
 
+// 리뷰 관련 메서드
+function createComment(comment) {
+  return instanceWithAuth.post('/comment', comment)
+}
+
 export {
   registerUser,
   checkEmail,
@@ -88,4 +94,5 @@ export {
   getTvReviews,
   getReviewsWithId,
   findEmail,
+  createComment,
 }

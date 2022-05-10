@@ -63,12 +63,8 @@ function Review(props) {
     setContent(json)
     setLoading(false)
   }
-
   useEffect(() => {
     getContent()
-  })
-
-  useEffect(() => {
     const review = async () => {
       const res = await getReview(id, type)
       setReviews(res.data.reviews)
@@ -76,11 +72,9 @@ function Review(props) {
     }
     review()
   }, [])
-
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }
-
   return (
     <>
       {!loading ? (

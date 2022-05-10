@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import { Comment } from './Comment'
+
 const Review = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr 1fr 1fr;
@@ -43,7 +45,7 @@ const Delete = styled.div`
   align-items: center;
   cursor: pointer;
 `
-const Reply = styled.div`
+const ReplyAndLikes = styled.div`
   border-bottom: 1px gray solid;
   span:nth-child(2) {
     margin-left: 10px;
@@ -64,25 +66,7 @@ const Btn = styled.div`
     border-left: 1px gray solid;
   }
 `
-const StyledTextarea = styled.div`
-  margin-top: 5px;
-  background-color: #171721;
-  border-radius: 10px;
-  width: 40vw;
-  height: 10vh;
-  padding: 20px;
-  align-items: center;
-  display: ${(props) => (props.displayOn ? 'flex' : 'none')};
-  input {
-    all: unset;
-    margin-left: 30px;
-    width: 80%;
-    height: 100%;
-    border-bottom: 1px gray solid;
-  }
-`
 export const ReviewList = (props) => {
-  const state = useSelector((state) => state)
   let navigate = useNavigate()
 
   const [display, setDisplay] = useState(false)
@@ -107,11 +91,11 @@ export const ReviewList = (props) => {
             <span>⭐&nbsp;&nbsp;{props.data.ratings}</span>
             <p>📆{props.data.createdAt}</p>
           </section>
-          {state.nickName === props.data.user.nickName ? (
+          {/* {state.nickName === props.data.user.nickName ? (
             <Delete>삭제</Delete>
           ) : (
             ''
-          )}
+          )} */}
         </User>
         {!reviseModal ? (
           <Content>{props.data.contents}</Content>
@@ -119,19 +103,16 @@ export const ReviewList = (props) => {
           <input value={props.data.contents}></input>
         )}
 
-        <Reply>
+        <ReplyAndLikes>
           <span>❤️{props.data.likes}</span>
           <span>💬 0</span>
-        </Reply>
+        </ReplyAndLikes>
         <Btn>
           <button>좋아요</button>
           <button onClick={onClick}>댓글달기</button>
         </Btn>
       </Review>
-      <StyledTextarea displayOn={display}>
-        <span>↳ 내 아이디</span>
-        <input type="textarea" placeholder="댓글을 달아주세요"></input>
-      </StyledTextarea>
+      <Comment reviewId={props.data.no}></Comment>
     </>
   )
 }
