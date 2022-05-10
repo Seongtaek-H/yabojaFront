@@ -51,6 +51,9 @@ function getUser() {
   return instanceWithAuth.get('auth/me')
 }
 
+function getReview(id, type) {
+  return instanceWithAuth.get(`/review?targetId=${id}&targetType=${type}`)
+}
 function getMovieReviews(userIdNum) {
   return instanceWithAuth.get(`/review?targetId=${userIdNum}?targetType=movie`)
 }
@@ -80,6 +83,7 @@ export {
   checkNickName,
   loginUser,
   getUser,
+  getReview,
   getMovieReviews,
   getTvReviews,
   getReviewsWithId,
