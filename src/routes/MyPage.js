@@ -69,9 +69,12 @@ function MyPage() {
     setUserData(JSON.parse(getUserFromCookie()))
   }, [])
 
-  useEffect(async () => {
-    const res = await getReviewsWithId(JSON.parse(getUserFromCookie()).id)
-    setReviews(res.data.reviews)
+  useEffect(() => {
+    const myReview = async () => {
+      const res = await getReviewsWithId(JSON.parse(getUserFromCookie()).id)
+      setReviews(res.data.reviews)
+    }
+    myReview()
   }, [])
 
   console.log(reviews)

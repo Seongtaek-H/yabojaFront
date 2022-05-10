@@ -90,13 +90,14 @@ export const ReviewList = (props) => {
   const onClick = () => {
     setDisplay((Prev) => !Prev)
   }
+
   // const deleteReview = async (id) => {
   //   const res = await apiAxios.delete(`/review/${id}`)
   //   alert('삭제되었습니다.')
   //   navigate('/')
   // }
 
-  console.log(props.data.user.nickName)
+  // console.log(props.data.user.nickName)
   return (
     <>
       <Review>

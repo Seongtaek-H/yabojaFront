@@ -7,18 +7,21 @@ import Modal from 'react-modal/lib/components/Modal'
 
 import ReviewModal from '../components/ReviewModal'
 import Loading from '../components/loading'
+import { getReview } from '../api/axios'
 
 const Bg = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
     url(${(props) => props.url});
   background-size: cover;
   background-position: center center;
-  overflow: scroll;
+  /* overflow: scroll; */
 `
 
 const WriteBtn = styled.div`
@@ -34,13 +37,13 @@ const WriteBtn = styled.div`
 const Reviews = styled.div`
   height: 100%;
   width: 100%;
-  /* margin-top: 100px; */
-  /* padding-top: 10%; */
-  background-color: green;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h2 : {
+    font-size: 5rem;
+  }
 `
 function Review(props) {
   const { id, type } = useParams()
@@ -50,6 +53,7 @@ function Review(props) {
   const [showReviewModal, setShowReviewModal] = useState(false)
 
   const API_KEY = process.env.REACT_APP_API_KEY
+
   const getContent = async () => {
     const json = await (
       await fetch(
@@ -62,25 +66,21 @@ function Review(props) {
 
   useEffect(() => {
     getContent()
-  }, [])
+  })
 
-  // useEffect(() => {
-  //   getReviews()
-  // }, [])
+  useEffect(() => {
+    const review = async () => {
+      const res = await getReview(id, type)
+      setReviews(res.data.reviews)
+      setLoading(false)
+    }
+    review()
+  }, [])
 
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }
 
-  // const getReviews = async () => {
-  //   const response = await apiAxios.get(
-  //     `/review?targetId=${id}&targetType=${type}`
-  //   )
-  //   if (response.data) {
-  //     setReviews(response.data.reviews)
-  //   }
-  // }
-  console.log(reviews)
   return (
     <>
       {!loading ? (
@@ -93,6 +93,7 @@ function Review(props) {
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           <Reviews>
+            <h1>{content.title ? content.title : content.name}</h1>
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <div key={review.no}>
