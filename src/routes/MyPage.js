@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { getUserFromCookie } from '../utils/cookie'
 import { getMovieReviews, getReviewsWithId, getTvReviews } from '../api/axios'
-import apiAxios from '../api/apiAxios'
 
 const Container = styled.div`
   padding: 150px 120px;
