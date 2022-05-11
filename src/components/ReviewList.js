@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { CommentSend } from './CommentSend'
 import { Comment } from './Comment'
-import { getCommentWithReviewNo } from '../api/axios'
+import {
+  cancelLikeWithReviewNo,
+  getCommentWithReviewNo,
+  sendLikeWithReviewNo,
+} from '../api/axios'
+import { getUserFromCookie } from '../utils/cookie'
 
 const Review = styled.div`
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
   background-color: #212529;
   border-radius: 10px;
   width: 40vw;
@@ -28,22 +34,6 @@ const User = styled.div`
     margin-top: 10px;
     font-size: 10px;
   }
-`
-const Content = styled.div`
-  display: flex;
-  height: 50%;
-  justify-content: center;
-  align-items: center;
-`
-const Delete = styled.div`
-  display: flex;
-  background-color: gray;
-  width: 10%;
-  height: 70%;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 `
 const ReplyAndLikes = styled.div`
   border-bottom: 1px gray solid;
@@ -67,32 +57,46 @@ const Btn = styled.div`
   }
 `
 const CommentContainer = styled.div`
-  display: ${(props) => (props.display ? 'block' : 'none')};
+  display: ${(props) => (props.displayValue ? 'block' : 'none')};
 `
 export const ReviewList = (props) => {
   const [showComment, setShowComment] = useState(false)
-  const [reviseModal, setReviseModal] = useState(false)
   const [comments, setComments] = useState([])
+  const [likePressed, setLikePressed] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    async function getComment() {
-      const { data } = await getCommentWithReviewNo(props.data.no)
-      setComments(data.comments)
-      console.log(data)
-    }
     getComment()
+    checkLikePressed()
   }, [])
-  const handleChangeShowComment = () => {
+  async function getComment() {
+    const { data } = await getCommentWithReviewNo(props.data.no)
+    setComments(data.comments)
+  }
+  async function checkLikePressed() {
+    const user = await JSON.parse(getUserFromCookie())
+    if (props.data.likes.includes(user.id)) {
+      setLikePressed(true)
+    }
+  }
+  function handleChangeShowComment() {
     setShowComment((Prev) => !Prev)
   }
-
-  // const deleteReview = async (id) => {
-  //   const res = await apiAxios.delete(`/review/${id}`)
-  //   alert('삭제되었습니다.')
-  //   navigate('/')
-  // }
-
-  // console.log(props.data.user.nickName)
+  async function handleSendLike() {
+    const { data } = await sendLikeWithReviewNo(props.data.no)
+    if (data.message === 'ok') {
+      alert('좋아요가 반영되었습니다.')
+    }
+    navigate(0)
+  }
+  async function handleCancelLike() {
+    const { data } = await cancelLikeWithReviewNo(props.data.no)
+    if (data.message === 'ok') {
+      alert('좋아요가 취소되었습니다.')
+    }
+    navigate(0)
+  }
+  console.log(props.data)
   return (
     <>
       <Review>
@@ -102,30 +106,25 @@ export const ReviewList = (props) => {
             <span>⭐&nbsp;&nbsp;{props.data.ratings}</span>
             <p>📆{props.data.createdAt}</p>
           </section>
-          {/* {state.nickName === props.data.user.nickName ? (
-            <Delete>삭제</Delete>
-          ) : (
-            ''
-          )} */}
         </User>
-        {!reviseModal ? (
-          <Content>{props.data.contents}</Content>
-        ) : (
-          <input value={props.data.contents}></input>
-        )}
-
         <ReplyAndLikes>
-          <span>❤️{props.data.likes}</span>
+          <span>
+            ❤️{props.data.likes.length === 0 ? 0 : props.data.likes.length}
+          </span>
           <span>💬 {comments.length}</span>
         </ReplyAndLikes>
         <Btn>
-          <button>좋아요</button>
+          {likePressed ? (
+            <button onClick={handleCancelLike}>좋아요 취소</button>
+          ) : (
+            <button onClick={handleSendLike}>좋아요</button>
+          )}
           <button onClick={handleChangeShowComment}>
             댓글({comments.length})
           </button>
         </Btn>
       </Review>
-      <CommentContainer display={showComment}>
+      <CommentContainer displayValue={showComment}>
         <CommentSend reviewId={props.data.no}></CommentSend>
         {comments
           ? comments.map((comment) => {

@@ -95,6 +95,15 @@ function deleteCommentWithComentId(commentId) {
   return instanceWithAuth.delete(`/comment/${commentId}`)
 }
 
+// 좋아요 관련 메서드
+function sendLikeWithReviewNo(reviewNo) {
+  return instanceWithAuth.put(`/review/${reviewNo}/like`)
+}
+
+function cancelLikeWithReviewNo(reviewNo) {
+  return instanceWithAuth.put(`/review/${reviewNo}/unlike`)
+}
+
 export {
   registerUser,
   checkEmail,
@@ -110,4 +119,6 @@ export {
   getCommentWithReviewNo,
   updateCommentWithCommentId,
   deleteCommentWithComentId,
+  sendLikeWithReviewNo,
+  cancelLikeWithReviewNo,
 }
