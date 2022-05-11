@@ -66,8 +66,11 @@ const Btn = styled.div`
     border-left: 1px gray solid;
   }
 `
+const CommentContainer = styled.div`
+  display: ${(props) => (props.display ? 'block' : 'none')};
+`
 export const ReviewList = (props) => {
-  const [display, setDisplay] = useState(false)
+  const [showComment, setShowComment] = useState(false)
   const [reviseModal, setReviseModal] = useState(false)
   const [comments, setComments] = useState([])
 
@@ -79,8 +82,8 @@ export const ReviewList = (props) => {
     }
     getComment()
   }, [])
-  const onClick = () => {
-    setDisplay((Prev) => !Prev)
+  const handleChangeShowComment = () => {
+    setShowComment((Prev) => !Prev)
   }
 
   // const deleteReview = async (id) => {
@@ -113,19 +116,23 @@ export const ReviewList = (props) => {
 
         <ReplyAndLikes>
           <span>❤️{props.data.likes}</span>
-          <span>💬 0</span>
+          <span>💬 {comments.length}</span>
         </ReplyAndLikes>
         <Btn>
           <button>좋아요</button>
-          <button onClick={onClick}>댓글달기</button>
+          <button onClick={handleChangeShowComment}>
+            댓글({comments.length})
+          </button>
         </Btn>
       </Review>
-      {comments
-        ? comments.map((comment) => {
-            return <Comment data={comment} key={comment.no}></Comment>
-          })
-        : ''}
-      <CommentSend reviewId={props.data.no}></CommentSend>
+      <CommentContainer display={showComment}>
+        <CommentSend reviewId={props.data.no}></CommentSend>
+        {comments
+          ? comments.map((comment) => {
+              return <Comment data={comment} key={comment.no}></Comment>
+            })
+          : ''}
+      </CommentContainer>
     </>
   )
 }

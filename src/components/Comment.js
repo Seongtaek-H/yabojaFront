@@ -26,11 +26,10 @@ const StyledTextarea = styled.div`
   button {
     background-color: gray;
     cursor: pointer;
+    margin-left: 1rem;
   }
   div {
-    width: 18vw;
     display: flex;
-    justify-content: space-between;
   }
 `
 
@@ -42,6 +41,7 @@ const StyledTextarea = styled.div`
 
 export const Comment = (props) => {
   const [newComment, setNewComment] = useState('')
+  const [isUpdating, setIsUpdating] = useState(false)
   const navigate = useNavigate()
 
   let commentObj = {
@@ -62,19 +62,34 @@ export const Comment = (props) => {
       navigate(0)
     }
   }
+  function handleChangeIsUpdating() {
+    setIsUpdating((prev) => !prev)
+  }
   return (
     <StyledTextarea>
       <span>내 아이디 </span>
-      <p>{props.data.contents}</p>
-      <div>
+      {!isUpdating ? (
+        <p>{props.data.contents}</p>
+      ) : (
         <input
           placeholder={props.data.contents}
           onChange={(e) => {
             setNewComment(e.target.value)
           }}
         ></input>
-        <button onClick={handleUpdateComment}>댓글 수정</button>
-        <button onClick={handleDeleteComment}>댓글 삭제</button>
+      )}
+      <div>
+        {!isUpdating ? (
+          <>
+            <button onClick={handleChangeIsUpdating}>댓글 수정</button>
+            <button onClick={handleDeleteComment}>댓글 삭제</button>
+          </>
+        ) : (
+          <>
+            <button onClick={handleUpdateComment}>작성 완료</button>
+            <button onClick={handleChangeIsUpdating}>수정 취소</button>
+          </>
+        )}
       </div>
     </StyledTextarea>
   )
