@@ -29,8 +29,9 @@ export const CommentSend = (props) => {
     contents: reply,
     reviewNo: parseInt(props.reviewId),
   }
-  function handleSendComment() {
-    createComment(comment)
+  async function handleSendComment() {
+    const response = await createComment(comment)
+    console.log(response)
   }
   return (
     // <StyledTextarea displayOn={display}>

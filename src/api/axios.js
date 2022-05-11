@@ -87,6 +87,14 @@ function getCommentWithReviewNo(reviewNo) {
   return instanceWithAuth.get(`/comment?reviewNo=${reviewNo}`)
 }
 
+function updateCommentWithCommentId(commentId, commentObj) {
+  return instanceWithAuth.put(`/comment/${commentId}`, commentObj)
+}
+
+function deleteCommentWithComentId(commentId) {
+  return instanceWithAuth.delete(`/comment/${commentId}`)
+}
+
 export {
   registerUser,
   checkEmail,
@@ -100,4 +108,6 @@ export {
   findEmail,
   createComment,
   getCommentWithReviewNo,
+  updateCommentWithCommentId,
+  deleteCommentWithComentId,
 }

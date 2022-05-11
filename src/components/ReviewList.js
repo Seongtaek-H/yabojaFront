@@ -73,12 +73,12 @@ export const ReviewList = (props) => {
 
   useEffect(() => {
     async function getComment() {
-      const response = await getCommentWithReviewNo(props.data.no)
-      setComments(response.data.comments)
-      console.log(response)
+      const { data } = await getCommentWithReviewNo(props.data.no)
+      setComments(data.comments)
+      console.log(data)
     }
     getComment()
-  })
+  }, [])
   const onClick = () => {
     setDisplay((Prev) => !Prev)
   }
