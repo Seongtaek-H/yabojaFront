@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { deleteReview, like } from '../api/axios'
 import { getAuthFromCookie, getUserFromCookie } from '../utils/cookie'
+import ReviewModal from './ReviewModal'
+import Modal from 'react-modal/lib/components/Modal'
 
 const Review = styled.div`
   display: grid;
@@ -35,6 +35,7 @@ const Content = styled.div`
   height: 50%;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 `
 const Delete = styled.div`
   margin-left: 5px;
@@ -86,15 +87,16 @@ const StyledTextarea = styled.div`
 `
 export const ReviewList = (props) => {
   const [userData, setUserData] = useState('')
-  let navigate = useNavigate()
-
   const [display, setDisplay] = useState(false)
-  const [reviseModal, setReviseModal] = useState(false)
+  const [showReviewModal, setShowReviewModal] = useState(false)
 
   const onClick = () => {
     setDisplay((Prev) => !Prev)
   }
 
+  const onClickRevise = () => {
+    setShowReviewModal((Prev) => !Prev)
+  }
   const onClickReviewDelete = async (reviewNo) => {
     const res = await deleteReview(reviewNo)
     if (res.status === 200) {
@@ -125,7 +127,13 @@ export const ReviewList = (props) => {
           <></>
           {userData.nickName === props.data.user.nickName ? (
             <>
-              <Delete>수정</Delete>
+              <Delete
+                onClick={() => {
+                  onClickRevise()
+                }}
+              >
+                수정
+              </Delete>
               <Delete
                 onClick={() => {
                   onClickReviewDelete(props.data.no)
@@ -138,12 +146,7 @@ export const ReviewList = (props) => {
             ''
           )}
         </User>
-        {!reviseModal ? (
-          <Content>{props.data.contents}</Content>
-        ) : (
-          <input value={props.data.contents}></input>
-        )}
-
+        <Content>{props.data.contents}</Content>
         <Reply>
           <span>❤️ {props.data.likes}</span>
           <span>💬 0</span>
@@ -157,6 +160,46 @@ export const ReviewList = (props) => {
         <span>↳ 내 아이디</span>
         <input type="textarea" placeholder="댓글을 달아주세요"></input>
       </StyledTextarea>
+      <Modal
+        isOpen={showReviewModal}
+        onRequestClose={() => {
+          setShowReviewModal(false)
+        }}
+        style={{
+          overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(255, 255, 255, 0.75)',
+            zIndex: 3,
+          },
+          content: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '65vw',
+            height: '60vh',
+            border: '1px solid #ccc',
+            background: '#212529',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '10px',
+            outline: 'none',
+          },
+        }}
+      >
+        <ReviewModal
+          showReviewModal
+          poster={props.poster}
+          revise={true}
+          contents={props.data.contents}
+          ratings={props.data.ratings}
+          reviewNo={props.data.no}
+        ></ReviewModal>
+      </Modal>
     </>
   )
 }

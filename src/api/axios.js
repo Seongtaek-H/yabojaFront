@@ -101,6 +101,7 @@ export {
   getReview,
   getReviewsWithId,
   createReview,
+  putReview,
   deleteReview,
   like,
   findEmail,

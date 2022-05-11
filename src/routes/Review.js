@@ -96,7 +96,10 @@ function Review() {
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <div key={review.no}>
-                  <ReviewList data={review}></ReviewList>
+                  <ReviewList
+                    data={review}
+                    poster={makeImagePath(content.backdrop_path)}
+                  ></ReviewList>
                 </div>
               ))
             ) : (
@@ -108,6 +111,7 @@ function Review() {
             onRequestClose={() => {
               setShowReviewModal(false)
             }}
+            ariaHideApp={false}
             style={{
               overlay: {
                 position: 'fixed',

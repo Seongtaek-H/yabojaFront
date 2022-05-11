@@ -90,7 +90,7 @@ function MyPage() {
             return (
               <StyledLink
                 key={review.no}
-                to={`/detail/${review.targetType}/${review.targetId}`}
+                to={`/review/${review.targetType}/${review.targetId}`}
               >
                 <ReviewContainer>
                   <span>{review.contents ? review.contents : '내용없음'}</span>

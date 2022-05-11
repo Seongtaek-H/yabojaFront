@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { createReview } from '../api/axios'
+import { createReview, putReview } from '../api/axios'
 
 const Container = styled.div`
   display: grid;
@@ -60,14 +60,15 @@ const Rating = styled.div`
     }
   }
   label {
+    cursor: pointer;
     font-size: 25px;
     color: transparent;
     text-shadow: 0 0 0 #f0f0f0;
     &:hover {
-      text-shadow: 0 0 0 orange;
+      text-shadow: 0 0 0 yellow;
     }
     &:hover ~ label {
-      text-shadow: 0 0 0 orange;
+      text-shadow: 0 0 0 yellow;
     }
   }
 `
@@ -105,13 +106,14 @@ const StyledBtn = styled.button`
 `
 
 const ReviewModal = (props) => {
-  const [score, setScore] = useState(0)
-  const [review, setReview] = useState('')
+  const [score, setScore] = useState(props.ratings)
+  const [review, setReview] = useState(props.contents)
   const parms = useParams()
 
   const reviewChange = (e) => {
     setReview(e.target.value)
   }
+
   const scoreChange = (e) => {
     setScore(e.target.value)
   }
@@ -137,6 +139,21 @@ const ReviewModal = (props) => {
     }
   }
 
+  const reviseData = {
+    contents: review,
+    ratings: +score,
+  }
+
+  const onClickReviewRevise = async () => {
+    const res = await putReview(props.reviewNo, reviseData)
+    if (res.status === 200) {
+      alert('리뷰가 수정되었습니다.')
+      window.location.reload()
+    } else {
+      alert(res.data.message)
+    }
+  }
+
   return (
     <Container>
       <h1>이 작품 어떠셨나요?</h1>
@@ -151,6 +168,7 @@ const ReviewModal = (props) => {
               name="rating"
               value="5"
               id="rate1"
+              defaultChecked={score === 5}
             />
             <label htmlFor="rate1">⭐</label>
             <input
@@ -159,6 +177,7 @@ const ReviewModal = (props) => {
               name="rating"
               value="4"
               id="rate2"
+              defaultChecked={score === 4}
             />
             <label htmlFor="rate2">⭐</label>
             <input
@@ -167,6 +186,7 @@ const ReviewModal = (props) => {
               name="rating"
               value="3"
               id="rate3"
+              defaultChecked={score === 3}
             />
             <label htmlFor="rate3">⭐</label>
             <input
@@ -175,33 +195,49 @@ const ReviewModal = (props) => {
               name="rating"
               value="2"
               id="rate4"
+              defaultChecked={score === 2}
             />
             <label htmlFor="rate4">⭐</label>
             <input
-              onClick={scoreChange}
               type="radio"
               name="rating"
               value="1"
               id="rate5"
+              onClick={scoreChange}
+              defaultChecked={score === 1}
             />
             <label htmlFor="rate5">⭐</label>
           </Rating>
-          <StyledInput
-            onChange={reviewChange}
-            type="text"
-            placeholder="작품에 대한 감상을 남겨주세요."
-          />
+          {props.contents ? (
+            <StyledInput onChange={reviewChange} type="text" value={review} />
+          ) : (
+            <StyledInput
+              onChange={reviewChange}
+              type="text"
+              placeholder="작품에 대한 감상을 남겨주세요."
+            />
+          )}
         </InputContainer>
-        <StyledBtn
-          onClick={() => {
-            onClickReview()
-          }}
-        >
-          작성하기
-        </StyledBtn>
+        {!props.revise ? (
+          <StyledBtn
+            onClick={() => {
+              onClickReview()
+            }}
+          >
+            등록
+          </StyledBtn>
+        ) : (
+          <StyledBtn
+            onClick={() => {
+              onClickReviewRevise()
+            }}
+          >
+            수정
+          </StyledBtn>
+        )}
       </StyledForm>
     </Container>
   )
 }
 
-export default ReviewModal
+export default memo(ReviewModal)

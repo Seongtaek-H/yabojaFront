@@ -59,7 +59,6 @@ function Home() {
     getContents()
   }, [])
 
-  console.log('state:', state)
   const makeImagePath = (id) => {
     return `https://image.tmdb.org/t/p/original/${id}`
   }
