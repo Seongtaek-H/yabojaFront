@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import styled from 'styled-components'
-import { createComment } from '../api/axios'
 
 const StyledTextarea = styled.div`
   margin-top: 5px;
@@ -23,27 +21,12 @@ const StyledTextarea = styled.div`
     cursor: pointer;
   }
 `
+
 export const Comment = (props) => {
-  const [reply, setReply] = useState('')
-  let comment = {
-    contents: reply,
-    reviewNo: parseInt(props.reviewId),
-  }
-  function handleSendComment() {
-    createComment(comment)
-  }
   return (
-    // <StyledTextarea displayOn={display}>
     <StyledTextarea>
       <span>↳ 내 아이디 </span>
-      <input
-        type="textarea"
-        placeholder="댓글을 달아주세요"
-        onChange={(e) => {
-          setReply(e.target.value)
-        }}
-      ></input>
-      <button onClick={handleSendComment}>댓글 전송</button>
+      <p>{props.data.contents}</p>
     </StyledTextarea>
   )
 }

@@ -78,9 +78,13 @@ function findEmail(name, phNum) {
   )
 }
 
-// 리뷰 관련 메서드
+// 댓글 관련 메서드
 function createComment(comment) {
   return instanceWithAuth.post('/comment', comment)
+}
+
+function getCommentWithReviewNo(reviewNo) {
+  return instanceWithAuth.get(`/comment?reviewNo=${reviewNo}`)
 }
 
 export {
@@ -95,4 +99,5 @@ export {
   getReviewsWithId,
   findEmail,
   createComment,
+  getCommentWithReviewNo,
 }

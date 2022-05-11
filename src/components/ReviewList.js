@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
+import { CommentSend } from './CommentSend'
 import { Comment } from './Comment'
+import { getCommentWithReviewNo } from '../api/axios'
 
 const Review = styled.div`
   display: grid;
@@ -67,10 +67,18 @@ const Btn = styled.div`
   }
 `
 export const ReviewList = (props) => {
-  let navigate = useNavigate()
-
   const [display, setDisplay] = useState(false)
   const [reviseModal, setReviseModal] = useState(false)
+  const [comments, setComments] = useState([])
+
+  useEffect(() => {
+    async function getComment() {
+      const response = await getCommentWithReviewNo(props.data.no)
+      setComments(response.data.comments)
+      console.log(response)
+    }
+    getComment()
+  })
   const onClick = () => {
     setDisplay((Prev) => !Prev)
   }
@@ -112,7 +120,12 @@ export const ReviewList = (props) => {
           <button onClick={onClick}>댓글달기</button>
         </Btn>
       </Review>
-      <Comment reviewId={props.data.no}></Comment>
+      {comments
+        ? comments.map((comment) => {
+            return <Comment data={comment} key={comment.no}></Comment>
+          })
+        : ''}
+      <CommentSend reviewId={props.data.no}></CommentSend>
     </>
   )
 }
