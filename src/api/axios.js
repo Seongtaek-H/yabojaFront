@@ -61,9 +61,19 @@ function getReview(id, type) {
   return instanceWithAuth.get(`/review?targetId=${id}&targetType=${type}`)
 }
 
-// review 작성하기
+// review 등록
 function createReview(data) {
   return instanceWithAuth.post(`/review`, JSON.stringify(data))
+}
+
+// review 수정
+function putReview() {
+  return instanceWithAuth.put()
+}
+
+// review 삭제
+function deleteReview(reviewNo) {
+  return instanceWithAuth.delete(`/review/${reviewNo}`)
 }
 
 // 회원정보 찾기 관련 메서드
@@ -86,5 +96,6 @@ export {
   getReview,
   getReviewsWithId,
   createReview,
+  deleteReview,
   findEmail,
 }

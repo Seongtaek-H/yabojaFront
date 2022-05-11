@@ -62,7 +62,6 @@ const ReviewContainer = styled.div`
 `
 function MyPage() {
   const [reviews, setReviews] = useState([])
-  const [tvReviews, setTvReviews] = useState([])
   const [userData, setUserData] = useState('')
 
   useEffect(() => {
@@ -76,8 +75,6 @@ function MyPage() {
     }
     myReview()
   }, [])
-
-  console.log(reviews)
 
   return (
     <Container>

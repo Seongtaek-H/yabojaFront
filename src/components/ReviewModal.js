@@ -105,7 +105,6 @@ const StyledBtn = styled.button`
 `
 
 const ReviewModal = (props) => {
-  console.log(props)
   const [score, setScore] = useState(0)
   const [review, setReview] = useState('')
   const parms = useParams()
@@ -126,10 +125,13 @@ const ReviewModal = (props) => {
 
   const onClickReview = async () => {
     try {
-      const response = await createReview(reviewData)
-      console.log(response)
-      alert('리뷰가 작성되었습니다.')
-      window.location.reload()
+      const res = await createReview(reviewData)
+      if (res.status === 201) {
+        alert('리뷰가 작성되었습니다.')
+        window.location.reload()
+      } else {
+        alert(res.data.message)
+      }
     } catch (error) {
       alert(error)
     }

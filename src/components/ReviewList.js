@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { deleteReview } from '../api/axios'
+import { getAuthFromCookie, getUserFromCookie } from '../utils/cookie'
 
 const Review = styled.div`
   display: grid;
@@ -82,7 +84,7 @@ const StyledTextarea = styled.div`
   }
 `
 export const ReviewList = (props) => {
-  const state = useSelector((state) => state)
+  const [userData, setUserData] = useState('')
   let navigate = useNavigate()
 
   const [display, setDisplay] = useState(false)
@@ -91,13 +93,17 @@ export const ReviewList = (props) => {
     setDisplay((Prev) => !Prev)
   }
 
-  // const deleteReview = async (id) => {
-  //   const res = await apiAxios.delete(`/review/${id}`)
-  //   alert('삭제되었습니다.')
-  //   navigate('/')
-  // }
+  const onClickReviewDelete = async (reviewNo) => {
+    const res = await deleteReview(reviewNo)
+    if (res.status === 200) {
+      window.location.reload()
+    }
+  }
 
-  // console.log(props.data.user.nickName)
+  useEffect(() => {
+    setUserData(JSON.parse(getUserFromCookie()))
+  }, [])
+
   return (
     <>
       <Review>
@@ -107,8 +113,14 @@ export const ReviewList = (props) => {
             <span>⭐&nbsp;&nbsp;{props.data.ratings}</span>
             <p>📆{props.data.createdAt}</p>
           </section>
-          {state.nickName === props.data.user.nickName ? (
-            <Delete>삭제</Delete>
+          {userData.nickName === props.data.user.nickName ? (
+            <Delete
+              onClick={() => {
+                onClickReviewDelete(props.data.no)
+              }}
+            >
+              삭제
+            </Delete>
           ) : (
             ''
           )}
