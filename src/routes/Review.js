@@ -9,19 +9,15 @@ import ReviewModal from '../components/ReviewModal'
 import Loading from '../components/loading'
 import { getReview } from '../api/axios'
 
-const Bg = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+const Container = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
     url(${(props) => props.url});
   background-size: cover;
-  background-position: center center;
-  /* overflow: scroll; */
+  padding: 3vw;
+  width: 100vw;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
 `
 
 const WriteBtn = styled.div`
@@ -35,17 +31,20 @@ const WriteBtn = styled.div`
   }
 `
 const Reviews = styled.div`
-  height: 100%;
-  width: 100%;
+  width: 60%;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  h2 : {
-    font-size: 5rem;
+  p {
+    margin: 0%;
+    padding: 0%;
+    font-size: 2rem;
+    font-weight: bold;
   }
 `
-function Review(props) {
+function Review() {
   const { id, type } = useParams()
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState([])
@@ -84,7 +83,7 @@ function Review(props) {
   return (
     <>
       {!loading ? (
-        <Bg url={makeImagePath(content.backdrop_path)}>
+        <Container url={makeImagePath(content.backdrop_path)}>
           <WriteBtn
             onClick={() => {
               setShowReviewModal(true)
@@ -93,7 +92,7 @@ function Review(props) {
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           <Reviews>
-            <h1>{content.title ? content.title : content.name}</h1>
+            <p>{content.title ? content.title : content.name}</p>
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <div key={review.no}>
@@ -142,7 +141,7 @@ function Review(props) {
               id={content.id}
             ></ReviewModal>
           </Modal>
-        </Bg>
+        </Container>
       ) : (
         <Loading></Loading>
       )}

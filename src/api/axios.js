@@ -67,13 +67,18 @@ function createReview(data) {
 }
 
 // review 수정
-function putReview() {
-  return instanceWithAuth.put()
+function putReview(reviewNo, data) {
+  return instanceWithAuth.put(`review/${reviewNo}`, JSON.stringify(data))
 }
 
 // review 삭제
 function deleteReview(reviewNo) {
   return instanceWithAuth.delete(`/review/${reviewNo}`)
+}
+
+// 좋아요 추가
+function like(reviewNo, data) {
+  return instanceWithAuth.put(`/review/${reviewNo}/like`, JSON.stringify(data))
 }
 
 // 회원정보 찾기 관련 메서드
@@ -97,5 +102,6 @@ export {
   getReviewsWithId,
   createReview,
   deleteReview,
+  like,
   findEmail,
 }

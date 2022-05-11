@@ -127,7 +127,7 @@ const ReviewModal = (props) => {
     try {
       const res = await createReview(reviewData)
       if (res.status === 201) {
-        alert('리뷰가 작성되었습니다.')
+        alert('리뷰가 등록되었습니다.')
         window.location.reload()
       } else {
         alert(res.data.message)

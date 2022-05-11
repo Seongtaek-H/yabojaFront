@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { deleteReview } from '../api/axios'
+import { deleteReview, like } from '../api/axios'
 import { getAuthFromCookie, getUserFromCookie } from '../utils/cookie'
 
 const Review = styled.div`
@@ -16,8 +16,9 @@ const Review = styled.div`
   padding: 10px;
 `
 const User = styled.div`
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
   section span:nth-child(2) {
     border: 1px gray solid;
     margin-left: 10px;
@@ -36,9 +37,10 @@ const Content = styled.div`
   align-items: center;
 `
 const Delete = styled.div`
+  margin-left: 5px;
   display: flex;
   background-color: gray;
-  width: 10%;
+  width: 50px;
   height: 70%;
   border-radius: 10px;
   justify-content: center;
@@ -61,7 +63,6 @@ const Btn = styled.div`
     cursor: pointer;
     text-align: center;
   }
-
   button:nth-child(2) {
     border-left: 1px gray solid;
   }
@@ -89,6 +90,7 @@ export const ReviewList = (props) => {
 
   const [display, setDisplay] = useState(false)
   const [reviseModal, setReviseModal] = useState(false)
+
   const onClick = () => {
     setDisplay((Prev) => !Prev)
   }
@@ -97,7 +99,14 @@ export const ReviewList = (props) => {
     const res = await deleteReview(reviewNo)
     if (res.status === 200) {
       window.location.reload()
+    } else {
+      alert(res.data.message)
     }
+  }
+
+  const onClickLike = async () => {
+    const res = await like()
+    console.log(res)
   }
 
   useEffect(() => {
@@ -113,14 +122,18 @@ export const ReviewList = (props) => {
             <span>⭐&nbsp;&nbsp;{props.data.ratings}</span>
             <p>📆{props.data.createdAt}</p>
           </section>
+          <></>
           {userData.nickName === props.data.user.nickName ? (
-            <Delete
-              onClick={() => {
-                onClickReviewDelete(props.data.no)
-              }}
-            >
-              삭제
-            </Delete>
+            <>
+              <Delete>수정</Delete>
+              <Delete
+                onClick={() => {
+                  onClickReviewDelete(props.data.no)
+                }}
+              >
+                삭제
+              </Delete>
+            </>
           ) : (
             ''
           )}
@@ -132,7 +145,7 @@ export const ReviewList = (props) => {
         )}
 
         <Reply>
-          <span>❤️{props.data.likes}</span>
+          <span>❤️ {props.data.likes}</span>
           <span>💬 0</span>
         </Reply>
         <Btn>
