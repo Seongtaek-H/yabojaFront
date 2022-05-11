@@ -40,7 +40,7 @@ function checkNickName(nickName) {
   return instance.get(`/user/identities?type="nickName"&value=${nickName}`)
 }
 
-// 로그인 관련 메서드
+// 로그인 메서드
 
 function loginUser(loginData) {
   return instance.post('/auth/login', JSON.stringify(loginData))
@@ -51,19 +51,19 @@ function getUser() {
   return instanceWithAuth.get('auth/me')
 }
 
+// get review (사용자별)
+function getReviewsWithId(userIdNum) {
+  return instanceWithAuth.get(`/review?id=${userIdNum}`)
+}
+
+// get review (콘텐츠별)
 function getReview(id, type) {
   return instanceWithAuth.get(`/review?targetId=${id}&targetType=${type}`)
 }
-function getMovieReviews(userIdNum) {
-  return instanceWithAuth.get(`/review?targetId=${userIdNum}?targetType=movie`)
-}
 
-function getTvReviews(userIdNum) {
-  return instanceWithAuth.get(`/review?targetId=${userIdNum}?targetType=tv`)
-}
-
-function getReviewsWithId(userIdNum) {
-  return instanceWithAuth.get(`/review?id=${userIdNum}`)
+// review 작성하기
+function createReview(data) {
+  return instanceWithAuth.post(`/review`, JSON.stringify(data))
 }
 
 // 회원정보 찾기 관련 메서드
@@ -84,8 +84,7 @@ export {
   loginUser,
   getUser,
   getReview,
-  getMovieReviews,
-  getTvReviews,
   getReviewsWithId,
+  createReview,
   findEmail,
 }

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { createReview } from '../api/axios'
 
 const Container = styled.div`
   display: grid;
@@ -123,20 +124,16 @@ const ReviewModal = (props) => {
     targetType: parms.type,
   }
 
-  // const reviewSubmit = () => {
-  //   const result = apiAxios.post('/review', JSON.stringify(reviewData))
-  //   return result
-  // }
-  // const onClickReview = async () => {
-  //   try {
-  //     const response = await reviewSubmit()
-  //     console.log(response)
-  //     alert('리뷰가 작성되었습니다.')
-  //     window.location.reload()
-  //   } catch (error) {
-  //     alert(error)
-  //   }
-  // }
+  const onClickReview = async () => {
+    try {
+      const response = await createReview(reviewData)
+      console.log(response)
+      alert('리뷰가 작성되었습니다.')
+      window.location.reload()
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
     <Container>
@@ -193,7 +190,13 @@ const ReviewModal = (props) => {
             placeholder="작품에 대한 감상을 남겨주세요."
           />
         </InputContainer>
-        <StyledBtn>작성하기</StyledBtn>
+        <StyledBtn
+          onClick={() => {
+            onClickReview()
+          }}
+        >
+          작성하기
+        </StyledBtn>
       </StyledForm>
     </Container>
   )
