@@ -62,7 +62,6 @@ const ReviewContainer = styled.div`
 `
 function MyPage() {
   const [reviews, setReviews] = useState([])
-  const [tvReviews, setTvReviews] = useState([])
   const [userData, setUserData] = useState('')
 
   useEffect(() => {
@@ -76,8 +75,6 @@ function MyPage() {
     }
     myReview()
   }, [])
-
-  console.log(reviews)
 
   return (
     <Container>
@@ -93,7 +90,7 @@ function MyPage() {
             return (
               <StyledLink
                 key={review.no}
-                to={`/detail/${review.targetType}/${review.targetId}`}
+                to={`/review/${review.targetType}/${review.targetId}`}
               >
                 <ReviewContainer>
                   <span>{review.contents ? review.contents : '내용없음'}</span>

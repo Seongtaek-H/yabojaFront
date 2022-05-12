@@ -1,0 +1,25 @@
+div {
+  direction: rtl;
+  text-align: left;
+  margin: 2% 0;
+  input[type='radio'] {
+    display: none;
+    &:checked ~ label {
+      text-shadow: 0 0 0 orange;
+    }
+    &#5 {
+      text-shadow: 0 0 0 orange;
+    }
+  }
+  label {
+    font-size: 25px;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    &:hover {
+      text-shadow: 0 0 0 orange;
+    }
+    &:hover ~ label {
+      text-shadow: 0 0 0 orange;
+    }
+  }
+}
