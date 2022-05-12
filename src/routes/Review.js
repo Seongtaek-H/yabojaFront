@@ -19,7 +19,6 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
 `
-
 const WriteBtn = styled.div`
   position: fixed;
   bottom: 20px;
@@ -62,11 +61,9 @@ function Review() {
     setContent(json)
     setLoading(false)
   }
-
   useEffect(() => {
     getContent()
   })
-
   useEffect(() => {
     const review = async () => {
       const res = await getReview(id, type)
@@ -75,11 +72,9 @@ function Review() {
     }
     review()
   }, [])
-
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }
-
   return (
     <>
       {!loading ? (

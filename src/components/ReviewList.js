@@ -4,10 +4,20 @@ import { deleteReview, like } from '../api/axios'
 import { getAuthFromCookie, getUserFromCookie } from '../utils/cookie'
 import ReviewModal from './ReviewModal'
 import Modal from 'react-modal/lib/components/Modal'
+import { useNavigate } from 'react-router-dom'
+
+import { CommentSend } from './CommentSend'
+import { Comment } from './Comment'
+import {
+  cancelLikeWithReviewNo,
+  getCommentWithReviewNo,
+  sendLikeWithReviewNo,
+} from '../api/axios'
+import { getUserFromCookie } from '../utils/cookie'
 
 const Review = styled.div`
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
   background-color: #212529;
   border-radius: 10px;
   width: 40vw;
@@ -68,22 +78,8 @@ const Btn = styled.div`
     border-left: 1px gray solid;
   }
 `
-const StyledTextarea = styled.div`
-  margin-top: 5px;
-  background-color: #171721;
-  border-radius: 10px;
-  width: 40vw;
-  height: 10vh;
-  padding: 20px;
-  align-items: center;
-  display: ${(props) => (props.displayOn ? 'flex' : 'none')};
-  input {
-    all: unset;
-    margin-left: 30px;
-    width: 80%;
-    height: 100%;
-    border-bottom: 1px gray solid;
-  }
+const CommentContainer = styled.div`
+  display: ${(props) => (props.displayValue ? 'block' : 'none')};
 `
 export const ReviewList = (props) => {
   const [userData, setUserData] = useState('')
@@ -114,7 +110,43 @@ export const ReviewList = (props) => {
   useEffect(() => {
     setUserData(JSON.parse(getUserFromCookie()))
   }, [])
+  const [showComment, setShowComment] = useState(false)
+  const [comments, setComments] = useState([])
+  const [likePressed, setLikePressed] = useState(false)
+  const navigate = useNavigate()
 
+  useEffect(() => {
+    getComment()
+    checkLikePressed()
+  }, [])
+  async function getComment() {
+    const { data } = await getCommentWithReviewNo(props.data.no)
+    setComments(data.comments)
+  }
+  async function checkLikePressed() {
+    const user = await JSON.parse(getUserFromCookie())
+    if (props.data.likes.includes(user.id)) {
+      setLikePressed(true)
+    }
+  }
+  function handleChangeShowComment() {
+    setShowComment((Prev) => !Prev)
+  }
+  async function handleSendLike() {
+    const { data } = await sendLikeWithReviewNo(props.data.no)
+    if (data.message === 'ok') {
+      alert('좋아요가 반영되었습니다.')
+    }
+    navigate(0)
+  }
+  async function handleCancelLike() {
+    const { data } = await cancelLikeWithReviewNo(props.data.no)
+    if (data.message === 'ok') {
+      alert('좋아요가 취소되었습니다.')
+    }
+    navigate(0)
+  }
+  console.log(props.data)
   return (
     <>
       <Review>
@@ -152,14 +184,16 @@ export const ReviewList = (props) => {
           <span>💬 0</span>
         </Reply>
         <Btn>
-          <button>좋아요</button>
-          <button onClick={onClick}>댓글달기</button>
+          {likePressed ? (
+            <button onClick={handleCancelLike}>좋아요 취소</button>
+          ) : (
+            <button onClick={handleSendLike}>좋아요</button>
+          )}
+          <button onClick={handleChangeShowComment}>
+            댓글({comments.length})
+          </button>
         </Btn>
       </Review>
-      <StyledTextarea displayOn={display}>
-        <span>↳ 내 아이디</span>
-        <input type="textarea" placeholder="댓글을 달아주세요"></input>
-      </StyledTextarea>
       <Modal
         isOpen={showReviewModal}
         onRequestClose={() => {
@@ -200,6 +234,14 @@ export const ReviewList = (props) => {
           reviewNo={props.data.no}
         ></ReviewModal>
       </Modal>
+      <CommentContainer displayValue={showComment}>
+        <CommentSend reviewId={props.data.no}></CommentSend>
+        {comments
+          ? comments.map((comment) => {
+              return <Comment data={comment} key={comment.no}></Comment>
+            })
+          : ''}
+      </CommentContainer>
     </>
   )
 }

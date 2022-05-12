@@ -47,6 +47,7 @@ function loginUser(loginData) {
 }
 
 // 사용자 데이터 가져오기 관련 메서드
+
 function getUser() {
   return instanceWithAuth.get('auth/me')
 }
@@ -92,6 +93,32 @@ function findEmail(name, phNum) {
   )
 }
 
+// 댓글 관련 메서드
+function createComment(comment) {
+  return instanceWithAuth.post('/comment', comment)
+}
+
+function getCommentWithReviewNo(reviewNo) {
+  return instanceWithAuth.get(`/comment?reviewNo=${reviewNo}`)
+}
+
+function updateCommentWithCommentId(commentId, commentObj) {
+  return instanceWithAuth.put(`/comment/${commentId}`, commentObj)
+}
+
+function deleteCommentWithComentId(commentId) {
+  return instanceWithAuth.delete(`/comment/${commentId}`)
+}
+
+// 좋아요 관련 메서드
+function sendLikeWithReviewNo(reviewNo) {
+  return instanceWithAuth.put(`/review/${reviewNo}/like`)
+}
+
+function cancelLikeWithReviewNo(reviewNo) {
+  return instanceWithAuth.put(`/review/${reviewNo}/unlike`)
+}
+
 export {
   registerUser,
   checkEmail,
@@ -105,4 +132,10 @@ export {
   deleteReview,
   like,
   findEmail,
+  createComment,
+  getCommentWithReviewNo,
+  updateCommentWithCommentId,
+  deleteCommentWithComentId,
+  sendLikeWithReviewNo,
+  cancelLikeWithReviewNo,
 }
