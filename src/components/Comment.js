@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   deleteCommentWithComentId,
   updateCommentWithCommentId,
 } from '../api/axios'
-import { useNavigate } from 'react-router-dom'
 
 const StyledTextarea = styled.div`
   margin-top: 5px;
@@ -16,7 +16,6 @@ const StyledTextarea = styled.div`
   align-items: center;
   display: flex;
   span {
-    font-size: 1.5rem;
     font-weight: 800;
     margin-right: 2rem;
   }
@@ -32,13 +31,6 @@ const StyledTextarea = styled.div`
     display: flex;
   }
 `
-
-// contents: "fdasfadafaadadadadfd"
-// createdAt: "2022-05-10T13:12:27.589Z"
-// isValid: true
-// no: 8
-// updatedAt: "2022-05-10T13:12:27.589Z"
-
 export const Comment = (props) => {
   const [newComment, setNewComment] = useState('')
   const [isUpdating, setIsUpdating] = useState(false)

@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { ReviewList } from '../components/ReviewList'
-
 import Modal from 'react-modal/lib/components/Modal'
-
 import ReviewModal from '../components/ReviewModal'
 import Loading from '../components/loading'
 import { getReview } from '../api/axios'
@@ -52,6 +50,15 @@ function Review() {
 
   const API_KEY = process.env.REACT_APP_API_KEY
 
+  useEffect(() => {
+    getContent()
+    review()
+  }, [])
+  const review = async () => {
+    const res = await getReview(id, type)
+    setReviews(res.data.reviews)
+    setLoading(false)
+  }
   const getContent = async () => {
     const json = await (
       await fetch(
@@ -61,17 +68,6 @@ function Review() {
     setContent(json)
     setLoading(false)
   }
-  useEffect(() => {
-    getContent()
-  })
-  useEffect(() => {
-    const review = async () => {
-      const res = await getReview(id, type)
-      setReviews(res.data.reviews)
-      setLoading(false)
-    }
-    review()
-  }, [])
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }

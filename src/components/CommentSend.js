@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { createComment } from '../api/axios'
+import { useNavigate } from 'react-router-dom'
 
 const StyledTextarea = styled.div`
   margin-top: 5px;
@@ -14,7 +15,7 @@ const StyledTextarea = styled.div`
   input {
     all: unset;
     margin-left: 30px;
-    width: 80%;
+    width: 25vw;
     height: 100%;
     border-bottom: 1px gray solid;
   }
@@ -25,18 +26,21 @@ const StyledTextarea = styled.div`
 `
 export const CommentSend = (props) => {
   const [reply, setReply] = useState('')
+  const navigate = useNavigate()
   let comment = {
     contents: reply,
     reviewNo: parseInt(props.reviewId),
   }
   async function handleSendComment() {
-    const response = await createComment(comment)
-    console.log(response)
+    const { data } = await createComment(comment)
+    if (data.message === 'ok') {
+      alert('댓글이 등록되었습니다.')
+      navigate(0)
+    }
   }
   return (
-    // <StyledTextarea displayOn={display}>
     <StyledTextarea>
-      <span>↳ 내 아이디 </span>
+      <span>↳ {props.userData.name} </span>
       <input
         type="textarea"
         placeholder="댓글을 달아주세요"

@@ -1,19 +1,17 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
-import { deleteReview, like } from '../api/axios'
-import { getAuthFromCookie, getUserFromCookie } from '../utils/cookie'
+import { getUserFromCookie } from '../utils/cookie'
 import ReviewModal from './ReviewModal'
 import Modal from 'react-modal/lib/components/Modal'
 import { useNavigate } from 'react-router-dom'
-
 import { CommentSend } from './CommentSend'
 import { Comment } from './Comment'
 import {
+  deleteReview,
   cancelLikeWithReviewNo,
   getCommentWithReviewNo,
   sendLikeWithReviewNo,
 } from '../api/axios'
-import { getUserFromCookie } from '../utils/cookie'
 
 const Review = styled.div`
   display: grid;
@@ -83,12 +81,17 @@ const CommentContainer = styled.div`
 `
 export const ReviewList = (props) => {
   const [userData, setUserData] = useState('')
-  const [display, setDisplay] = useState(false)
   const [showReviewModal, setShowReviewModal] = useState(false)
+  const [showComment, setShowComment] = useState(false)
+  const [comments, setComments] = useState([])
+  const [likePressed, setLikePressed] = useState(false)
+  const navigate = useNavigate()
 
-  const onClick = () => {
-    setDisplay((Prev) => !Prev)
-  }
+  useEffect(() => {
+    setUserData(JSON.parse(getUserFromCookie()))
+    getComment()
+    checkLikePressed()
+  }, [])
 
   const onClickRevise = () => {
     setShowReviewModal((Prev) => !Prev)
@@ -96,29 +99,12 @@ export const ReviewList = (props) => {
   const onClickReviewDelete = async (reviewNo) => {
     const res = await deleteReview(reviewNo)
     if (res.status === 200) {
+      alert('댓글이 삭제되었습니다.')
       window.location.reload()
     } else {
       alert(res.data.message)
     }
   }
-
-  const onClickLike = async () => {
-    const res = await like()
-    console.log(res)
-  }
-
-  useEffect(() => {
-    setUserData(JSON.parse(getUserFromCookie()))
-  }, [])
-  const [showComment, setShowComment] = useState(false)
-  const [comments, setComments] = useState([])
-  const [likePressed, setLikePressed] = useState(false)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    getComment()
-    checkLikePressed()
-  }, [])
   async function getComment() {
     const { data } = await getCommentWithReviewNo(props.data.no)
     setComments(data.comments)
@@ -146,7 +132,6 @@ export const ReviewList = (props) => {
     }
     navigate(0)
   }
-  console.log(props.data)
   return (
     <>
       <Review>
@@ -180,7 +165,7 @@ export const ReviewList = (props) => {
         </User>
         <Content>{props.data.contents}</Content>
         <Reply>
-          <span>❤️ {props.data.likes}</span>
+          <span>❤️ {props.data.likes.length}</span>
           <span>💬 0</span>
         </Reply>
         <Btn>
@@ -235,7 +220,7 @@ export const ReviewList = (props) => {
         ></ReviewModal>
       </Modal>
       <CommentContainer displayValue={showComment}>
-        <CommentSend reviewId={props.data.no}></CommentSend>
+        <CommentSend userData={userData} reviewId={props.data.no}></CommentSend>
         {comments
           ? comments.map((comment) => {
               return <Comment data={comment} key={comment.no}></Comment>
