@@ -54,11 +54,17 @@ function Review() {
     getContent()
     review()
   }, [])
+
   const review = async () => {
     const res = await getReview(id, type)
-    setReviews(res.data.reviews)
+    setReviews(
+      res.data.reviews.sort((a, b) => {
+        return b.no - a.no
+      })
+    )
     setLoading(false)
   }
+
   const getContent = async () => {
     const json = await (
       await fetch(
@@ -68,9 +74,11 @@ function Review() {
     setContent(json)
     setLoading(false)
   }
+
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }
+
   return (
     <>
       {!loading ? (
