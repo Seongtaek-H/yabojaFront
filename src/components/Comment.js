@@ -19,9 +19,6 @@ const StyledTextarea = styled.div`
     font-weight: 800;
     margin-right: 2rem;
   }
-  p {
-    margin-right: 2rem;
-  }
   button {
     background-color: gray;
     cursor: pointer;
@@ -32,7 +29,7 @@ const StyledTextarea = styled.div`
   }
 `
 export const Comment = (props) => {
-  const [newComment, setNewComment] = useState('')
+  const [newComment, setNewComment] = useState(props.data.contents)
   const [isUpdating, setIsUpdating] = useState(false)
   const navigate = useNavigate()
 
@@ -59,12 +56,12 @@ export const Comment = (props) => {
   }
   return (
     <StyledTextarea>
-      <span>내 아이디 </span>
+      <span> {props.data.user.name} </span>
       {!isUpdating ? (
         <p>{props.data.contents}</p>
       ) : (
         <input
-          placeholder={props.data.contents}
+          value={newComment}
           onChange={(e) => {
             setNewComment(e.target.value)
           }}

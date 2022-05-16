@@ -34,12 +34,6 @@ const Reviews = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  p {
-    margin: 0%;
-    padding: 0%;
-    font-size: 2rem;
-    font-weight: bold;
-  }
 `
 function Review() {
   const { id, type } = useParams()
@@ -91,7 +85,7 @@ function Review() {
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           <Reviews>
-            <p>{content.title ? content.title : content.name}</p>
+            <h1>{content.title ? content.title : content.name}</h1>
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <div key={review.no}>
