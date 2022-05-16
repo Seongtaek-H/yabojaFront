@@ -34,6 +34,7 @@ const StyledBtn = styled.button`
   color: white;
   border: none;
   cursor: pointer;
+  font-size: 2rem;
   &:hover {
     transition: all 0.1s ease-in-out;
     color: orange;

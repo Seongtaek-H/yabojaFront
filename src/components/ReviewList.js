@@ -12,6 +12,7 @@ import {
   getCommentWithReviewNo,
   sendLikeWithReviewNo,
 } from '../api/axios'
+import { formatDate } from '../utils/filter'
 
 const Review = styled.div`
   display: grid;
@@ -19,16 +20,14 @@ const Review = styled.div`
   background-color: #212529;
   border-radius: 10px;
   width: 40vw;
-  height: 20vh;
-  margin-top: 3vw;
+  margin-top: 1rem;
   padding: 10px;
 `
 const User = styled.div`
   width: 100%;
-  display: grid;
-  grid-template-columns: 8fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   section span:nth-child(2) {
-    border: 1px gray solid;
     margin-left: 10px;
     padding: 5px;
     border-radius: 5px;
@@ -36,6 +35,12 @@ const User = styled.div`
   section p {
     margin-top: 10px;
     font-size: 10px;
+  }
+  div {
+    display: flex;
+    div:nth-child(1) {
+      margin-right: 1rem;
+    }
   }
 `
 const Content = styled.div`
@@ -46,12 +51,10 @@ const Content = styled.div`
   margin: 10px;
 `
 const Delete = styled.div`
-  margin-left: 5px;
   display: flex;
   background-color: gray;
-  width: 50px;
-  height: 70%;
-  border-radius: 10px;
+  border-radius: 1rem;
+  padding: 1rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -139,26 +142,25 @@ export const ReviewList = (props) => {
           <section>
             <span>{props.data.user.nickName}</span>
             <span>⭐&nbsp;&nbsp;{props.data.ratings}</span>
-            <p>📆{props.data.createdAt}</p>
+            <p>📆{formatDate(props.data.createdAt)}</p>
           </section>
-          <></>
           {userData.nickName === props.data.user.nickName ? (
-            <>
+            <div>
               <Delete
                 onClick={() => {
                   onClickRevise()
                 }}
               >
-                수정
+                <i className="fa-solid fa-pencil"></i>
               </Delete>
               <Delete
                 onClick={() => {
                   onClickReviewDelete(props.data.no)
                 }}
               >
-                삭제
+                <i className="fa-solid fa-trash-can"></i>
               </Delete>
-            </>
+            </div>
           ) : (
             ''
           )}
@@ -166,7 +168,7 @@ export const ReviewList = (props) => {
         <Content>{props.data.contents}</Content>
         <Reply>
           <span>❤️ {props.data.likes.length}</span>
-          <span>💬 0</span>
+          <span>💬 {comments.length}</span>
         </Reply>
         <Btn>
           {likePressed ? (

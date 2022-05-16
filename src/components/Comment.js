@@ -7,22 +7,27 @@ import {
 } from '../api/axios'
 
 const StyledTextarea = styled.div`
-  margin-top: 5px;
+  margin-top: 0.5rem;
   background-color: #171721;
   border-radius: 10px;
   width: 40vw;
-  height: 10vh;
   padding: 20px;
+  display: grid;
   align-items: center;
-  display: flex;
+  grid-template-columns: max-content auto max-content;
+
   span {
     font-weight: 800;
-    margin-right: 2rem;
+    margin-right: 1rem;
   }
   button {
     background-color: gray;
     cursor: pointer;
-    margin-left: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+  button:nth-child(1) {
+    margin: 0 1rem;
   }
   div {
     display: flex;
@@ -70,13 +75,23 @@ export const Comment = (props) => {
       <div>
         {!isUpdating ? (
           <>
-            <button onClick={handleChangeIsUpdating}>댓글 수정</button>
-            <button onClick={handleDeleteComment}>댓글 삭제</button>
+            <button onClick={handleChangeIsUpdating}>
+              {' '}
+              <i className="fa-solid fa-pencil"></i>
+            </button>
+            <button onClick={handleDeleteComment}>
+              <i className="fa-solid fa-trash-can"></i>
+            </button>
           </>
         ) : (
           <>
-            <button onClick={handleUpdateComment}>작성 완료</button>
-            <button onClick={handleChangeIsUpdating}>수정 취소</button>
+            <button onClick={handleUpdateComment}>
+              {' '}
+              <i className="fa-solid fa-check"></i>
+            </button>
+            <button onClick={handleChangeIsUpdating}>
+              <i className="fa-solid fa-x"></i>
+            </button>
           </>
         )}
       </div>
