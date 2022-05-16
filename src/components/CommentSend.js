@@ -4,24 +4,29 @@ import { createComment } from '../api/axios'
 import { useNavigate } from 'react-router-dom'
 
 const StyledTextarea = styled.div`
-  margin-top: 5px;
+  margin-top: 0.5rem;
   background-color: #171721;
   border-radius: 10px;
   width: 40vw;
-  height: 10vh;
   padding: 20px;
   align-items: center;
-  display: flex;
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+  span {
+    margin-right: 1rem;
+  }
   input {
     all: unset;
-    margin-left: 30px;
-    width: 25vw;
+    width: 100%;
     height: 100%;
     border-bottom: 1px gray solid;
   }
   button {
+    margin-left: 1rem;
     background-color: gray;
     cursor: pointer;
+    padding: 1rem;
+    border-radius: 1rem;
   }
 `
 export const CommentSend = (props) => {
@@ -48,7 +53,7 @@ export const CommentSend = (props) => {
           setReply(e.target.value)
         }}
       ></input>
-      <button onClick={handleSendComment}>댓글 전송</button>
+      <button onClick={handleSendComment}>댓글 달기</button>
     </StyledTextarea>
   )
 }

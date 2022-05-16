@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   h2 {
     padding-left: 10px;
     padding-bottom: 10px;
-    cursor: pointer;
     font-family: 'Noto100';
   }
   position: relative;
@@ -38,21 +37,17 @@ const StyleBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  height: 200px;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 3rem;
   border: none;
-  border-radius: 50%;
-  background-color: gray;
   opacity: 0.8;
   position: absolute;
-  right: ${(props) => (props.right ? '1vw' : '')};
-  left: ${(props) => (props.left ? '1vw' : '')};
-  top: 15vh;
+  right: ${(props) => (props.right ? '0px' : '')};
+  left: ${(props) => (props.left ? '0px' : '')};
   z-index: 10;
   &:hover {
-    transform: scale(1.1);
+    background-color: gray;
   }
   @media screen and (max-width: 412px) {
     top: 17vh;

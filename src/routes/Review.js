@@ -8,12 +8,6 @@ import Loading from '../components/loading'
 import { getReview } from '../api/axios'
 
 const Container = styled.div`
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
-    url(${(props) => props.url});
-  background-size: cover;
-  padding: 3vw;
-  width: 100vw;
-  min-height: 90vh;
   display: flex;
   justify-content: center;
 `
@@ -34,6 +28,14 @@ const Reviews = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h1 {
+    margin: 0;
+    margin-top: 1rem;
+  }
+`
+const NoReview = styled.div`
+  margin-top: 1rem;
+  font-size: 2rem;
 `
 function Review() {
   const { id, type } = useParams()
@@ -76,7 +78,7 @@ function Review() {
   return (
     <>
       {!loading ? (
-        <Container url={makeImagePath(content.backdrop_path)}>
+        <Container>
           <WriteBtn
             onClick={() => {
               setShowReviewModal(true)
@@ -96,7 +98,7 @@ function Review() {
                 </div>
               ))
             ) : (
-              <p>아직 작성된 리뷰가 없습니다.</p>
+              <NoReview>아직 작성된 리뷰가 없습니다.</NoReview>
             )}
           </Reviews>
           <Modal
