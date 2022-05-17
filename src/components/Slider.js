@@ -116,10 +116,10 @@ function Slider({ title, criteria }) {
   return (
     <Wrapper>
       <h2>{title}</h2>
-      <StyleBtn left onClick={decreaseIndex}>
+      <StyleBtn left onClick={increaseIndex}>
         <i className="fa-solid fa-chevron-left"></i>
       </StyleBtn>
-      <StyleBtn right onClick={increaseIndex}>
+      <StyleBtn right onClick={decreaseIndex}>
         <i className="fa-solid fa-chevron-right"></i>
       </StyleBtn>
       <AnimatePresence custom={reverse} onExitComplete={toggleLeaving}>
