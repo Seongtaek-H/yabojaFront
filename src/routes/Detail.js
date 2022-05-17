@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Loading from '../components/loading'
+import { getUserFromCookie } from '../utils/cookie'
 
 const Bg = styled.div`
   width: 100vw;
@@ -77,10 +78,14 @@ const Btn = styled.button`
 
 function Detail() {
   const API_KEY = process.env.REACT_APP_API_KEY
+  const navigate = useNavigate()
   const { id, type } = useParams()
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState([])
 
+  useEffect(() => {
+    getContent()
+  }, [])
   const getContent = async () => {
     const json = await (
       await fetch(
@@ -90,14 +95,22 @@ function Detail() {
     setLoading(false)
     setContent(json)
   }
-  useEffect(() => {
-    getContent()
-  }, [])
-
   const makeImagePath = (id) => {
     return `https://image.tmdb.org/t/p/original/${id}`
   }
-
+  const handleCheckLogin = () => {
+    if (getUserFromCookie()) {
+      navigate(`/review/${type}/${content.id}`)
+    } else {
+      if (
+        window.confirm(
+          '로그인이 필요한 페이지입니다. 회원가입 페이지로 이동합니다.'
+        )
+      ) {
+        navigate('/join')
+      }
+    }
+  }
   return (
     <>
       {loading ? (
@@ -133,9 +146,7 @@ function Detail() {
                     ? content.overview
                     : '등록된 정보가 없습니다.'}
                 </Thin>
-                <Link to={`/review/${type}/${content.id}`}>
-                  <Btn>리뷰게시판</Btn>
-                </Link>
+                <Btn onClick={handleCheckLogin}>리뷰게시판</Btn>
               </StyledDetail>
             </GridWrapper>
           </Bg>

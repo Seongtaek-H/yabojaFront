@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   h2 {
     padding-left: 10px;
     padding-bottom: 10px;
-    cursor: pointer;
     font-family: 'Noto100';
   }
   position: relative;
@@ -16,7 +15,7 @@ const Wrapper = styled.div`
 const MotionContainer = styled(motion.div)`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   column-gap: 10px;
   position: absolute;
   z-index: 5;
@@ -35,76 +34,97 @@ const MotionBox = styled(motion.div)`
   }
 `
 const StyleBtn = styled.button`
-  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  cursor: pointer;
+  font-size: 3rem;
   border: none;
-  border-radius: 50%;
-  width: 2.5rem;
-  background-color: gray;
   opacity: 0.8;
   position: absolute;
-  right: 1vw;
-  top: 15vh;
+  right: ${(props) => (props.right ? '0px' : '')};
+  left: ${(props) => (props.left ? '0px' : '')};
   z-index: 10;
+  &:hover {
+    background-color: gray;
+  }
   @media screen and (max-width: 412px) {
     top: 17vh;
   }
 `
 function Slider({ title, criteria }) {
+  const offset = 5
   const API_KEY = process.env.REACT_APP_API_KEY
-
-  const makeContentsPath = (criteria) => {
-    return `https://api.themoviedb.org/3/movie/${criteria}?api_key=${API_KEY}`
-  }
-
   const [contents, setContents] = useState([])
-  const getContents = async () => {
-    const json = await (await fetch(makeContentsPath(criteria))).json()
-    setContents(json.results)
-  }
+  const [index, setindex] = useState(0)
+  const [reverse, setReverse] = useState(false)
+  const [leaving, setLeaving] = useState(false)
 
   useEffect(() => {
     getContents()
   }, [])
-
-  const [index, setindex] = useState(0)
-  const [leaving, setLeaving] = useState(false)
+  const makeContentsPath = (criteria) => {
+    return `https://api.themoviedb.org/3/movie/${criteria}?api_key=${API_KEY}`
+  }
+  const getContents = async () => {
+    const json = await (await fetch(makeContentsPath(criteria))).json()
+    setContents(json.results)
+  }
   const toggleLeaving = () => setLeaving((prev) => !prev)
   const increaseIndex = () => {
     if (contents) {
       if (leaving) return
+      setReverse(false)
       setLeaving(true)
       const totalContents = contents.length
       const maxIndex = Math.ceil(totalContents / offset) - 1
       setindex((prev) => (prev === maxIndex ? 0 : prev + 1))
     }
   }
-
-  const offset = 4
+  const decreaseIndex = () => {
+    if (contents) {
+      if (leaving) return
+      setReverse(true)
+      setLeaving(true)
+      const totalContents = contents.length
+      const maxIndex = Math.ceil(totalContents / offset) - 1
+      setindex((prev) => (prev === 0 ? maxIndex : prev - 1))
+    }
+  }
 
   const makeImagePath = (id, format) => {
     return `https://image.tmdb.org/t/p/${format ? format : 'original'}/${id}`
   }
 
   const rowVariants = {
-    hidden: {
-      x: window.outerWidth,
+    hidden: (reverse) => {
+      return {
+        x: reverse ? window.outerWidth : -window.outerWidth,
+      }
     },
     visible: {
       x: 0,
     },
-    exit: {
-      x: -window.outerWidth,
+    exit: (reverse) => {
+      return {
+        x: reverse ? -window.outerWidth : window.outerWidth,
+      }
     },
   }
 
   return (
     <Wrapper>
       <h2>{title}</h2>
-      <StyleBtn onClick={increaseIndex}>
+      <StyleBtn left onClick={decreaseIndex}>
+        <i className="fa-solid fa-chevron-left"></i>
+      </StyleBtn>
+      <StyleBtn right onClick={increaseIndex}>
         <i className="fa-solid fa-chevron-right"></i>
       </StyleBtn>
-      <AnimatePresence onExitComplete={toggleLeaving}>
+      <AnimatePresence custom={reverse} onExitComplete={toggleLeaving}>
         <MotionContainer
+          custom={reverse}
           variants={rowVariants}
           initial="hidden"
           animate="visible"

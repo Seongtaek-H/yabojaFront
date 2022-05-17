@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { getUserFromCookie } from '../utils/cookie'
 import { getMovieReviews, getReviewsWithId, getTvReviews } from '../api/axios'
-import apiAxios from '../api/apiAxios'
 
 const Container = styled.div`
   padding: 150px 120px;
@@ -18,8 +17,8 @@ const UserInfo = styled.div`
   }
 `
 const Avatar = styled.div`
-  width: 55px;
-  height: 55px;
+  width: 3rem;
+  height: 3rem;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -29,20 +28,15 @@ const Avatar = styled.div`
 `
 const ContentContainer = styled.div`
   background-color: #3d3d3d;
-  padding: 20px;
+  padding: 2rem 2rem 2rem 2rem;
   border-radius: 10px;
-`
-const BtnContainer = styled.div`
-  margin-top: 1%;
-  display: flex;
-  width: 18%;
-  justify-content: space-between;
-`
-const StyledBtn = styled.button`
-  cursor: pointer;
-  &:hover {
-    color: orange;
+  hr {
+    margin: 2rem 0;
   }
+`
+const Title = styled.div`
+  font-weight: 900;
+  font-size: 2rem;
 `
 const StyledLink = styled(Link)`
   all: unset;
@@ -63,19 +57,19 @@ const ReviewContainer = styled.div`
 `
 function MyPage() {
   const [reviews, setReviews] = useState([])
-  const [tvReviews, setTvReviews] = useState([])
   const [userData, setUserData] = useState('')
 
   useEffect(() => {
     setUserData(JSON.parse(getUserFromCookie()))
   }, [])
 
-  useEffect(async () => {
-    const res = await getReviewsWithId(JSON.parse(getUserFromCookie()).id)
-    setReviews(res.data.reviews)
+  useEffect(() => {
+    const myReview = async () => {
+      const res = await getReviewsWithId(JSON.parse(getUserFromCookie()).id)
+      setReviews(res.data.reviews)
+    }
+    myReview()
   }, [])
-
-  console.log(reviews)
 
   return (
     <Container>
@@ -84,28 +78,24 @@ function MyPage() {
         <p>{userData ? userData.name : ''}님</p>
       </UserInfo>
       <ContentContainer>
-        <h4>내가 쓴 리뷰</h4>
+        <Title>내가 쓴 리뷰</Title>
         <hr></hr>
         <div>
           {reviews.map((review) => {
             return (
               <StyledLink
                 key={review.no}
-                to={`/detail/${review.targetType}/${review.targetId}`}
+                to={`/review/${review.targetType}/${review.targetId}`}
               >
                 <ReviewContainer>
-                  <span>{review.contents}</span>
-                  <span>{review.targetId}</span>
+                  <span>{review.contents ? review.contents : '내용없음'}</span>
+                  <span>{review.title ? review.title : '타이틀 없음'}</span>
                 </ReviewContainer>
               </StyledLink>
             )
           })}
         </div>
       </ContentContainer>
-      <BtnContainer>
-        <StyledBtn type="button">회원정보 수정</StyledBtn>
-        <StyledBtn type="button">회원탈퇴</StyledBtn>
-      </BtnContainer>
     </Container>
   )
 }

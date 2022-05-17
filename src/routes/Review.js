@@ -2,25 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { ReviewList } from '../components/ReviewList'
-
 import Modal from 'react-modal/lib/components/Modal'
-
 import ReviewModal from '../components/ReviewModal'
 import Loading from '../components/loading'
+import { getReview } from '../api/axios'
 
-const Bg = styled.div`
+const Container = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100vw;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
-    url(${(props) => props.url});
-  background-size: cover;
-  background-position: center center;
-  overflow: scroll;
 `
-
 const WriteBtn = styled.div`
   position: fixed;
   bottom: 20px;
@@ -32,17 +22,22 @@ const WriteBtn = styled.div`
   }
 `
 const Reviews = styled.div`
-  height: 100%;
-  width: 100%;
-  /* margin-top: 100px; */
-  /* padding-top: 10%; */
-  background-color: green;
+  width: 60%;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h1 {
+    margin: 0;
+    margin-top: 1rem;
+  }
 `
-function Review(props) {
+const NoReview = styled.div`
+  margin-top: 1rem;
+  font-size: 2rem;
+`
+function Review() {
   const { id, type } = useParams()
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState([])
@@ -50,6 +45,22 @@ function Review(props) {
   const [showReviewModal, setShowReviewModal] = useState(false)
 
   const API_KEY = process.env.REACT_APP_API_KEY
+
+  useEffect(() => {
+    getContent()
+    review()
+  }, [])
+
+  const review = async () => {
+    const res = await getReview(id, type)
+    setReviews(
+      res.data.reviews.sort((a, b) => {
+        return b.no - a.no
+      })
+    )
+    setLoading(false)
+  }
+
   const getContent = async () => {
     const json = await (
       await fetch(
@@ -60,31 +71,14 @@ function Review(props) {
     setLoading(false)
   }
 
-  useEffect(() => {
-    getContent()
-  }, [])
-
-  // useEffect(() => {
-  //   getReviews()
-  // }, [])
-
   const makeImagePath = (path) => {
     return `https://image.tmdb.org/t/p/original/${path}`
   }
 
-  // const getReviews = async () => {
-  //   const response = await apiAxios.get(
-  //     `/review?targetId=${id}&targetType=${type}`
-  //   )
-  //   if (response.data) {
-  //     setReviews(response.data.reviews)
-  //   }
-  // }
-  console.log(reviews)
   return (
     <>
       {!loading ? (
-        <Bg url={makeImagePath(content.backdrop_path)}>
+        <Container>
           <WriteBtn
             onClick={() => {
               setShowReviewModal(true)
@@ -93,14 +87,18 @@ function Review(props) {
             <i className="fas fa-pen-square"></i>
           </WriteBtn>
           <Reviews>
+            <h1>{content.title ? content.title : content.name}</h1>
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <div key={review.no}>
-                  <ReviewList data={review}></ReviewList>
+                  <ReviewList
+                    data={review}
+                    poster={makeImagePath(content.backdrop_path)}
+                  ></ReviewList>
                 </div>
               ))
             ) : (
-              <p>아직 작성된 리뷰가 없습니다.</p>
+              <NoReview>아직 작성된 리뷰가 없습니다.</NoReview>
             )}
           </Reviews>
           <Modal
@@ -108,6 +106,7 @@ function Review(props) {
             onRequestClose={() => {
               setShowReviewModal(false)
             }}
+            ariaHideApp={false}
             style={{
               overlay: {
                 position: 'fixed',
@@ -141,7 +140,7 @@ function Review(props) {
               id={content.id}
             ></ReviewModal>
           </Modal>
-        </Bg>
+        </Container>
       ) : (
         <Loading></Loading>
       )}
