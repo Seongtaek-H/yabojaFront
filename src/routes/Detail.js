@@ -107,7 +107,7 @@ function Detail() {
           '로그인이 필요한 페이지입니다. 회원가입 페이지로 이동합니다.'
         )
       ) {
-        navigate('/join')
+        navigate('/login')
       }
     }
   }
