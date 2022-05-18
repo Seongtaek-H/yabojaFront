@@ -1,8 +1,3 @@
----
-title: '야보자(Yaboja)'
-disqus: hackmd
----
-
 # 야보자(Yaboja)
 
 **[바로가기](https://yaboja.netlify.app/)**
@@ -12,7 +7,15 @@ disqus: hackmd
 
 ## 목차
 
-[TOC]
+- [🎯 Project's Goal](#---project-s-goal)
+- [🖥 Function](#---function)
+- [🧑🏻‍💻 Skills](#--------skills)
+- [⚙ Environment](#--environment)
+- [🔧 Deployment](#---deployment)
+- [📒 Usage](#---usage)
+  - [실행하기](#----)
+  - [OS별 명령어 수정](#os--------)
+- [🙋🏻‍♂️ Members](#--------members)
 
 <br>
 
@@ -23,32 +26,29 @@ disqus: hackmd
 
 ## 🖥 Function
 
-- 회원가입, 로그인 기능
-- 아이디, 비밀번호 찾기 기능
-- 콘텐츠 검색 기능
-- 콘텐츠 필터 기능
-- 리뷰 기능
-- 댓글, 좋아요 기능
+- 회원가입 및 로그인
+- 최신 영화 및 TV 시리즈 보기
+- 컨텐츠 검색 페이지
+- 컨텐츠별 리뷰 게시판
+- 리뷰별 댓글, 좋아요
   <br>
 
 ## 🧑🏻‍💻 Skills
 
-Front-end : <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/><img src="https://img.shields.io/badge/javascript-yellow?style=flat-square&logo=javascript&logoColor=black"/><img src="https://camo.githubusercontent.com/0e2d61e6eed05d238f8996c0ea0c3f7d37994dd107a5b172275b4c85669aaf3d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7374796c656420636f6d706f6e656e74732d4442373039333f7374796c653d666c61742d737175617265266c6f676f3d7374796c65642d636f6d706f6e656e7473266c6f676f436f6c6f723d7768697465"/>
+**Front-end : <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/><img src="https://img.shields.io/badge/javascript-yellow?style=flat-square&logo=javascript&logoColor=black"/><img src="https://camo.githubusercontent.com/0e2d61e6eed05d238f8996c0ea0c3f7d37994dd107a5b172275b4c85669aaf3d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7374796c656420636f6d706f6e656e74732d4442373039333f7374796c653d666c61742d737175617265266c6f676f3d7374796c65642d636f6d706f6e656e7473266c6f676f436f6c6f723d7768697465"/>**
 
-Back-end : <img src="https://img.shields.io/badge/nestJS-black?style=flat-square&logo=nestjs&logoColor=red"/><img src="https://img.shields.io/badge/Typescript-blue?style=flat-square&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/passport-green?style=flat-square&logo=passport&logoColor=black"/><img src="https://img.shields.io/badge/axios-purple?style=flat-square&logo=Axios&logoColor=black"/><img src="https://img.shields.io/badge/bcrypt-navy?style=flat-square&logo=bcrypt&logoColor=black"/><br>
+**Back-end : <img src="https://img.shields.io/badge/nestJS-black?style=flat-square&logo=nestjs&logoColor=red"/><img src="https://img.shields.io/badge/Typescript-blue?style=flat-square&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/passport-green?style=flat-square&logo=passport&logoColor=black"/><img src="https://img.shields.io/badge/axios-purple?style=flat-square&logo=Axios&logoColor=black"/><img src="https://img.shields.io/badge/bcrypt-navy?style=flat-square&logo=bcrypt&logoColor=black"/>**
 <br>
 
 ## ⚙ Environment
 
 <img src="https://img.shields.io/badge/Eslint-4B32C3?style=flat-square&logo=Eslint&logoColor="/><img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
 <img src="https://img.shields.io/badge/node17.3.1-green?style=flat-square&logo=node.js&logoColor=black"/><img src="https://img.shields.io/badge/yarn 1.22.10-black?style=flat-square&logo=yarn&logoColor=red"/><img src="https://img.shields.io/badge/postgres-blue?style=flat-square&logo=postgres&logoColor=red"/>
-
 <br>
 
 ## 🔧 Deployment
 
 <img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=Netlify&logoColor=black"/><img src="https://img.shields.io/badge/HEROKU-purple?style=flat-square&logo=HEROKU&logoColor=white"/>
-
 <br>
 
 ## 📒 Usage
@@ -82,8 +82,8 @@ Back-end : <img src="https://img.shields.io/badge/nestJS-black?style=flat-squar
 
 ## 🙋🏻‍♂️ Members
 
-- `Front-end` : Seongtaek Hwang, Jung Young Jun
-- `Back-end` : lucid-jin
+`Front-end` : Seongtaek Hwang, Jung Young Jun
+`Back-end` : lucid-jin
 
 | Seongtaek Hwang                                           | Jung Young Jun                                            | lucid-jin                                                 |
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |

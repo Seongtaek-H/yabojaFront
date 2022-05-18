@@ -78,7 +78,7 @@ function Review() {
   return (
     <>
       {!loading ? (
-        <Container>
+        <Container url={makeImagePath(content.backdrop_path)}>
           <WriteBtn
             onClick={() => {
               setShowReviewModal(true)
