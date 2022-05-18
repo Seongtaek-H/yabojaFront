@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import GlobalStyle from './css/globalStyle'
 import Join from './routes/Join'
 import Login from './routes/Login'
