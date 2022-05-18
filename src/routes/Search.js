@@ -115,7 +115,7 @@ function Search() {
               <Type>영화</Type>
               <Result>
                 {movies.results.map((poster) => (
-                  <Poster type="Movie" poster={poster} />
+                  <Poster type="movie" poster={poster} />
                 ))}
               </Result>
             </>
@@ -127,7 +127,7 @@ function Search() {
               <Type>TV 시리즈</Type>
               <Result>
                 {tvs.results.map((poster) => (
-                  <Poster type="TV" poster={poster} />
+                  <Poster type="tv" poster={poster} />
                 ))}
               </Result>
             </>

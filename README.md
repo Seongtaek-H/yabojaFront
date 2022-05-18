@@ -35,9 +35,9 @@
 
 ## 🧑🏻‍💻 Skills
 
-**Front-end : **<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/><img src="https://img.shields.io/badge/javascript-yellow?style=flat-square&logo=javascript&logoColor=black"/><img src="https://camo.githubusercontent.com/0e2d61e6eed05d238f8996c0ea0c3f7d37994dd107a5b172275b4c85669aaf3d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7374796c656420636f6d706f6e656e74732d4442373039333f7374796c653d666c61742d737175617265266c6f676f3d7374796c65642d636f6d706f6e656e7473266c6f676f436f6c6f723d7768697465"/>
+`Front-end` : <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/><img src="https://img.shields.io/badge/javascript-yellow?style=flat-square&logo=javascript&logoColor=black"/><img src="https://camo.githubusercontent.com/0e2d61e6eed05d238f8996c0ea0c3f7d37994dd107a5b172275b4c85669aaf3d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7374796c656420636f6d706f6e656e74732d4442373039333f7374796c653d666c61742d737175617265266c6f676f3d7374796c65642d636f6d706f6e656e7473266c6f676f436f6c6f723d7768697465"/>
 
-**Back-end : **<img src="https://img.shields.io/badge/nestJS-black?style=flat-square&logo=nestjs&logoColor=red"/><img src="https://img.shields.io/badge/Typescript-blue?style=flat-square&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/passport-green?style=flat-square&logo=passport&logoColor=black"/><img src="https://img.shields.io/badge/axios-purple?style=flat-square&logo=Axios&logoColor=black"/><img src="https://img.shields.io/badge/bcrypt-navy?style=flat-square&logo=bcrypt&logoColor=black"/>
+`Back-end` : <img src="https://img.shields.io/badge/nestJS-black?style=flat-square&logo=nestjs&logoColor=red"/><img src="https://img.shields.io/badge/Typescript-blue?style=flat-square&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/passport-green?style=flat-square&logo=passport&logoColor=black"/><img src="https://img.shields.io/badge/axios-purple?style=flat-square&logo=Axios&logoColor=black"/><img src="https://img.shields.io/badge/bcrypt-navy?style=flat-square&logo=bcrypt&logoColor=black"/>
 <br>
 
 ## ⚙ Environment

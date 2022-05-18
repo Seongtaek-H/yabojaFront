@@ -11,6 +11,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
 `
+
 const WriteBtn = styled.div`
   position: fixed;
   bottom: 20px;

@@ -35,7 +35,7 @@ const StyledLink = styled(Link)`
 `
 
 function Poster({ poster, type }) {
-  const makeImagePath = (id, format) => {
+  const makeImagePath = (id) => {
     return `https://image.tmdb.org/t/p/original/${id}`
   }
 

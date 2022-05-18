@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Loading from '../components/loading'
 import { getUserFromCookie } from '../utils/cookie'
@@ -83,6 +83,7 @@ function Detail() {
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState([])
 
+  console.log(id, type)
   useEffect(() => {
     getContent()
   }, [])
