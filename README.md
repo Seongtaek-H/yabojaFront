@@ -4,6 +4,7 @@
 
 최신 영화 및 TV 시리즈 정보를 제공하고, 리뷰 및 댓글을 통해 이용자들의 의견을 교환할 수 있는 커뮤니티 사이트
 <br>
+![](https://i.imgur.com/fUIiR5K.jpg)
 
 ## 목차
 
@@ -26,11 +27,11 @@
 
 ## 🖥 Function
 
-- 회원가입 및 로그인
-- 최신 영화 및 TV 시리즈 보기
-- 컨텐츠 검색 페이지
-- 컨텐츠별 리뷰 게시판
-- 리뷰별 댓글, 좋아요
+- 회원가입 및 로그인 - [동영상보기](https://youtu.be/TyLJzet6xIM)
+- 최신 영화 및 TV 시리즈 보기 - [동영상보기](https://youtu.be/yPLXd0lBRmM)
+- 컨텐츠 검색 페이지 - [동영상보기](https://youtu.be/KVZLj39vkgk)
+- 컨텐츠별 리뷰 게시판 - [동영상보기](https://youtu.be/4rcm3tqrw8w)
+- 리뷰별 댓글, 좋아요 - [동영상보기](https://youtu.be/FiGCMYCEUjU)
   <br>
 
 ## 🧑🏻‍💻 Skills
@@ -83,6 +84,7 @@
 ## 🙋🏻‍♂️ Members
 
 `Front-end` : Seongtaek Hwang, Jung Young Jun
+
 `Back-end` : lucid-jin
 
 | Seongtaek Hwang                                           | Jung Young Jun                                            | lucid-jin                                                 |
