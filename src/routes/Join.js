@@ -19,6 +19,7 @@ const Form = styled.div`
   height: 80vh;
   background-color: #212529;
   padding: 1%;
+  border-radius: 10px;
 `
 const Content = styled.div`
   display: flex;

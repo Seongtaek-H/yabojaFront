@@ -4,9 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../store/isLoginSlice'
 
-import Modal from 'react-modal'
 import styled from 'styled-components'
-import { FindModal } from '../components/FindModal'
 
 import { getUser, loginUser } from '../api/axios'
 import { saveAuthToCookie, saveUserToCookie } from '../utils/cookie'
@@ -69,22 +67,6 @@ const StyledBtn = styled.button`
     transition: all 0.3s;
   }
 `
-const BtnContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-`
-const FindContainer = styled.div`
-  margin-top: 5%;
-  width: 65%;
-  button {
-    width: 45%;
-    margin: 0 5px;
-  }
-  button:hover {
-    opacity: 0.7;
-  }
-`
 const Join = styled.div`
   margin-top: 5%;
 `
@@ -105,8 +87,6 @@ const JoinLink = styled(Link)`
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [showEmailModal, setShowEmailModal] = useState(false)
-  const [showPwdModal, setShowPwdModal] = useState(false)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -164,104 +144,12 @@ function Login() {
             />
           </StyledLabel>
           <StyledBtn onClick={handleLogin}>로그인하기</StyledBtn>
-          <BtnContainer>
-            <FindContainer
-              style={{
-                textAlign: 'center',
-              }}
-            >
-              <button
-                onClick={() => {
-                  setShowEmailModal(true)
-                }}
-              >
-                아이디 찾기
-              </button>
-              <button
-                onClick={() => {
-                  setShowPwdModal(true)
-                }}
-              >
-                비밀번호 찾기
-              </button>
-            </FindContainer>
-          </BtnContainer>
           <Join>
             <JoinText>아직 계정이 없으신가요?</JoinText>
             <JoinLink to={'/join'}>회원가입하기</JoinLink>
           </Join>
         </GridContainer>
       </Container>
-      <>
-        <Modal
-          isOpen={showEmailModal}
-          onRequestClose={() => {
-            setShowEmailModal(false)
-          }}
-          style={{
-            overlay: {
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(255, 255, 255, 0.75)',
-              zIndex: 3,
-            },
-            content: {
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '40vw',
-              height: '50vh',
-              border: '1px solid #ccc',
-              background: '#212529',
-              overflow: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              borderRadius: '10px',
-              outline: 'none',
-              padding: '20px',
-            },
-          }}
-        >
-          <FindModal type={'Email'}></FindModal>
-        </Modal>
-        <Modal
-          isOpen={showPwdModal}
-          onRequestClose={() => {
-            setShowPwdModal(false)
-          }}
-          style={{
-            overlay: {
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(255, 255, 255, 0.75)',
-              zIndex: 3,
-            },
-            content: {
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '40vw',
-              height: '50vh',
-              border: '1px solid #ccc',
-              background: '#212529',
-              overflow: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              borderRadius: '10px',
-              outline: 'none',
-              padding: '20px',
-            },
-          }}
-        >
-          <FindModal type={'Pwd'}></FindModal>
-        </Modal>
-      </>
     </>
   )
 }
