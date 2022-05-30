@@ -19,8 +19,8 @@ const GridWrapper = styled.div`
 `
 
 const Poster = styled.div`
-  width: 55%;
-  height: 60%;
+  width: 20rem;
+  height: 25rem;
   background-image: url(${(props) => props.url});
   background-size: 100% 100%;
   background-position: center center;
