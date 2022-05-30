@@ -30,7 +30,7 @@ const Warning = styled.div`
 function NoMobile() {
   return (
     <Warning>
-      <div>YaboJa</div>
+      <div>Yaboja</div>
       Only Available on PC💻
     </Warning>
   )
