@@ -23,7 +23,7 @@ const FilterContainer = styled.div`
 `
 
 const Filter = styled.div`
-  width: calc(100% / 3);
+  width: calc(100% / 2);
   background-color: ${(props) => props.bgcolor || 'gray'};
   color: ${(props) => props.color || 'white'};
   cursor: pointer;
@@ -45,7 +45,6 @@ function What() {
   const [tvs, setTVs] = useState([])
   const [flag, setflag] = useState(true)
   const [flag2, setflag2] = useState(false)
-  const [flag3, setflag3] = useState(false)
 
   const getMovies = async () => {
     const json = await (
@@ -68,33 +67,17 @@ function What() {
     getTVs()
     setLoading(false)
   }, [])
-
   const selectType = () => {
     setflag((prev) => !prev)
     if (flag2 === true) {
       setflag2((prev) => !prev)
     }
-    if (flag3 === true) {
-      setflag3((prev) => !prev)
-    }
   }
+
   const selectType2 = () => {
     setflag2((prev) => !prev)
     if (flag === true) {
       setflag((prev) => !prev)
-    }
-    if (flag3 === true) {
-      setflag3((prev) => !prev)
-    }
-  }
-
-  const selectType3 = () => {
-    setflag3((prev) => !prev)
-    if (flag === true) {
-      setflag((prev) => !prev)
-    }
-    if (flag2 === true) {
-      setflag2((prev) => !prev)
     }
   }
 
@@ -112,7 +95,7 @@ function What() {
               bgcolor={flag === true ? 'white' : ''}
               color={flag === true ? 'gray' : ''}
             >
-              All
+              영화
             </Filter>
             <Filter
               onClick={() => {
@@ -121,24 +104,12 @@ function What() {
               bgcolor={flag2 === true ? 'white' : ''}
               color={flag2 === true ? 'gray' : ''}
             >
-              영화
-            </Filter>
-            <Filter
-              onClick={() => {
-                if (!flag3) selectType3()
-              }}
-              bgcolor={flag3 === true ? 'white' : ''}
-              color={flag3 === true ? 'gray' : ''}
-            >
               TV 시리즈
             </Filter>
           </FilterContainer>
 
           {flag ? (
             <GridWrapper2>
-              {tvs.map((poster) => (
-                <Poster key={poster.id} type="tv" poster={poster} />
-              ))}
               {movies.map((poster) => (
                 <Poster key={poster.id} type="movie" poster={poster} />
               ))}
@@ -146,14 +117,6 @@ function What() {
           ) : null}
 
           {flag2 ? (
-            <GridWrapper2>
-              {movies.map((poster) => (
-                <Poster key={poster.id} type="movie" poster={poster} />
-              ))}
-            </GridWrapper2>
-          ) : null}
-
-          {flag3 ? (
             <GridWrapper2>
               {tvs.map((poster) => (
                 <Poster key={poster.id} type="tv" poster={poster} />
