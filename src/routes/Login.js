@@ -10,77 +10,67 @@ import { getUser, loginUser } from '../api/axios'
 import { saveAuthToCookie, saveUserToCookie } from '../utils/cookie'
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
   width: 100vw;
-  align-items: center;
-  justify-content: center;
+  height: 90vh;
+  position: relative;
 `
 const GridContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
-  width: 40%;
-  height: 80%;
-  padding: 30px 30px;
   justify-content: center;
   align-items: center;
   background-color: #212529;
-  border-radius: 10px;
-`
-const StyledLabel = styled.label`
-  width: 100%;
-  margin-top: 3%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  p {
-    font-size: 20px;
-    width: 15%;
+  border-radius: 1rem;
+
+  div {
+    width: 30rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    margin-bottom: 1rem;
+    label {
+      justify-self: center;
+    }
+    input {
+      background-color: black;
+      height: 4rem;
+      padding: 1rem;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      :focus {
+        outline: #808080 solid 1px;
+      }
+    }
   }
-`
-const StyledInput = styled.input`
-  background-color: black;
-  width: 50%;
-  height: 60px;
-  padding: 10px;
-  color: white;
-  border: none;
-  font-size: 20px;
-  :focus {
-    outline: #808080 solid 1px;
+  div:last-child {
+    display: flex;
+    justify-content: space-evenly;
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
 `
 const StyledBtn = styled.button`
-  margin-top: 5%;
+  margin: 2rem 0;
   color: white;
   background-color: red;
-  width: 55%;
-  height: 60px;
-  font-size: 25px;
+  width: 20rem;
+  height: 4rem;
+  font-size: 1.5rem;
   border: none;
-  border-radius: 5px;
-  justify-content: center;
+  border-radius: 1rem;
   &:hover {
     opacity: 0.7;
     color: white;
     transition: all 0.3s;
-  }
-`
-const Join = styled.div`
-  margin-top: 5%;
-`
-const JoinText = styled.span`
-  opacity: 0.7;
-  margin-right: 20px;
-`
-const JoinLink = styled(Link)`
-  all: unset;
-  cursor: pointer;
-
-  &:hover {
-    color: white;
-    opacity: 0.7;
   }
 `
 
@@ -117,9 +107,9 @@ function Login() {
     <>
       <Container>
         <GridContainer>
-          <StyledLabel htmlFor="email">
-            <p>이메일</p>
-            <StyledInput
+          <div>
+            <label htmlFor="email">이메일</label>
+            <input
               autoComplete="off"
               type="text"
               id="email"
@@ -129,10 +119,10 @@ function Login() {
               }}
               placeholder="이메일을 입력하세요."
             />
-          </StyledLabel>
-          <StyledLabel htmlFor="pwd">
-            <p>비밀번호</p>
-            <StyledInput
+          </div>
+          <div>
+            <label htmlFor="pwd">비밀번호</label>
+            <input
               autoComplete="off"
               type="password"
               id="pwd"
@@ -142,12 +132,12 @@ function Login() {
               }}
               placeholder="비밀번호를 입력하세요."
             />
-          </StyledLabel>
+          </div>
           <StyledBtn onClick={handleLogin}>로그인하기</StyledBtn>
-          <Join>
-            <JoinText>아직 계정이 없으신가요?</JoinText>
-            <JoinLink to={'/join'}>회원가입하기</JoinLink>
-          </Join>
+          <div>
+            <span>아직 계정이 없으신가요?</span>
+            <Link to={'/join'}>회원가입하기</Link>
+          </div>
         </GridContainer>
       </Container>
     </>
