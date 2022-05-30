@@ -75,7 +75,7 @@ function Slider({ title, criteria }) {
   const increaseIndex = () => {
     if (contents) {
       if (leaving) return
-      setReverse(false)
+      setReverse(true)
       setLeaving(true)
       const totalContents = contents.length
       const maxIndex = Math.ceil(totalContents / offset) - 1
@@ -85,7 +85,7 @@ function Slider({ title, criteria }) {
   const decreaseIndex = () => {
     if (contents) {
       if (leaving) return
-      setReverse(true)
+      setReverse(false)
       setLeaving(true)
       const totalContents = contents.length
       const maxIndex = Math.ceil(totalContents / offset) - 1
@@ -116,10 +116,10 @@ function Slider({ title, criteria }) {
   return (
     <Wrapper>
       <h2>{title}</h2>
-      <StyleBtn left onClick={increaseIndex}>
+      <StyleBtn left onClick={decreaseIndex}>
         <i className="fa-solid fa-chevron-left"></i>
       </StyleBtn>
-      <StyleBtn right onClick={decreaseIndex}>
+      <StyleBtn right onClick={increaseIndex}>
         <i className="fa-solid fa-chevron-right"></i>
       </StyleBtn>
       <AnimatePresence custom={reverse} onExitComplete={toggleLeaving}>

@@ -2,47 +2,41 @@ import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
 import Loading from '../components/loading'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
 
-const GridWrapper = styled.div`
-  width: 100%;
-  height: 90vh;
+const TitleContainer = styled.div`
+  height: 45rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
+    url(${(props) => props.url});
   background-size: cover;
-  padding-left: 20px;
-
+  div {
+    margin-left: 3rem;
+    span:nth-child(1) {
+      font-family: 'Noto500';
+      font-size: 3rem;
+    }
+    span:nth-child(2) {
+      display: inline-block;
+      font-size: 2rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+  }
   @media screen and (max-width: 412px) {
     display: none;
     height: auto;
   }
 `
-const TitleContainer = styled.div`
-  margin-left: 50px;
-  display: inline-block;
-  span:nth-child(1) {
-    font-family: 'Noto500';
-    font-size: 50px;
-  }
-  span:nth-child(2) {
-    display: inline-block;
-    font-size: 30px;
-  }
-  p {
-    font-size: 30px;
-  }
-
-  @media screen and (max-width: 412px) {
-    display: none;
-  }
+const SliderContainer = styled.div`
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
-const Blank = styled.div`
-  height: 250px;
-`
-
 function Home() {
-  const state = useSelector((state) => state)
   const API_KEY = process.env.REACT_APP_API_KEY
   const [loading, setLoading] = useState(true)
   const [contents, setContents] = useState([])
@@ -71,22 +65,17 @@ function Home() {
         <Loading></Loading>
       ) : (
         <>
-          <GridWrapper
-            style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0), rgba(0,0,0,1)), url(${makeImagePath(
-                contents[ranNum].backdrop_path
-              )})`,
-            }}
-          >
-            <TitleContainer>
+          <TitleContainer url={makeImagePath(contents[ranNum].backdrop_path)}>
+            <div>
               <span>야보자! 이거어때?</span>
               <span>에서</span>
               <p>원하는 콘텐츠들을 만나보세요.</p>
-            </TitleContainer>
-          </GridWrapper>
-          <Slider title="Top Rated" criteria="top_rated" />
-          <Blank></Blank>
-          <Slider title="Now Playing" criteria="now_playing" />
+            </div>
+          </TitleContainer>
+          <SliderContainer>
+            <Slider title="Top Rated" criteria="top_rated" />
+            <Slider title="Now Playing" criteria="now_playing" />
+          </SliderContainer>
         </>
       )}
     </>

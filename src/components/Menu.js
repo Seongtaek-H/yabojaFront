@@ -19,7 +19,7 @@ const Container = styled.div`
   justify-items: center;
   align-items: center;
   padding: 0 5vw 0 5vw;
-  z-index: 2;
+  z-index: 99;
 
   @media screen and (max-width: 412px) {
     display: flex;
