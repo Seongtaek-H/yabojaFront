@@ -49,9 +49,6 @@ const StyledBtn = styled.button`
   &:hover {
     background-color: gray;
   }
-  @media screen and (max-width: 412px) {
-    top: 17vh;
-  }
 `
 function Slider({ title, criteria }) {
   const offset = 5

@@ -25,10 +25,6 @@ const TitleContainer = styled.div`
       font-size: 2rem;
     }
   }
-  @media screen and (max-width: 412px) {
-    display: none;
-    height: auto;
-  }
 `
 const SliderContainer = styled.div`
   height: 20rem;

@@ -36,11 +36,6 @@ const MenuContainer = styled.div`
       margin-right: 1rem;
     }
   }
-  @media screen and (max-width: 412px) {
-    display: flex;
-    position: static;
-    background-color: transparent;
-  }
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -64,9 +59,6 @@ const StyledBtn = styled.div`
 `
 const Blank = styled.div`
   height: 5rem;
-  @media screen and (max-width: 412px) {
-    display: none;
-  }
 `
 function Menu() {
   const isLogin = useSelector((state) => state.isLogin.value)
