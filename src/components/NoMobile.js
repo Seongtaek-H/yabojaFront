@@ -31,7 +31,7 @@ function NoMobile() {
   return (
     <Warning>
       <div>Yaboja</div>
-      Only Available on PC💻
+      Only Available on Wide Screen 💻
     </Warning>
   )
 }
