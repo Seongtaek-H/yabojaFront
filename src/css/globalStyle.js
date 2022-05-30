@@ -2,6 +2,11 @@ import { createGlobalStyle } from 'styled-components'
 import '../css/font.css'
 
 const GlobalStyle = createGlobalStyle`
+
+  :root {
+    --min-width: 1130px;
+  }
+  
   *, *::before, *::after {
     box-sizing: border-box;
   }
