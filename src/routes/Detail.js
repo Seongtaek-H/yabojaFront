@@ -43,8 +43,8 @@ const StyledDetail = styled.div`
 `
 
 const Thin = styled.div`
-  margin-top: 30px;
-  font-size: 20px;
+  margin-top: 2rem;
+  font-size: 1.25rem;
 `
 
 const Medium = styled.div`
@@ -55,13 +55,13 @@ const Medium = styled.div`
 const Btn = styled.button`
   color: #fff;
   background-color: orange;
-  width: 10vw;
-  height: 5vh;
-  font-size: 18px;
+  width: 12rem;
+  height: 5rem;
+  font-size: 1.5rem;
   border: none;
   border-radius: 5px;
   justify-content: center;
-  margin-top: 5vh;
+  margin-top: 2rem;
   &:hover {
     opacity: 0.8;
     transition: all 0.3s;
