@@ -31,7 +31,7 @@ const TitleContainer = styled.div`
   }
 `
 const SliderContainer = styled.div`
-  height: 25rem;
+  height: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
