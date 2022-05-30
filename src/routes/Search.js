@@ -3,8 +3,9 @@ import Poster from '../components/Poster'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  height: 100vh;
   display: grid;
+  width: 100%;
+  min-width: var(--min-width);
   grid-template-rows: repeat(2, max-content);
   justify-items: center;
   align-items: center;
@@ -13,24 +14,23 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 35px;
-  margin-top: 30px;
+  font-size: 2rem;
 `
 const MainText = styled(Main)`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 35px;
-  margin-top: 30px;
+  font-size: 2rem;
+  margin: 2rem 0;
 `
 const SearchBar = styled(Main)`
   position: relative;
 
   input {
-    padding: 20px;
+    padding: 1rem;
+    width: 70rem;
     border: 5px green solid;
-    border-radius: 30px;
-    width: 60vw;
+    border-radius: 2rem;
     font-size: 4rem;
   }
 
@@ -39,30 +39,27 @@ const SearchBar = styled(Main)`
   }
 
   i {
+    cursor: pointer;
     font-size: 3rem;
     z-index: 10;
     position: absolute;
     color: #707070;
-    left: 53vw;
+    right: 2rem;
     :hover {
       transform: scale(1.2);
     }
   }
 `
-
 const Type = styled.div`
   display: flex;
   align-items: center;
-  font-size: 30px;
-  margin-top: 30px;
+  font-size: 2rem;
+  margin: 2rem 0;
 `
-
 const Result = styled.div`
-  margin-top: 50px;
-  margin-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px 20px;
+  gap: 1rem 1rem;
 `
 
 function Search() {
@@ -106,7 +103,7 @@ function Search() {
           <MainText>찾고 싶은 영화나 TV 시리즈의 제목을 입력하세요.</MainText>
           <SearchBar>
             <input type="text" required />
-            <i type="submit" className="fas fa-search"></i>
+            <i type="submit" className="fas fa-search" onClick={onSubmit}></i>
           </SearchBar>
         </form>
         <div>

@@ -5,35 +5,36 @@ import { useNavigate } from 'react-router-dom'
 import { registerUser, checkEmail, checkNickName } from '../api/axios'
 
 const Container = styled.div`
-  display: flex;
   width: 100%;
   height: 90vh;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 `
 const Form = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45vw;
-  height: 80vh;
+  width: 40rem;
   background-color: #212529;
-  padding: 1%;
+  padding: 2rem;
+  border-radius: 1rem;
 `
 const Content = styled.div`
   display: flex;
   flex-direction: column;
 `
 const StyledLabel = styled.label`
-  font-size: 20px;
   color: white;
-  margin-top: 5px;
 `
 const StyledInput = styled.input`
-  margin-right: 20px;
-  margin-bottom: 5%;
-  width: 20vw;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  width: 25rem;
   border: none;
+  padding: 1rem;
   background-color: transparent;
   border-bottom: 1px whitesmoke solid;
   color: white;
@@ -50,11 +51,10 @@ const JoinContainer = styled.div`
 const StyledBtn = styled.button`
   color: #fff;
   background-color: gray;
-  width: 120px;
-  height: 40px;
-  font-size: 16px;
+  width: 8rem;
+  height: 3rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 1rem;
   justify-content: center;
   &:hover {
     opacity: 0.7;
@@ -64,10 +64,10 @@ const StyledBtn = styled.button`
   ${(props) =>
     props.join &&
     css`
-      font-size: 25px;
+      font-size: 1.5rem;
       background-color: red;
-      width: 80%;
-      height: 60px;
+      width: 20rem;
+      height: 4rem;
       margin-top: 20px;
       &:hover {
         opacity: 0.7;
@@ -78,7 +78,6 @@ const StyledBtn = styled.button`
 `
 const WarningTxt = styled.div`
   color: red;
-  font-size: 1rem;
 `
 function Join() {
   const [email, setEmail] = useState('')

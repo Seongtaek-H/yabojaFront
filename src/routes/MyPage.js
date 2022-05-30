@@ -2,16 +2,19 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { getUserFromCookie } from '../utils/cookie'
-import { getMovieReviews, getReviewsWithId, getTvReviews } from '../api/axios'
+import { getReviewsWithId } from '../api/axios'
 
 const Container = styled.div`
-  padding: 150px 120px;
+  padding: 5rem;
+  min-width: var(--min-width);
+  display: flex;
+  flex-direction: column;
 `
 const UserInfo = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 3%;
+  margin-bottom: 3rem;
   p {
     font-size: 1.5rem;
   }
@@ -28,7 +31,7 @@ const Avatar = styled.div`
 `
 const ContentContainer = styled.div`
   background-color: #3d3d3d;
-  padding: 2rem 2rem 2rem 2rem;
+  padding: 2rem;
   border-radius: 10px;
   hr {
     margin: 2rem 0;

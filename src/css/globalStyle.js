@@ -2,6 +2,11 @@ import { createGlobalStyle } from 'styled-components'
 import '../css/font.css'
 
 const GlobalStyle = createGlobalStyle`
+
+  :root {
+    --min-width: 1130px;
+  }
+
   *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -15,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     color: white;
     
   }
-  p{
+  h1, h2, p {
     margin: 0;
   }
   button {

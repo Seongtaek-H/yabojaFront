@@ -18,8 +18,8 @@ const Review = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr 1fr;
   background-color: #212529;
-  border-radius: 10px;
-  width: 40vw;
+  border-radius: 1rem;
+  width: 45rem;
   margin-top: 1rem;
   padding: 10px;
 `

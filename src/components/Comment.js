@@ -10,7 +10,7 @@ const StyledTextarea = styled.div`
   margin-top: 0.5rem;
   background-color: #171721;
   border-radius: 10px;
-  width: 40vw;
+  width: 45rem;
   padding: 20px;
   display: grid;
   align-items: center;

@@ -4,27 +4,28 @@ import Loading from '../components/loading'
 import Poster from '../components/Poster'
 
 const Wrapper = styled.div`
-  display: grid;
+  width: 100vw;
+  min-width: var(--min-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
-const GridWrapper = styled.div`
-  display: grid;
-  grid-auto-flow: column;
+const FilterContainer = styled.div`
+  display: flex;
+  width: 60rem;
   color: white;
-  width: 50vw;
-  height: 50px;
-  margin-top: 50px;
-  justify-self: center;
+  height: 4rem;
+  margin: 3rem 0;
   background-color: #707070;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 1rem;
 `
 
 const Filter = styled.div`
+  width: calc(100% / 2);
   background-color: ${(props) => props.bgcolor || 'gray'};
   color: ${(props) => props.color || 'white'};
-  width: 100%;
-  height: 100%;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -34,10 +35,7 @@ const Filter = styled.div`
 const GridWrapper2 = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px 20px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  justify-self: center;
+  gap: 1rem 1rem;
 `
 
 function What() {
@@ -45,6 +43,8 @@ function What() {
   const [loading, setLoading] = useState(true)
   const [movies, setMovies] = useState([])
   const [tvs, setTVs] = useState([])
+  const [flag, setflag] = useState(true)
+  const [flag2, setflag2] = useState(false)
 
   const getMovies = async () => {
     const json = await (
@@ -53,9 +53,7 @@ function What() {
       )
     ).json()
     setMovies(json.results)
-    setLoading(false)
   }
-
   const getTVs = async () => {
     const json = await (
       await fetch(
@@ -63,45 +61,23 @@ function What() {
       )
     ).json()
     setTVs(json.results)
-    setLoading(false)
   }
   useEffect(() => {
     getMovies()
-  }, [])
-  useEffect(() => {
     getTVs()
+    setLoading(false)
   }, [])
-
-  const [flag, setflag] = useState(true)
-  const [flag2, setflag2] = useState(false)
-  const [flag3, setflag3] = useState(false)
-
   const selectType = () => {
     setflag((prev) => !prev)
     if (flag2 === true) {
       setflag2((prev) => !prev)
     }
-    if (flag3 === true) {
-      setflag3((prev) => !prev)
-    }
   }
+
   const selectType2 = () => {
     setflag2((prev) => !prev)
     if (flag === true) {
       setflag((prev) => !prev)
-    }
-    if (flag3 === true) {
-      setflag3((prev) => !prev)
-    }
-  }
-
-  const selectType3 = () => {
-    setflag3((prev) => !prev)
-    if (flag === true) {
-      setflag((prev) => !prev)
-    }
-    if (flag2 === true) {
-      setflag2((prev) => !prev)
     }
   }
 
@@ -111,7 +87,7 @@ function What() {
         <Loading />
       ) : (
         <Wrapper>
-          <GridWrapper>
+          <FilterContainer>
             <Filter
               onClick={() => {
                 if (!flag) selectType()
@@ -119,7 +95,7 @@ function What() {
               bgcolor={flag === true ? 'white' : ''}
               color={flag === true ? 'gray' : ''}
             >
-              All
+              영화
             </Filter>
             <Filter
               onClick={() => {
@@ -128,24 +104,12 @@ function What() {
               bgcolor={flag2 === true ? 'white' : ''}
               color={flag2 === true ? 'gray' : ''}
             >
-              영화
-            </Filter>
-            <Filter
-              onClick={() => {
-                if (!flag3) selectType3()
-              }}
-              bgcolor={flag3 === true ? 'white' : ''}
-              color={flag3 === true ? 'gray' : ''}
-            >
               TV 시리즈
             </Filter>
-          </GridWrapper>
+          </FilterContainer>
 
           {flag ? (
             <GridWrapper2>
-              {tvs.map((poster) => (
-                <Poster key={poster.id} type="tv" poster={poster} />
-              ))}
               {movies.map((poster) => (
                 <Poster key={poster.id} type="movie" poster={poster} />
               ))}
@@ -153,14 +117,6 @@ function What() {
           ) : null}
 
           {flag2 ? (
-            <GridWrapper2>
-              {movies.map((poster) => (
-                <Poster key={poster.id} type="movie" poster={poster} />
-              ))}
-            </GridWrapper2>
-          ) : null}
-
-          {flag3 ? (
             <GridWrapper2>
               {tvs.map((poster) => (
                 <Poster key={poster.id} type="tv" poster={poster} />

@@ -5,8 +5,8 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   h2 {
-    padding-left: 10px;
-    padding-bottom: 10px;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
     font-family: 'Noto100';
   }
   position: relative;
@@ -14,30 +14,30 @@ const Wrapper = styled.div`
 
 const MotionContainer = styled(motion.div)`
   width: 100%;
+  min-width: var(--min-width);
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  column-gap: 10px;
+  column-gap: 0.5rem;
   position: absolute;
-  z-index: 5;
+  z-index: 50;
 `
 
 const MotionBox = styled(motion.div)`
-  height: 200px;
+  height: 13rem;
   background-image: url(${(props) => props.poster});
   background-color: white;
   background-size: cover;
   background-position: center center;
-  margin-bottom: 10px;
   &:hover {
     opacity: 0.5;
     transition: opacity 0.2s linear;
   }
 `
-const StyleBtn = styled.button`
+const StyledBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 13rem;
   cursor: pointer;
   font-size: 3rem;
   border: none;
@@ -45,12 +45,9 @@ const StyleBtn = styled.button`
   position: absolute;
   right: ${(props) => (props.right ? '0px' : '')};
   left: ${(props) => (props.left ? '0px' : '')};
-  z-index: 10;
+  z-index: 60;
   &:hover {
     background-color: gray;
-  }
-  @media screen and (max-width: 412px) {
-    top: 17vh;
   }
 `
 function Slider({ title, criteria }) {
@@ -75,7 +72,7 @@ function Slider({ title, criteria }) {
   const increaseIndex = () => {
     if (contents) {
       if (leaving) return
-      setReverse(false)
+      setReverse(true)
       setLeaving(true)
       const totalContents = contents.length
       const maxIndex = Math.ceil(totalContents / offset) - 1
@@ -85,7 +82,7 @@ function Slider({ title, criteria }) {
   const decreaseIndex = () => {
     if (contents) {
       if (leaving) return
-      setReverse(true)
+      setReverse(false)
       setLeaving(true)
       const totalContents = contents.length
       const maxIndex = Math.ceil(totalContents / offset) - 1
@@ -116,12 +113,12 @@ function Slider({ title, criteria }) {
   return (
     <Wrapper>
       <h2>{title}</h2>
-      <StyleBtn left onClick={increaseIndex}>
+      <StyledBtn left onClick={decreaseIndex}>
         <i className="fa-solid fa-chevron-left"></i>
-      </StyleBtn>
-      <StyleBtn right onClick={decreaseIndex}>
+      </StyledBtn>
+      <StyledBtn right onClick={increaseIndex}>
         <i className="fa-solid fa-chevron-right"></i>
-      </StyleBtn>
+      </StyledBtn>
       <AnimatePresence custom={reverse} onExitComplete={toggleLeaving}>
         <MotionContainer
           custom={reverse}

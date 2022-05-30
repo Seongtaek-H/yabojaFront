@@ -23,11 +23,8 @@ const WriteBtn = styled.div`
   }
 `
 const Reviews = styled.div`
-  width: 60%;
-  border-radius: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   h1 {
     margin: 0;
@@ -79,7 +76,7 @@ function Review() {
   return (
     <>
       {!loading ? (
-        <Container url={makeImagePath(content.backdrop_path)}>
+        <Container>
           <WriteBtn
             onClick={() => {
               setShowReviewModal(true)
@@ -92,10 +89,7 @@ function Review() {
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <div key={review.no}>
-                  <ReviewList
-                    data={review}
-                    poster={makeImagePath(content.backdrop_path)}
-                  ></ReviewList>
+                  <ReviewList data={review}></ReviewList>
                 </div>
               ))
             ) : (
@@ -123,13 +117,13 @@ function Review() {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '65vw',
-                height: '60vh',
+                width: '60rem',
+                height: '40rem',
                 border: '1px solid #ccc',
                 background: '#212529',
                 overflow: 'auto',
                 WebkitOverflowScrolling: 'touch',
-                borderRadius: '10px',
+                borderRadius: '1rem',
                 outline: 'none',
               },
             }}
