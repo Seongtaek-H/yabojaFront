@@ -6,29 +6,25 @@ import Loading from '../components/loading'
 
 const Container = styled.div`
   display: flex;
+  width: 100vw;
+  min-width: var(--min-width);
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 `
-
 const Main = styled.div`
-  width: 80vw;
-  margin: 50px;
-  justify-content: center;
+  width: 80%;
 `
-
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 40px;
+  font-size: 2.5rem;
 `
 const Arrow = styled.div`
   display: flex;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 1rem;
 `
-
 const StyledBtn = styled.button`
   background-color: transparent;
   color: white;
@@ -40,7 +36,6 @@ const StyledBtn = styled.button`
     color: orange;
   }
 `
-
 const Days = styled.div`
   display: flex;
 `
@@ -62,10 +57,9 @@ const Dates = styled.div`
   border-top: 1px solid whitesmoke;
   border-right: 1px solid whitesmoke;
 `
-
 const DateDetail = styled.div`
   width: calc(100% / 7);
-  padding: 15px;
+  padding: 1rem;
   text-align: right;
   border-bottom: 1px solid whitesmoke;
   border-left: 1px solid whitesmoke;
@@ -77,7 +71,7 @@ const DateDetail = styled.div`
   }
 `
 const Others = styled.span`
-  opacity: 0.33;
+  opacity: 0.3;
 `
 
 const Calendar = () => {
