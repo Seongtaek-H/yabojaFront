@@ -61,14 +61,14 @@ const Rating = styled.div`
   }
   label {
     cursor: pointer;
-    font-size: 25px;
+    font-size: 1.5rem;
     color: transparent;
     text-shadow: 0 0 0 #f0f0f0;
     &:hover {
-      text-shadow: 0 0 0 yellow;
+      text-shadow: 0 0 0 orange;
     }
     &:hover ~ label {
-      text-shadow: 0 0 0 yellow;
+      text-shadow: 0 0 0 orange;
     }
   }
 `
