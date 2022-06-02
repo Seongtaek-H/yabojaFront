@@ -17,7 +17,7 @@ const Container = styled.div`
 `
 const GridContainer = styled.div`
   width: 50%;
-  height: 80%;
+  height: 85%;
   max-width: 40rem;
   max-height: 30rem;
   display: flex;
