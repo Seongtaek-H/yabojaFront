@@ -6,7 +6,6 @@ import { getUserFromCookie } from '../utils/cookie'
 
 const GridWrapper = styled.div`
   display: grid;
-  width: 100vw;
   height: 90vh;
   min-width: var(--min-width);
   background-size: cover;
