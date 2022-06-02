@@ -6,7 +6,6 @@ import Loading from '../components/loading'
 
 const Container = styled.div`
   display: flex;
-  width: 100vw;
   min-width: var(--min-width);
   justify-content: center;
   align-items: center;
