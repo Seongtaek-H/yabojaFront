@@ -10,6 +10,7 @@ const Container = styled.div`
   min-width: var(--min-width);
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
 `
 const Main = styled.div`
   width: 80%;
@@ -53,7 +54,6 @@ const Day = styled.div`
 const Dates = styled.div`
   display: flex;
   flex-flow: row wrap;
-  height: 80vh;
   border-top: 1px solid whitesmoke;
   border-right: 1px solid whitesmoke;
 `
