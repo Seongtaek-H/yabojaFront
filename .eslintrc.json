@@ -22,8 +22,8 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "react/prop-types": 0,
-    "no-unused-vars": "warn",
-    "react/jsx-key": "warn",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "no-unused-vars": 0,
+    "react/jsx-key": 0,
+    "react-hooks/exhaustive-deps": 0
   }
 }

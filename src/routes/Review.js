@@ -10,6 +10,7 @@ import { getReview } from '../api/axios'
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 `
 
 const WriteBtn = styled.div`
@@ -110,15 +111,17 @@ function Review() {
                 right: 0,
                 bottom: 0,
                 backgroundColor: 'rgba(255, 255, 255, 0.75)',
-                zIndex: 3,
+                zIndex: 99999,
               },
               content: {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '60rem',
-                height: '40rem',
+                width: '60%',
+                height: '90%',
+                maxWidth: '60rem',
+                maxHeight: '30rem',
                 border: '1px solid #ccc',
                 background: '#212529',
                 overflow: 'auto',
