@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 5rem 0;
 `
 const Form = styled.div`
   width: 40rem;
