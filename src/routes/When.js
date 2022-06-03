@@ -52,6 +52,8 @@ const Day = styled.div`
 `
 const Dates = styled.div`
   display: flex;
+  min-height: 30rem;
+  height: 80vh;
   flex-flow: row wrap;
   border-top: 1px solid whitesmoke;
   border-right: 1px solid whitesmoke;

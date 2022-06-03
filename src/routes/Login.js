@@ -11,6 +11,7 @@ import { saveAuthToCookie, saveUserToCookie } from '../utils/cookie'
 
 const Container = styled.div`
   height: 90vh;
+  min-height: 40rem;
   display: flex;
   justify-content: center;
   align-items: center;
