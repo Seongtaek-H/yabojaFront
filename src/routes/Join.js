@@ -148,8 +148,8 @@ function Join() {
     if (checkPhoneNum(phoneNumber) != null)
       return alert('전화번호 형식이 맞지 않습니다. 숫자로만 입력해주세요.')
     try {
-      const { data } = await registerUser(joinData)
-      alert(data.message)
+      await registerUser(joinData)
+      alert('야보자에 오신 걸 환영합니다!🎉')
       navigate('/login')
     } catch (error) {
       alert(error)
