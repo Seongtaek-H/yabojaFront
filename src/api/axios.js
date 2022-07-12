@@ -33,11 +33,11 @@ function registerUser(joinData) {
 }
 
 function checkEmail(email) {
-  return instance.get(`/user/identities?type="email"&value=${email}`)
+  return instance.get(`/user/identities?type=email&value=${email}`)
 }
 
 function checkNickName(nickName) {
-  return instance.get(`/user/identities?type="nickName"&value=${nickName}`)
+  return instance.get(`/user/identities?type=nickName&value=${nickName}`)
 }
 
 // 로그인 메서드
