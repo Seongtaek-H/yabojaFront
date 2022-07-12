@@ -65,7 +65,6 @@ REACT_APP_API_KEY=발급받은 API키
 ```
 
 > https://www.themoviedb.org/
->
 > 위 링크로 들어가 tmdb에 가입만 하면 api키를 바로 발급받을 수 있다.
 
 ### 실행하기
