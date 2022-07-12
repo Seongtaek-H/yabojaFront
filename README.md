@@ -56,17 +56,16 @@
 
 ### 실행 전 주의사항
 
-야보자 프로젝트는 tmdb api를 통해 컨텐츠 관련 정보를 받아오고 있다. 보안을 높이기 위해 env 파일에 tmdb api 키를 정의했고, gitignore 파일에 env 파일을 추가했다. 따라서 실행을 위해서는 tmdb api키를 발급받아 env 파일에 정의하는 작업이 먼저 이루어져야 한다.
+야보자 프로젝트는 tmdb api로 컨텐츠 관련 정보를 받아오고 있다. 보안을 높이기 위해 env 파일에 tmdb api키를 정의했고, gitignore 파일에 env 파일을 추가했다. 따라서 실행을 위해서는 tmdb api키를 발급받아 env 파일에 정의하는 작업이 먼저 이루어져야 한다.
 
 ```
 // .env
 
-REACT_APP_API_KEY=발급받은 API 키
+REACT_APP_API_KEY=발급받은 API키
 ```
 
 > https://www.themoviedb.org/
->
-> 위 링크로 들어가 tmdb에 가입만 하면 api 키를 바로 발급받을 수 있다.
+> 위 링크로 들어가 tmdb에 가입만 하면 api키를 바로 발급받을 수 있다.
 
 ### 실행하기
 
