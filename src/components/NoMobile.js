@@ -14,7 +14,7 @@ const Warning = styled.div`
   font-size: large;
   flex-direction: column;
   font-family: 'Noto700';
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 1280px) {
     display: flex;
   }
   div {
@@ -31,7 +31,7 @@ function NoMobile() {
   return (
     <Warning>
       <div>Yaboja</div>
-      Only Available on Wide Screen 💻
+      Only Available on PC 💻
     </Warning>
   )
 }

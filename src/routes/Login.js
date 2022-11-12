@@ -10,16 +10,15 @@ import { getUser, loginUser } from '../api/axios'
 import { saveAuthToCookie, saveUserToCookie } from '../utils/cookie'
 
 const Container = styled.div`
-  height: 90vh;
-  min-height: 40rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 `
 const GridContainer = styled.div`
-  width: 50%;
+  max-width: 50%;
   height: 85%;
-  max-width: 40rem;
+  min-width: 40rem;
   max-height: 30rem;
   display: flex;
   flex-direction: column;
