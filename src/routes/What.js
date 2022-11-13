@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
 `
 
 const FilterContainer = styled.div`

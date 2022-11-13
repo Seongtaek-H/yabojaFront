@@ -14,6 +14,7 @@ const StyledPoster = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
 
   &:hover {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
