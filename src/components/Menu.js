@@ -53,7 +53,6 @@ const StyledBtn = styled.div`
   appearance: none;
   color: white;
   border: none;
-  cursor: pointer;
   &:focus {
     transition: all 0.1s ease-in-out;
     color: orange;

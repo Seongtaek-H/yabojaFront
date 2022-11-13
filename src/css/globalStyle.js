@@ -5,6 +5,9 @@ import '../css/reset.css'
 const GlobalStyle = createGlobalStyle`
 body {
   background-color: black;
+  button {
+    cursor: pointer;
+  }
 }
 `
 

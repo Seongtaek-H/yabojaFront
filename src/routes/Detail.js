@@ -6,8 +6,8 @@ import { getUserFromCookie } from '../utils/cookie'
 
 const GridWrapper = styled.div`
   display: grid;
-  height: 90vh;
-  min-width: var(--min-width);
+  height: 80vh;
+  width: 100%;
   background-size: cover;
   background-position: center center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
@@ -18,8 +18,8 @@ const GridWrapper = styled.div`
 `
 
 const Poster = styled.div`
-  width: 20rem;
-  height: 25rem;
+  width: 350px;
+  height: 450px;
   background-image: url(${(props) => props.url});
   background-size: 100% 100%;
   background-position: center center;
@@ -47,7 +47,7 @@ const Thin = styled.div`
 `
 
 const Medium = styled.div`
-  font-size: 20px;
+  font-size: 1.3rem;
   display: inline-block;
   font-family: 'Noto500';
 `

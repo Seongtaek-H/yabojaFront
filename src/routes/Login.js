@@ -12,37 +12,36 @@ import { saveAuthToCookie, saveUserToCookie } from '../utils/cookie'
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  width: 100%;
 `
-const GridContainer = styled.div`
-  max-width: 50%;
-  height: 85%;
-  min-width: 40rem;
-  max-height: 30rem;
+const LoginWindow = styled.div`
+  margin-top: 200px;
+  width: 900px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #212529;
-  border-radius: 1rem;
+  border-radius: 10px;
+  font-size: 1.5rem;
 
   div {
-    width: 30rem;
+    width: 70%;
     display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
     label {
       justify-self: center;
     }
     input {
       background-color: black;
-      height: 4rem;
-      padding: 1rem;
+      font-size: 1.2rem;
+      height: 50px;
+      padding: 15px;
       color: white;
       border: none;
-      font-size: 1rem;
       :focus {
         outline: #808080 solid 1px;
       }
@@ -58,14 +57,15 @@ const GridContainer = styled.div`
   }
 `
 const StyledBtn = styled.button`
-  margin: 2rem 0;
+  margin-top: 20px;
+  margin-bottom: 40px;
   color: white;
   background-color: red;
-  width: 20rem;
-  height: 4rem;
+  width: 50%;
+  height: 80px;
   font-size: 1.5rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 10px;
   &:hover {
     opacity: 0.7;
     color: white;
@@ -105,7 +105,7 @@ function Login() {
   return (
     <>
       <Container>
-        <GridContainer>
+        <LoginWindow>
           <div>
             <label htmlFor="email">이메일</label>
             <input
@@ -137,7 +137,7 @@ function Login() {
             <span>아직 계정이 없으신가요?</span>
             <Link to={'/join'}>회원가입하기</Link>
           </div>
-        </GridContainer>
+        </LoginWindow>
       </Container>
     </>
   )
