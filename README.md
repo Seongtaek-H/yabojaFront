@@ -82,12 +82,12 @@ REACT_APP_API_KEY=발급받은 API키
 // Window
 ...
   "scripts": {
-    "start": "set PORT=4000 && craco start",
+    "start": "set PORT=4000 && react-scripts start",
 ...
 // Mac
 ...
   "scripts": {
-    "start": "PORT=4000 craco start",
+    "start": "PORT=4000 react-scripts start",
 ...
 
 ```
