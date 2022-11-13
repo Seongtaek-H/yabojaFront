@@ -10,12 +10,12 @@ const Container = styled.div`
   justify-content: center;
 `
 const Form = styled.div`
-  margin-top: 100px;
-  width: 600px;
+  margin-top: 50px;
+  width: 700px;
   background-color: #212529;
-  padding: 40px;
+  padding: 35px;
   border-radius: 10px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 `
 const Content = styled.div`
   display: flex;
@@ -27,9 +27,9 @@ const StyledLabel = styled.label`
 const StyledInput = styled.input`
   margin-bottom: 20px;
   width: 70%;
-  height: 50px;
+  padding: 10px 0;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: transparent;
   border-bottom: 1px whitesmoke solid;
   color: white;
