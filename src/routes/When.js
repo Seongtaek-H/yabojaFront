@@ -5,17 +5,11 @@ import styled from 'styled-components'
 import Loading from '../components/loading'
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-const Main = styled.div`
   padding: 0 80px;
-  height: 80vh;
-  min-height: 800px;
+  margin-top: 30px;
   table {
     width: 100%;
-    height: 100%;
+    height: 900px;
     border: 1px solid white;
     table-layout: fixed;
     th,
@@ -40,7 +34,6 @@ const StyledBtn = styled.button`
   background-color: transparent;
   color: white;
   border: none;
-  cursor: pointer;
   font-size: 2rem;
   &:hover {
     transition: all 0.1s ease-in-out;
@@ -126,93 +119,91 @@ const Calendar = () => {
         <Loading />
       ) : (
         <Container>
-          <Main>
-            <Header>
-              {year}년 {month + 1}월
-              <div>
-                <StyledBtn className="go-prev" onClick={() => firstMonth()}>
-                  ◀️
-                </StyledBtn>
-                <StyledBtn className="go-today" onClick={() => goToday()}>
-                  today
-                </StyledBtn>
-                <StyledBtn className="go-next" onClick={() => lastMonth()}>
-                  ▶️
-                </StyledBtn>
-              </div>
-            </Header>
-            <table>
-              <thead>
-                <tr>
-                  {' '}
-                  {CALENDAR_WEEKS.map((day) => (
-                    <th>{day.day}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {totalDates.map((date, idx) => {
-                  dateArray.push({ date, idx })
-                  if (dateArray.length % 7 === 0) {
-                    const dateArrayTmp = JSON.parse(JSON.stringify(dateArray))
-                    dateArray = []
-                    return (
-                      <tr>
-                        {dateArrayTmp.map((dateObj) => {
-                          if (
-                            firstDateIndex <= dateObj.idx &&
-                            dateObj.idx < lastDateIndex
-                          ) {
-                            if (dateObj.idx % 7 === 6) {
-                              return (
-                                <td style={{ color: 'blue' }}>
-                                  {dateObj.date}
-                                  <Upcoming
-                                    date={dateObj.date}
-                                    contents={contents}
-                                    year={year}
-                                    month={month}
-                                  />
-                                </td>
-                              )
-                            } else if (dateObj.idx % 7 === 0) {
-                              return (
-                                <td style={{ color: 'red' }}>
-                                  {dateObj.date}
-                                  <Upcoming
-                                    date={dateObj.date}
-                                    contents={contents}
-                                    year={year}
-                                    month={month}
-                                  />
-                                </td>
-                              )
-                            } else {
-                              return (
-                                <td>
-                                  {dateObj.date}
-                                  <Upcoming
-                                    date={dateObj.date}
-                                    contents={contents}
-                                    year={year}
-                                    month={month}
-                                  />
-                                </td>
-                              )
-                            }
+          <Header>
+            {year}년 {month + 1}월
+            <div>
+              <StyledBtn className="go-prev" onClick={() => firstMonth()}>
+                ◀️
+              </StyledBtn>
+              <StyledBtn className="go-today" onClick={() => goToday()}>
+                today
+              </StyledBtn>
+              <StyledBtn className="go-next" onClick={() => lastMonth()}>
+                ▶️
+              </StyledBtn>
+            </div>
+          </Header>
+          <table>
+            <thead>
+              <tr>
+                {' '}
+                {CALENDAR_WEEKS.map((day) => (
+                  <th>{day.day}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {totalDates.map((date, idx) => {
+                dateArray.push({ date, idx })
+                if (dateArray.length % 7 === 0) {
+                  const dateArrayTmp = JSON.parse(JSON.stringify(dateArray))
+                  dateArray = []
+                  return (
+                    <tr>
+                      {dateArrayTmp.map((dateObj) => {
+                        if (
+                          firstDateIndex <= dateObj.idx &&
+                          dateObj.idx < lastDateIndex
+                        ) {
+                          if (dateObj.idx % 7 === 6) {
+                            return (
+                              <td style={{ color: 'blue' }}>
+                                {dateObj.date}
+                                <Upcoming
+                                  date={dateObj.date}
+                                  contents={contents}
+                                  year={year}
+                                  month={month}
+                                />
+                              </td>
+                            )
+                          } else if (dateObj.idx % 7 === 0) {
+                            return (
+                              <td style={{ color: 'red' }}>
+                                {dateObj.date}
+                                <Upcoming
+                                  date={dateObj.date}
+                                  contents={contents}
+                                  year={year}
+                                  month={month}
+                                />
+                              </td>
+                            )
                           } else {
                             return (
-                              <td style={{ opacity: 0.3 }}>{dateObj.date}</td>
+                              <td>
+                                {dateObj.date}
+                                <Upcoming
+                                  date={dateObj.date}
+                                  contents={contents}
+                                  year={year}
+                                  month={month}
+                                />
+                              </td>
                             )
                           }
-                        })}
-                      </tr>
-                    )
-                  }
-                })}
-              </tbody>
-            </table>
-          </Main>
+                        } else {
+                          return (
+                            <td style={{ opacity: 0.3 }}>{dateObj.date}</td>
+                          )
+                        }
+                      })}
+                    </tr>
+                  )
+                }
+              })}
+            </tbody>
+          </table>
         </Container>
       )}
     </>

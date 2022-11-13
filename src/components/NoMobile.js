@@ -8,7 +8,7 @@ const Warning = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 9999;
+  z-index: 99999;
   justify-content: center;
   align-items: center;
   font-size: large;

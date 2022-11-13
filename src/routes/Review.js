@@ -11,6 +11,10 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  h1 {
+    font-weight: 700;
+    font-size: 3rem;
+  }
 `
 
 const WriteBtn = styled.div`
@@ -111,25 +115,20 @@ function Review() {
                 right: 0,
                 bottom: 0,
                 backgroundColor: 'rgba(255, 255, 255, 0.75)',
-                zIndex: 99999,
+                zIndex: 9999,
               },
               content: {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '60%',
-                height: '90%',
-                minWidth: '50rem',
-                minHeight: '20rem',
-                maxWidth: '50rem',
-                maxHeight: '30rem',
+                width: '900px',
+                height: '550px',
                 border: '1px solid #ccc',
                 background: '#212529',
-                overflow: 'auto',
-                WebkitOverflowScrolling: 'touch',
-                borderRadius: '1rem',
+                borderRadius: '10px',
                 outline: 'none',
+                padding: '40px',
               },
             }}
           >

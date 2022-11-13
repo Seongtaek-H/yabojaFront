@@ -4,10 +4,10 @@ import { createComment } from '../api/axios'
 import { useNavigate } from 'react-router-dom'
 
 const StyledTextarea = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 10px;
   background-color: #171721;
   border-radius: 10px;
-  width: 45rem;
+  width: 800px;
   padding: 20px;
   align-items: center;
   display: grid;
@@ -24,7 +24,6 @@ const StyledTextarea = styled.div`
   button {
     margin-left: 1rem;
     background-color: gray;
-    cursor: pointer;
     padding: 1rem;
     border-radius: 1rem;
   }

@@ -8,12 +8,14 @@ const Container = styled.div`
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 0.7fr;
+  color: white;
+  font-family: 'Noto300';
   h1 {
     font-size: 1.75rem;
   }
   p {
     font-size: 1.5rem;
-    margin: 0.5rem 0;
+    margin: 20px 0;
   }
 `
 const Rating = styled.div`
@@ -40,10 +42,10 @@ const Rating = styled.div`
 `
 
 const StyledInput = styled.input`
-  padding: 5%;
-  width: 100%;
+  padding: 20px;
   background-color: #171721;
   border-radius: 10px;
+  font-size: 1.3rem;
   color: white;
   border: none;
   :focus {
@@ -56,7 +58,7 @@ const StyledBtn = styled.button`
   background-color: red;
   width: 250px;
   height: 60px;
-  font-size: 25px;
+  font-size: 1.5rem;
   border: none;
   border-radius: 5px;
   justify-self: center;
@@ -120,7 +122,7 @@ const ReviewModal = (props) => {
   return (
     <Container>
       <section>
-        <h1>이 작품 어떠셨나요?</h1>
+        <h1>🌈이 작품 어떠셨나요?</h1>
         <p>{props.title}</p>
         <Rating>
           <input
