@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyledPoster = styled.div`
-  width: 13rem;
-  height: 17rem;
+  width: 200px;
+  height: 300px;
   background-image: url(${(props) => props.poster});
   background-size: 100% 100%;
   background-position: center center;
@@ -14,6 +14,7 @@ const StyledPoster = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
 
   &:hover {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
