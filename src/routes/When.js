@@ -6,13 +6,28 @@ import Loading from '../components/loading'
 
 const Container = styled.div`
   display: flex;
-  min-width: var(--min-width);
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
 `
 const Main = styled.div`
-  width: 80%;
+  padding: 0 80px;
+  height: 80vh;
+  min-height: 800px;
+  table {
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+    table-layout: fixed;
+    th,
+    td {
+      border: 1px solid white;
+      padding: 10px;
+    }
+    td {
+      text-align: right;
+      height: 100px;
+    }
+  }
 `
 const Header = styled.header`
   display: flex;
@@ -20,11 +35,7 @@ const Header = styled.header`
   align-items: center;
   font-size: 2.5rem;
 `
-const Arrow = styled.div`
-  display: flex;
-  border-radius: 5px;
-  font-size: 1rem;
-`
+
 const StyledBtn = styled.button`
   background-color: transparent;
   color: white;
@@ -35,44 +46,6 @@ const StyledBtn = styled.button`
     transition: all 0.1s ease-in-out;
     color: orange;
   }
-`
-const Days = styled.div`
-  display: flex;
-`
-const Day = styled.div`
-  width: calc(100% / 7);
-  text-align: center;
-  border: 1px solid whitesmoke;
-  &:nth-child(7n + 1) {
-    color: #d13e3e;
-  }
-  &:nth-child(7n) {
-    color: #396ee2;
-  }
-`
-const Dates = styled.div`
-  display: flex;
-  min-height: 30rem;
-  height: 80vh;
-  flex-flow: row wrap;
-  border-top: 1px solid whitesmoke;
-  border-right: 1px solid whitesmoke;
-`
-const DateDetail = styled.div`
-  width: calc(100% / 7);
-  padding: 1rem;
-  text-align: right;
-  border-bottom: 1px solid whitesmoke;
-  border-left: 1px solid whitesmoke;
-  &:nth-child(7n + 1) {
-    color: #d13e3e;
-  }
-  &:nth-child(7n) {
-    color: #396ee2;
-  }
-`
-const Others = styled.span`
-  opacity: 0.3;
 `
 
 const Calendar = () => {
@@ -96,6 +69,7 @@ const Calendar = () => {
   }
   useEffect(() => {
     getContents()
+    console.log(contents)
   }, [])
 
   const lastDate = new Date(year, month + 1, 0).getDate()
@@ -143,6 +117,9 @@ const Calendar = () => {
     }
   }
 
+  let dateArray = []
+  // <tr>에 7일의 <td>를 넣기 위한 날짜 저장 변수
+
   return (
     <>
       {loading ? (
@@ -152,7 +129,7 @@ const Calendar = () => {
           <Main>
             <Header>
               {year}년 {month + 1}월
-              <Arrow>
+              <div>
                 <StyledBtn className="go-prev" onClick={() => firstMonth()}>
                   ◀️
                 </StyledBtn>
@@ -162,38 +139,79 @@ const Calendar = () => {
                 <StyledBtn className="go-next" onClick={() => lastMonth()}>
                   ▶️
                 </StyledBtn>
-              </Arrow>
+              </div>
             </Header>
-            <Days>
-              {CALENDAR_WEEKS.map((day) => (
-                <Day>{day.day}</Day>
-              ))}
-            </Days>
-            <Dates>
-              {totalDates.map((date, i) => (
-                <React.Fragment key={i}>
-                  <DateDetail>
-                    {i >= firstDateIndex && i < lastDateIndex ? (
-                      <span className="this">
-                        {date}
-                        {contents ? (
-                          <Upcoming
-                            date={date}
-                            contents={contents}
-                            year={year}
-                            month={month}
-                          />
-                        ) : (
-                          ''
-                        )}
-                      </span>
-                    ) : (
-                      <Others>{date}</Others>
-                    )}
-                  </DateDetail>
-                </React.Fragment>
-              ))}
-            </Dates>
+            <table>
+              <thead>
+                <tr>
+                  {' '}
+                  {CALENDAR_WEEKS.map((day) => (
+                    <th>{day.day}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {totalDates.map((date, idx) => {
+                  dateArray.push({ date, idx })
+                  if (dateArray.length % 7 === 0) {
+                    const dateArrayTmp = JSON.parse(JSON.stringify(dateArray))
+                    dateArray = []
+                    return (
+                      <tr>
+                        {dateArrayTmp.map((dateObj) => {
+                          if (
+                            firstDateIndex <= dateObj.idx &&
+                            dateObj.idx < lastDateIndex
+                          ) {
+                            if (dateObj.idx % 7 === 6) {
+                              return (
+                                <td style={{ color: 'blue' }}>
+                                  {dateObj.date}
+                                  <Upcoming
+                                    date={dateObj.date}
+                                    contents={contents}
+                                    year={year}
+                                    month={month}
+                                  />
+                                </td>
+                              )
+                            } else if (dateObj.idx % 7 === 0) {
+                              return (
+                                <td style={{ color: 'red' }}>
+                                  {dateObj.date}
+                                  <Upcoming
+                                    date={dateObj.date}
+                                    contents={contents}
+                                    year={year}
+                                    month={month}
+                                  />
+                                </td>
+                              )
+                            } else {
+                              return (
+                                <td>
+                                  {dateObj.date}
+                                  <Upcoming
+                                    date={dateObj.date}
+                                    contents={contents}
+                                    year={year}
+                                    month={month}
+                                  />
+                                </td>
+                              )
+                            }
+                          } else {
+                            return (
+                              <td style={{ opacity: 0.3 }}>{dateObj.date}</td>
+                            )
+                          }
+                        })}
+                      </tr>
+                    )
+                  }
+                })}
+              </tbody>
+            </table>
           </Main>
         </Container>
       )}

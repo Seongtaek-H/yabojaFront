@@ -21,7 +21,6 @@ const Upcoming = ({ date, contents, month, year }) => {
         parseInt(content.release_date.split('-')[0]) === year ? (
           <StyledLink to={`/detail/movie/${content.id}`}>
             {content.title}
-            <br />
           </StyledLink>
         ) : (
           ''
