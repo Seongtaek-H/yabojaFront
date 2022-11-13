@@ -8,13 +8,14 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 5rem 0;
 `
 const Form = styled.div`
-  width: 40rem;
+  margin-top: 100px;
+  width: 600px;
   background-color: #212529;
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: 40px;
+  border-radius: 10px;
+  font-size: 1.5rem;
 `
 const Content = styled.div`
   display: flex;
@@ -24,11 +25,11 @@ const StyledLabel = styled.label`
   color: white;
 `
 const StyledInput = styled.input`
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  width: 25rem;
+  margin-bottom: 20px;
+  width: 70%;
+  height: 50px;
   border: none;
-  padding: 1rem;
+  font-size: 1.2rem;
   background-color: transparent;
   border-bottom: 1px whitesmoke solid;
   color: white;
@@ -37,7 +38,7 @@ const StyledInput = styled.input`
     background-color: transparent;
   }
 `
-const JoinContainer = styled.div`
+const BtnContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
@@ -45,11 +46,13 @@ const JoinContainer = styled.div`
 const StyledBtn = styled.button`
   color: #fff;
   background-color: gray;
-  width: 8rem;
-  height: 3rem;
+  width: 120px;
+  height: 50px;
   border: none;
-  border-radius: 1rem;
+  margin-left: 20px;
+  border-radius: 10px;
   justify-content: center;
+  font-size: 1.2rem;
   &:hover {
     opacity: 0.7;
     transition: all 0.3s;
@@ -60,8 +63,9 @@ const StyledBtn = styled.button`
     css`
       font-size: 1.5rem;
       background-color: red;
-      width: 20rem;
-      height: 4rem;
+      width: 300px;
+      height: 80px;
+      margin-left: 0;
       margin-top: 20px;
       &:hover {
         opacity: 0.7;
@@ -230,11 +234,11 @@ function Join() {
               placeholder="숫자로만 입력해주세요."
             />
           </StyledLabel>
-          <JoinContainer>
+          <BtnContainer>
             <StyledBtn join="100%" onClick={handleJoin}>
               회원가입
             </StyledBtn>
-          </JoinContainer>
+          </BtnContainer>
         </Content>
       </Form>
     </Container>

@@ -5,10 +5,8 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: grid;
   width: 100%;
-  min-width: var(--min-width);
   grid-template-rows: repeat(2, max-content);
   justify-items: center;
-  align-items: center;
 `
 const Main = styled.div`
   display: flex;
@@ -21,16 +19,16 @@ const MainText = styled(Main)`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  margin: 2rem 0;
+  margin: 40px 0;
 `
 const SearchBar = styled(Main)`
   position: relative;
 
   input {
-    padding: 1rem;
-    width: 70rem;
-    border: 5px green solid;
-    border-radius: 2rem;
+    padding: 10px;
+    width: calc(1920px * 0.6);
+    border: 5px #f21b75 solid;
+    border-radius: 30px;
     font-size: 4rem;
   }
 
@@ -44,7 +42,7 @@ const SearchBar = styled(Main)`
     z-index: 10;
     position: absolute;
     color: #707070;
-    right: 2rem;
+    right: 20px;
     :hover {
       transform: scale(1.2);
     }
@@ -54,12 +52,12 @@ const Type = styled.div`
   display: flex;
   align-items: center;
   font-size: 2rem;
-  margin: 2rem 0;
+  margin: 40px 0;
 `
 const Result = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem 1rem;
+  gap: 20px 20px;
 `
 
 function Search() {

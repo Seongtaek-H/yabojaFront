@@ -7,22 +7,25 @@ import styled from 'styled-components'
 
 import { deleteCookie } from '../utils/cookie'
 
+// css 변수
+const MenuHeight = `100px`
+
 const MenuContainer = styled.div`
   width: 100%;
-  min-width: var(--min-width);
-  height: 5rem;
-  padding: 1rem;
-  background-color: gray;
+  max-width: 1920px;
+  height: ${MenuHeight};
+  font-size: 1.5rem;
   position: fixed;
+  top: 0;
+  background-color: gray;
   font-family: 'Noto700';
-  font-size: x-large;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   z-index: 99;
   h1 {
     font-family: 'DoHyeon';
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #fff;
     text-shadow: 0 0 7px #f21b75, 0 0 10px #f21b75, 0 0 20px #f21b75,
       0 0 42px #f21b75, 0 0 82px #f21b75, 0 0 92px #f21b75, 0 0 102px #f21b75,
@@ -30,10 +33,9 @@ const MenuContainer = styled.div`
   }
   div {
     display: flex;
-    font-size: large;
-    font-family: 'Noto500';
+    font-family: 'Noto300';
     a:nth-child(1) {
-      margin-right: 1rem;
+      margin-right: 1vw;
     }
   }
 `
@@ -51,14 +53,13 @@ const StyledBtn = styled.div`
   appearance: none;
   color: white;
   border: none;
-  cursor: pointer;
   &:focus {
     transition: all 0.1s ease-in-out;
     color: orange;
   }
 `
 const Blank = styled.div`
-  height: 5rem;
+  height: ${MenuHeight};
 `
 function Menu() {
   const isLogin = useSelector((state) => state.isLogin.value)
@@ -74,6 +75,7 @@ function Menu() {
 
   return (
     <>
+      <Blank></Blank>
       <MenuContainer>
         <StyledLink to="/">
           <h1>YaBoja</h1>
@@ -93,7 +95,6 @@ function Menu() {
           </div>
         )}
       </MenuContainer>
-      <Blank></Blank>
     </>
   )
 }

@@ -7,10 +7,10 @@ import {
 } from '../api/axios'
 
 const StyledTextarea = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 10px;
   background-color: #171721;
   border-radius: 10px;
-  width: 45rem;
+  width: 800px;
   padding: 20px;
   display: grid;
   align-items: center;

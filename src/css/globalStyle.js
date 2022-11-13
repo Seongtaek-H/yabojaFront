@@ -1,34 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 import '../css/font.css'
+import '../css/reset.css'
 
 const GlobalStyle = createGlobalStyle`
-
-  :root {
-    --min-width: 1130px;
-  }
-
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    padding:0px;
-    margin:0px;
-    font-family: "Noto300";
-    line-height: 1.5;
-    background-color: black;
-    color: white;
-    
-  }
-  h1, h2, p {
-    margin: 0;
-  }
+body {
+  background-color: black;
   button {
-    background-color: transparent;
-    border : 0;
-    color : white;
     cursor: pointer;
   }
+}
 `
 
 export default GlobalStyle

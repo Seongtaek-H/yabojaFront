@@ -3,6 +3,10 @@ import Slider from '../components/Slider'
 import Loading from '../components/loading'
 import styled from 'styled-components'
 
+const Container = styled.div`
+  height: 100%;
+`
+
 const TitleContainer = styled.div`
   height: 45rem;
   display: flex;
@@ -61,17 +65,19 @@ function Home() {
         <Loading></Loading>
       ) : (
         <>
-          <TitleContainer url={makeImagePath(contents[ranNum].backdrop_path)}>
-            <div>
-              <span>야보자! 이거어때?</span>
-              <span>에서</span>
-              <p>원하는 콘텐츠들을 만나보세요.</p>
-            </div>
-          </TitleContainer>
-          <SliderContainer>
-            <Slider title="Top Rated" criteria="top_rated" />
-            <Slider title="Now Playing" criteria="now_playing" />
-          </SliderContainer>
+          <div>
+            <TitleContainer url={makeImagePath(contents[ranNum].backdrop_path)}>
+              <div>
+                <span>야보자! 이거어때?</span>
+                <span>에서</span>
+                <p>원하는 콘텐츠들을 만나보세요.</p>
+              </div>
+            </TitleContainer>
+            <SliderContainer>
+              <Slider title="Top Rated" criteria="top_rated" />
+              <Slider title="Now Playing" criteria="now_playing" />
+            </SliderContainer>
+          </div>
         </>
       )}
     </>

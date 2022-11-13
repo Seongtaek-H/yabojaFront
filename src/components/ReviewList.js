@@ -18,10 +18,11 @@ const Review = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr 1fr;
   background-color: #212529;
-  border-radius: 1rem;
-  width: 45rem;
-  margin-top: 1rem;
-  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  width: 800px;
+  padding: 20px;
+  font-size: 1.3rem;
 `
 const User = styled.div`
   width: 100%;
@@ -34,7 +35,7 @@ const User = styled.div`
   }
   section p {
     margin-top: 10px;
-    font-size: 10px;
+    font-size: 1.1rem;
   }
   div {
     display: flex;
@@ -72,8 +73,8 @@ const Btn = styled.div`
   button {
     all: unset;
     width: 100%;
-    cursor: pointer;
     text-align: center;
+    cursor: pointer;
   }
   button:nth-child(2) {
     border-left: 1px gray solid;

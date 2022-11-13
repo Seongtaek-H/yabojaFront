@@ -4,8 +4,8 @@ import Loading from '../components/loading'
 import Poster from '../components/Poster'
 
 const Wrapper = styled.div`
-  width: 100vw;
-  min-width: var(--min-width);
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,10 +13,9 @@ const Wrapper = styled.div`
 
 const FilterContainer = styled.div`
   display: flex;
-  width: 60rem;
-  color: white;
-  height: 4rem;
-  margin: 3rem 0;
+  width: calc(1920px * 0.7);
+  height: 80px;
+  margin: 40px 0;
   background-color: #707070;
   overflow: hidden;
   border-radius: 1rem;
@@ -35,7 +34,7 @@ const Filter = styled.div`
 const GridWrapper2 = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem 1rem;
+  gap: 20px 20px;
 `
 
 function What() {
