@@ -15,16 +15,16 @@ const Container = styled.div`
   width: 100%;
 `
 const LoginWindow = styled.div`
-  margin-top: 200px;
-  width: 900px;
-  height: 550px;
+  margin-top: 100px;
+  width: 700px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #212529;
   border-radius: 10px;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 
   div {
     width: 70%;
@@ -37,8 +37,7 @@ const LoginWindow = styled.div`
     }
     input {
       background-color: black;
-      font-size: 1.2rem;
-      height: 50px;
+      font-size: 1.1rem;
       padding: 15px;
       color: white;
       border: none;

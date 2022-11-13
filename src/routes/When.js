@@ -9,7 +9,7 @@ const Container = styled.div`
   margin-top: 30px;
   table {
     width: 100%;
-    height: 900px;
+    height: 700px;
     border: 1px solid white;
     table-layout: fixed;
     th,
