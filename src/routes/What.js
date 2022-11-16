@@ -9,13 +9,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 40px 0;
 `
 
 const FilterContainer = styled.div`
   display: flex;
-  width: calc(1920px * 0.7);
-  height: 80px;
-  margin: 40px 0;
+  width: 70vw;
+  height: 10vh;
+  margin-bottom: 40px;
   background-color: #707070;
   overflow: hidden;
   border-radius: 1rem;

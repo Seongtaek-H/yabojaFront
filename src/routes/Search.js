@@ -26,10 +26,10 @@ const SearchBar = styled(Main)`
 
   input {
     padding: 10px;
-    width: calc(1920px * 0.6);
+    width: 60vw;
     border: 5px #f21b75 solid;
     border-radius: 30px;
-    font-size: 4rem;
+    font-size: 2.5rem;
   }
 
   input:focus {
@@ -38,7 +38,7 @@ const SearchBar = styled(Main)`
 
   i {
     cursor: pointer;
-    font-size: 3rem;
+    font-size: 2rem;
     z-index: 10;
     position: absolute;
     color: #707070;

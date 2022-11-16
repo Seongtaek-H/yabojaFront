@@ -26,7 +26,7 @@ const RootContainer = styled.div`
 
 const Contents = styled.div`
   width: 100%;
-  margin-bottom: 40px;
+  height: 100%;
 `
 function App() {
   return (

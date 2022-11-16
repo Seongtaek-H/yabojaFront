@@ -13,11 +13,14 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 80vh;
+  align-items: center;
 `
 const LoginWindow = styled.div`
-  margin-top: 100px;
-  width: 700px;
-  height: 500px;
+  width: 50vw;
+  height: 70vh;
+  max-width: 700px;
+  max-height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,13 +28,13 @@ const LoginWindow = styled.div`
   background-color: #212529;
   border-radius: 10px;
   font-size: 1.1rem;
+  padding: 20px;
 
   div {
     width: 70%;
     display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: center;
-    margin-bottom: 20px;
     label {
       justify-self: center;
     }
@@ -46,6 +49,9 @@ const LoginWindow = styled.div`
       }
     }
   }
+  div:first-child {
+    margin-bottom: 20px;
+  }
   div:last-child {
     display: flex;
     justify-content: space-evenly;
@@ -57,11 +63,13 @@ const LoginWindow = styled.div`
 `
 const StyledBtn = styled.button`
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: white;
   background-color: red;
-  width: 50%;
-  height: 80px;
+  width: 20vw;
+  height: 10vh;
+  max-width: 300px;
+  max-height: 80px;
   font-size: 1.5rem;
   border: none;
   border-radius: 10px;

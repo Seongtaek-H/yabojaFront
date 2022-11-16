@@ -16,7 +16,7 @@ import { formatDate } from '../utils/filter'
 
 const Review = styled.div`
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr 1fr;
   background-color: #212529;
   margin-top: 10px;
   border-radius: 10px;
@@ -46,7 +46,6 @@ const User = styled.div`
 `
 const Content = styled.div`
   display: flex;
-  height: 50%;
   justify-content: center;
   align-items: center;
   margin: 10px;

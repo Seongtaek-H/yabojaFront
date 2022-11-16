@@ -6,10 +6,10 @@ import Loading from '../components/loading'
 
 const Container = styled.div`
   padding: 0 80px;
-  margin-top: 30px;
+  margin: 20px 0;
   table {
     width: 100%;
-    height: 700px;
+    height: 70vh;
     border: 1px solid white;
     table-layout: fixed;
     th,
@@ -19,7 +19,7 @@ const Container = styled.div`
     }
     td {
       text-align: right;
-      height: 100px;
+      max-height: 150px;
     }
   }
 `

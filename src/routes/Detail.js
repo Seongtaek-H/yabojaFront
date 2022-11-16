@@ -6,20 +6,20 @@ import { getUserFromCookie } from '../utils/cookie'
 
 const GridWrapper = styled.div`
   display: grid;
-  height: 80vh;
   width: 100%;
   background-size: cover;
   background-position: center center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
     url(${(props) => props.url});
-  align-items: center;
   justify-items: center;
+  align-items: center;
   grid-template-columns: 1fr 2fr;
+  padding: 40px 0;
 `
 
 const Poster = styled.div`
-  width: 350px;
-  height: 450px;
+  width: 25vw;
+  height: 35vw;
   background-image: url(${(props) => props.url});
   background-size: 100% 100%;
   background-position: center center;
@@ -31,7 +31,7 @@ const StyledDetail = styled.div`
   background-color: transparent;
 
   div:nth-child(1) {
-    font-size: 50px;
+    font-size: 2.5rem;
     font-family: 'Noto700';
   }
 

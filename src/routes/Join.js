@@ -8,9 +8,9 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  margin: 40px 0;
 `
 const Form = styled.div`
-  margin-top: 50px;
   width: 700px;
   background-color: #212529;
   padding: 35px;

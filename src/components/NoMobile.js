@@ -14,7 +14,7 @@ const Warning = styled.div`
   font-size: large;
   flex-direction: column;
   font-family: 'Noto700';
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1279px) {
     display: flex;
   }
   div {

@@ -12,6 +12,7 @@ const Container = styled.div`
     font-size: 2rem;
     font-family: 'Noto500';
     margin-bottom: 1vh;
+    padding-left: 10px;
   }
   width: 100%;
   max-width: 1920px;
